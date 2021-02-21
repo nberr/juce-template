@@ -5,12 +5,22 @@
               companyName="nberr" companyWebsite="nberr.io">
   <MAINGROUP id="TNWVd4" name="plugin">
     <GROUP id="{6F1CC035-6A5A-1C85-6983-AF5D6FEBFD98}" name="Source">
-      <FILE id="gdqEMd" name="InterfaceDefines.h" compile="0" resource="0"
-            file="Source/InterfaceDefines.h"/>
-      <FILE id="d6Zqi5" name="MainPanel.cpp" compile="1" resource="0" file="Source/MainPanel.cpp"/>
-      <FILE id="zHisrF" name="MainPanel.h" compile="0" resource="0" file="Source/MainPanel.h"/>
-      <FILE id="cvx4hK" name="PanelBase.cpp" compile="1" resource="0" file="Source/PanelBase.cpp"/>
-      <FILE id="pUYj8p" name="PanelBase.h" compile="0" resource="0" file="Source/PanelBase.h"/>
+      <GROUP id="{394815CE-F6CE-6C80-D11F-26779C576C91}" name="UI">
+        <FILE id="gdqEMd" name="InterfaceDefines.h" compile="0" resource="0"
+              file="Source/InterfaceDefines.h"/>
+        <FILE id="d6Zqi5" name="MainPanel.cpp" compile="1" resource="0" file="Source/MainPanel.cpp"/>
+        <FILE id="zHisrF" name="MainPanel.h" compile="0" resource="0" file="Source/MainPanel.h"/>
+        <FILE id="cvx4hK" name="PanelBase.cpp" compile="1" resource="0" file="Source/PanelBase.cpp"/>
+        <FILE id="pUYj8p" name="PanelBase.h" compile="0" resource="0" file="Source/PanelBase.h"/>
+        <FILE id="VXiXBY" name="TemplateLookAndFeel.h" compile="0" resource="0"
+              file="Source/TemplateLookAndFeel.h"/>
+      </GROUP>
+      <GROUP id="{9AF81B50-6E18-EFF4-A084-449B2B393442}" name="Reg">
+        <FILE id="Ff6MpQ" name="TemplateMarketplaceStatus.cpp" compile="1"
+              resource="0" file="Source/TemplateMarketplaceStatus.cpp"/>
+        <FILE id="uXSaUp" name="TemplateMarketplaceStatus.h" compile="0" resource="0"
+              file="Source/TemplateMarketplaceStatus.h"/>
+      </GROUP>
       <FILE id="y2Vakz" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="TRNmZ4" name="PluginProcessor.h" compile="0" resource="0"
@@ -18,8 +28,6 @@
       <FILE id="qvhjYq" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
       <FILE id="lxpprX" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
-      <FILE id="VXiXBY" name="TemplateLookAndFeel.h" compile="0" resource="0"
-            file="Source/TemplateLookAndFeel.h"/>
       <FILE id="aNc8pH" name="TemplateParameters.h" compile="0" resource="0"
             file="Source/TemplateParameters.h"/>
     </GROUP>
