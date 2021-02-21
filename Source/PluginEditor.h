@@ -12,6 +12,7 @@
 #include "PluginProcessor.h"
 
 #include "MainPanel.h"
+#include "TemplateLookAndFeel.h"
 
 //==============================================================================
 /**

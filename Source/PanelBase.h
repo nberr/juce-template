@@ -13,6 +13,7 @@
 #include <JuceHeader.h>
 
 #include "InterfaceDefines.h"
+#include "TemplateLookAndFeel.h"
 #include "PluginProcessor.h"
 
 class PanelBase

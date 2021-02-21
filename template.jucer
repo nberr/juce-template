@@ -18,6 +18,8 @@
       <FILE id="qvhjYq" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
       <FILE id="lxpprX" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="VXiXBY" name="TemplateLookAndFeel.h" compile="0" resource="0"
+            file="Source/TemplateLookAndFeel.h"/>
       <FILE id="aNc8pH" name="TemplateParameters.h" compile="0" resource="0"
             file="Source/TemplateParameters.h"/>
     </GROUP>
