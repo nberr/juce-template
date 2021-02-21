@@ -9,6 +9,8 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+#include "TemplateParameters.h"
+
 //==============================================================================
 Template_AudioProcessor::Template_AudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -19,8 +21,9 @@ Template_AudioProcessor::Template_AudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ),
 #endif
+parameters(*this, nullptr, "PARAMETERS", createParameterLayout())
 {
 }
 
@@ -188,4 +191,46 @@ void Template_AudioProcessor::setStateInformation (const void* data, int sizeInB
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new Template_AudioProcessor();
+}
+
+juce::AudioProcessorValueTreeState::ParameterLayout Template_AudioProcessor::createParameterLayout()
+{
+    juce::AudioProcessorValueTreeState::ParameterLayout params;
+    
+    for (int i = 0; i < TP_TotalNumParameters; i++)
+    {
+        switch(TemplateParameterTypes[i])
+        {
+            case is_int:
+                params.add(std::make_unique<juce::AudioParameterInt>(TemplateParameterID[i],
+                                                                     TemplateParameterName[i],
+                                                                     TemplateParameterMin[i].ivalue,
+                                                                     TemplateParameterMax[i].ivalue,
+                                                                     TemplateParameterDefault[i].ivalue,
+                                                                     TemplateParameterLabel[i]));
+                break;
+            case is_float:
+                params.add(std::make_unique<juce::AudioParameterFloat>(TemplateParameterID[i],
+                                                                       TemplateParameterName[i],
+                                                                       juce::NormalisableRange<float>(TemplateParameterMin[i].fvalue, TemplateParameterMax[i].fvalue),
+                                                                       TemplateParameterDefault[i].fvalue,
+                                                                       TemplateParameterLabel[i]));
+                break;
+            case is_bool:
+                params.add(std::make_unique<juce::AudioParameterBool>(TemplateParameterID[i],
+                                                                      TemplateParameterName[i],
+                                                                      TemplateParameterDefault[i].bvalue,
+                                                                      TemplateParameterLabel[i]));
+                break;
+            case is_choice:
+                params.add(std::make_unique<juce::AudioParameterChoice>(TemplateParameterID[i],
+                                                                        TemplateParameterName[i],
+                                                                        *TemplateParameterChoices[i],
+                                                                        TemplateParameterDefault[i].ivalue,
+                                                                        TemplateParameterLabel[i]));
+                break;
+        }
+    }
+    
+    return params;
 }
