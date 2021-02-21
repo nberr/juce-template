@@ -225,7 +225,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout Template_AudioProcessor::cre
             case is_choice:
                 params.add(std::make_unique<juce::AudioParameterChoice>(TemplateParameterID[i],
                                                                         TemplateParameterName[i],
-                                                                        *TemplateParameterChoices[i],
+                                                                        TemplateParameterChoices[i],
                                                                         TemplateParameterDefault[i].ivalue,
                                                                         TemplateParameterLabel[i]));
                 break;

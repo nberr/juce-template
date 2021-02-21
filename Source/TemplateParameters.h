@@ -35,11 +35,11 @@ typedef union value_t {
     int cvalue;
 } value;
 
-static const juce::StringArray* TemplateParameterChoices[TP_TotalNumParameters]  = {
-    NULL,
-    NULL,
-    NULL,
-    new juce::StringArray("choice 1", "choice 2")
+static const juce::StringArray TemplateParameterChoices[TP_TotalNumParameters]  = {
+    juce::StringArray(),
+    juce::StringArray(),
+    juce::StringArray(),
+    juce::StringArray("choice 1", "choice 2")
 };
 
 static type TemplateParameterTypes[TP_TotalNumParameters] = {
