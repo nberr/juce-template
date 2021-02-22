@@ -7,6 +7,3 @@ Template for JUCE plugins
 - parameters that can be programmatically initialized
 - key registration
 
-## Non-JUCE components
-- Rust DSP
-- React JS UI

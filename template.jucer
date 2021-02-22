@@ -14,6 +14,10 @@
         <FILE id="pUYj8p" name="PanelBase.h" compile="0" resource="0" file="Source/PanelBase.h"/>
         <FILE id="VXiXBY" name="TemplateLookAndFeel.h" compile="0" resource="0"
               file="Source/TemplateLookAndFeel.h"/>
+        <FILE id="bfxIXj" name="TemplateUnlockForm.cpp" compile="1" resource="0"
+              file="Source/TemplateUnlockForm.cpp"/>
+        <FILE id="MRG8mN" name="TemplateUnlockForm.h" compile="0" resource="0"
+              file="Source/TemplateUnlockForm.h"/>
       </GROUP>
       <GROUP id="{9AF81B50-6E18-EFF4-A084-449B2B393442}" name="Reg">
         <FILE id="Ff6MpQ" name="TemplateMarketplaceStatus.cpp" compile="1"
@@ -52,6 +56,8 @@
         <MODULEPATH id="juce_graphics" path="../../Applications/JUCE/modules"/>
         <MODULEPATH id="juce_gui_basics" path="../../Applications/JUCE/modules"/>
         <MODULEPATH id="juce_gui_extra" path="../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../../Applications/JUCE/modules"/>
+        <MODULEPATH id="juce_product_unlocking" path="../../../Applications/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
   </EXPORTFORMATS>
@@ -64,11 +70,14 @@
     <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_product_unlocking" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
   </MODULES>
   <LIVE_SETTINGS>
     <OSX/>

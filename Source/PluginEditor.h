@@ -17,7 +17,7 @@
 //==============================================================================
 /**
 */
-class Template_AudioProcessorEditor  : public juce::AudioProcessorEditor
+class Template_AudioProcessorEditor : public juce::AudioProcessorEditor
 {
 public:
     Template_AudioProcessorEditor (Template_AudioProcessor&);
