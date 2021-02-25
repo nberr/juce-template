@@ -20,6 +20,8 @@
         <FILE id="pUYj8p" name="PanelBase.h" compile="0" resource="0" file="Source/PanelBase.h"/>
         <FILE id="VXiXBY" name="TemplateLookAndFeel.h" compile="0" resource="0"
               file="Source/TemplateLookAndFeel.h"/>
+        <FILE id="C8nixF" name="PresetPanel.cpp" compile="1" resource="0" file="Source/PresetPanel.cpp"/>
+        <FILE id="cVsZJn" name="PresetPanel.h" compile="0" resource="0" file="Source/PresetPanel.h"/>
         <FILE id="bfxIXj" name="TemplateUnlockForm.cpp" compile="1" resource="0"
               file="Source/TemplateUnlockForm.cpp"/>
         <FILE id="MRG8mN" name="TemplateUnlockForm.h" compile="0" resource="0"
@@ -40,6 +42,10 @@
       <FILE id="lxpprX" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
       <FILE id="aNc8pH" name="TemplateParameters.h" compile="0" resource="0"
             file="Source/TemplateParameters.h"/>
+      <FILE id="msLWzn" name="TemplatePresetManager.cpp" compile="1" resource="0"
+            file="Source/TemplatePresetManager.cpp"/>
+      <FILE id="qzcmoa" name="TemplatePresetManager.h" compile="0" resource="0"
+            file="Source/TemplatePresetManager.h"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>

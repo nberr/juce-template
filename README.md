@@ -7,4 +7,4 @@ Template for JUCE plugins
 - parameters that can be programmatically initialized
 - save and load parameters
 - key registration
-
+- presets (save and load)

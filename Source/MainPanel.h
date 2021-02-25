@@ -14,6 +14,7 @@
 
 #include "TemplateMarketplaceStatus.h"
 #include "TemplateUnlockForm.h"
+#include "PresetPanel.h"
 
 class MainPanel
 :   public PanelBase,
@@ -36,4 +37,6 @@ private:
     TemplateUnlockForm unlockForm;
 
     bool isUnlocked = false;
+    
+    std::unique_ptr<PresetPanel> mPresetPanel;
 };

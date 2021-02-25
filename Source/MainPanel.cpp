@@ -37,6 +37,10 @@ MainPanel::MainPanel(Template_AudioProcessor *inProcessor)
     
     startTimer(100);
     
+    mPresetPanel = std::make_unique<PresetPanel>(inProcessor);
+    mPresetPanel->setTopLeftPosition(0, 0);
+    addAndMakeVisible(*mPresetPanel);
+    
 }
 
 MainPanel::~MainPanel()

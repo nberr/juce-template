@@ -25,6 +25,9 @@ Template_AudioProcessor::Template_AudioProcessor()
 #endif
 parameters(*this, nullptr, "PARAMETERS", createParameterLayout())
 {
+    initializeDSP();
+    
+    mPresetManager = std::make_unique<TemplatePresetManager>(this);
 }
 
 Template_AudioProcessor::~Template_AudioProcessor()
@@ -204,6 +207,11 @@ void Template_AudioProcessor::setStateInformation (const void* data, int sizeInB
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new Template_AudioProcessor();
+}
+
+TemplatePresetManager*  Template_AudioProcessor::getPresetManager()
+{
+    return (TemplatePresetManager *)&*mPresetManager;
 }
 
 juce::AudioProcessorValueTreeState::ParameterLayout Template_AudioProcessor::createParameterLayout()

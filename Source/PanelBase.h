@@ -24,6 +24,6 @@ public:
     ~PanelBase();
     
     void paint(juce::Graphics& g) override;
-private:
+protected:
     Template_AudioProcessor *mProcessor;
 };

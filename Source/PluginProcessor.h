@@ -11,6 +11,7 @@
 #include <JuceHeader.h>
 
 #include "TemplateEffect.h"
+#include "TemplatePresetManager.h"
 
 //==============================================================================
 /**
@@ -55,6 +56,8 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
     
+    TemplatePresetManager* getPresetManager();
+    
     juce::AudioProcessorValueTreeState parameters;
 private:
     //==============================================================================
@@ -62,6 +65,8 @@ private:
     void initializeDSP();
     
     std::unique_ptr<TemplateEffect> mEffect[2];
+    
+    std::unique_ptr<TemplatePresetManager> mPresetManager;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Template_AudioProcessor)
 };
