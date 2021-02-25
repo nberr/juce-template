@@ -5,6 +5,12 @@
               companyName="nberr" companyWebsite="nberr.io">
   <MAINGROUP id="TNWVd4" name="plugin">
     <GROUP id="{6F1CC035-6A5A-1C85-6983-AF5D6FEBFD98}" name="Source">
+      <GROUP id="{A6AAB695-E9C7-6CCC-82D9-3DBD3E4D9595}" name="FX">
+        <FILE id="MY988m" name="TemplateEffect.cpp" compile="1" resource="0"
+              file="Source/TemplateEffect.cpp"/>
+        <FILE id="zXAf8G" name="TemplateEffect.h" compile="0" resource="0"
+              file="Source/TemplateEffect.h"/>
+      </GROUP>
       <GROUP id="{394815CE-F6CE-6C80-D11F-26779C576C91}" name="UI">
         <FILE id="gdqEMd" name="InterfaceDefines.h" compile="0" resource="0"
               file="Source/InterfaceDefines.h"/>

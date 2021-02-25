@@ -10,6 +10,8 @@
 
 #include <JuceHeader.h>
 
+#include "TemplateEffect.h"
+
 //==============================================================================
 /**
 */
@@ -57,5 +59,9 @@ public:
 private:
     //==============================================================================
     juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+    void initializeDSP();
+    
+    std::unique_ptr<TemplateEffect> mEffect[2];
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Template_AudioProcessor)
 };

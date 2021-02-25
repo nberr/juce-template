@@ -158,6 +158,11 @@ void Template_AudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, ju
         auto* channelData = buffer.getWritePointer (channel);
 
         // ..do something to the data...
+        mEffect[channel]->process(channelData,
+                                  *(parameters.getRawParameterValue(TemplateParameterID[TP_Float])),
+                                  channelData,
+                                  buffer.getNumSamples());
+        
     }
 }
 
@@ -241,4 +246,13 @@ juce::AudioProcessorValueTreeState::ParameterLayout Template_AudioProcessor::cre
     }
     
     return params;
+}
+
+void Template_AudioProcessor::initializeDSP()
+{
+    // we use 2 because there are 2 channels in stereo
+    for (int channel = 0; channel < 2; channel++)
+    {
+        mEffect[channel] = std::make_unique<TemplateEffect>();
+    }
 }
