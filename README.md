@@ -5,5 +5,6 @@ Template for JUCE plugins
 - audio block to manipulate signal or midi
 - User Interface heirarchy + LookAndFeel
 - parameters that can be programmatically initialized
+- save and load parameters
 - key registration
 
