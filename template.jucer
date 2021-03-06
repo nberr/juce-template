@@ -5,6 +5,20 @@
               companyName="nberr" companyWebsite="nberr.io">
   <MAINGROUP id="TNWVd4" name="plugin">
     <GROUP id="{6F1CC035-6A5A-1C85-6983-AF5D6FEBFD98}" name="Source">
+      <GROUP id="{706D7DCB-0209-28E8-6541-87156518EB2E}" name="State">
+        <FILE id="msLWzn" name="TemplatePresetManager.cpp" compile="1" resource="0"
+              file="Source/TemplatePresetManager.cpp"/>
+        <FILE id="qzcmoa" name="TemplatePresetManager.h" compile="0" resource="0"
+              file="Source/TemplatePresetManager.h"/>
+      </GROUP>
+      <GROUP id="{B2958CF0-7B92-87F3-2338-E6DCEF3C3529}" name="Parameters">
+        <FILE id="aNc8pH" name="TemplateParameters.h" compile="0" resource="0"
+              file="Source/TemplateParameters.h"/>
+        <FILE id="iozU9e" name="TemplateSlider.cpp" compile="1" resource="0"
+              file="Source/TemplateSlider.cpp"/>
+        <FILE id="tV1WNH" name="TemplateSlider.h" compile="0" resource="0"
+              file="Source/TemplateSlider.h"/>
+      </GROUP>
       <GROUP id="{A6AAB695-E9C7-6CCC-82D9-3DBD3E4D9595}" name="FX">
         <FILE id="MY988m" name="TemplateEffect.cpp" compile="1" resource="0"
               file="Source/TemplateEffect.cpp"/>
@@ -27,7 +41,7 @@
         <FILE id="MRG8mN" name="TemplateUnlockForm.h" compile="0" resource="0"
               file="Source/TemplateUnlockForm.h"/>
       </GROUP>
-      <GROUP id="{9AF81B50-6E18-EFF4-A084-449B2B393442}" name="Reg">
+      <GROUP id="{9AF81B50-6E18-EFF4-A084-449B2B393442}" name="Registration">
         <FILE id="Ff6MpQ" name="TemplateMarketplaceStatus.cpp" compile="1"
               resource="0" file="Source/TemplateMarketplaceStatus.cpp"/>
         <FILE id="uXSaUp" name="TemplateMarketplaceStatus.h" compile="0" resource="0"
@@ -40,12 +54,6 @@
       <FILE id="qvhjYq" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
       <FILE id="lxpprX" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
-      <FILE id="aNc8pH" name="TemplateParameters.h" compile="0" resource="0"
-            file="Source/TemplateParameters.h"/>
-      <FILE id="msLWzn" name="TemplatePresetManager.cpp" compile="1" resource="0"
-            file="Source/TemplatePresetManager.cpp"/>
-      <FILE id="qzcmoa" name="TemplatePresetManager.h" compile="0" resource="0"
-            file="Source/TemplatePresetManager.h"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>

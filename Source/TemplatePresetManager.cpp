@@ -167,15 +167,14 @@ juce::String TemplatePresetManager::getCurrentPresetName()
 
 void TemplatePresetManager::storeLocalPreset()
 {
-   /* mLocalPresets.clear();
-    
-    for (juce::RangedDirectoryIterator di (juce::File(mPresetDirectory),
-                                           false,
-                                           "*" + (juce::String)PRESET_FILE_EXTENSION,
-                                           juce::File::TypesOfFileToFind::findFiles);
-         ; di++)
+    mLocalPresets.clear();
+        
+    for (juce::DirectoryEntry entry: juce::RangedDirectoryIterator(juce::File(mPresetDirectory),
+                                                                   false,
+                                                                   "*" + (juce::String)PRESET_FILE_EXTENSION,
+                                                                   juce::File::TypesOfFileToFind::findFiles))
     {
-        juce::File preset = di->getFile();
+        juce::File preset = entry.getFile();
         mLocalPresets.add(preset);
-    }*/
+    }
 }

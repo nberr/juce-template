@@ -6,5 +6,6 @@ Template for JUCE plugins
 - User Interface heirarchy + LookAndFeel
 - parameters that can be programmatically initialized
 - save and load parameters
+- parameter controllers (slider, button, etc)
 - key registration
 - presets (save and load)
