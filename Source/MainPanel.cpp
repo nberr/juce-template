@@ -20,16 +20,16 @@ MainPanel::MainPanel(Template_AudioProcessor *inProcessor)
     unlockLabel.setTopLeftPosition(0, 0);
     unlockLabel.setFont (juce::Font (15.0f, juce::Font::bold));
     unlockLabel.setColour (juce::Label::textColourId, juce::Colours::red);
-    addAndMakeVisible (unlockLabel);
+    //addAndMakeVisible (unlockLabel);
 
     unlockButton.setSize(100, 100);
     unlockButton.setTopLeftPosition(50, 50);
     unlockButton.onClick = [this] { showForm(); };
-    addAndMakeVisible (unlockButton);
+    //addAndMakeVisible (unlockButton);
 
     secretButton.setEnabled (false);
     secretButton.onClick = [this] { checkFeature(); };
-    addAndMakeVisible (secretButton);
+    //addAndMakeVisible (secretButton);
 
     unlockForm.setSize(MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT);
     unlockForm.setTopLeftPosition(0, 0);
@@ -39,7 +39,7 @@ MainPanel::MainPanel(Template_AudioProcessor *inProcessor)
     
     mPresetPanel = std::make_unique<PresetPanel>(inProcessor);
     mPresetPanel->setTopLeftPosition(0, 0);
-    //addAndMakeVisible(*mPresetPanel);
+    addAndMakeVisible(*mPresetPanel);
     
 }
 

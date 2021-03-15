@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="ZKeukb" name="plugin" projectType="audioplug" useAppConfig="0"
+<JUCERPROJECT id="ZKeukb" name="templateplugin" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
-              companyName="nberr" companyWebsite="nberr.io">
-  <MAINGROUP id="TNWVd4" name="plugin">
+              companyName="Neural Imposters" companyWebsite="nberr.io" pluginName="templateplugin"
+              pluginManufacturer="Neurel Imposters">
+  <MAINGROUP id="TNWVd4" name="templateplugin">
     <GROUP id="{6F1CC035-6A5A-1C85-6983-AF5D6FEBFD98}" name="Source">
       <GROUP id="{706D7DCB-0209-28E8-6541-87156518EB2E}" name="State">
         <FILE id="msLWzn" name="TemplatePresetManager.cpp" compile="1" resource="0"
