@@ -1,22 +1,22 @@
 /*
   ==============================================================================
 
-    TemplateUnlockForm.cpp
-    Created: 22 Feb 2021 2:38:47pm
+    PluginNameUnlockForm.cpp
+    Created: 12 Apr 2021 5:03:03pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
 */
 
-#include "TemplateUnlockForm.h"
+#include "PluginNameUnlockForm.h"
 
-TemplateUnlockForm::TemplateUnlockForm(TemplateMarketplaceStatus& status)
+PluginNameUnlockForm::PluginNameUnlockForm(PluginNameMarketplaceStatus& status)
 :   juce::OnlineUnlockForm(status, "Please provide your email and password.")
 {
     
 }
 
-void TemplateUnlockForm::dismiss()
+void PluginNameUnlockForm::dismiss()
 {
     setVisible(false);
 }

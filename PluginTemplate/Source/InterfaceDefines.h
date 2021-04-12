@@ -2,7 +2,7 @@
   ==============================================================================
 
     InterfaceDefines.h
-    Created: 21 Feb 2021 6:50:13pm
+    Created: 12 Apr 2021 5:03:28pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
@@ -10,11 +10,9 @@
 
 #pragma once
 
-#define MAIN_PANEL_WIDTH 600
-#define MAIN_PANEL_HEIGHT 400
+#define MAIN_PANEL_WIDTH 400
+#define MAIN_PANEL_HEIGHT 300
 
-#define CORNER_SIZE 4
-#define LINE_THICKNESS 8
+#define PRESET_PANEL_WIDTH MAIN_PANEL_WIDTH
+#define PRESET_PANEL_HEIGHT (MAIN_PANEL_HEIGHT * 0.15)
 
-#define PRESET_PANEL_WIDTH 600
-#define PRESET_PANEL_HEIGHT 100

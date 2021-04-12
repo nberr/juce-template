@@ -12,16 +12,15 @@
 #include "PluginProcessor.h"
 
 #include "MainPanel.h"
-#include "TemplateLookAndFeel.h"
 
 //==============================================================================
 /**
 */
-class Template_AudioProcessorEditor : public juce::AudioProcessorEditor
+class PluginNameAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
 public:
-    Template_AudioProcessorEditor (Template_AudioProcessor&);
-    ~Template_AudioProcessorEditor() override;
+    PluginNameAudioProcessorEditor (PluginNameAudioProcessor&);
+    ~PluginNameAudioProcessorEditor() override;
 
     //==============================================================================
     void paint (juce::Graphics&) override;
@@ -30,9 +29,9 @@ public:
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    Template_AudioProcessor& audioProcessor;
+    PluginNameAudioProcessor& audioProcessor;
     
     std::unique_ptr<MainPanel> mMainPanel;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Template_AudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginNameAudioProcessorEditor)
 };

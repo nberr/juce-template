@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    TemplateMarketplaceStatus.h
-    Created: 21 Feb 2021 7:57:50pm
+    PluginNameMarketplaceStatus.h
+    Created: 12 Apr 2021 5:04:30pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
@@ -12,11 +12,11 @@
 
 #include <JuceHeader.h>
 
-class TemplateMarketplaceStatus
+class PluginNameMarketplaceStatus
 :   public juce::OnlineUnlockStatus
 {
 public:
-    TemplateMarketplaceStatus() = default;
+    PluginNameMarketplaceStatus() = default;
     
     juce::String getProductID() override;
     bool doesProductIDMatch(const juce::String& returnedIDFromServer) override;

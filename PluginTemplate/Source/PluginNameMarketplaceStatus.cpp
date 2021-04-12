@@ -1,53 +1,53 @@
 /*
   ==============================================================================
 
-    TemplateMarketplaceStatus.cpp
-    Created: 21 Feb 2021 7:57:50pm
+    PluginNameMarketplaceStatus.cpp
+    Created: 12 Apr 2021 5:04:30pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
 */
 
-#include "TemplateMarketplaceStatus.h"
+#include "PluginNameMarketplaceStatus.h"
 
 
 
-juce::String TemplateMarketplaceStatus::getProductID()
+juce::String PluginNameMarketplaceStatus::getProductID()
 {
-    return "TemplateApp";
+    return "PluginNameApp";
 }
 
-bool TemplateMarketplaceStatus::doesProductIDMatch(const juce::String& returnedIDFromServer)
+bool PluginNameMarketplaceStatus::doesProductIDMatch(const juce::String& returnedIDFromServer)
 {
     return getProductID() == returnedIDFromServer;
 }
 
-juce::RSAKey TemplateMarketplaceStatus::getPublicKey()
+juce::RSAKey PluginNameMarketplaceStatus::getPublicKey()
 {
-    return juce::RSAKey("TEMPLATE_PUBLIC_KEY");
+    return juce::RSAKey("PluginName_PUBLIC_KEY");
 }
 
-void TemplateMarketplaceStatus::saveState(const juce::String&)
+void PluginNameMarketplaceStatus::saveState(const juce::String&)
 {
     
 }
 
-juce::String TemplateMarketplaceStatus::getState()
+juce::String PluginNameMarketplaceStatus::getState()
 {
     return {};
 }
 
-juce::String TemplateMarketplaceStatus::getWebsiteName()
+juce::String PluginNameMarketplaceStatus::getWebsiteName()
 {
     return "nberr.io";
 }
 
-juce::URL TemplateMarketplaceStatus::getServerAuthenticationURL()
+juce::URL PluginNameMarketplaceStatus::getServerAuthenticationURL()
 {
     return juce::URL ("https://localhost:8443/auth.php");
 }
 
-juce::String TemplateMarketplaceStatus::readReplyFromWebserver(const juce::String& email, const juce::String& password)
+juce::String PluginNameMarketplaceStatus::readReplyFromWebserver(const juce::String& email, const juce::String& password)
 {
     juce::URL url (getServerAuthenticationURL()
                 .withParameter ("product", getProductID())
@@ -101,7 +101,7 @@ juce::String TemplateMarketplaceStatus::readReplyFromWebserver(const juce::Strin
     return {};
 }
 
-void TemplateMarketplaceStatus::userCancelled()
+void PluginNameMarketplaceStatus::userCancelled()
 {
     juce::ScopedLock lock(streamCreationLock);
     

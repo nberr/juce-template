@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    TemplatePresetManager.h
-    Created: 25 Feb 2021 3:41:57pm
+    PluginNamePresetManager.h
+    Created: 12 Apr 2021 5:00:55pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
@@ -12,13 +12,13 @@
 
 #include <JuceHeader.h>
 
-#define PRESET_FILE_EXTENSION ".tf"
+#define PRESET_FILE_EXTENSION ".PN"
 
-class TemplatePresetManager
+class PluginNamePresetManager
 {
 public:
-    TemplatePresetManager(juce::AudioProcessor* inProcssor);
-    ~TemplatePresetManager();
+    PluginNamePresetManager(juce::AudioProcessor* inProcssor);
+    ~PluginNamePresetManager();
     
     void getXmlForPreset(juce::XmlElement* inElement);
     void loadPresetForXml(juce::XmlElement* inElement);

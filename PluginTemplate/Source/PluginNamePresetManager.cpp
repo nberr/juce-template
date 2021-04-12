@@ -1,16 +1,16 @@
 /*
   ==============================================================================
 
-    TemplatePresetManager.cpp
-    Created: 25 Feb 2021 3:41:57pm
+    PluginNamePresetManager.cpp
+    Created: 12 Apr 2021 5:00:55pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
 */
 
-#include "TemplatePresetManager.h"
+#include "PluginNamePresetManager.h"
 
-#include "TemplateParameters.h"
+#include "PluginNameParameters.h"
 
 #if JUCE_WINDOWS
     #define DIR_SEP "\\"
@@ -21,7 +21,7 @@
 #endif
 
 
-TemplatePresetManager::TemplatePresetManager(juce::AudioProcessor* inProcssor)
+PluginNamePresetManager::PluginNamePresetManager(juce::AudioProcessor* inProcssor)
 :   mCurrentPresetIsSaved(false),
     mCurrentPresetName("Untitled"),
     mProcessor(inProcssor)
@@ -37,12 +37,12 @@ TemplatePresetManager::TemplatePresetManager(juce::AudioProcessor* inProcssor)
     storeLocalPreset();
 }
 
-TemplatePresetManager::~TemplatePresetManager()
+PluginNamePresetManager::~PluginNamePresetManager()
 {
     
 }
 
-void TemplatePresetManager::getXmlForPreset(juce::XmlElement* inElement)
+void PluginNamePresetManager::getXmlForPreset(juce::XmlElement* inElement)
 {
     auto& parameters = mProcessor->getParameters();
     
@@ -54,7 +54,7 @@ void TemplatePresetManager::getXmlForPreset(juce::XmlElement* inElement)
     }
 }
 
-void TemplatePresetManager::loadPresetForXml(juce::XmlElement* inElement)
+void PluginNamePresetManager::loadPresetForXml(juce::XmlElement* inElement)
 {
     mCurrentPresetXml = inElement;
     
@@ -76,17 +76,17 @@ void TemplatePresetManager::loadPresetForXml(juce::XmlElement* inElement)
     }
 }
 
-int TemplatePresetManager::getNumberOfPresets()
+int PluginNamePresetManager::getNumberOfPresets()
 {
     return mLocalPresets.size();
 }
 
-juce::String TemplatePresetManager::getPresetName(int inPresetIndex)
+juce::String PluginNamePresetManager::getPresetName(int inPresetIndex)
 {
     return mLocalPresets[inPresetIndex].getFileNameWithoutExtension();
 }
 
-void TemplatePresetManager::createNewPreset()
+void PluginNamePresetManager::createNewPreset()
 {
     auto& parameters = mProcessor->getParameters();
     
@@ -103,7 +103,7 @@ void TemplatePresetManager::createNewPreset()
     mCurrentPresetName = "Untitled";
 }
 
-void TemplatePresetManager::savePreset()
+void PluginNamePresetManager::savePreset()
 {
     juce::MemoryBlock destinationData;
     mProcessor->getStateInformation(destinationData);
@@ -115,7 +115,7 @@ void TemplatePresetManager::savePreset()
     mCurrentPresetIsSaved = true;
 }
 
-void TemplatePresetManager::saveAsPreset(juce::String inPresetName)
+void PluginNamePresetManager::saveAsPreset(juce::String inPresetName)
 {
     juce::File presetFile = juce::File(mPresetDirectory + DIR_SEP + inPresetName + PRESET_FILE_EXTENSION);
     
@@ -140,7 +140,7 @@ void TemplatePresetManager::saveAsPreset(juce::String inPresetName)
     storeLocalPreset();
 }
 
-void TemplatePresetManager::loadPreset(int inPresetIndex)
+void PluginNamePresetManager::loadPreset(int inPresetIndex)
 {
     mCurrentlyLoadedPreset = mLocalPresets[inPresetIndex];
     
@@ -155,17 +155,17 @@ void TemplatePresetManager::loadPreset(int inPresetIndex)
     }
 }
 
-bool TemplatePresetManager::getIsCurrentPresetSaved()
+bool PluginNamePresetManager::getIsCurrentPresetSaved()
 {
     return mCurrentPresetIsSaved;
 }
 
-juce::String TemplatePresetManager::getCurrentPresetName()
+juce::String PluginNamePresetManager::getCurrentPresetName()
 {
     return mCurrentPresetName;
 }
 
-void TemplatePresetManager::storeLocalPreset()
+void PluginNamePresetManager::storeLocalPreset()
 {
     mLocalPresets.clear();
         

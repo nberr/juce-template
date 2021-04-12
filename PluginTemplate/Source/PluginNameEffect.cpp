@@ -1,29 +1,30 @@
 /*
   ==============================================================================
 
-    TemplateEffect.cpp
-    Created: 25 Feb 2021 12:35:47pm
+    PluginNameEffect.cpp
+    Created: 12 Apr 2021 5:02:20pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
 */
 
-#include "TemplateEffect.h"
+#include "PluginNameEffect.h"
 
-TemplateEffect::TemplateEffect()
+PluginNameEffect::PluginNameEffect()
 {
     
 }
 
-TemplateEffect::~TemplateEffect()
+PluginNameEffect::~PluginNameEffect()
 {
     
 }
 
-void TemplateEffect::process(float* inAudio, float inGain, float* outAudio, int inNumSamplesToRender)
+void PluginNameEffect::process(float* inAudio, float inGain, float* outAudio, int inNumSamplesToRender)
 {
     for (int i = 0; i < inNumSamplesToRender; i++)
     {
             
     }
 }
+

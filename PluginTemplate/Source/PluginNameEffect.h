@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    TemplateEffect.h
-    Created: 25 Feb 2021 12:35:47pm
+    PluginNameEffect.h
+    Created: 12 Apr 2021 5:02:20pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
@@ -10,15 +10,13 @@
 
 #pragma once
 
-class TemplateEffect
+class PluginNameEffect
 {
 public:
-    TemplateEffect();
-    ~TemplateEffect();
+    PluginNameEffect();
+    ~PluginNameEffect();
     
     void process(float* inAudio, float inGain, float* outAudio, int inNumSamplesToRender);
-    
-    
     
 private:
     

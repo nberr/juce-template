@@ -2,7 +2,7 @@
   ==============================================================================
 
     PanelBase.cpp
-    Created: 21 Feb 2021 6:50:45pm
+    Created: 12 Apr 2021 5:02:48pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
@@ -10,7 +10,7 @@
 
 #include "PanelBase.h"
 
-PanelBase::PanelBase(Template_AudioProcessor *inProcessor)
+PanelBase::PanelBase(PluginNameAudioProcessor *inProcessor)
 {
     mProcessor = inProcessor;
 }

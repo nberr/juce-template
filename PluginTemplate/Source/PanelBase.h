@@ -2,7 +2,7 @@
   ==============================================================================
 
     PanelBase.h
-    Created: 21 Feb 2021 6:50:45pm
+    Created: 12 Apr 2021 5:02:48pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
@@ -13,17 +13,17 @@
 #include <JuceHeader.h>
 
 #include "InterfaceDefines.h"
-#include "TemplateLookAndFeel.h"
+#include "PluginNameLookAndFeel.h"
 #include "PluginProcessor.h"
 
 class PanelBase
 :   public juce::Component
 {
 public:
-    PanelBase(Template_AudioProcessor* inProcessor);
+    PanelBase(PluginNameAudioProcessor* inProcessor);
     ~PanelBase();
     
     void paint(juce::Graphics& g) override;
 protected:
-    Template_AudioProcessor *mProcessor;
+    PluginNameAudioProcessor *mProcessor;
 };

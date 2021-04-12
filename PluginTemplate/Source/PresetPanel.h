@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    TemplatePresetPanel.h
-    Created: 25 Feb 2021 4:08:23pm
+    PresetPanel.h
+    Created: 12 Apr 2021 7:37:19pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
@@ -18,7 +18,7 @@ class PresetPanel
     public juce::ComboBox::Listener
 {
 public:
-    PresetPanel(Template_AudioProcessor *inProcessor);
+    PresetPanel(PluginNameAudioProcessor *inProcessor);
     ~PresetPanel();
     
     void paint(juce::Graphics& g) override;

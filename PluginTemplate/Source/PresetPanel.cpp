@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    TemplatePresetPanel.cpp
-    Created: 25 Feb 2021 4:08:23pm
+    PresetPanel.cpp
+    Created: 12 Apr 2021 7:37:19pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
@@ -10,7 +10,7 @@
 
 #include "PresetPanel.h"
 
-PresetPanel::PresetPanel(Template_AudioProcessor *inProcessor)
+PresetPanel::PresetPanel(PluginNameAudioProcessor *inProcessor)
 :   PanelBase(inProcessor)
 {
     setSize(PRESET_PANEL_WIDTH, PRESET_PANEL_HEIGHT);
@@ -50,7 +50,7 @@ PresetPanel::PresetPanel(Template_AudioProcessor *inProcessor)
     mPresetDisplay->addListener(this);
     addAndMakeVisible(*mPresetDisplay);
     
-    updatePresetComboBox();
+    //updatePresetComboBox();
 }
 
 PresetPanel::~PresetPanel()
@@ -67,7 +67,7 @@ void PresetPanel::paint(juce::Graphics& g)
     
     const int label_w = 220;
     
-    g.drawFittedText("Template Plugin",
+    g.drawFittedText("PluginName",
                      PRESET_PANEL_WIDTH - label_w,
                      0,
                      label_w,
@@ -78,7 +78,7 @@ void PresetPanel::paint(juce::Graphics& g)
 
 void PresetPanel::buttonClicked(juce::Button* b)
 {
-    TemplatePresetManager* presetManager = mProcessor->getPresetManager();
+    PluginNamePresetManager* presetManager = mProcessor->getPresetManager();
     
     if (b == &*mNewPreset)
     {
@@ -99,7 +99,7 @@ void PresetPanel::comboBoxChanged(juce::ComboBox* comboBoxThatHasChanged)
 {
     if (comboBoxThatHasChanged == &*mPresetDisplay)
     {
-        TemplatePresetManager* presetManager = mProcessor->getPresetManager();
+        PluginNamePresetManager* presetManager = mProcessor->getPresetManager();
         const int index = mPresetDisplay->getSelectedItemIndex();
         
         presetManager->loadPreset(index);
@@ -108,7 +108,7 @@ void PresetPanel::comboBoxChanged(juce::ComboBox* comboBoxThatHasChanged)
 
 void PresetPanel::displaySaveAsPopup()
 {
-    TemplatePresetManager* presetManager = mProcessor->getPresetManager();
+    PluginNamePresetManager* presetManager = mProcessor->getPresetManager();
     
     juce::String currentPresetName = presetManager->getCurrentPresetName();
     
@@ -130,7 +130,7 @@ void PresetPanel::displaySaveAsPopup()
 
 void PresetPanel::updatePresetComboBox()
 {
-    TemplatePresetManager* presetManager = mProcessor->getPresetManager();
+    PluginNamePresetManager* presetManager = mProcessor->getPresetManager();
     juce::String presetName = presetManager->getCurrentPresetName();
     
     mPresetDisplay->clear(juce::dontSendNotification);

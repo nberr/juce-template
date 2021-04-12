@@ -10,18 +10,18 @@
 
 #include <JuceHeader.h>
 
-#include "TemplateEffect.h"
-#include "TemplatePresetManager.h"
+#include "PluginNamePresetManager.h"
+#include "PluginNameEffect.h"
 
 //==============================================================================
 /**
 */
-class Template_AudioProcessor  : public juce::AudioProcessor
+class PluginNameAudioProcessor  : public juce::AudioProcessor
 {
 public:
     //==============================================================================
-    Template_AudioProcessor();
-    ~Template_AudioProcessor() override;
+    PluginNameAudioProcessor();
+    ~PluginNameAudioProcessor() override;
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
@@ -56,17 +56,11 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
     
-    TemplatePresetManager* getPresetManager();
-    
-    juce::AudioProcessorValueTreeState parameters;
+    PluginNamePresetManager* getPresetManager();
+
 private:
     //==============================================================================
-    juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
-    void initializeDSP();
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginNameAudioProcessor)
     
-    std::unique_ptr<TemplateEffect> mEffect[2];
-    
-    std::unique_ptr<TemplatePresetManager> mPresetManager;
-    
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Template_AudioProcessor)
+    std::unique_ptr<PluginNamePresetManager> mPresetManager;
 };

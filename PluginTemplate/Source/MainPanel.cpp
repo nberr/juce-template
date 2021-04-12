@@ -2,7 +2,7 @@
   ==============================================================================
 
     MainPanel.cpp
-    Created: 21 Feb 2021 6:51:19pm
+    Created: 12 Apr 2021 5:03:39pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
@@ -10,7 +10,7 @@
 
 #include "MainPanel.h"
 
-MainPanel::MainPanel(Template_AudioProcessor *inProcessor)
+MainPanel::MainPanel(PluginNameAudioProcessor *inProcessor)
 :   PanelBase(inProcessor),
     unlockForm(marketplaceStatus)
 {

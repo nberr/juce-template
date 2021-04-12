@@ -2,7 +2,7 @@
   ==============================================================================
 
     MainPanel.h
-    Created: 21 Feb 2021 6:51:19pm
+    Created: 12 Apr 2021 5:03:39pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
@@ -12,8 +12,8 @@
 
 #include "PanelBase.h"
 
-#include "TemplateMarketplaceStatus.h"
-#include "TemplateUnlockForm.h"
+#include "PluginNameMarketplaceStatus.h"
+#include "PluginNameUnlockForm.h"
 #include "PresetPanel.h"
 
 class MainPanel
@@ -21,7 +21,7 @@ class MainPanel
     private juce::Timer
 {
 public:
-    MainPanel(Template_AudioProcessor* inProcessor);
+    MainPanel(PluginNameAudioProcessor* inProcessor);
     ~MainPanel();
 private:
     void timerCallback() override;
@@ -33,8 +33,8 @@ private:
     juce::TextButton unlockButton { "Unlock" },
                      secretButton { "Super Secret Feature" };
 
-    TemplateMarketplaceStatus marketplaceStatus;
-    TemplateUnlockForm unlockForm;
+    PluginNameMarketplaceStatus marketplaceStatus;
+    PluginNameUnlockForm unlockForm;
 
     bool isUnlocked = false;
     

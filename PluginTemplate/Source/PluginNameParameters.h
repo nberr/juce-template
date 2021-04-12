@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    TemplateParameters.h
-    Created: 21 Feb 2021 5:09:13pm
+    PluginNameParameters.h
+    Created: 12 Apr 2021 5:01:42pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
@@ -12,13 +12,13 @@
 
 #include <JuceHeader.h>
 
-enum TemplateParameter
+enum PluginNameParameter
 {
-    TP_Int = 0,
-    TP_Float,
-    TP_Bool,
-    TP_Choice,
-    TP_TotalNumParameters
+    PNP_Int = 0,
+    PNP_Float,
+    PNP_Bool,
+    PNP_Choice,
+    PNP_TotalNumParameters
 };
 
 typedef enum type_t {
@@ -35,42 +35,42 @@ typedef union value_t {
     int cvalue;
 } value;
 
-static const juce::StringArray TemplateParameterChoices[TP_TotalNumParameters]  = {
+static const juce::StringArray PluginNameParameterChoices[PNP_TotalNumParameters]  = {
     juce::StringArray(),
     juce::StringArray(),
     juce::StringArray(),
     juce::StringArray("choice 1", "choice 2")
 };
 
-static type TemplateParameterTypes[TP_TotalNumParameters] = {
+static type PluginNameParameterTypes[PNP_TotalNumParameters] = {
     is_int,
     is_float,
     is_bool,
     is_choice
 };
 
-static const value TemplateParameterDefault[TP_TotalNumParameters] = {
+static const value PluginNameParameterDefault[PNP_TotalNumParameters] = {
     {.ivalue = 1},
     {.fvalue = 1.0},
     {.bvalue = false},
     {.cvalue = 2}
 };
 
-static const value TemplateParameterMin[TP_TotalNumParameters] = {
+static const value PluginNameParameterMin[PNP_TotalNumParameters] = {
     {.ivalue = 0},
     {.fvalue = 0.0},
     {.bvalue = false},
     {.cvalue = 0}
 };
 
-static const value TemplateParameterMax[TP_TotalNumParameters] = {
+static const value PluginNameParameterMax[PNP_TotalNumParameters] = {
     {.ivalue = 10},
     {.fvalue = 1.0},
     {.bvalue = true},
     {.cvalue = 3}
 };
 
-static const juce::String TemplateParameterID[TP_TotalNumParameters] =
+static const juce::String PluginNameParameterID[PNP_TotalNumParameters] =
 {
     "Int",
     "Float",
@@ -78,7 +78,7 @@ static const juce::String TemplateParameterID[TP_TotalNumParameters] =
     "Choice"
 };
 
-static const juce::String TemplateParameterName[TP_TotalNumParameters] =
+static const juce::String PluginNameParameterName[PNP_TotalNumParameters] =
 {
     "Int",
     "Float",
@@ -86,7 +86,7 @@ static const juce::String TemplateParameterName[TP_TotalNumParameters] =
     "Choice"
 };
 
-static const juce::String TemplateParameterLabel[TP_TotalNumParameters] =
+static const juce::String PluginNameParameterLabel[PNP_TotalNumParameters] =
 {
     "Int",
     "Float",
