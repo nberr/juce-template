@@ -1,12 +1,6 @@
 #!/usr/bin/python3
 
-# things to rename
-# any instances of PluginName in the .cpp and .h files
-# creation date in files
-# author in files
-# PluginName prefix for parameters
-
-import sys, shutil, os
+import sys, shutil, os, datetime
 
 VERSION = "1.0"
 
@@ -17,7 +11,7 @@ def main():
     numargs = len(sys.argv) - 1
     
     if not (numargs == 3):
-        print("Usage: duplicate plugin_name plugin_prefix author")
+        print("Usage: python duplicate.py plugin_name plugin_prefix author")
         sys.exit(1)
     else:
         plugin_name = sys.argv[1]
@@ -63,9 +57,13 @@ def main():
         filedata = filedata.replace('PN', plugin_prefix)
         filedata = filedata.replace('Nicholas Berriochoa', plugin_author)
         
+        curr_date = datetime.datetime.now()
+        for line in filedata.split('\n'):
+           if "Created: " in line:
+              filedata = filedata.replace(line.strip(), "Created: " + curr_date.strftime("%d %b %Y %I:%M:%S%p"))
+
         with open(dest + '/Source/' + sourcefile, 'w') as cursource:
             cursource.write(filedata)
-            
             
 
 if __name__ == '__main__':
