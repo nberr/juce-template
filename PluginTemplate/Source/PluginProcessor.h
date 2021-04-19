@@ -57,9 +57,13 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
     
     PluginNamePresetManager* getPresetManager();
+    
+    juce::AudioProcessorValueTreeState parameters;
 
 private:
     //==============================================================================
+    juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginNameAudioProcessor)
     
     std::unique_ptr<PluginNamePresetManager> mPresetManager;
