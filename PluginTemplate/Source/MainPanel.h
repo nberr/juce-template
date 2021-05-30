@@ -21,7 +21,7 @@ class MainPanel
     private juce::Timer
 {
 public:
-    MainPanel(PluginNameAudioProcessor* inProcessor);
+    MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu *inContextMenu);
     ~MainPanel();
     
     void mouseDown(const juce::MouseEvent& event) override;

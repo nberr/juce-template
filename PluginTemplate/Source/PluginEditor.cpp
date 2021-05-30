@@ -19,7 +19,7 @@ PluginNameAudioProcessorEditor::PluginNameAudioProcessorEditor (PluginNameAudioP
     setSize(MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT);
     setResizable(false, false);
     
-    mMainPanel = std::make_unique<MainPanel>(&audioProcessor);
+    mMainPanel = std::make_unique<MainPanel>(&audioProcessor, &mContextMenu);
     mMainPanel->setTopLeftPosition(0, 0);
     addAndMakeVisible(*mMainPanel);
     

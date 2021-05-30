@@ -10,10 +10,11 @@
 
 #include "PresetPanel.h"
 
-PresetPanel::PresetPanel(PluginNameAudioProcessor *inProcessor)
-:   PanelBase(inProcessor)
+PresetPanel::PresetPanel(PluginNameAudioProcessor *inProcessor, ContextMenu *inContextMenu)
+:   PanelBase(inProcessor, inContextMenu)
 {
     setSize(PRESET_PANEL_WIDTH, PRESET_PANEL_HEIGHT);
+    setName("PresetPanel");
     
     int button_x = 15;
     int button_y = 10;

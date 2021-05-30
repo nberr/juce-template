@@ -10,9 +10,10 @@
 
 #include "PanelBase.h"
 
-PanelBase::PanelBase(PluginNameAudioProcessor *inProcessor)
+PanelBase::PanelBase(PluginNameAudioProcessor *inProcessor, ContextMenu *inContextMenu)
 {
     mProcessor = inProcessor;
+    mContextMenu = inContextMenu;
 }
 
 PanelBase::~PanelBase()

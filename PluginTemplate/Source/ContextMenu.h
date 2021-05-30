@@ -15,14 +15,13 @@
 class ContextMenu
 {
 public:
-    ContextMenu(juce::Component *component);
+    ContextMenu();
     ~ContextMenu();
     
-private:
-    juce::Component *owner;
+    void showMenu(juce::Component *component);
     
+private:
     juce::PopupMenu menu;
     juce::PopupMenu preferences;
     juce::PopupMenu sizes;
-    
 };

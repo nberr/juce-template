@@ -12,6 +12,7 @@
 #include "PluginProcessor.h"
 
 #include "MainPanel.h"
+#include "ContextMenu.h"
 
 //==============================================================================
 /**
@@ -32,6 +33,7 @@ private:
     PluginNameAudioProcessor& audioProcessor;
     
     std::unique_ptr<MainPanel> mMainPanel;
+    ContextMenu mContextMenu;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginNameAudioProcessorEditor)
 };
