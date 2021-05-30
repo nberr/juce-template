@@ -15,6 +15,7 @@ MainPanel::MainPanel(PluginNameAudioProcessor *inProcessor)
     unlockForm(marketplaceStatus)
 {
     setSize(MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT);
+    setInterceptsMouseClicks(true, true);
     
     unlockLabel.setSize(50, 50);
     unlockLabel.setTopLeftPosition(0, 0);
@@ -24,7 +25,9 @@ MainPanel::MainPanel(PluginNameAudioProcessor *inProcessor)
 
     unlockButton.setSize(100, 100);
     unlockButton.setTopLeftPosition(50, 50);
-    unlockButton.onClick = [this] { showForm(); };
+    unlockButton.onClick = [this] {
+        showForm();
+    };
     //addAndMakeVisible (unlockButton);
 
     secretButton.setEnabled (false);
@@ -40,7 +43,6 @@ MainPanel::MainPanel(PluginNameAudioProcessor *inProcessor)
     mPresetPanel = std::make_unique<PresetPanel>(inProcessor);
     mPresetPanel->setTopLeftPosition(0, 0);
     addAndMakeVisible(*mPresetPanel);
-    
 }
 
 MainPanel::~MainPanel()
@@ -77,4 +79,34 @@ void MainPanel::checkFeature()
         DBG ("App unlocked!");
     else
         DBG ("Beware of hackers!");
+}
+
+void MainPanel::mouseDown(const juce::MouseEvent& event)
+{
+    bool rightClick = juce::ModifierKeys::getCurrentModifiers().isPopupMenu();
+    
+    
+    if (rightClick) {
+        juce::PopupMenu menu, preferences, sizes;
+        
+        sizes.addItem("Small", [](){});
+        sizes.addItem("Medium", [](){});
+        sizes.addItem("Large", [](){});
+        
+        preferences.addItem("Dark Mode", [](){});
+        preferences.addSubMenu("Size", sizes);
+                
+        menu.addSubMenu("Preferences", preferences);
+        menu.addSeparator();
+        menu.addItem("PluginName version 1.0", [](){});
+
+        const int result = menu.show();
+        
+        if (result == 0) {
+            setSize(45, 45);
+        }
+        else {
+            
+        }
+    }
 }

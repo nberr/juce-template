@@ -10,6 +10,10 @@
 
 #pragma once
 
+#define SMALL 1
+#define MEDIUM 2
+#define LARGE 3
+
 #define MAIN_PANEL_WIDTH 400
 #define MAIN_PANEL_HEIGHT 300
 

@@ -4,7 +4,13 @@
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="wiPM7S" name="PluginName">
     <GROUP id="{B03CDF18-2D71-E14F-8D3F-CCB6B9E49FF1}" name="Source">
-      <GROUP id="{8E584F74-69A6-7751-29BE-F9C4568D1CE8}" name="FX">
+      <GROUP id="{D5CFEF3E-B3BC-0EAE-5125-69D6C7226DD0}" name="Preset">
+        <FILE id="lVMvtf" name="PluginNamePresetManager.cpp" compile="1" resource="0"
+              file="Source/PluginNamePresetManager.cpp"/>
+        <FILE id="pL2qag" name="PluginNamePresetManager.h" compile="0" resource="0"
+              file="Source/PluginNamePresetManager.h"/>
+      </GROUP>
+      <GROUP id="{8E584F74-69A6-7751-29BE-F9C4568D1CE8}" name="DSP">
         <FILE id="Z65blY" name="PluginNameEffect.cpp" compile="1" resource="0"
               file="Source/PluginNameEffect.cpp"/>
         <FILE id="UPSsDm" name="PluginNameEffect.h" compile="0" resource="0"
@@ -13,6 +19,16 @@
       <GROUP id="{9848E1F2-2649-122C-C676-682C23567D7E}" name="Parameters">
         <FILE id="UJhNAU" name="PluginNameParameters.h" compile="0" resource="0"
               file="Source/PluginNameParameters.h"/>
+      </GROUP>
+      <GROUP id="{90499603-7201-AEFF-EE28-560692879027}" name="Registration">
+        <FILE id="g4vI2y" name="PluginNameUnlockForm.cpp" compile="1" resource="0"
+              file="Source/PluginNameUnlockForm.cpp"/>
+        <FILE id="FnHT5W" name="PluginNameUnlockForm.h" compile="0" resource="0"
+              file="Source/PluginNameUnlockForm.h"/>
+        <FILE id="uNXB1S" name="PluginNameMarketplaceStatus.cpp" compile="1"
+              resource="0" file="Source/PluginNameMarketplaceStatus.cpp"/>
+        <FILE id="D0jRKD" name="PluginNameMarketplaceStatus.h" compile="0"
+              resource="0" file="Source/PluginNameMarketplaceStatus.h"/>
       </GROUP>
       <GROUP id="{68BE611A-1575-5F0F-84E2-D1AB71DF243E}" name="UI">
         <GROUP id="{2A90D116-4B32-C342-05A9-A3CA20E3401E}" name="Panels">
@@ -23,22 +39,8 @@
           <FILE id="TT5KA6" name="PresetPanel.cpp" compile="1" resource="0" file="Source/PresetPanel.cpp"/>
           <FILE id="l3yC5p" name="PresetPanel.h" compile="0" resource="0" file="Source/PresetPanel.h"/>
         </GROUP>
-        <GROUP id="{90499603-7201-AEFF-EE28-560692879027}" name="Registration">
-          <FILE id="uNXB1S" name="PluginNameMarketplaceStatus.cpp" compile="1"
-                resource="0" file="Source/PluginNameMarketplaceStatus.cpp"/>
-          <FILE id="D0jRKD" name="PluginNameMarketplaceStatus.h" compile="0"
-                resource="0" file="Source/PluginNameMarketplaceStatus.h"/>
-        </GROUP>
-        <GROUP id="{4A445B65-ACD3-CC27-85D6-0CFAE8208DDA}" name="State">
-          <FILE id="g4vI2y" name="PluginNameUnlockForm.cpp" compile="1" resource="0"
-                file="Source/PluginNameUnlockForm.cpp"/>
-          <FILE id="FnHT5W" name="PluginNameUnlockForm.h" compile="0" resource="0"
-                file="Source/PluginNameUnlockForm.h"/>
-          <FILE id="lVMvtf" name="PluginNamePresetManager.cpp" compile="1" resource="0"
-                file="Source/PluginNamePresetManager.cpp"/>
-          <FILE id="pL2qag" name="PluginNamePresetManager.h" compile="0" resource="0"
-                file="Source/PluginNamePresetManager.h"/>
-        </GROUP>
+        <FILE id="LbeYNo" name="ContextMenu.cpp" compile="1" resource="0" file="Source/ContextMenu.cpp"/>
+        <FILE id="VOEo9E" name="ContextMenu.h" compile="0" resource="0" file="Source/ContextMenu.h"/>
         <FILE id="v6RG1z" name="InterfaceDefines.h" compile="0" resource="0"
               file="Source/InterfaceDefines.h"/>
         <FILE id="krTHYj" name="PluginNameLookAndFeel.h" compile="0" resource="0"
@@ -52,7 +54,6 @@
             file="Source/PluginEditor.cpp"/>
       <FILE id="ca39pY" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
-    <GROUP id="{AEA3FE7C-5955-A7DA-54BA-6CFD37890EF7}" name="Tests"/>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
   <EXPORTFORMATS>

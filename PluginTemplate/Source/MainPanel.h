@@ -23,6 +23,8 @@ class MainPanel
 public:
     MainPanel(PluginNameAudioProcessor* inProcessor);
     ~MainPanel();
+    
+    void mouseDown(const juce::MouseEvent& event) override;
 private:
     void timerCallback() override;
     void showForm();
