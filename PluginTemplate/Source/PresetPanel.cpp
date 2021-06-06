@@ -10,8 +10,8 @@
 
 #include "PresetPanel.h"
 
-PresetPanel::PresetPanel(PluginNameAudioProcessor *inProcessor)
-:   PanelBase(inProcessor)
+PresetPanel::PresetPanel(PluginNameAudioProcessor *inProcessor, ContextMenu* inContextMenu)
+:   PanelBase(inProcessor, inContextMenu)
 {
     setSize(PRESET_PANEL_WIDTH, PRESET_PANEL_HEIGHT);
     setName("PresetPanel");
@@ -23,8 +23,10 @@ PresetPanel::PresetPanel(PluginNameAudioProcessor *inProcessor)
     
     mNewPreset = std::make_unique<juce::TextButton>();
     mNewPreset->setButtonText("NEW");
+    mNewPreset->setName("NewPreset"); // needed to display context menu
     mNewPreset->setBounds(button_x, button_y, button_w, button_h);
     mNewPreset->addListener(this);
+    mNewPreset->setTriggeredOnMouseDown(true); // needed to display context menu
     addAndMakeVisible(*mNewPreset);
     
     
@@ -82,12 +84,18 @@ void PresetPanel::paint(juce::Graphics& g)
 void PresetPanel::buttonClicked(juce::Button* b)
 {
     PluginNamePresetManager* presetManager = mProcessor->getPresetManager();
+    bool rightClick = juce::ModifierKeys::getCurrentModifiers().isPopupMenu();
     
     if (b == &*mNewPreset)
     {
-        presetManager->createNewPreset();
-        updatePresetComboBox();
-        
+        //presetManager->createNewPreset();
+        //updatePresetComboBox();
+        if (rightClick) {
+            mContextMenu->showMenu(mNewPreset->getName());
+        }
+        else {
+            DBG("Left");
+        }
     }
     else if (b == &*mSavePreset)
     {
@@ -147,3 +155,4 @@ void PresetPanel::updatePresetComboBox()
     
     mPresetDisplay->setText(presetManager->getCurrentPresetName());
 }
+

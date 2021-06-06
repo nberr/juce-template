@@ -10,8 +10,8 @@
 
 #include "MainPanel.h"
 
-MainPanel::MainPanel(PluginNameAudioProcessor *inProcessor)
-:   PanelBase(inProcessor),
+MainPanel::MainPanel(PluginNameAudioProcessor *inProcessor, ContextMenu* inContextMenu)
+:   PanelBase(inProcessor, inContextMenu),
     unlockForm(marketplaceStatus)
 {
     setSize(MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT);
@@ -41,7 +41,7 @@ MainPanel::MainPanel(PluginNameAudioProcessor *inProcessor)
     
     startTimer(100);
     
-    mPresetPanel = std::make_unique<PresetPanel>(inProcessor);
+    mPresetPanel = std::make_unique<PresetPanel>(inProcessor, inContextMenu);
     mPresetPanel->setTopLeftPosition(0, 0);
     addAndMakeVisible(*mPresetPanel);
 }
@@ -80,16 +80,4 @@ void MainPanel::checkFeature()
         DBG ("App unlocked!");
     else
         DBG ("Beware of hackers!");
-}
-
-// TODO: This code currently works as intended but requires implementation in every panel
-// and every component below it. to reduce code duplication, try to find another way to
-// implement this
-void MainPanel::mouseDown(const juce::MouseEvent& event)
-{
-    bool rightClick = juce::ModifierKeys::getCurrentModifiers().isPopupMenu();
-    
-    if (rightClick) {
-        
-    }
 }

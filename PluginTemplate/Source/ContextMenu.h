@@ -20,7 +20,7 @@ public:
     ContextMenu();
     ~ContextMenu();
     
-    void showMenu(juce::Component *component);
+    void showMenu(const juce::String itemClicked);
     
 private:
     juce::PopupMenu menu;

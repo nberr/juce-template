@@ -14,9 +14,19 @@
 
 ContextMenu::ContextMenu()
 {
-    sizes.addItem("Small", [](){});
-    sizes.addItem("Medium", [](){});
-    sizes.addItem("Large", [](){});
+    juce::PopupMenu::Item small("Small");
+    small.setAction([](){});
+    
+    juce::PopupMenu::Item medium("Medium");
+    medium.setAction([](){});
+    medium.setTicked();
+    
+    juce::PopupMenu::Item large("Large");
+    large.setAction([](){});
+    
+    sizes.addItem(small);
+    sizes.addItem(medium);
+    sizes.addItem(large);
     
     preferences.addItem("Dark Mode", [](){});
     preferences.addSubMenu("Size", sizes);
@@ -31,16 +41,20 @@ ContextMenu::~ContextMenu()
     
 }
 
-void ContextMenu::showMenu(juce::Component *component)
+void ContextMenu::showMenu(const juce::String itemClicked)
 {
-    if (component->getName() == "MainPanel") {
+    if (itemClicked == "MainPanel") {
         menu.show();
     }
-    else if (component->getName() == "PresetPanel") {
+    else if (itemClicked == "PresetPanel") {
         menu.addItem("PresetPanel", [](){});
         menu.show();
     }
+    else if (itemClicked == "NewPreset") {
+        menu.addItem(itemClicked);
+        menu.show();
+    }
     else {
-        
+        DBG(itemClicked);
     }
 }

@@ -12,6 +12,7 @@
 #include "PluginProcessor.h"
 
 #include "MainPanel.h"
+#include "ContextMenu.h"
 #include "PluginNameInternalParameters.h"
 
 //==============================================================================
@@ -31,15 +32,11 @@ private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     PluginNameAudioProcessor& audioProcessor;
+    ContextMenu mContextMenu;
+    
     
     std::unique_ptr<MainPanel> mMainPanel;
     float* mGUIScale;
-    
-    juce::PopupMenu menu;
-
-    juce::TextButton small;
-    juce::TextButton medium;
-    juce::TextButton large;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginNameAudioProcessorEditor)
 };
