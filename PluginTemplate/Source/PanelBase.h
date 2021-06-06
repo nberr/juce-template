@@ -15,17 +15,15 @@
 #include "InterfaceDefines.h"
 #include "PluginNameLookAndFeel.h"
 #include "PluginProcessor.h"
-#include "ContextMenu.h"
 
 class PanelBase
 :   public juce::Component
 {
 public:
-    PanelBase(PluginNameAudioProcessor* inProcessor, ContextMenu *inContextMenu);
+    PanelBase(PluginNameAudioProcessor* inProcessor);
     ~PanelBase();
     
     void paint(juce::Graphics& g) override;
 protected:
     PluginNameAudioProcessor *mProcessor;
-    ContextMenu *mContextMenu;
 };

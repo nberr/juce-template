@@ -10,8 +10,8 @@
 
 #include "MainPanel.h"
 
-MainPanel::MainPanel(PluginNameAudioProcessor *inProcessor, ContextMenu *inContextMenu)
-:   PanelBase(inProcessor, inContextMenu),
+MainPanel::MainPanel(PluginNameAudioProcessor *inProcessor)
+:   PanelBase(inProcessor),
     unlockForm(marketplaceStatus)
 {
     setSize(MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT);
@@ -41,7 +41,7 @@ MainPanel::MainPanel(PluginNameAudioProcessor *inProcessor, ContextMenu *inConte
     
     startTimer(100);
     
-    mPresetPanel = std::make_unique<PresetPanel>(inProcessor, inContextMenu);
+    mPresetPanel = std::make_unique<PresetPanel>(inProcessor);
     mPresetPanel->setTopLeftPosition(0, 0);
     addAndMakeVisible(*mPresetPanel);
 }
@@ -90,6 +90,6 @@ void MainPanel::mouseDown(const juce::MouseEvent& event)
     bool rightClick = juce::ModifierKeys::getCurrentModifiers().isPopupMenu();
     
     if (rightClick) {
-        mContextMenu->showMenu(this);
+        
     }
 }

@@ -17,6 +17,8 @@
               file="Source/PluginNameEffect.h"/>
       </GROUP>
       <GROUP id="{9848E1F2-2649-122C-C676-682C23567D7E}" name="Parameters">
+        <FILE id="rXMQeK" name="PluginNameInternalParameters.h" compile="0"
+              resource="0" file="Source/PluginNameInternalParameters.h"/>
         <FILE id="UJhNAU" name="PluginNameParameters.h" compile="0" resource="0"
               file="Source/PluginNameParameters.h"/>
       </GROUP>

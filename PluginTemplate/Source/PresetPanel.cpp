@@ -10,8 +10,8 @@
 
 #include "PresetPanel.h"
 
-PresetPanel::PresetPanel(PluginNameAudioProcessor *inProcessor, ContextMenu *inContextMenu)
-:   PanelBase(inProcessor, inContextMenu)
+PresetPanel::PresetPanel(PluginNameAudioProcessor *inProcessor)
+:   PanelBase(inProcessor)
 {
     setSize(PRESET_PANEL_WIDTH, PRESET_PANEL_HEIGHT);
     setName("PresetPanel");
@@ -26,6 +26,8 @@ PresetPanel::PresetPanel(PluginNameAudioProcessor *inProcessor, ContextMenu *inC
     mNewPreset->setBounds(button_x, button_y, button_w, button_h);
     mNewPreset->addListener(this);
     addAndMakeVisible(*mNewPreset);
+    
+    
     
     button_x = button_x + button_w;
     
@@ -85,6 +87,7 @@ void PresetPanel::buttonClicked(juce::Button* b)
     {
         presetManager->createNewPreset();
         updatePresetComboBox();
+        
     }
     else if (b == &*mSavePreset)
     {

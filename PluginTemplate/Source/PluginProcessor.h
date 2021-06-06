@@ -12,6 +12,7 @@
 
 #include "PluginNamePresetManager.h"
 #include "PluginNameEffect.h"
+#include "PluginNameInternalParameters.h"
 
 //==============================================================================
 /**
@@ -59,12 +60,13 @@ public:
     PluginNamePresetManager* getPresetManager();
     
     juce::AudioProcessorValueTreeState parameters;
+    PluginNameInternalParameters internalParameters;
 
 private:
     //==============================================================================
     juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
     
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginNameAudioProcessor)
-    
     std::unique_ptr<PluginNamePresetManager> mPresetManager;
+    
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginNameAudioProcessor)
 };

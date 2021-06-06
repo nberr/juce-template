@@ -12,6 +12,8 @@
 
 #include <JuceHeader.h>
 
+#include "InterfaceDefines.h"
+
 class ContextMenu
 {
 public:

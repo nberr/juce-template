@@ -12,7 +12,7 @@
 #include "PluginProcessor.h"
 
 #include "MainPanel.h"
-#include "ContextMenu.h"
+#include "PluginNameInternalParameters.h"
 
 //==============================================================================
 /**
@@ -33,7 +33,13 @@ private:
     PluginNameAudioProcessor& audioProcessor;
     
     std::unique_ptr<MainPanel> mMainPanel;
-    ContextMenu mContextMenu;
+    float* mGUIScale;
+    
+    juce::PopupMenu menu;
 
+    juce::TextButton small;
+    juce::TextButton medium;
+    juce::TextButton large;
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginNameAudioProcessorEditor)
 };

@@ -10,6 +10,8 @@
 
 #include "ContextMenu.h"
 
+#include "PluginEditor.h"
+
 ContextMenu::ContextMenu()
 {
     sizes.addItem("Small", [](){});
@@ -37,5 +39,8 @@ void ContextMenu::showMenu(juce::Component *component)
     else if (component->getName() == "PresetPanel") {
         menu.addItem("PresetPanel", [](){});
         menu.show();
+    }
+    else {
+        
     }
 }
