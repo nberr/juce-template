@@ -18,10 +18,11 @@ class PresetPanel
     public juce::ComboBox::Listener
 {
 public:
-    PresetPanel(PluginNameAudioProcessor *inProcessor, ContextMenu* inContextMenu);
+    PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
     ~PresetPanel();
     
     void paint(juce::Graphics& g) override;
+    void resized() override;
         
     void buttonClicked(juce::Button*) override;
     void comboBoxChanged(juce::ComboBox* comboBoxThatHasChanged) override;

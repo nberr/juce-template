@@ -23,6 +23,8 @@ class MainPanel
 public:
     MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
     ~MainPanel();
+    
+    void resized() override;
 private:
     void timerCallback() override;
     void showForm();

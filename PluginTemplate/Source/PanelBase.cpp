@@ -10,7 +10,7 @@
 
 #include "PanelBase.h"
 
-PanelBase::PanelBase(PluginNameAudioProcessor *inProcessor, ContextMenu* inContextMenu)
+PanelBase::PanelBase(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 {
     mProcessor = inProcessor;
     mContextMenu = inContextMenu;
@@ -30,17 +30,15 @@ void PanelBase::paint(juce::Graphics& g)
     g.drawRoundedRectangle(0, 0, getWidth(), getHeight(), CORNER_SIZE, LINE_THICKNESS);
 }
 
-void PanelBase::resized()
-{
-    float scale = mProcessor->internalParameters.mGUIScale;
-    setSize(getWidth() * scale, getHeight() * scale);
-}
-
 void PanelBase::mouseDown(const juce::MouseEvent& event)
 {
     bool rightClick = juce::ModifierKeys::getCurrentModifiers().isPopupMenu();
     
     if (rightClick) {
         mContextMenu->showMenu(getName());
+        auto editor = getParentComponent();
+        editor->resized();
+        resized();
+        // how to trigger resize for all components
     }
 }

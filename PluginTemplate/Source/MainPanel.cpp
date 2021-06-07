@@ -10,12 +10,12 @@
 
 #include "MainPanel.h"
 
-MainPanel::MainPanel(PluginNameAudioProcessor *inProcessor, ContextMenu* inContextMenu)
+MainPanel::MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 :   PanelBase(inProcessor, inContextMenu),
     unlockForm(marketplaceStatus)
 {
-    setSize(MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT);
-    setInterceptsMouseClicks(true, true);
+    setSize(MAIN_PANEL_WIDTH * *mContextMenu->mGUIScale, MAIN_PANEL_HEIGHT * *mContextMenu->mGUIScale);
+    //setSize(MAIN_PANEL_WIDTH , MAIN_PANEL_HEIGHT);
     setName("MainPanel");
     
     unlockLabel.setSize(50, 50);
@@ -37,7 +37,7 @@ MainPanel::MainPanel(PluginNameAudioProcessor *inProcessor, ContextMenu* inConte
 
     unlockForm.setSize(MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT);
     unlockForm.setTopLeftPosition(0, 0);
-    addChildComponent (unlockForm);
+    //addChildComponent (unlockForm);
     
     startTimer(100);
     
@@ -49,6 +49,15 @@ MainPanel::MainPanel(PluginNameAudioProcessor *inProcessor, ContextMenu* inConte
 MainPanel::~MainPanel()
 {
     
+}
+
+
+void MainPanel::resized()
+{
+    float scale = *mContextMenu->mGUIScale;
+    
+    if (mPresetPanel != nullptr)
+        mPresetPanel->setBounds(0, 0, PRESET_PANEL_WIDTH * scale, PRESET_PANEL_HEIGHT * scale);
 }
 
 void MainPanel::timerCallback()

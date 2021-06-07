@@ -10,10 +10,10 @@
 
 #include "PresetPanel.h"
 
-PresetPanel::PresetPanel(PluginNameAudioProcessor *inProcessor, ContextMenu* inContextMenu)
+PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 :   PanelBase(inProcessor, inContextMenu)
 {
-    setSize(PRESET_PANEL_WIDTH, PRESET_PANEL_HEIGHT);
+    setSize(PRESET_PANEL_WIDTH * *mContextMenu->mGUIScale, PRESET_PANEL_HEIGHT * *mContextMenu->mGUIScale);
     setName("PresetPanel");
     
     int button_x = 15;
@@ -34,6 +34,8 @@ PresetPanel::PresetPanel(PluginNameAudioProcessor *inProcessor, ContextMenu* inC
     button_x = button_x + button_w;
     
     mSavePreset = std::make_unique<juce::TextButton>();
+    mSavePreset->setName("SavePreset");
+    mSavePreset->setTriggeredOnMouseDown(true);
     mSavePreset->setButtonText("SAVE");
     mSavePreset->setBounds(button_x, button_y, button_w, button_h);
     mSavePreset->addListener(this);
@@ -81,29 +83,33 @@ void PresetPanel::paint(juce::Graphics& g)
                      1);
 }
 
+void PresetPanel::resized()
+{
+    
+}
+
 void PresetPanel::buttonClicked(juce::Button* b)
 {
     PluginNamePresetManager* presetManager = mProcessor->getPresetManager();
     bool rightClick = juce::ModifierKeys::getCurrentModifiers().isPopupMenu();
     
-    if (b == &*mNewPreset)
-    {
-        //presetManager->createNewPreset();
-        //updatePresetComboBox();
-        if (rightClick) {
-            mContextMenu->showMenu(mNewPreset->getName());
-        }
-        else {
-            DBG("Left");
-        }
+    if (rightClick) {
+        mContextMenu->showMenu(b->getName());
     }
-    else if (b == &*mSavePreset)
-    {
-        presetManager->savePreset();
-    }
-    else if (b == &*mSaveAsPreset)
-    {
-        displaySaveAsPopup();
+    else {
+        if (b == &*mNewPreset)
+        {
+            presetManager->createNewPreset();
+            updatePresetComboBox();
+        }
+        else if (b == &*mSavePreset)
+        {
+            presetManager->savePreset();
+        }
+        else if (b == &*mSaveAsPreset)
+        {
+            displaySaveAsPopup();
+        }
     }
 }
 

@@ -15,15 +15,20 @@
 #include "InterfaceDefines.h"
 
 class ContextMenu
+: public juce::Component
 {
 public:
-    ContextMenu();
+    ContextMenu(float *inScale);
     ~ContextMenu();
     
     void showMenu(const juce::String itemClicked);
+    
+    float *mGUIScale;
     
 private:
     juce::PopupMenu menu;
     juce::PopupMenu preferences;
     juce::PopupMenu sizes;
+
+    
 };
