@@ -36,7 +36,7 @@ void PanelBase::mouseDown(const juce::MouseEvent& event)
     
     if (rightClick) {
         mContextMenu->showMenu(getName());
-        auto editor = getParentComponent();
+        auto editor = findParentComponentOfClass<juce::AudioProcessorEditor>();
         editor->resized();
         resized();
         // how to trigger resize for all components

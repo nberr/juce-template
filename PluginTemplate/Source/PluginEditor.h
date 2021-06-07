@@ -33,9 +33,10 @@ private:
     // access the processor object that created it.
     PluginNameAudioProcessor& audioProcessor;
     
-    std::unique_ptr<MainPanel> mMainPanel;
     float* mGUIScale;
     ContextMenu mContextMenu;
-        
+    
+    MainPanel mMainPanel;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginNameAudioProcessorEditor)
 };

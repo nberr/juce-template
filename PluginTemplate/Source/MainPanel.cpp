@@ -15,7 +15,6 @@ MainPanel::MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inConte
     unlockForm(marketplaceStatus)
 {
     setSize(MAIN_PANEL_WIDTH * *mContextMenu->mGUIScale, MAIN_PANEL_HEIGHT * *mContextMenu->mGUIScale);
-    //setSize(MAIN_PANEL_WIDTH , MAIN_PANEL_HEIGHT);
     setName("MainPanel");
     
     unlockLabel.setSize(50, 50);
@@ -55,7 +54,7 @@ MainPanel::~MainPanel()
 void MainPanel::resized()
 {
     float scale = *mContextMenu->mGUIScale;
-    
+    setBounds(0, 0, MAIN_PANEL_WIDTH * scale, MAIN_PANEL_HEIGHT * scale);
     if (mPresetPanel != nullptr)
         mPresetPanel->setBounds(0, 0, PRESET_PANEL_WIDTH * scale, PRESET_PANEL_HEIGHT * scale);
 }

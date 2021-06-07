@@ -39,7 +39,7 @@ PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inC
     mSavePreset->setButtonText("SAVE");
     mSavePreset->setBounds(button_x, button_y, button_w, button_h);
     mSavePreset->addListener(this);
-    addAndMakeVisible(*mSavePreset);
+    //addAndMakeVisible(*mSavePreset);
     
     button_x = button_x + button_w;
     
@@ -47,7 +47,7 @@ PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inC
     mSaveAsPreset->setButtonText("SAVE AS");
     mSaveAsPreset->setBounds(button_x, button_y, button_w, button_h);
     mSaveAsPreset->addListener(this);
-    addAndMakeVisible(*mSaveAsPreset);
+    //addAndMakeVisible(*mSaveAsPreset);
     
     const int comboBox_w = 200;
     const int comboBox_x = PRESET_PANEL_WIDTH*0.5 - comboBox_w*0.5;
@@ -55,7 +55,7 @@ PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inC
     mPresetDisplay = std::make_unique<juce::ComboBox>();
     mPresetDisplay->setBounds(comboBox_x, button_y, comboBox_w, button_h);
     mPresetDisplay->addListener(this);
-    addAndMakeVisible(*mPresetDisplay);
+    //addAndMakeVisible(*mPresetDisplay);
     
     //updatePresetComboBox();
 }
@@ -85,7 +85,8 @@ void PresetPanel::paint(juce::Graphics& g)
 
 void PresetPanel::resized()
 {
-    
+    float scale = *mContextMenu->mGUIScale;
+    setBounds(0, 0, PRESET_PANEL_WIDTH * scale, PRESET_PANEL_HEIGHT * scale);
 }
 
 void PresetPanel::buttonClicked(juce::Button* b)
@@ -95,6 +96,9 @@ void PresetPanel::buttonClicked(juce::Button* b)
     
     if (rightClick) {
         mContextMenu->showMenu(b->getName());
+        auto editor = findParentComponentOfClass<juce::AudioProcessorEditor>();
+        editor->resized();
+        resized();
     }
     else {
         if (b == &*mNewPreset)

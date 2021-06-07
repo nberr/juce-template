@@ -23,12 +23,18 @@ public:
     
     void showMenu(const juce::String itemClicked);
     
+    void buildBaseMenu();
+    
     float *mGUIScale;
     
 private:
     juce::PopupMenu menu;
     juce::PopupMenu preferences;
     juce::PopupMenu sizes;
+    
+    juce::PopupMenu::Item small;
+    juce::PopupMenu::Item medium;
+    juce::PopupMenu::Item large;
 
     
 };
