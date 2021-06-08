@@ -20,20 +20,18 @@ ContextMenu::ContextMenu(float* inScale)
 {
     setName("ContextMenu");
     
-    // TODO: each item in the context menu should have an ID so triggers can be set properly
-    
-    if (*inScale == 0.8f) {
+    if (*inScale == GUI_Scale::small) {
         small.setTicked(true);
     }
-    else if (*inScale == 1.0f) {
+    else if (*inScale == GUI_Scale::normal) {
         medium.setTicked(true);
     }
-    else if (*inScale == 1.2f) {
+    else if (*inScale == GUI_Scale::large) {
         large.setTicked(true);
     }
     
     small.setAction([this](){
-        *mGUIScale = 0.8;
+        *mGUIScale = GUI_Scale::small;
         
         small.setTicked(true);
         medium.setTicked(false);
@@ -42,7 +40,7 @@ ContextMenu::ContextMenu(float* inScale)
     
     
     medium.setAction([this](){
-        *mGUIScale = 1.0;
+        *mGUIScale = GUI_Scale::normal;
         
         small.setTicked(false);
         medium.setTicked(true);
@@ -52,22 +50,13 @@ ContextMenu::ContextMenu(float* inScale)
     
     
     large.setAction([this](){
-        *mGUIScale = 1.2;
+        *mGUIScale = GUI_Scale::large;
         small.setTicked(false);
         medium.setTicked(false);
         large.setTicked(true);
     });
     
-    sizes.addItem(small);
-    sizes.addItem(medium);
-    sizes.addItem(large);
     
-    preferences.addItem("Dark Mode", [](){});
-    preferences.addSubMenu("Size", sizes);
-    
-    menu.addSubMenu("Preferences", preferences);
-    menu.addSeparator();
-    menu.addItem("PluginName version 1.0", [](){});
 }
 
 ContextMenu::~ContextMenu()
@@ -109,7 +98,16 @@ void ContextMenu::showMenu(const juce::String itemClicked)
 void ContextMenu::buildBaseMenu()
 {
     menu.addSeparator();
-    menu.addItem(small);
-    menu.addItem(medium);
-    menu.addItem(large);
+    sizes.clear();
+    sizes.addItem(small);
+    sizes.addItem(medium);
+    sizes.addItem(large);
+    
+    preferences.clear();
+    preferences.addItem("Dark Mode", [](){});
+    preferences.addSubMenu("Size", sizes);
+    
+    menu.addSubMenu("Preferences", preferences);
+    menu.addSeparator();
+    menu.addItem("PluginName version 1.0", [](){});
 }

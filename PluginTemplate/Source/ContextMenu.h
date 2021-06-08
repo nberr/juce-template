@@ -18,6 +18,14 @@ class ContextMenu
 : public juce::Component
 {
 public:
+    
+    // TODO: each item in the context menu should have an ID so triggers can be set properly
+    enum ItemID {
+        GUI_Small,
+        GUI_Medium,
+        GUI_Large,
+    };
+    
     ContextMenu(float *inScale);
     ~ContextMenu();
     

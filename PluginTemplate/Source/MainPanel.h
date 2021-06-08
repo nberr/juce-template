@@ -40,5 +40,5 @@ private:
 
     bool isUnlocked = false;
     
-    std::unique_ptr<PresetPanel> mPresetPanel;
+    PresetPanel mPresetPanel;
 };

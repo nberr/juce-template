@@ -10,13 +10,22 @@
 
 #pragma once
 
-#define SMALL 0.8
-#define MEDIUM 1
-#define LARGE 1.2
+class GUI_Scale {
+public:
+    static constexpr float small = 0.8f,
+    normal = 1.0f,
+    large = 1.2f,
+    extra_large = 1.4f,
+    XXL = 2.0f;
+};
 
-#define MAIN_PANEL_WIDTH 400
-#define MAIN_PANEL_HEIGHT 300
-
-#define PRESET_PANEL_WIDTH MAIN_PANEL_WIDTH
-#define PRESET_PANEL_HEIGHT (MAIN_PANEL_HEIGHT * 0.15)
+class Panel_Size {
+public:
+    static constexpr int main_panel_width = 400,
+                         main_panel_height = 300,
+                         preset_panel_width = main_panel_width,
+                         preset_panel_height = main_panel_height * 0.15;
+    
+    static constexpr int corner_size = 1, line_thickness = 1;
+};
 

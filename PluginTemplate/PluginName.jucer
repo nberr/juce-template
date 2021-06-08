@@ -33,6 +33,10 @@
               resource="0" file="Source/PluginNameMarketplaceStatus.h"/>
       </GROUP>
       <GROUP id="{68BE611A-1575-5F0F-84E2-D1AB71DF243E}" name="UI">
+        <GROUP id="{9452CC1C-F3D8-E3DC-84DC-DA7BB07416DB}" name="ContextMenu">
+          <FILE id="LbeYNo" name="ContextMenu.cpp" compile="1" resource="0" file="Source/ContextMenu.cpp"/>
+          <FILE id="VOEo9E" name="ContextMenu.h" compile="0" resource="0" file="Source/ContextMenu.h"/>
+        </GROUP>
         <GROUP id="{2A90D116-4B32-C342-05A9-A3CA20E3401E}" name="Panels">
           <FILE id="UD9emv" name="MainPanel.cpp" compile="1" resource="0" file="Source/MainPanel.cpp"/>
           <FILE id="t5yd7v" name="MainPanel.h" compile="0" resource="0" file="Source/MainPanel.h"/>
@@ -41,8 +45,6 @@
           <FILE id="TT5KA6" name="PresetPanel.cpp" compile="1" resource="0" file="Source/PresetPanel.cpp"/>
           <FILE id="l3yC5p" name="PresetPanel.h" compile="0" resource="0" file="Source/PresetPanel.h"/>
         </GROUP>
-        <FILE id="LbeYNo" name="ContextMenu.cpp" compile="1" resource="0" file="Source/ContextMenu.cpp"/>
-        <FILE id="VOEo9E" name="ContextMenu.h" compile="0" resource="0" file="Source/ContextMenu.h"/>
         <FILE id="v6RG1z" name="InterfaceDefines.h" compile="0" resource="0"
               file="Source/InterfaceDefines.h"/>
         <FILE id="krTHYj" name="PluginNameLookAndFeel.h" compile="0" resource="0"

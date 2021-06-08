@@ -12,9 +12,10 @@
 
 MainPanel::MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 :   PanelBase(inProcessor, inContextMenu),
-    unlockForm(marketplaceStatus)
+    unlockForm(marketplaceStatus),
+    mPresetPanel(inProcessor, inContextMenu)
 {
-    setSize(MAIN_PANEL_WIDTH * *mContextMenu->mGUIScale, MAIN_PANEL_HEIGHT * *mContextMenu->mGUIScale);
+    setSize(Panel_Size::main_panel_width * *mContextMenu->mGUIScale, Panel_Size::main_panel_width * *mContextMenu->mGUIScale);
     setName("MainPanel");
     
     unlockLabel.setSize(50, 50);
@@ -34,15 +35,13 @@ MainPanel::MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inConte
     secretButton.onClick = [this] { checkFeature(); };
     //addAndMakeVisible (secretButton);
 
-    unlockForm.setSize(MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT);
+    unlockForm.setSize(Panel_Size::main_panel_width, Panel_Size::main_panel_height);
     unlockForm.setTopLeftPosition(0, 0);
     //addChildComponent (unlockForm);
     
     startTimer(100);
     
-    mPresetPanel = std::make_unique<PresetPanel>(inProcessor, inContextMenu);
-    mPresetPanel->setTopLeftPosition(0, 0);
-    addAndMakeVisible(*mPresetPanel);
+    addAndMakeVisible(&mPresetPanel);
 }
 
 MainPanel::~MainPanel()
@@ -54,9 +53,9 @@ MainPanel::~MainPanel()
 void MainPanel::resized()
 {
     float scale = *mContextMenu->mGUIScale;
-    setBounds(0, 0, MAIN_PANEL_WIDTH * scale, MAIN_PANEL_HEIGHT * scale);
-    if (mPresetPanel != nullptr)
-        mPresetPanel->setBounds(0, 0, PRESET_PANEL_WIDTH * scale, PRESET_PANEL_HEIGHT * scale);
+    setBounds(0, 0, Panel_Size::main_panel_width * scale, Panel_Size::main_panel_height * scale);
+    
+    mPresetPanel.setBounds(0, 0, Panel_Size::preset_panel_width * scale, Panel_Size::preset_panel_width * scale);
 }
 
 void MainPanel::timerCallback()

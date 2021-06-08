@@ -13,7 +13,7 @@
 PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 :   PanelBase(inProcessor, inContextMenu)
 {
-    setSize(PRESET_PANEL_WIDTH * *mContextMenu->mGUIScale, PRESET_PANEL_HEIGHT * *mContextMenu->mGUIScale);
+    setSize(Panel_Size::preset_panel_width * *mContextMenu->mGUIScale, Panel_Size::preset_panel_height * *mContextMenu->mGUIScale);
     setName("PresetPanel");
     
     int button_x = 15;
@@ -50,7 +50,7 @@ PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inC
     //addAndMakeVisible(*mSaveAsPreset);
     
     const int comboBox_w = 200;
-    const int comboBox_x = PRESET_PANEL_WIDTH*0.5 - comboBox_w*0.5;
+    const int comboBox_x = Panel_Size::preset_panel_width*0.5 - comboBox_w*0.5;
     
     mPresetDisplay = std::make_unique<juce::ComboBox>();
     mPresetDisplay->setBounds(comboBox_x, button_y, comboBox_w, button_h);
@@ -75,7 +75,7 @@ void PresetPanel::paint(juce::Graphics& g)
     const int label_w = 220;
     
     g.drawFittedText("PluginName",
-                     PRESET_PANEL_WIDTH - label_w,
+                     Panel_Size::preset_panel_width - label_w,
                      0,
                      label_w,
                      getHeight(),
@@ -86,7 +86,7 @@ void PresetPanel::paint(juce::Graphics& g)
 void PresetPanel::resized()
 {
     float scale = *mContextMenu->mGUIScale;
-    setBounds(0, 0, PRESET_PANEL_WIDTH * scale, PRESET_PANEL_HEIGHT * scale);
+    setBounds(0, 0, Panel_Size::preset_panel_width * scale, Panel_Size::preset_panel_height * scale);
 }
 
 void PresetPanel::buttonClicked(juce::Button* b)
