@@ -22,6 +22,7 @@ public:
     }
     
     float mGUIScale = 1;
+    int mDefaultPreset = 0;
 private:
     
 };

@@ -27,7 +27,7 @@ void PanelBase::paint(juce::Graphics& g)
     g.fillAll();
     
     g.setColour(juce::Colours::black);
-    g.drawRoundedRectangle(0, 0, getWidth(), getHeight(), Panel_Size::corner_size, Panel_Size::line_thickness);
+    g.drawRoundedRectangle(0, 0, getWidth(), getHeight(), PluginNameGUI::corner_size, PluginNameGUI::line_thickness);
 }
 
 void PanelBase::mouseDown(const juce::MouseEvent& event)
@@ -39,6 +39,5 @@ void PanelBase::mouseDown(const juce::MouseEvent& event)
         auto editor = findParentComponentOfClass<juce::AudioProcessorEditor>();
         editor->resized();
         resized();
-        // how to trigger resize for all components
     }
 }

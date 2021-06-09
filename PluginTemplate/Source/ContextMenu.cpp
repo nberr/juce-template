@@ -19,19 +19,20 @@ ContextMenu::ContextMenu(float* inScale)
     large("large")
 {
     setName("ContextMenu");
+    setComponentID("ContextMenuID");
     
-    if (*inScale == GUI_Scale::small) {
+    if (*inScale == PluginNameGUI::Scale::small) {
         small.setTicked(true);
     }
-    else if (*inScale == GUI_Scale::normal) {
+    else if (*inScale == PluginNameGUI::Scale::normal) {
         medium.setTicked(true);
     }
-    else if (*inScale == GUI_Scale::large) {
+    else if (*inScale == PluginNameGUI::Scale::large) {
         large.setTicked(true);
     }
     
     small.setAction([this](){
-        *mGUIScale = GUI_Scale::small;
+        *mGUIScale = PluginNameGUI::Scale::small;
         
         small.setTicked(true);
         medium.setTicked(false);
@@ -40,7 +41,7 @@ ContextMenu::ContextMenu(float* inScale)
     
     
     medium.setAction([this](){
-        *mGUIScale = GUI_Scale::normal;
+        *mGUIScale = PluginNameGUI::Scale::normal;
         
         small.setTicked(false);
         medium.setTicked(true);
@@ -50,7 +51,7 @@ ContextMenu::ContextMenu(float* inScale)
     
     
     large.setAction([this](){
-        *mGUIScale = GUI_Scale::large;
+        *mGUIScale = PluginNameGUI::Scale::large;
         small.setTicked(false);
         medium.setTicked(false);
         large.setTicked(true);
@@ -91,7 +92,10 @@ void ContextMenu::showMenu(const juce::String itemClicked)
         menu.show();
     }
     else {
-        DBG(itemClicked);
+        menu.clear();
+        menu.addItem(itemClicked);
+        buildBaseMenu();
+        menu.show();
     }
 }
 

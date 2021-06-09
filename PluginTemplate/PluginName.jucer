@@ -38,12 +38,19 @@
           <FILE id="VOEo9E" name="ContextMenu.h" compile="0" resource="0" file="Source/ContextMenu.h"/>
         </GROUP>
         <GROUP id="{2A90D116-4B32-C342-05A9-A3CA20E3401E}" name="Panels">
-          <FILE id="UD9emv" name="MainPanel.cpp" compile="1" resource="0" file="Source/MainPanel.cpp"/>
-          <FILE id="t5yd7v" name="MainPanel.h" compile="0" resource="0" file="Source/MainPanel.h"/>
+          <GROUP id="{07352031-774C-1EFC-515B-A613E83B8D2E}" name="PresetPanel">
+            <FILE id="TT5KA6" name="PresetPanel.cpp" compile="1" resource="0" file="Source/PresetPanel.cpp"/>
+            <FILE id="l3yC5p" name="PresetPanel.h" compile="0" resource="0" file="Source/PresetPanel.h"/>
+            <FILE id="O2jPEL" name="PresetOverlay.cpp" compile="1" resource="0"
+                  file="Source/PresetOverlay.cpp"/>
+            <FILE id="RGCCul" name="PresetOverlay.h" compile="0" resource="0" file="Source/PresetOverlay.h"/>
+          </GROUP>
+          <GROUP id="{E406B02A-720C-4743-CBDF-EFFCFD387F9C}" name="MainPanel">
+            <FILE id="UD9emv" name="MainPanel.cpp" compile="1" resource="0" file="Source/MainPanel.cpp"/>
+            <FILE id="t5yd7v" name="MainPanel.h" compile="0" resource="0" file="Source/MainPanel.h"/>
+          </GROUP>
           <FILE id="vgT0kM" name="PanelBase.cpp" compile="1" resource="0" file="Source/PanelBase.cpp"/>
           <FILE id="NXTDme" name="PanelBase.h" compile="0" resource="0" file="Source/PanelBase.h"/>
-          <FILE id="TT5KA6" name="PresetPanel.cpp" compile="1" resource="0" file="Source/PresetPanel.cpp"/>
-          <FILE id="l3yC5p" name="PresetPanel.h" compile="0" resource="0" file="Source/PresetPanel.h"/>
         </GROUP>
         <FILE id="v6RG1z" name="InterfaceDefines.h" compile="0" resource="0"
               file="Source/InterfaceDefines.h"/>

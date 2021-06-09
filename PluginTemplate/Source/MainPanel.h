@@ -14,7 +14,9 @@
 
 #include "PluginNameMarketplaceStatus.h"
 #include "PluginNameUnlockForm.h"
+
 #include "PresetPanel.h"
+#include "PresetOverlay.h"
 
 class MainPanel
 :   public PanelBase,
@@ -41,4 +43,5 @@ private:
     bool isUnlocked = false;
     
     PresetPanel mPresetPanel;
+    PresetOverlay mPresetOverlay;
 };
