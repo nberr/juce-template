@@ -10,5 +10,22 @@
 
 #pragma once
 
-#define CORNER_SIZE 1
-#define LINE_THICKNESS 1
+#include <JuceHeader.h>
+
+class PluginNameLookAndFeel
+:   public juce::LookAndFeel_V4
+{
+public:
+    PluginNameLookAndFeel()
+    {
+        
+    }
+    
+    ~PluginNameLookAndFeel()
+    {
+        
+    }
+private:
+    
+    
+};

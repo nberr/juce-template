@@ -10,11 +10,15 @@
 
 #include "MainPanel.h"
 
-MainPanel::MainPanel(PluginNameAudioProcessor *inProcessor)
-:   PanelBase(inProcessor),
+MainPanel::MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
+:   PanelBase(inProcessor, inContextMenu),
+    mPresetPanel(inProcessor, inContextMenu),
+    mPresetOverlay(inProcessor, inContextMenu),
+    mSavePresetOverlay(inProcessor, inContextMenu),
     unlockForm(marketplaceStatus)
 {
-    setSize(MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT);
+    setName("MainPanel");
+    setComponentID("MainPanelID");
     
     unlockLabel.setSize(50, 50);
     unlockLabel.setTopLeftPosition(0, 0);
@@ -24,28 +28,39 @@ MainPanel::MainPanel(PluginNameAudioProcessor *inProcessor)
 
     unlockButton.setSize(100, 100);
     unlockButton.setTopLeftPosition(50, 50);
-    unlockButton.onClick = [this] { showForm(); };
+    unlockButton.onClick = [this] {
+        showForm();
+    };
     //addAndMakeVisible (unlockButton);
 
     secretButton.setEnabled (false);
     secretButton.onClick = [this] { checkFeature(); };
     //addAndMakeVisible (secretButton);
 
-    unlockForm.setSize(MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT);
+    unlockForm.setSize(MainPanelGUI::width, MainPanelGUI::height);
     unlockForm.setTopLeftPosition(0, 0);
-    addChildComponent (unlockForm);
+    //addChildComponent (unlockForm);
     
     startTimer(100);
     
-    mPresetPanel = std::make_unique<PresetPanel>(inProcessor);
-    mPresetPanel->setTopLeftPosition(0, 0);
-    addAndMakeVisible(*mPresetPanel);
-    
+    addAndMakeVisible(&mPresetPanel);
+    addChildComponent(&mPresetOverlay); // add to scene but don't make visible
+    addChildComponent(&mSavePresetOverlay);
 }
 
 MainPanel::~MainPanel()
 {
     
+}
+
+
+void MainPanel::resized()
+{
+    float scale = *mContextMenu->mGUIScale;
+    
+    mPresetPanel.setBounds(0, 0, PresetPanelGUI::width * scale, PresetPanelGUI::height * scale);
+    mPresetOverlay.setBounds(0, PresetPanelGUI::height * scale, PresetOverlayGUI::width * scale, PresetOverlayGUI::height * scale);
+    mSavePresetOverlay.setBounds(0, 0, getWidth(), getHeight());
 }
 
 void MainPanel::timerCallback()

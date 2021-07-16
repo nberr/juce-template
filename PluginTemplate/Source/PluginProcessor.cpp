@@ -23,8 +23,11 @@ PluginNameAudioProcessor::PluginNameAudioProcessor()
                      #endif
                        ),
 #endif
-parameters(*this, &undoManager, "PARAMETERS", createParameterLayout())
+
+parameters(*this, &undoManager, "PARAMETERS", createParameterLayout()),
+mPresetManager(this, internalParameters.mPresetPath)
 {
+    
 }
 
 PluginNameAudioProcessor::~PluginNameAudioProcessor()
@@ -156,8 +159,8 @@ void PluginNameAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, j
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
         //auto* channelData = buffer.getWritePointer (channel);
-
         // ..do something to the data...
+        
     }
 }
 
@@ -178,12 +181,28 @@ void PluginNameAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
+    auto state = parameters.copyState();
+    std::unique_ptr<juce::XmlElement> xml (state.createXml());
+    
+    // internal params
+    xml->setAttribute("GUIScale", internalParameters.mGUIScale);
+    
+    copyXmlToBinary (*xml, destData);
 }
 
 void PluginNameAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+    std::unique_ptr<juce::XmlElement> xmlState (getXmlFromBinary (data, sizeInBytes));
+        
+    if (xmlState.get() != nullptr) {
+        if (xmlState->hasTagName (parameters.state.getType())) {
+            parameters.replaceState (juce::ValueTree::fromXml (*xmlState));
+        }
+        
+        internalParameters.mGUIScale = xmlState->getDoubleAttribute("GUIScale");
+    }
 }
 
 //==============================================================================
@@ -195,7 +214,7 @@ juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 
 PluginNamePresetManager*  PluginNameAudioProcessor::getPresetManager()
 {
-    return (PluginNamePresetManager *)&*mPresetManager;
+    return &mPresetManager;
 }
 
 juce::AudioProcessorValueTreeState::ParameterLayout PluginNameAudioProcessor::createParameterLayout()
@@ -238,4 +257,3 @@ juce::AudioProcessorValueTreeState::ParameterLayout PluginNameAudioProcessor::cr
     
     return layout;
 }
-

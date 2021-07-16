@@ -14,23 +14,24 @@
 
 class PresetPanel
 :   public PanelBase,
-    public juce::Button::Listener,
-    public juce::ComboBox::Listener
+    public juce::Button::Listener
 {
 public:
-    PresetPanel(PluginNameAudioProcessor *inProcessor);
+    PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
     ~PresetPanel();
     
-    void paint(juce::Graphics& g) override;
+    void resized() override;
         
     void buttonClicked(juce::Button*) override;
-    void comboBoxChanged(juce::ComboBox* comboBoxThatHasChanged) override;
 private:
-    void displaySaveAsPopup();
-        
-    void updatePresetComboBox();
-        
-    std::unique_ptr<juce::ComboBox> mPresetDisplay;
-        
-    std::unique_ptr<juce::TextButton> mNewPreset, mSavePreset, mSaveAsPreset;
+    juce::TextButton mPresetMenu;
+    juce::TextButton mPrevPreset;
+    juce::TextButton mNextPreset;
+    
+    juce::TextButton mUndo;
+    juce::TextButton mRedo;
+    
+    juce::TextButton mPresetA;
+    juce::TextButton mPresetB;
+    juce::TextButton mPresetCopy;
 };

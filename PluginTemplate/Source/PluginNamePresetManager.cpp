@@ -11,23 +11,14 @@
 #include "PluginNamePresetManager.h"
 
 #include "PluginNameParameters.h"
+#include "PluginNameInternalParameters.h"
 
-#if JUCE_WINDOWS
-    #define DIR_SEP "\\"
-#elseif JUCE_MAC
-    #define DIR_SEP "/"
-#else
-    #define DIR_SEP "/"
-#endif
-
-
-PluginNamePresetManager::PluginNamePresetManager(juce::AudioProcessor* inProcssor)
+PluginNamePresetManager::PluginNamePresetManager(juce::AudioProcessor* inProcssor, juce::String inDirectory)
 :   mCurrentPresetIsSaved(false),
     mCurrentPresetName("Untitled"),
     mProcessor(inProcssor)
 {
-    const juce::String pluginName = (juce::String)mProcessor->getName();
-    mPresetDirectory = juce::File::getSpecialLocation(juce::File::userHomeDirectory).getFullPathName() + DIR_SEP + pluginName;
+    mPresetDirectory = inDirectory;
     
     if (!juce::File(mPresetDirectory).exists())
     {

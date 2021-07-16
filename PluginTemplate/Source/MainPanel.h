@@ -14,20 +14,29 @@
 
 #include "PluginNameMarketplaceStatus.h"
 #include "PluginNameUnlockForm.h"
+
 #include "PresetPanel.h"
+#include "PresetOverlay.h"
+#include "SavePresetOverlay.h"
 
 class MainPanel
 :   public PanelBase,
     private juce::Timer
 {
 public:
-    MainPanel(PluginNameAudioProcessor* inProcessor);
+    MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
     ~MainPanel();
-private:
+    
+    void resized() override;
+private:    
     void timerCallback() override;
     void showForm();
     void unlockApp();
     void checkFeature();
+    
+    PresetPanel mPresetPanel;
+    PresetOverlay mPresetOverlay;
+    SavePresetOverlay mSavePresetOverlay;
     
     juce::Label      unlockLabel  { {}, "Status: Locked" };
     juce::TextButton unlockButton { "Unlock" },
@@ -38,5 +47,6 @@ private:
 
     bool isUnlocked = false;
     
-    std::unique_ptr<PresetPanel> mPresetPanel;
+    
+    
 };
