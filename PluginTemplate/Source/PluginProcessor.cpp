@@ -9,6 +9,8 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+#include "PluginNameParameters.h"
+
 //==============================================================================
 PluginNameAudioProcessor::PluginNameAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -19,8 +21,9 @@ PluginNameAudioProcessor::PluginNameAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ),
 #endif
+parameters(*this, &undoManager, "PARAMETERS", createParameterLayout())
 {
 }
 
@@ -152,7 +155,7 @@ void PluginNameAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, j
     // interleaved by keeping the same state.
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
-        auto* channelData = buffer.getWritePointer (channel);
+        //auto* channelData = buffer.getWritePointer (channel);
 
         // ..do something to the data...
     }
@@ -193,5 +196,46 @@ juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 PluginNamePresetManager*  PluginNameAudioProcessor::getPresetManager()
 {
     return (PluginNamePresetManager *)&*mPresetManager;
+}
+
+juce::AudioProcessorValueTreeState::ParameterLayout PluginNameAudioProcessor::createParameterLayout()
+{
+    juce::AudioProcessorValueTreeState::ParameterLayout layout;
+    
+    for (int i = 0; i < PluginNameParameters::PNP_TotalNumParameters; i++) {
+        switch(PluginNameParameters::Types[i]) {
+            case PluginNameParameters::is_int:
+                layout.add(std::make_unique<juce::AudioParameterInt>(PluginNameParameters::IDs[i],
+                                                                     PluginNameParameters::Names[i],
+                                                                     PluginNameParameters::Mins[i].ivalue,
+                                                                     PluginNameParameters::Maxs[i].ivalue,
+                                                                     PluginNameParameters::Defaults[i].ivalue,
+                                                                     PluginNameParameters::Labels[i]));
+                break;
+            case PluginNameParameters::is_float:
+                layout.add(std::make_unique<juce::AudioParameterFloat>(PluginNameParameters::IDs[i],
+                                                                       PluginNameParameters::Names[i],
+                                                                                       juce::NormalisableRange<float>(PluginNameParameters::Mins[i].fvalue, PluginNameParameters::Maxs[i].fvalue),
+                                                                       PluginNameParameters::Defaults[i].fvalue,
+                                                                       PluginNameParameters::Labels[i]));
+                break;
+            case PluginNameParameters::is_bool:
+                layout.add(std::make_unique<juce::AudioParameterBool>(PluginNameParameters::IDs[i],
+                                                                      PluginNameParameters::Names[i],
+                                                                      PluginNameParameters::Defaults[i].bvalue,
+                                                                      PluginNameParameters::Labels[i]));
+                break;
+            case PluginNameParameters::is_choice:
+                layout.add(std::make_unique<juce::AudioParameterChoice>(PluginNameParameters::IDs[i],
+                                                                        PluginNameParameters::Names[i],
+                                                                        PluginNameParameters::Choices[i],
+                                                                        PluginNameParameters::Defaults[i].ivalue,
+                                                                        PluginNameParameters::Labels[i]));
+                break;
+                
+        }
+    }
+    
+    return layout;
 }
 

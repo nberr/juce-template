@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="Cb0jVR" name="PluginName" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
+              cppLanguageStandard="17">
   <MAINGROUP id="wiPM7S" name="PluginName">
     <GROUP id="{B03CDF18-2D71-E14F-8D3F-CCB6B9E49FF1}" name="Source">
       <GROUP id="{8E584F74-69A6-7751-29BE-F9C4568D1CE8}" name="FX">

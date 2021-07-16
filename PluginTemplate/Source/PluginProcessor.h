@@ -58,9 +58,14 @@ public:
     
     PluginNamePresetManager* getPresetManager();
 
+    juce::AudioProcessorValueTreeState parameters;
+    juce::UndoManager undoManager;
+    
 private:
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginNameAudioProcessor)
+    juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
     
     std::unique_ptr<PluginNamePresetManager> mPresetManager;
+    
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginNameAudioProcessor)
 };
