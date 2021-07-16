@@ -13,11 +13,11 @@
 PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 :   PanelBase(inProcessor, inContextMenu)
 {
-    setSize(PresetPanelGUI::panel_width * *mContextMenu->mGUIScale, PresetPanelGUI::panel_height * *mContextMenu->mGUIScale);
+    setSize(PresetPanelGUI::width * *mContextMenu->mGUIScale, PresetPanelGUI::height * *mContextMenu->mGUIScale);
     setName("PresetPanel");
     setComponentID("PresetPanelID");
     
-    mPresetMenu.setButtonText("Current Preset"); // set the text to the current preset
+    mPresetMenu.setButtonText(mProcessor->getPresetManager()->getCurrentPresetName()); // set the text to the current preset
     mPresetMenu.setName("PresetMenu");
     mPresetMenu.setTriggeredOnMouseDown(true);
     mPresetMenu.addListener(this);
@@ -64,7 +64,7 @@ void PresetPanel::resized()
     float scale = *mContextMenu->mGUIScale;
     
     mPresetMenu.setSize(PresetPanelGUI::preset_display_width * scale, PresetPanelGUI::preset_display_height * scale);
-    mPresetMenu.setCentrePosition(PresetPanelGUI::panel_width * scale * 0.5f, PresetPanelGUI::panel_height * scale * 0.5f);
+    mPresetMenu.setCentrePosition(PresetPanelGUI::width * scale * 0.5f, PresetPanelGUI::height * scale * 0.5f);
     
     
     mPrevPreset.setBounds(mPresetMenu.getX() - (PresetPanelGUI::change_preset_width*scale),

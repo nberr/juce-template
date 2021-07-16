@@ -11,4 +11,5 @@ Template for JUCE plugins
 - key registration
 - right click component to bring up sub menu (link to website for manual)
 - A/B to switch between presets fast
+- save presets in whatever folder you want!
 

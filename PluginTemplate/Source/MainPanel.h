@@ -17,6 +17,7 @@
 
 #include "PresetPanel.h"
 #include "PresetOverlay.h"
+#include "SavePresetOverlay.h"
 
 class MainPanel
 :   public PanelBase,
@@ -27,11 +28,15 @@ public:
     ~MainPanel();
     
     void resized() override;
-private:
+private:    
     void timerCallback() override;
     void showForm();
     void unlockApp();
     void checkFeature();
+    
+    PresetPanel mPresetPanel;
+    PresetOverlay mPresetOverlay;
+    SavePresetOverlay mSavePresetOverlay;
     
     juce::Label      unlockLabel  { {}, "Status: Locked" };
     juce::TextButton unlockButton { "Unlock" },
@@ -42,6 +47,6 @@ private:
 
     bool isUnlocked = false;
     
-    PresetPanel mPresetPanel;
-    PresetOverlay mPresetOverlay;
+    
+    
 };

@@ -16,7 +16,9 @@ ContextMenu::ContextMenu(float* inScale)
 :   mGUIScale(inScale),
     small("small"),
     medium("medium"),
-    large("large")
+    large("large"),
+    extraLarge("extra large"),
+    XXL("XXL")
 {
     setName("ContextMenu");
     setComponentID("ContextMenuID");
@@ -30,6 +32,12 @@ ContextMenu::ContextMenu(float* inScale)
     else if (*inScale == PluginNameGUI::Scale::large) {
         large.setTicked(true);
     }
+    else if (*inScale == PluginNameGUI::Scale::extra_large) {
+        extraLarge.setTicked(true);
+    }
+    else if (*inScale == PluginNameGUI::Scale::XXL) {
+        XXL.setTicked(true);
+    }
     
     small.setAction([this](){
         *mGUIScale = PluginNameGUI::Scale::small;
@@ -37,6 +45,8 @@ ContextMenu::ContextMenu(float* inScale)
         small.setTicked(true);
         medium.setTicked(false);
         large.setTicked(false);
+        extraLarge.setTicked(false);
+        XXL.setTicked(false);
     });
     
     
@@ -46,6 +56,8 @@ ContextMenu::ContextMenu(float* inScale)
         small.setTicked(false);
         medium.setTicked(true);
         large.setTicked(false);
+        extraLarge.setTicked(false);
+        XXL.setTicked(false);
        
     });
     
@@ -55,9 +67,27 @@ ContextMenu::ContextMenu(float* inScale)
         small.setTicked(false);
         medium.setTicked(false);
         large.setTicked(true);
+        extraLarge.setTicked(false);
+        XXL.setTicked(false);
     });
     
+    extraLarge.setAction([this](){
+        *mGUIScale = PluginNameGUI::Scale::extra_large;
+        small.setTicked(false);
+        medium.setTicked(false);
+        large.setTicked(false);
+        extraLarge.setTicked(true);
+        XXL.setTicked(false);
+    });
     
+    XXL.setAction([this](){
+        *mGUIScale = PluginNameGUI::Scale::XXL;
+        small.setTicked(false);
+        medium.setTicked(false);
+        large.setTicked(false);
+        extraLarge.setTicked(false);
+        XXL.setTicked(true);
+    });
 }
 
 ContextMenu::~ContextMenu()
@@ -106,6 +136,8 @@ void ContextMenu::buildBaseMenu()
     sizes.addItem(small);
     sizes.addItem(medium);
     sizes.addItem(large);
+    sizes.addItem(extraLarge);
+    sizes.addItem(XXL);
     
     preferences.clear();
     preferences.addItem("Dark Mode", [](){});

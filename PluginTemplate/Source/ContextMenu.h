@@ -24,6 +24,8 @@ public:
         GUI_Small,
         GUI_Medium,
         GUI_Large,
+        GUI_Extra_Large,
+        GUI_XXL
     };
     
     ContextMenu(float *inScale);
@@ -43,6 +45,8 @@ private:
     juce::PopupMenu::Item small;
     juce::PopupMenu::Item medium;
     juce::PopupMenu::Item large;
+    juce::PopupMenu::Item extraLarge;
+    juce::PopupMenu::Item XXL;
 
     
 };

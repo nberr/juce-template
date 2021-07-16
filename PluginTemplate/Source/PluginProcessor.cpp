@@ -23,8 +23,10 @@ PluginNameAudioProcessor::PluginNameAudioProcessor()
                      #endif
                        ),
 #endif
-parameters(*this, nullptr, "PARAMETERS", createParameterLayout())
+parameters(*this, nullptr, "PARAMETERS", createParameterLayout()),
+mPresetManager(this, internalParameters.mPresetPath)
 {
+    
 }
 
 PluginNameAudioProcessor::~PluginNameAudioProcessor()
@@ -211,7 +213,7 @@ juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 
 PluginNamePresetManager*  PluginNameAudioProcessor::getPresetManager()
 {
-    return (PluginNamePresetManager *)&*mPresetManager;
+    return &mPresetManager;
 }
 
 juce::AudioProcessorValueTreeState::ParameterLayout PluginNameAudioProcessor::createParameterLayout()

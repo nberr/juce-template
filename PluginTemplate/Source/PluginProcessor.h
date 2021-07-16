@@ -66,7 +66,7 @@ private:
     //==============================================================================
     juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
     
-    std::unique_ptr<PluginNamePresetManager> mPresetManager;
+    PluginNamePresetManager mPresetManager;
     
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginNameAudioProcessor)
 };

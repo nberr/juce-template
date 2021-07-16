@@ -12,6 +12,11 @@
 
 #include <JuceHeader.h>
 
+class PluginNameParameters {
+public:
+    
+};
+
 enum PluginNameParameter
 {
     PNP_Int = 0,

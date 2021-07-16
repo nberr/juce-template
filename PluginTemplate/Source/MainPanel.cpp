@@ -12,11 +12,11 @@
 
 MainPanel::MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 :   PanelBase(inProcessor, inContextMenu),
-    unlockForm(marketplaceStatus),
     mPresetPanel(inProcessor, inContextMenu),
-    mPresetOverlay(inProcessor, inContextMenu)
+    mPresetOverlay(inProcessor, inContextMenu),
+    mSavePresetOverlay(inProcessor, inContextMenu),
+    unlockForm(marketplaceStatus)
 {
-    setSize(MainPanelGUI::panel_width * *mContextMenu->mGUIScale, MainPanelGUI::panel_width * *mContextMenu->mGUIScale);
     setName("MainPanel");
     setComponentID("MainPanelID");
     
@@ -37,7 +37,7 @@ MainPanel::MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inConte
     secretButton.onClick = [this] { checkFeature(); };
     //addAndMakeVisible (secretButton);
 
-    unlockForm.setSize(MainPanelGUI::panel_width, MainPanelGUI::panel_height);
+    unlockForm.setSize(MainPanelGUI::width, MainPanelGUI::height);
     unlockForm.setTopLeftPosition(0, 0);
     //addChildComponent (unlockForm);
     
@@ -45,6 +45,7 @@ MainPanel::MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inConte
     
     addAndMakeVisible(&mPresetPanel);
     addChildComponent(&mPresetOverlay); // add to scene but don't make visible
+    addChildComponent(&mSavePresetOverlay);
 }
 
 MainPanel::~MainPanel()
@@ -57,8 +58,9 @@ void MainPanel::resized()
 {
     float scale = *mContextMenu->mGUIScale;
     
-    mPresetPanel.setBounds(0, 0, PresetPanelGUI::panel_width * scale, PresetPanelGUI::panel_height * scale);
-    mPresetOverlay.setBounds(0, PresetPanelGUI::panel_height * scale, PresetOverlayGUI::width * scale, PresetOverlayGUI::height * scale);
+    mPresetPanel.setBounds(0, 0, PresetPanelGUI::width * scale, PresetPanelGUI::height * scale);
+    mPresetOverlay.setBounds(0, PresetPanelGUI::height * scale, PresetOverlayGUI::width * scale, PresetOverlayGUI::height * scale);
+    mSavePresetOverlay.setBounds(0, 0, getWidth(), getHeight());
 }
 
 void MainPanel::timerCallback()

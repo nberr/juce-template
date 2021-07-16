@@ -12,12 +12,13 @@
 
 #include <JuceHeader.h>
 
-#define PRESET_FILE_EXTENSION ".PN"
+//#define PRESET_FILE_EXTENSION ".PN"
+#define PRESET_FILE_EXTENSION ".xml"
 
 class PluginNamePresetManager
 {
 public:
-    PluginNamePresetManager(juce::AudioProcessor* inProcssor);
+    PluginNamePresetManager(juce::AudioProcessor* inProcssor, juce::String inDirectory);
     ~PluginNamePresetManager();
     
     void getXmlForPreset(juce::XmlElement* inElement);

@@ -19,7 +19,7 @@ PluginNameAudioProcessorEditor::PluginNameAudioProcessorEditor (PluginNameAudioP
     mMainPanel(&audioProcessor, &mContextMenu)
 {
     mGUIScale = &(audioProcessor.internalParameters.mGUIScale);
-    setSize(MainPanelGUI::panel_width, MainPanelGUI::panel_height);
+    setSize(MainPanelGUI::width, MainPanelGUI::height);
     setName("PluginEditor");
     setComponentID("PluginEditorID");
     setResizable(false, false);
@@ -39,7 +39,7 @@ void PluginNameAudioProcessorEditor::paint (juce::Graphics& g)
 
 void PluginNameAudioProcessorEditor::resized()
 {
-    setSize(MainPanelGUI::panel_width * *mGUIScale, MainPanelGUI::panel_height * *mGUIScale);
-    mMainPanel.setBounds(0, 0, MainPanelGUI::panel_width * *mGUIScale, MainPanelGUI::panel_height * *mGUIScale);
+    setSize(MainPanelGUI::width * *mGUIScale, MainPanelGUI::height * *mGUIScale);
+    mMainPanel.setBounds(0, 0, MainPanelGUI::width * *mGUIScale, MainPanelGUI::height * *mGUIScale);
 }
 

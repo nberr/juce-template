@@ -25,8 +25,13 @@ public:
     void buttonClicked(juce::Button*) override;
     
 private:
+    juce::Array<juce::PropertyComponent*> getPresets();
+    juce::Array<juce::PropertyComponent*> getUserPresets();
+    
     juce::TextButton mAddNewPreset;
     juce::TextButton mSetDefault;
     juce::TextButton mDismissOverlay;
+    
+    juce::ConcertinaPanel mPresetDisplay;
     
 };
