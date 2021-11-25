@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="B9gRIA" name="PluginName" projectType="audioplug" useAppConfig="0"
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
+              cppLanguageStandard="latest" version="1.0.0" companyName="nberr"
+              companyWebsite="nberr.io" companyEmail="nberr@protonmail.com"
+              bundleIdentifier="io.nberr.PluginName" pluginName="PluginName"
+              pluginDesc="Plugin template with common features" pluginManufacturer="nberr"
+              defines="REACTJUCE_USE_DUKTAPE=1">
+  <MAINGROUP id="rG13mo" name="PluginName">
+    <GROUP id="{A69D8F93-3BCE-9AD3-66FB-82DC085FE56F}" name="Source">
+      <GROUP id="{8342A970-953C-2714-B70C-3F1BB6B1F124}" name="Preset">
+        <FILE id="DTaPq6" name="PluginNamePresetManager.cpp" compile="1" resource="0"
+              file="Source/PluginNamePresetManager.cpp"/>
+        <FILE id="GYvZPf" name="PluginNamePresetManager.h" compile="0" resource="0"
+              file="Source/PluginNamePresetManager.h"/>
+      </GROUP>
+      <GROUP id="{72DCA701-CF27-B8CA-FCE3-842C30867F9F}" name="Parameters">
+        <FILE id="ZtnuMG" name="PluginNameParameters.h" compile="0" resource="0"
+              file="Source/PluginNameParameters.h"/>
+      </GROUP>
+      <GROUP id="{84D0E007-1FF8-ED93-9A51-51F2943F255A}" name="Registration">
+        <GROUP id="{4EB93E76-2A39-753E-7750-0A8377E4770A}" name="Status">
+          <FILE id="yp9zN5" name="PluginNameMarketplaceStatus.cpp" compile="1"
+                resource="0" file="Source/PluginNameMarketplaceStatus.cpp"/>
+          <FILE id="ARSL4U" name="PluginNameMarketplaceStatus.h" compile="0"
+                resource="0" file="Source/PluginNameMarketplaceStatus.h"/>
+        </GROUP>
+        <GROUP id="{CF260F75-9E27-A85E-1F75-4376AAFEA0B8}" name="Unlock">
+          <FILE id="i5Xppa" name="PluginNameUnlockForm.cpp" compile="1" resource="0"
+                file="Source/PluginNameUnlockForm.cpp"/>
+          <FILE id="jEGoZi" name="PluginNameUnlockForm.h" compile="0" resource="0"
+                file="Source/PluginNameUnlockForm.h"/>
+        </GROUP>
+      </GROUP>
+      <GROUP id="{388B85AD-E66C-206A-3B65-780B5597D18D}" name="UI">
+        <GROUP id="{268804BC-FB6D-6751-5DDC-90853AF58214}" name="ContextMenu">
+          <FILE id="EuWjV7" name="ContextMenu.cpp" compile="1" resource="0" file="Source/ContextMenu.cpp"/>
+          <FILE id="cU55PE" name="ContextMenu.h" compile="0" resource="0" file="Source/ContextMenu.h"/>
+        </GROUP>
+        <GROUP id="{1E258759-405D-5C93-E761-4771C567FD46}" name="Panels">
+          <FILE id="Sqtvka" name="PanelBase.cpp" compile="1" resource="0" file="Source/PanelBase.cpp"/>
+          <FILE id="rnHRp3" name="PanelBase.h" compile="0" resource="0" file="Source/PanelBase.h"/>
+          <GROUP id="{5C4CFEEF-4619-3B69-1A39-EAADB514BBC8}" name="Main">
+            <FILE id="XgxmmI" name="MainPanel.cpp" compile="1" resource="0" file="Source/MainPanel.cpp"/>
+            <FILE id="aEEQll" name="MainPanel.h" compile="0" resource="0" file="Source/MainPanel.h"/>
+          </GROUP>
+          <GROUP id="{8081B5BA-8452-B9B3-33EE-EFC31025B7A2}" name="Preset">
+            <FILE id="CdgVtu" name="PresetOverlay.cpp" compile="1" resource="0"
+                  file="Source/PresetOverlay.cpp"/>
+            <FILE id="ku9N1D" name="PresetOverlay.h" compile="0" resource="0" file="Source/PresetOverlay.h"/>
+            <FILE id="DGgZ7N" name="PresetPanel.cpp" compile="1" resource="0" file="Source/PresetPanel.cpp"/>
+            <FILE id="MzUTOS" name="PresetPanel.h" compile="0" resource="0" file="Source/PresetPanel.h"/>
+          </GROUP>
+          <GROUP id="{03F6DB09-199E-115D-6B2F-170D860689C0}" name="Side">
+            <FILE id="tiizCc" name="SidePanel.cpp" compile="1" resource="0" file="Source/SidePanel.cpp"/>
+            <FILE id="eHZ2Yj" name="SidePanel.h" compile="0" resource="0" file="Source/SidePanel.h"/>
+          </GROUP>
+          <GROUP id="{5F7A0AC8-5B25-2CA7-903A-3DEB99BBD095}" name="Menu">
+            <FILE id="N1J6MN" name="MenuPanel.cpp" compile="1" resource="0" file="Source/MenuPanel.cpp"/>
+            <FILE id="uK6kKs" name="MenuPanel.h" compile="0" resource="0" file="Source/MenuPanel.h"/>
+          </GROUP>
+        </GROUP>
+        <FILE id="n92iCR" name="InterfaceDefines.h" compile="0" resource="0"
+              file="Source/InterfaceDefines.h"/>
+        <FILE id="tRi67d" name="PluginNameLookAndFeel.h" compile="0" resource="0"
+              file="Source/PluginNameLookAndFeel.h"/>
+      </GROUP>
+      <FILE id="oqODir" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
+      <FILE id="QYWA7L" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="pd2rkK" name="PluginEditor.cpp" compile="1" resource="0"
+            file="Source/PluginEditor.cpp"/>
+      <FILE id="o0kwgN" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug" targetName="PluginName"/>
+        <CONFIGURATION isDebug="0" name="Release" targetName="PluginName"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_audio_basics" path="../lib/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../lib/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../lib/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../lib/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../lib/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../lib/JUCE/modules"/>
+        <MODULEPATH id="juce_core" path="../lib/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../lib/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../lib/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../lib/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../lib/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../lib/JUCE/modules"/>
+        <MODULEPATH id="juce_product_unlocking" path="../lib/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../lib/JUCE/modules"/>
+        <MODULEPATH id="react_juce" path="../../../lib/react-juce"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_product_unlocking" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="1"/>
+    <MODULE id="react_juce" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+  </MODULES>
+</JUCERPROJECT>

@@ -1,7 +1,10 @@
-# juce-template
+# plugin-template
 Template for JUCE plugins
 
 ## Components
+### Prototyping
+### Verification
+### Implementation
 - audio block to manipulate signal or midi
 - User Interface heirarchy + LookAndFeel
 - parameters that can be programmatically initialized
@@ -12,4 +15,5 @@ Template for JUCE plugins
 - right click component to bring up sub menu (link to website for manual)
 - A/B to switch between presets fast
 - save presets in whatever folder you want!
+
 
