@@ -9,3 +9,23 @@
 */
 
 #pragma once
+
+#include <JuceHeader.h>
+
+class PluginNameLookAndFeel
+:   public juce::LookAndFeel_V4
+{
+public:
+    PluginNameLookAndFeel()
+    {
+        
+    };
+    
+    ~PluginNameLookAndFeel()
+    {
+        
+    };
+    
+private:
+    
+};

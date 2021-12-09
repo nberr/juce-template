@@ -42,15 +42,17 @@ private:
     // This template allows two ways to display a UI
     // 1 - pure JUCE; see UI folder for panel hierarchy
     ContextMenu mContextMenu;
+    
+    // panel hierarchy
     MenuPanel mMenuPanel;
     PresetPanel mPresetPanel;
     PresetOverlay mPresetOverlay;
     MainPanel mMainPanel;
     SidePanel mSidePanel;
     
+    // internal parameters
     float *mGUIScale;
     bool *mShowSidePanel;
-    
     
     // 2 - react-juce; see jsui/src/index.js
     reactjuce::ReactApplicationRoot appRoot;

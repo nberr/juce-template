@@ -26,10 +26,7 @@ PluginNameAudioProcessorEditor::PluginNameAudioProcessorEditor (PluginNameAudioP
     // 1 - pure JUCE; see UI folder for panel hierarchy
     // 2 - react-juce; see jsui/src/index.js
     
-    // 1st UI implementation
-    mGUIScale = &(PluginNameParameters::mGUIScale);
-    mShowSidePanel = &(PluginNameParameters::mShowSidePanel);
-        
+    // JUCE UI implementation
     setSize(PluginNameGUI::width, PluginNameGUI::height);
     setName("PluginEditor");
     setComponentID("PluginEditorID");
@@ -41,7 +38,7 @@ PluginNameAudioProcessorEditor::PluginNameAudioProcessorEditor (PluginNameAudioP
     addAndMakeVisible(&mMainPanel);
     addAndMakeVisible(mSidePanel); // add to scene but don't make visible
     
-    // 2nd UI implementation
+    // React UI implementation
     // Use this code if your js is stored locally
     //juce::File bundle = juce::File("/Users/nberr/Developer/plugin-dev/plugin-template/PluginName/Source/jsui/build/js/main.js");
     
@@ -65,11 +62,12 @@ void PluginNameAudioProcessorEditor::paint (juce::Graphics& g)
 
 void PluginNameAudioProcessorEditor::resized()
 {
-    float scale = 1;//*mGUIScale;
+    // JUCE UI implementation
+    float scale = PluginNameParameters::mGUIScale;
     int width = PluginNameGUI::width;
-    //if (*mShowSidePanel) {
-    //    width += SidePanelGUI::width;
-    //}
+    if (PluginNameParameters::mShowSidePanel) {
+        width += SidePanelGUI::width;
+    }
         
     setSize(width * scale, PluginNameGUI::height * scale);
         
@@ -78,5 +76,6 @@ void PluginNameAudioProcessorEditor::resized()
     mMainPanel.setBounds(mMenuPanel.getRight(), mPresetPanel.getBottom(), MainPanelGUI::width * scale, MainPanelGUI::height * scale);
     mSidePanel.setBounds(mMainPanel.getRight(), 0, SidePanelGUI::width * scale, SidePanelGUI::height * scale);
 
+    // React UI implementation
     //appRoot.setBounds(getLocalBounds());
 }

@@ -10,6 +10,8 @@
 
 #include "MenuPanel.h"
 
+#include "PluginNameParameters.h"
+
 MenuPanel::MenuPanel(PluginNameAudioProcessor *inProcessor, ContextMenu *inContextMenu)
 :   PanelBase(inProcessor, inContextMenu)
 {
@@ -34,10 +36,10 @@ void MenuPanel::buttonClicked(juce::Button* b)
 {
     if (b == &mAdvButton) {
         if (mAdvButton.getToggleState()) {
-            //mProcessor->internalParameters.mShowSidePanel = true;
+            PluginNameParameters::mShowSidePanel = true;
         }
         else {
-            //mProcessor->internalParameters.mShowSidePanel = false;
+            PluginNameParameters::mShowSidePanel = false;
         }
         getParentComponent()->resized();
     }
