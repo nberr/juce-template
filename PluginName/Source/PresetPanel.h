@@ -24,14 +24,14 @@ public:
         
     void buttonClicked(juce::Button*) override;
 private:
-    juce::TextButton mPresetMenu;
-    juce::TextButton mPrevPreset;
-    juce::TextButton mNextPreset;
+    juce::TextButton presetMenu {"default"};
+    juce::TextButton prevPreset {"prev"};
+    juce::TextButton nextPreset {"next"};
     
-    juce::TextButton mUndo;
-    juce::TextButton mRedo;
+    juce::TextButton undo {"undo"};
+    juce::TextButton redo {"redo"};
     
-    juce::TextButton mPresetA;
-    juce::TextButton mPresetB;
-    juce::TextButton mPresetCopy;
+    juce::TextButton presetA    {"A"};
+    juce::TextButton presetB    {"B"};
+    juce::TextButton presetCopy {"Copy"};
 };

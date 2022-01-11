@@ -16,6 +16,7 @@
 #include "PluginNameLookAndFeel.h"
 #include "PluginProcessor.h"
 #include "ContextMenu.h"
+#include "PluginNameInternalParameters.h"
 
 class PanelBase
 :   public juce::Component

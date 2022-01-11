@@ -39,7 +39,7 @@ PresetOverlay::~PresetOverlay()
 
 void PresetOverlay::resized()
 {
-    //float scale = *mContextMenu->mGUIScale;
+    float scale = PluginNameInternalParameters::GUIScale;
     
     mAddNewPreset.setBounds(0, 0, 50, 50);
     mSetDefault.setBounds(0, 50, 50, 50);

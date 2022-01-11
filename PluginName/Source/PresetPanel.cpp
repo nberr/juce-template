@@ -17,41 +17,37 @@ PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inC
     setName("PresetPanel");
     setComponentID("PresetPanelID");
     
-    mPresetMenu.setButtonText("Current Preset"); // set the text to the current preset
-    mPresetMenu.setName("PresetMenu");
-    mPresetMenu.setTriggeredOnMouseDown(true);
-    mPresetMenu.addListener(this);
-    //addAndMakeVisible(&mPresetMenu);
+    // TODO: set the text to the current preset
+    presetMenu.setName("PresetMenu");
+    presetMenu.setTriggeredOnMouseDown(true);
+    presetMenu.addListener(this);
+    addAndMakeVisible(presetMenu);
     
-    mPrevPreset.setButtonText("<");
-    mPrevPreset.setName("PrevPreset");
-    mPrevPreset.setTriggeredOnMouseDown(true);
-    mPrevPreset.addListener(this);
-    //addAndMakeVisible(&mPrevPreset);
+    prevPreset.setName("PrevPreset");
+    prevPreset.setTriggeredOnMouseDown(true);
+    prevPreset.addListener(this);
+    addAndMakeVisible(prevPreset);
     
-    mNextPreset.setButtonText(">");
-    mNextPreset.setName("NextPreset");
-    mNextPreset.setTriggeredOnMouseDown(true);
-    mNextPreset.addListener(this);
-    //addAndMakeVisible(&mNextPreset);
+    nextPreset.setName("NextPreset");
+    nextPreset.setTriggeredOnMouseDown(true);
+    nextPreset.addListener(this);
+    addAndMakeVisible(nextPreset);
     
-    mPresetA.setButtonText("A");
-    mPresetA.setName("PresetA");
-    mPresetA.setTriggeredOnMouseDown(true);
-    mPresetA.addListener(this);
-    addAndMakeVisible(&mPresetA);
+    presetA.setName("PresetA");
+    presetA.setTriggeredOnMouseDown(true);
+    presetA.addListener(this);
+    addAndMakeVisible(presetA);
     
-    mPresetB.setButtonText("B");
-    mPresetB.setName("PresetB");
-    mPresetB.setTriggeredOnMouseDown(true);
-    mPresetB.addListener(this);
-    addAndMakeVisible(&mPresetB);
+    presetB.setName("PresetB");
+    presetB.setTriggeredOnMouseDown(true);
+    presetB.addListener(this);
+    addAndMakeVisible(presetB);
     
-    mPresetCopy.setButtonText("->"); // set arrow based on if A or B is selected
-    mPresetCopy.setName("PresetCopy");
-    mPresetCopy.setTriggeredOnMouseDown(true);
-    mPresetCopy.addListener(this);
-    addAndMakeVisible(&mPresetCopy);
+    // TODO: set arrow based on if A or B is selected
+    presetCopy.setName("PresetCopy");
+    presetCopy.setTriggeredOnMouseDown(true);
+    presetCopy.addListener(this);
+    addAndMakeVisible(presetCopy);
 }
 
 PresetPanel::~PresetPanel()
@@ -61,21 +57,13 @@ PresetPanel::~PresetPanel()
 
 void PresetPanel::resized()
 {
-    float scale = *mContextMenu->mGUIScale;
+    float scale = PluginNameInternalParameters::GUIScale;
     
-    mPresetMenu.setSize(PresetPanelGUI::preset_display_width * scale, PresetPanelGUI::preset_display_height * scale);
-    mPresetMenu.setCentrePosition(PresetPanelGUI::width * scale * 0.5f, PresetPanelGUI::height * scale * 0.5f);
+    // undo, redo
     
+    // prev, menu, next
     
-    mPrevPreset.setBounds(mPresetMenu.getX() - (PresetPanelGUI::change_preset_width*scale),
-                          mPresetMenu.getY(),
-                          PresetPanelGUI::change_preset_width * scale,
-                          PresetPanelGUI::change_preset_height * scale);
-    
-    mNextPreset.setBounds(mPresetMenu.getX() + mPresetMenu.getWidth(),
-                          mPresetMenu.getY(),
-                          PresetPanelGUI::change_preset_width * scale,
-                          PresetPanelGUI::change_preset_height * scale);
+    // A, copy, B
 }
 
 void PresetPanel::buttonClicked(juce::Button* b)
@@ -89,15 +77,15 @@ void PresetPanel::buttonClicked(juce::Button* b)
         resized();
     }
     else {
-        if (b == &mPrevPreset)
+        if (b == &prevPreset)
         {
             
         }
-        else if (b == &mNextPreset)
+        else if (b == &nextPreset)
         {
             
         }
-        else if (b == &mPresetMenu)
+        else if (b == &presetMenu)
         {
             // toggle overlay
             getParentComponent()->findChildWithID("PresetOverlayID")->setVisible(true);

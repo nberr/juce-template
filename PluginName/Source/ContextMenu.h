@@ -32,9 +32,7 @@ public:
     void showMenu(const juce::String itemClicked);
     
     void buildBaseMenu();
-    
-    float *mGUIScale;
-    
+        
 private:
     juce::PopupMenu menu;
     juce::PopupMenu preferences;

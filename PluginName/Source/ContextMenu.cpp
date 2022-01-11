@@ -13,13 +13,14 @@
 #include "PluginEditor.h"
 
 ContextMenu::ContextMenu(float* inScale)
-:   mGUIScale(inScale),
-    small("small"),
+:   small("small"),
     medium("medium"),
     large("large")
 {
     setName("ContextMenu");
     setComponentID("ContextMenuID");
+    
+    float *scale = &PluginNameInternalParameters::GUIScale;
     
     if (*inScale == PluginNameGUI::Scale::small) {
         small.setTicked(true);
@@ -31,8 +32,8 @@ ContextMenu::ContextMenu(float* inScale)
         large.setTicked(true);
     }
     
-    small.setAction([this](){
-        *mGUIScale = PluginNameGUI::Scale::small;
+    small.setAction([this, scale](){
+        *scale = PluginNameGUI::Scale::small;
         
         small.setTicked(true);
         medium.setTicked(false);
@@ -40,8 +41,8 @@ ContextMenu::ContextMenu(float* inScale)
     });
     
     
-    medium.setAction([this](){
-        *mGUIScale = PluginNameGUI::Scale::normal;
+    medium.setAction([this, scale](){
+        *scale = PluginNameGUI::Scale::normal;
         
         small.setTicked(false);
         medium.setTicked(true);
@@ -49,8 +50,8 @@ ContextMenu::ContextMenu(float* inScale)
     });
     
     
-    large.setAction([this](){
-        *mGUIScale = PluginNameGUI::Scale::large;
+    large.setAction([this, scale](){
+        *scale = PluginNameGUI::Scale::large;
         small.setTicked(false);
         medium.setTicked(false);
         large.setTicked(true);
@@ -69,9 +70,7 @@ void ContextMenu::showMenu(const juce::String itemClicked)
         
         menu.addItem(itemClicked, []{});
         buildBaseMenu();
-        menu.showMenuAsync(juce::PopupMenu::Options().withMinimumWidth (100)
-                           .withMaximumNumColumns (3)
-                           .withTargetComponent (this).withMousePosition());
+        menu.show();
     }
     else if (itemClicked == "PresetPanel") {
         menu.clear();
@@ -80,25 +79,19 @@ void ContextMenu::showMenu(const juce::String itemClicked)
         
         buildBaseMenu();
         
-        menu.showMenuAsync(juce::PopupMenu::Options().withMinimumWidth (100)
-                           .withMaximumNumColumns (3)
-                           .withTargetComponent (this).withMousePosition());
+        menu.show();
     }
     else if (itemClicked == "NewPreset") {
         menu.clear();
         menu.addItem(itemClicked);
         buildBaseMenu();
-        menu.showMenuAsync(juce::PopupMenu::Options().withMinimumWidth (100)
-                           .withMaximumNumColumns (3)
-                           .withTargetComponent (this).withMousePosition());
+        menu.show();
     }
     else {
         menu.clear();
         menu.addItem(itemClicked);
         buildBaseMenu();
-        menu.showMenuAsync(juce::PopupMenu::Options().withMinimumWidth (100)
-                           .withMaximumNumColumns (3)
-                           .withTargetComponent (this).withMousePosition());
+        menu.show();
     }
 }
 

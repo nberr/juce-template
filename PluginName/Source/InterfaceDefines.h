@@ -12,8 +12,9 @@
 
 class PluginNameGUI {
 public:
-    static constexpr int width = 800,
-                         height = 600;
+    static constexpr float ratio = 1.618; // golden ratio
+    static constexpr int height = 400,
+                         width = height * ratio;
     class Scale {
     public:
         static constexpr float small = 0.8f,
@@ -28,14 +29,14 @@ public:
 
 class MenuPanelGUI {
 public:
-    static constexpr int width = PluginNameGUI::width * 0.10f,
+    static constexpr int width = PluginNameGUI::width * 0.13f,
                          height = PluginNameGUI::height;
 };
 
 class PresetPanelGUI {
 public:
     static constexpr int width = PluginNameGUI::width - MenuPanelGUI::width,
-                         height = PluginNameGUI::height * 0.10f;
+                         height = PluginNameGUI::height * 0.07f;
     
     static constexpr int preset_display_width = width / 3.0f,
                          preset_display_height = height * 0.5f;
@@ -60,7 +61,7 @@ public:
 
 class SidePanelGUI {
 public:
-    static constexpr int width = PluginNameGUI::width * 0.50f,
+    static constexpr int width = PluginNameGUI::width - PluginNameGUI::height,
                          height = PluginNameGUI::height;
     
 };

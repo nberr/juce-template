@@ -51,7 +51,6 @@ private:
     SidePanel mSidePanel;
     
     // internal parameters
-    float *mGUIScale;
     bool *mShowSidePanel;
     
     // 2 - react-juce; see jsui/src/index.js

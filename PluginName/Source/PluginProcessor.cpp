@@ -9,6 +9,8 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
+#include "PluginNameParameters.h"
+
 //==============================================================================
 PluginNameAudioProcessor::PluginNameAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -19,8 +21,9 @@ PluginNameAudioProcessor::PluginNameAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ),
 #endif
+parameters(*this, nullptr, "PARAMETERS", createParameterLayout())
 {
 }
 
@@ -189,3 +192,48 @@ juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new PluginNameAudioProcessor();
 }
+
+juce::AudioProcessorValueTreeState::ParameterLayout PluginNameAudioProcessor::createParameterLayout()
+{
+    juce::AudioProcessorValueTreeState::ParameterLayout layout;
+    
+    for (int p = 0; p < PluginNameParameters::PNP_TotalNumParameters; p++)
+    {
+        switch (PluginNameParameters::Types[p])
+        {
+            case PluginNameParameters::is_int:
+                layout.add(std::make_unique<juce::AudioParameterInt>(PluginNameParameters::IDs[p],
+                                                                     PluginNameParameters::Names[p],
+                                                                     PluginNameParameters::Mins[p].ivalue,
+                                                                     PluginNameParameters::Maxs[p].ivalue,
+                                                                     PluginNameParameters::Defaults[p].ivalue,
+                                                                     PluginNameParameters::Labels[p]));
+                break;
+            case PluginNameParameters::is_float:
+                layout.add(std::make_unique<juce::AudioParameterFloat>(PluginNameParameters::IDs[p],
+                                                                       PluginNameParameters::Names[p],
+                                                                       juce::NormalisableRange<float>(PluginNameParameters::Mins[p].fvalue, PluginNameParameters::Maxs[p].fvalue),
+                                                                       PluginNameParameters::Defaults[p].fvalue,
+                                                                       PluginNameParameters::Labels[p]));
+                break;
+            case PluginNameParameters::is_bool:
+                layout.add(std::make_unique<juce::AudioParameterBool>(PluginNameParameters::IDs[p],
+                                                                      PluginNameParameters::Names[p],
+                                                                      PluginNameParameters::Defaults[p].bvalue,
+                                                                      PluginNameParameters::Labels[p]));
+                break;
+            case PluginNameParameters::is_choice:
+                layout.add(std::make_unique<juce::AudioParameterChoice>(PluginNameParameters::IDs[p],
+                                                                        PluginNameParameters::Names[p],
+                                                                        PluginNameParameters::Choices[p],
+                                                                        PluginNameParameters::Defaults[p].cvalue,
+                                                                        PluginNameParameters::Labels[p]));
+                break;
+            default:
+                jassertfalse;
+        }
+    }
+    
+    return layout;
+}
+

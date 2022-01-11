@@ -63,9 +63,9 @@ void PluginNameAudioProcessorEditor::paint (juce::Graphics& g)
 void PluginNameAudioProcessorEditor::resized()
 {
     // JUCE UI implementation
-    float scale = PluginNameParameters::mGUIScale;
+    float scale = PluginNameInternalParameters::GUIScale;
     int width = PluginNameGUI::width;
-    if (PluginNameParameters::mShowSidePanel) {
+    if (PluginNameInternalParameters::showSidePanel) {
         width += SidePanelGUI::width;
     }
         

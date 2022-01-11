@@ -94,9 +94,4 @@ public:
         "Bool",
         "Choice"
     };
-    
-    // internal parameters
-    inline static float mGUIScale = 1;
-    inline static int mDefaultPreset = 0;
-    inline static bool mShowSidePanel = false;
 };
