@@ -40,10 +40,24 @@ PresetOverlay::~PresetOverlay()
 void PresetOverlay::resized()
 {
     float scale = PluginNameInternalParameters::GUIScale;
+    int buffer = 5 * scale;
+    float width = PresetPanelGUI::A_B_Copy_width * scale,
+          height = PresetPanelGUI::A_B_Copy_height * scale;
     
-    mAddNewPreset.setBounds(0 * scale, 0, 50, 50);
-    mSetDefault.setBounds(0, 50, 50, 50);
-    mDismissOverlay.setBounds(0, 100, 50, 50);
+    mAddNewPreset.setBounds(buffer,
+                            buffer,
+                            width,
+                            height);
+    
+    mSetDefault.setBounds(mAddNewPreset.getRight() + buffer,
+                          buffer,
+                          width,
+                          height);
+    
+    mDismissOverlay.setBounds((MainPanelGUI::width * scale) - (PresetPanelGUI::A_B_Copy_width * scale) - buffer,
+                              buffer,
+                              width,
+                              height);
 }
 
 void PresetOverlay::buttonClicked(juce::Button* b)

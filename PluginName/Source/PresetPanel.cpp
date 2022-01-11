@@ -40,34 +40,45 @@ PresetPanel::~PresetPanel()
 void PresetPanel::resized()
 {
     float scale = PluginNameInternalParameters::GUIScale;
+    float centered_height = (PresetPanelGUI::height - PresetPanelGUI::undo_redo_height) * 0.5f * scale;
+    int buffer = 5 * scale;
     
     // undo, redo
-    undo.setBounds(0, 0,
+    undo.setBounds(buffer, centered_height,
                    PresetPanelGUI::undo_redo_width * scale,
                    PresetPanelGUI::undo_redo_height * scale);
-    redo.setBounds(undo.getRight() + 5, 0,
+    redo.setBounds(undo.getRight() + buffer, centered_height,
                    PresetPanelGUI::undo_redo_width * scale,
                    PresetPanelGUI::undo_redo_height * scale);
     
     // prev, menu, next
-    prevPreset.setBounds(redo.getRight() + 40, 0,
-                         PresetPanelGUI::change_preset_width * scale,
-                         PresetPanelGUI::change_preset_height * scale);
-    presetMenu.setBounds(prevPreset.getRight() + 5, 0,
+    presetMenu.setBounds((PresetPanelGUI::width - PresetPanelGUI::preset_display_width) * 0.5f * scale,
+                         centered_height,
                          PresetPanelGUI::preset_display_width * scale,
                          PresetPanelGUI::preset_display_height * scale);
-    nextPreset.setBounds(presetMenu.getRight() + 5, 0,
+    
+    prevPreset.setBounds((presetMenu.getX() - buffer - (PresetPanelGUI::change_preset_width * scale)),
+                         centered_height,
+                         PresetPanelGUI::change_preset_width * scale,
+                         PresetPanelGUI::change_preset_height * scale);
+    
+    nextPreset.setBounds((presetMenu.getRight() + buffer),
+                         centered_height,
                          PresetPanelGUI::change_preset_width * scale,
                          PresetPanelGUI::change_preset_height * scale);
     
     // A, copy, B
-    presetA.setBounds(nextPreset.getRight() + 40, 0,
+    presetB.setBounds((PresetPanelGUI::width * scale) - (PresetPanelGUI::A_B_Copy_width * scale) - buffer,
+                      centered_height,
                       PresetPanelGUI::A_B_Copy_width * scale,
                       PresetPanelGUI::A_B_Copy_height * scale);
-    presetCopy.setBounds(presetA.getRight() + 5, 0,
+    
+    presetCopy.setBounds(presetB.getX() - buffer - (PresetPanelGUI::A_B_Copy_width * scale),
+                         centered_height,
                          PresetPanelGUI::A_B_Copy_width * scale,
                          PresetPanelGUI::A_B_Copy_height * scale);
-    presetB.setBounds(presetCopy.getRight() + 5, 0,
+    presetA.setBounds(presetCopy.getX() - buffer - (PresetPanelGUI::A_B_Copy_width * scale),
+                      centered_height,
                       PresetPanelGUI::A_B_Copy_width * scale,
                       PresetPanelGUI::A_B_Copy_height * scale);
 }

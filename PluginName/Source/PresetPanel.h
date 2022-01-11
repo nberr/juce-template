@@ -24,15 +24,15 @@ public:
         
     void buttonClicked(juce::Button*) override;
 private:
-    juce::TextButton undo {"undo"};
-    juce::TextButton redo {"redo"};
+    juce::TextButton undo {"<"};
+    juce::TextButton redo {">"};
     
-    juce::TextButton prevPreset {"prev"};
-    juce::TextButton presetMenu {"default"};
-    juce::TextButton nextPreset {"next"};
+    juce::TextButton prevPreset {"<"};
+    juce::TextButton presetMenu {"Default"};
+    juce::TextButton nextPreset {">"};
     
     juce::TextButton presetA    {"A"};
-    juce::TextButton presetCopy {"Copy"};
+    juce::TextButton presetCopy {"->"};
     juce::TextButton presetB    {"B"};
     
     std::vector<juce::TextButton*> buttons = {
