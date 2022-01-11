@@ -16,6 +16,26 @@
               file="Source/PluginNamePresetManager.h"/>
       </GROUP>
       <GROUP id="{72DCA701-CF27-B8CA-FCE3-842C30867F9F}" name="Parameters">
+        <GROUP id="{CF004890-1408-9A1C-649C-4822D3AB72C6}" name="Controllers">
+          <GROUP id="{B4351D21-CDB4-EFAC-23CF-E6A2F2F50628}" name="ToggleButton">
+            <FILE id="u7uUxm" name="ParameterToggleButton.cpp" compile="1" resource="0"
+                  file="Source/ParameterToggleButton.cpp"/>
+            <FILE id="Uvh29S" name="ParameterToggleButton.h" compile="0" resource="0"
+                  file="Source/ParameterToggleButton.h"/>
+          </GROUP>
+          <GROUP id="{DAD9ED3A-AE22-48E1-C60F-20CD0D39CF1F}" name="ComboBox">
+            <FILE id="ORP4T1" name="ParameterComboBox.cpp" compile="1" resource="0"
+                  file="Source/ParameterComboBox.cpp"/>
+            <FILE id="OSdPSB" name="ParameterComboBox.h" compile="0" resource="0"
+                  file="Source/ParameterComboBox.h"/>
+          </GROUP>
+          <GROUP id="{C9CE7E95-B116-7A11-15AC-16599BBCBA3D}" name="Slider">
+            <FILE id="q8BHiA" name="ParameterSlider.cpp" compile="1" resource="0"
+                  file="Source/ParameterSlider.cpp"/>
+            <FILE id="ATovLz" name="ParameterSlider.h" compile="0" resource="0"
+                  file="Source/ParameterSlider.h"/>
+          </GROUP>
+        </GROUP>
         <FILE id="St2wlL" name="PluginNameInternalParameters.h" compile="0"
               resource="0" file="Source/PluginNameInternalParameters.h"/>
         <FILE id="ZtnuMG" name="PluginNameParameters.h" compile="0" resource="0"

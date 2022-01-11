@@ -41,7 +41,7 @@ void PresetOverlay::resized()
 {
     float scale = PluginNameInternalParameters::GUIScale;
     
-    mAddNewPreset.setBounds(0, 0, 50, 50);
+    mAddNewPreset.setBounds(0 * scale, 0, 50, 50);
     mSetDefault.setBounds(0, 50, 50, 50);
     mDismissOverlay.setBounds(0, 100, 50, 50);
 }

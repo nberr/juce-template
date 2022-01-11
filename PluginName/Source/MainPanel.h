@@ -12,15 +12,15 @@
 
 #include "PanelBase.h"
 
-#include "PluginNameMarketplaceStatus.h"
-#include "PluginNameUnlockForm.h"
-
 #include "PresetPanel.h"
 #include "PresetOverlay.h"
 
+#include "ParameterComboBox.h"
+#include "ParameterSlider.h"
+#include "ParameterToggleButton.h"
+
 class MainPanel
-:   public PanelBase,
-    private juce::Timer
+:   public PanelBase
 {
 public:
     MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
@@ -28,23 +28,8 @@ public:
     
     void resized() override;
 private:
-    void timerCallback() override;
-    void showForm();
-    void unlockApp();
-    void checkFeature();
-    
-    reactjuce::ReactApplicationRoot appRoot;
-    reactjuce::AppHarness appHarness;
-
-    juce::Label      unlockLabel  { {}, "Status: Locked" };
-    juce::TextButton unlockButton { "Unlock" },
-                     secretButton { "Super Secret Feature" };
-
-    PluginNameMarketplaceStatus marketplaceStatus;
-    PluginNameUnlockForm unlockForm;
-
-    bool isUnlocked = false;
-    
-    PresetPanel mPresetPanel;
-    PresetOverlay mPresetOverlay;
+    ParameterComboBox pChoice;
+    ParameterSlider pInt;
+    ParameterSlider pFloat;
+    ParameterToggleButton pBool;
 };

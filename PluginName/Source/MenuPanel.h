@@ -24,5 +24,13 @@ public:
     void buttonClicked(juce::Button* b) override;
     
 private:
+    // plugin logo
+    
+    // display info
+    // extra buttons
+    // master on/off
+    
     juce::TextButton mAdvButton{"ADV"};
+    juce::TextButton accountButton{"account"};
+    // company logo
 };

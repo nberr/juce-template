@@ -36,10 +36,10 @@ void MenuPanel::buttonClicked(juce::Button* b)
 {
     if (b == &mAdvButton) {
         if (mAdvButton.getToggleState()) {
-            PluginNameParameters::mShowSidePanel = true;
+            PluginNameInternalParameters::showSidePanel = true;
         }
         else {
-            PluginNameParameters::mShowSidePanel = false;
+            PluginNameInternalParameters::showSidePanel = false;
         }
         getParentComponent()->resized();
     }

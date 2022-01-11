@@ -18,13 +18,18 @@
 #include "MainPanel.h"
 #include "SidePanel.h"
 
+#include "PluginNameMarketplaceStatus.h"
+#include "PluginNameUnlockForm.h"
+
 #include "ContextMenu.h"
 #include "PluginNameParameters.h"
 
 //==============================================================================
 /**
 */
-class PluginNameAudioProcessorEditor  : public juce::AudioProcessorEditor
+class PluginNameAudioProcessorEditor
+:   public juce::AudioProcessorEditor,
+    private juce::Timer
 {
 public:
     PluginNameAudioProcessorEditor (PluginNameAudioProcessor&);
@@ -50,11 +55,23 @@ private:
     MainPanel mMainPanel;
     SidePanel mSidePanel;
     
-    // internal parameters
-    bool *mShowSidePanel;
-    
     // 2 - react-juce; see jsui/src/index.js
     reactjuce::ReactApplicationRoot appRoot;
+    reactjuce::AppHarness appHarness;
+    
+    void timerCallback() override;
+    void showForm();
+    void unlockApp();
+    void checkFeature();
+
+    juce::Label      unlockLabel  { {}, "Status: Locked" };
+    juce::TextButton unlockButton { "Unlock" },
+                     secretButton { "Super Secret Feature" };
+
+    PluginNameMarketplaceStatus marketplaceStatus;
+    PluginNameUnlockForm unlockForm;
+
+    bool isUnlocked = false;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginNameAudioProcessorEditor)
 };

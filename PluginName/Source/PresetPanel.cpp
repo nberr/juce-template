@@ -10,49 +10,31 @@
 
 #include "PresetPanel.h"
 
+#include "PresetOverlay.h"
+
 PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 :   PanelBase(inProcessor, inContextMenu)
 {
-    setSize(PresetPanelGUI::width * *mContextMenu->mGUIScale, PresetPanelGUI::height * *mContextMenu->mGUIScale);
+    float scale = PluginNameInternalParameters::GUIScale;
+    setSize(PresetPanelGUI::width * scale, PresetPanelGUI::height * scale);
     setName("PresetPanel");
     setComponentID("PresetPanelID");
     
+    for (juce::TextButton* button : buttons) {
+        button->setTriggeredOnMouseDown(true);
+        button->addListener(this);
+        addAndMakeVisible(button);
+    }
+    
     // TODO: set the text to the current preset
-    presetMenu.setName("PresetMenu");
-    presetMenu.setTriggeredOnMouseDown(true);
-    presetMenu.addListener(this);
-    addAndMakeVisible(presetMenu);
-    
-    prevPreset.setName("PrevPreset");
-    prevPreset.setTriggeredOnMouseDown(true);
-    prevPreset.addListener(this);
-    addAndMakeVisible(prevPreset);
-    
-    nextPreset.setName("NextPreset");
-    nextPreset.setTriggeredOnMouseDown(true);
-    nextPreset.addListener(this);
-    addAndMakeVisible(nextPreset);
-    
-    presetA.setName("PresetA");
-    presetA.setTriggeredOnMouseDown(true);
-    presetA.addListener(this);
-    addAndMakeVisible(presetA);
-    
-    presetB.setName("PresetB");
-    presetB.setTriggeredOnMouseDown(true);
-    presetB.addListener(this);
-    addAndMakeVisible(presetB);
-    
     // TODO: set arrow based on if A or B is selected
-    presetCopy.setName("PresetCopy");
-    presetCopy.setTriggeredOnMouseDown(true);
-    presetCopy.addListener(this);
-    addAndMakeVisible(presetCopy);
 }
 
 PresetPanel::~PresetPanel()
 {
-    
+    // TODO: why do we do this?
+    buttons.clear();
+    buttons.shrink_to_fit();
 }
 
 void PresetPanel::resized()
@@ -60,10 +42,34 @@ void PresetPanel::resized()
     float scale = PluginNameInternalParameters::GUIScale;
     
     // undo, redo
+    undo.setBounds(0, 0,
+                   PresetPanelGUI::undo_redo_width * scale,
+                   PresetPanelGUI::undo_redo_height * scale);
+    redo.setBounds(undo.getRight() + 5, 0,
+                   PresetPanelGUI::undo_redo_width * scale,
+                   PresetPanelGUI::undo_redo_height * scale);
     
     // prev, menu, next
+    prevPreset.setBounds(redo.getRight() + 40, 0,
+                         PresetPanelGUI::change_preset_width * scale,
+                         PresetPanelGUI::change_preset_height * scale);
+    presetMenu.setBounds(prevPreset.getRight() + 5, 0,
+                         PresetPanelGUI::preset_display_width * scale,
+                         PresetPanelGUI::preset_display_height * scale);
+    nextPreset.setBounds(presetMenu.getRight() + 5, 0,
+                         PresetPanelGUI::change_preset_width * scale,
+                         PresetPanelGUI::change_preset_height * scale);
     
     // A, copy, B
+    presetA.setBounds(nextPreset.getRight() + 40, 0,
+                      PresetPanelGUI::A_B_Copy_width * scale,
+                      PresetPanelGUI::A_B_Copy_height * scale);
+    presetCopy.setBounds(presetA.getRight() + 5, 0,
+                         PresetPanelGUI::A_B_Copy_width * scale,
+                         PresetPanelGUI::A_B_Copy_height * scale);
+    presetB.setBounds(presetCopy.getRight() + 5, 0,
+                      PresetPanelGUI::A_B_Copy_width * scale,
+                      PresetPanelGUI::A_B_Copy_height * scale);
 }
 
 void PresetPanel::buttonClicked(juce::Button* b)
@@ -88,7 +94,10 @@ void PresetPanel::buttonClicked(juce::Button* b)
         else if (b == &presetMenu)
         {
             // toggle overlay
-            getParentComponent()->findChildWithID("PresetOverlayID")->setVisible(true);
+            juce::Component* overlay = getParentComponent()->findChildWithID("PresetOverlayID");
+            if (overlay != nullptr) {
+                overlay->setVisible(!overlay->isVisible());
+            }
         }
     }
 }
