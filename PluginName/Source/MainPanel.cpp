@@ -10,14 +10,6 @@
 
 #include "MainPanel.h"
 
-#if JUCE_WINDOWS
-    #define DIR_SEP "\\"
-#elseif JUCE_MAC
-    #define DIR_SEP "/"
-#else
-    #define DIR_SEP "/"
-#endif
-
 MainPanel::MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 :   PanelBase(inProcessor, inContextMenu),
     pChoice(inProcessor->parameters, "Choice"),

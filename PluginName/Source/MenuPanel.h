@@ -28,9 +28,10 @@ private:
     
     // display info
     // extra buttons
-    // master on/off
-    
+
+    juce::TextButton masterButton{"master"};
     juce::TextButton mAdvButton{"ADV"};
     juce::TextButton accountButton{"account"};
+    
     // company logo
 };

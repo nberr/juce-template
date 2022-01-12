@@ -29,7 +29,7 @@ MenuPanel::~MenuPanel()
 
 void MenuPanel::resized()
 {
-    mAdvButton.setBounds(0, getHeight() * 0.50f, getWidth(), 40);
+    mAdvButton.setBounds(getWidth()*0.1f, getHeight() * 0.50f, getWidth() * 0.8f, 40);
 }
 
 void MenuPanel::buttonClicked(juce::Button* b)
