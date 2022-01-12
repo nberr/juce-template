@@ -6,12 +6,12 @@ VERSION = "1.0"
 
 def main():
     global VERSION
-    print("juce-template duplicator v" + VERSION + " by nberr")
+    print(f'juce-template duplicator v{VERSION} by nberr')
 
     numargs = len(sys.argv) - 1
 
     if not (numargs == 3):
-        print("Usage: python duplicate.py plugin_name plugin_prefix author")
+        print('Usage: python duplicate.py plugin_name plugin_prefix author')
         sys.exit(1)
     else:
         plugin_name = sys.argv[1]
@@ -19,37 +19,37 @@ def main():
         plugin_author = sys.argv[3]
 
     src = os.path.dirname(os.path.realpath(__file__))
-    src = src + '/PluginName'
+    src = f'{src}/PluginName'
 
     dest = os.path.dirname(os.path.realpath(__file__))
-    dest = dest + '/' + plugin_name
+    dest = f'{dest}/{plugin_name}'
 
     # copy the directory
     shutil.copytree(src, dest)
 
     # rename the files
     # jucer file
-    os.rename(dest + '/PluginName.jucer', dest + '/' + plugin_name + '.jucer')
+    os.rename(f'{dest}/PluginName.jucer', f'{dest}/{plugin_name}.jucer')
 
 
     # .jucer internals
-    with open (dest + '/' + plugin_name + '.jucer', 'r') as jucer:
+    with open (f'{dest}/{plugin_name}.jucer', 'r') as jucer:
         jucerdata = jucer.read()
 
     jucerdata = jucerdata.replace('PluginName', plugin_name)
 
-    with open (dest + '/' + plugin_name + '.jucer', 'w') as jucer:
+    with open (f'{dest}/{plugin_name}.jucer', 'w') as jucer:
         jucer.write(jucerdata)
 
     # files in Source folder
-    for sourcefile in os.listdir(dest + '/Source'):
+    for sourcefile in os.listdir(f'{dest}/Source'):
         if sourcefile.startswith('PluginName'):
             renamedfile = sourcefile.replace('PluginName', plugin_name)
-            os.rename(dest + '/Source/' + sourcefile, dest + '/Source/' + renamedfile)
+            os.rename(f'{dest}/Source/{sourcefile}', f'{dest}/Source/{renamedfile}')
 
     # source file internals
-    for sourcefile in os.listdir(dest + '/Source'):
-        with open(dest + '/Source/' + sourcefile, 'r') as cursource:
+    for sourcefile in os.listdir(f'{dest}/Source'):
+        with open(f'{dest}/Source/{sourcefile}', 'r') as cursource:
             filedata = cursource.read()
 
         filedata = filedata.replace('PluginName', plugin_name)
@@ -59,9 +59,9 @@ def main():
         curr_date = datetime.datetime.now()
         for line in filedata.split('\n'):
            if "Created: " in line:
-              filedata = filedata.replace(line.strip(), "Created: " + curr_date.strftime("%d %b %Y %I:%M:%S%p"))
+              filedata = filedata.replace(line.strip(), f'Created: {curr_date.strftime("%d %b %Y %I:%M:%S%p")}')
 
-        with open(dest + '/Source/' + sourcefile, 'w') as cursource:
+        with open(f'{dest}/Source/{sourcefile}', 'w') as cursource:
             cursource.write(filedata)
 
 
