@@ -70,7 +70,9 @@ void ContextMenu::showMenu(const juce::String itemClicked)
         
         menu.addItem(itemClicked, []{});
         buildBaseMenu();
-        menu.show();
+        menu.showMenuAsync(juce::PopupMenu::Options().withMinimumWidth (100)
+                                   .withMaximumNumColumns (3)
+                                   .withTargetComponent (this).withMousePosition());
     }
     else if (itemClicked == "PresetPanel") {
         menu.clear();
@@ -79,19 +81,26 @@ void ContextMenu::showMenu(const juce::String itemClicked)
         
         buildBaseMenu();
         
-        menu.show();
+        menu.showMenuAsync(juce::PopupMenu::Options().withMinimumWidth (100)
+                                   .withMaximumNumColumns (3)
+                                   .withTargetComponent (this).withMousePosition());
     }
     else if (itemClicked == "NewPreset") {
         menu.clear();
         menu.addItem(itemClicked);
         buildBaseMenu();
-        menu.show();
+        menu.showMenuAsync(juce::PopupMenu::Options().withMinimumWidth (100)
+                                   .withMaximumNumColumns (3)
+                                   .withTargetComponent (this).withMousePosition());
     }
     else {
         menu.clear();
         menu.addItem(itemClicked);
         buildBaseMenu();
-        menu.show();
+
+        menu.showMenuAsync(juce::PopupMenu::Options().withMinimumWidth (100)
+                                   .withMaximumNumColumns (3)
+                                   .withTargetComponent (this).withMousePosition());
     }
 }
 

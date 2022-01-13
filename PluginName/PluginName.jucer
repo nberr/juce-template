@@ -6,7 +6,7 @@
               companyWebsite="nberr.io" companyEmail="nberr@protonmail.com"
               bundleIdentifier="io.nberr.PluginName" pluginName="PluginName"
               pluginDesc="Plugin template with common features" pluginManufacturer="nberr"
-              defines="REACTJUCE_USE_DUKTAPE=1&#10;JUCE_MODAL_LOOPS_PERMITTED=1">
+              defines="REACTJUCE_USE_DUKTAPE=1">
   <MAINGROUP id="rG13mo" name="PluginName">
     <GROUP id="{A69D8F93-3BCE-9AD3-66FB-82DC085FE56F}" name="Source">
       <GROUP id="{8342A970-953C-2714-B70C-3F1BB6B1F124}" name="Preset">

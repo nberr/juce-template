@@ -32,7 +32,8 @@ PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inC
 
 PresetPanel::~PresetPanel()
 {
-    // TODO: why do we do this?
+    // shrink_to_fit is required because gcc and clang does not actually free
+    // any memory with clear
     buttons.clear();
     buttons.shrink_to_fit();
 }

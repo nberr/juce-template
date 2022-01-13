@@ -39,8 +39,8 @@ void MainPanel::resized()
 {
     // float scale = PluginNameInternalParameters::GUIScale;
     
-    pInt.setBounds(0, 0, 50, 50);
-    pFloat.setBounds(0, 50, 50, 50);
-    pChoice.setBounds(100, 0, 100, 50);
-    pBool.setBounds(100, 100, 50, 50);
+    //pInt.setBounds(0, 0, 50, 50);
+    //pFloat.setBounds(0, 50, 50, 50);
+    //pChoice.setBounds(100, 0, 100, 50);
+    //pBool.setBounds(100, 100, 50, 50);
 }

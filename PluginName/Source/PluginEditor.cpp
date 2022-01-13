@@ -168,6 +168,7 @@ void PluginNameAudioProcessorEditor::resized()
 
 void PluginNameAudioProcessorEditor::timerCallback()
 {
+    resized();
     if (! isUnlocked && marketplaceStatus.isUnlocked())
     {
         isUnlocked = true;
