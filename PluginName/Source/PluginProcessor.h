@@ -55,6 +55,7 @@ public:
     
     //==============================================================================
     static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+    
     juce::AudioProcessorValueTreeState parameters;
 
 private:

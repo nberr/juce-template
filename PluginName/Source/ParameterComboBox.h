@@ -12,12 +12,18 @@
 
 #include <JuceHeader.h>
 
+//==============================================================================
 class ParameterComboBox
 :   public juce::ComboBox
 {
 public:
+    //==============================================================================
     ParameterComboBox(juce::AudioProcessorValueTreeState& stateToControl, const juce::String& parameterID);
     ~ParameterComboBox();
+    
 private:
+    //==============================================================================
     juce::AudioProcessorValueTreeState::ComboBoxAttachment attachment;
+    
+    //==============================================================================
 };

@@ -14,13 +14,15 @@
 
 #include "PluginNameMarketplaceStatus.h"
 
+//==============================================================================
 class PluginNameUnlockForm
 :   public juce::OnlineUnlockForm
 {
 public:
+    //==============================================================================
     PluginNameUnlockForm(PluginNameMarketplaceStatus& status);
     void dismiss() override;
     
 private:
-    
+    //==============================================================================
 };

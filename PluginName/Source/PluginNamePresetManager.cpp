@@ -18,6 +18,7 @@
     #define DIR_SEP "/"
 #endif
 
+//==============================================================================
 PluginNamePresetManager::PluginNamePresetManager(juce::AudioProcessor* inProcssor)
 :   mCurrentPresetIsSaved(false),
     mCurrentPresetName("Untitled"),
@@ -39,6 +40,7 @@ PluginNamePresetManager::~PluginNamePresetManager()
     
 }
 
+//==============================================================================
 void PluginNamePresetManager::getXmlForPreset(juce::XmlElement* inElement)
 {
     auto& parameters = mProcessor->getParameters();
@@ -73,6 +75,7 @@ void PluginNamePresetManager::loadPresetForXml(juce::XmlElement* inElement)
     }
 }
 
+//==============================================================================
 int PluginNamePresetManager::getNumberOfPresets()
 {
     return mLocalPresets.size();
@@ -83,6 +86,7 @@ juce::String PluginNamePresetManager::getPresetName(int inPresetIndex)
     return mLocalPresets[inPresetIndex].getFileNameWithoutExtension();
 }
 
+//==============================================================================
 void PluginNamePresetManager::createNewPreset()
 {
     auto& parameters = mProcessor->getParameters();
@@ -152,6 +156,7 @@ void PluginNamePresetManager::loadPreset(int inPresetIndex)
     }
 }
 
+//==============================================================================
 bool PluginNamePresetManager::getIsCurrentPresetSaved()
 {
     return mCurrentPresetIsSaved;
@@ -162,6 +167,7 @@ juce::String PluginNamePresetManager::getCurrentPresetName()
     return mCurrentPresetName;
 }
 
+//==============================================================================
 void PluginNamePresetManager::storeLocalPreset()
 {
     mLocalPresets.clear();

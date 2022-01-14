@@ -12,6 +12,7 @@
 
 #include "PresetOverlay.h"
 
+//==============================================================================
 PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 :   PanelBase(inProcessor, inContextMenu)
 {
@@ -20,6 +21,7 @@ PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inC
     setName("PresetPanel");
     setComponentID("PresetPanelID");
     
+    // initialize each button and add them to the scene
     for (juce::TextButton* button : buttons) {
         button->setTriggeredOnMouseDown(true);
         button->addListener(this);
@@ -38,6 +40,7 @@ PresetPanel::~PresetPanel()
     buttons.shrink_to_fit();
 }
 
+//==============================================================================
 void PresetPanel::resized()
 {
     float scale = PluginNameInternalParameters::GUIScale;
@@ -84,6 +87,7 @@ void PresetPanel::resized()
                       PresetPanelGUI::A_B_Copy_height * scale);
 }
 
+//==============================================================================
 void PresetPanel::buttonClicked(juce::Button* b)
 {
     bool rightClick = juce::ModifierKeys::getCurrentModifiers().isPopupMenu();

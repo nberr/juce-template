@@ -47,17 +47,12 @@ PluginNameAudioProcessorEditor::PluginNameAudioProcessorEditor (PluginNameAudioP
     //juce::File bundle = juce::File("/Users/nberr/Developer/plugin-dev/plugin-template/PluginName/Source/jsui/build/js/main.js");
     
     // Use this code if your js is stored on a server
-    // TODO: implement pulling js from a server
-    
     // js needs to be evaluated and added to the scene to be visible
-    //appRoot.evaluate(bundle);
-    //addAndMakeVisible(appRoot);
-    
-    // TODO: change url
+    // change url to wherever the .js file is on your server
     //juce::String path = juce::File::getSpecialLocation(juce::File::userMusicDirectory).getFullPathName() + DIR_SEP + JucePlugin_Manufacturer + DIR_SEP + JucePlugin_Name + DIR_SEP;
     // juce::String path = "/Users/noidexp/Documents/GitHub/plugin-template/PluginName/Source/jsui/build/js/main.js";
     
-    //juce::String url = "https://noidexp.com/" + juce::String(JucePlugin_Name) + "/jsui/" + JucePlugin_VersionString + "/main.js";
+    //juce::String url = "https://nberr.io/" + juce::String(JucePlugin_Name) + "/jsui/" + JucePlugin_VersionString + "/main.js";
     //juce::String url = "debug";
     //juce::MemoryBlock jsData;
     //juce::URL mainjs = juce::URL(url);
@@ -166,9 +161,12 @@ void PluginNameAudioProcessorEditor::resized()
     //appRoot.setBounds(getLocalBounds());
 }
 
+//==============================================================================
 void PluginNameAudioProcessorEditor::timerCallback()
 {
+    // need this to resize the plugin form the context menu
     resized();
+    
     if (! isUnlocked && marketplaceStatus.isUnlocked())
     {
         isUnlocked = true;

@@ -10,6 +10,7 @@
 
 #include "PanelBase.h"
 
+//==============================================================================
 PanelBase::PanelBase(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 {
     mProcessor = inProcessor;
@@ -21,6 +22,7 @@ PanelBase::~PanelBase()
     
 }
 
+//==============================================================================
 void PanelBase::paint(juce::Graphics& g)
 {
     g.setColour(juce::Colours::white);
@@ -30,14 +32,12 @@ void PanelBase::paint(juce::Graphics& g)
     g.drawRoundedRectangle(0, 0, getWidth(), getHeight(), PluginNameGUI::corner_size, PluginNameGUI::line_thickness);
 }
 
+//==============================================================================
 void PanelBase::mouseDown(const juce::MouseEvent& event)
 {
     bool rightClick = juce::ModifierKeys::getCurrentModifiers().isPopupMenu();
     
     if (rightClick) {
         mContextMenu->showMenu(getName());
-        auto editor = findParentComponentOfClass<juce::AudioProcessorEditor>();
-        editor->resized();
-        resized();
     }
 }

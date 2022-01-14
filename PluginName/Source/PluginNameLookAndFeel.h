@@ -16,6 +16,7 @@ class PluginNameLookAndFeel
 :   public juce::LookAndFeel_V4
 {
 public:
+    //==============================================================================
     PluginNameLookAndFeel()
     {
         

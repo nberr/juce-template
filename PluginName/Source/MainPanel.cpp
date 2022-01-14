@@ -10,6 +10,7 @@
 
 #include "MainPanel.h"
 
+//==============================================================================
 MainPanel::MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 :   PanelBase(inProcessor, inContextMenu),
     pChoice(inProcessor->parameters, "Choice"),
@@ -34,7 +35,7 @@ MainPanel::~MainPanel()
     
 }
 
-
+//==============================================================================
 void MainPanel::resized()
 {
     // float scale = PluginNameInternalParameters::GUIScale;

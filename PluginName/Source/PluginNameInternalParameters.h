@@ -10,10 +10,16 @@
 
 #pragma once
 
+//==============================================================================
 class PluginNameInternalParameters{
 public:
+    //==============================================================================
     inline static float GUIScale = 1;
-    inline static int defaultPreset = 0;
     inline static bool showSidePanel = false;
+    
+    //==============================================================================
+    inline static int defaultPreset = 0;
+    
+    //==============================================================================
     inline static bool showHoverTips = false;
 };

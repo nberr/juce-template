@@ -10,6 +10,7 @@
 
 #include "PluginNameMarketplaceStatus.h"
 
+//==============================================================================
 juce::String PluginNameMarketplaceStatus::getProductID()
 {
     return "PluginNameApp";
@@ -25,6 +26,7 @@ juce::RSAKey PluginNameMarketplaceStatus::getPublicKey()
     return juce::RSAKey("PluginName_PUBLIC_KEY");
 }
 
+//==============================================================================
 void PluginNameMarketplaceStatus::saveState(const juce::String&)
 {
     
@@ -35,6 +37,7 @@ juce::String PluginNameMarketplaceStatus::getState()
     return {};
 }
 
+//==============================================================================
 juce::String PluginNameMarketplaceStatus::getWebsiteName()
 {
     return "nberr.io";
@@ -99,6 +102,7 @@ juce::String PluginNameMarketplaceStatus::readReplyFromWebserver(const juce::Str
     return {};
 }
 
+//==============================================================================
 void PluginNameMarketplaceStatus::userCancelled()
 {
     juce::ScopedLock lock(streamCreationLock);

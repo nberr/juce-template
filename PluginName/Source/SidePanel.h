@@ -12,15 +12,20 @@
 
 #include "PanelBase.h"
 
+//==============================================================================
 class SidePanel
 :   public PanelBase
 {
 public:
+    //==============================================================================
     SidePanel(PluginNameAudioProcessor *inProcessor, ContextMenu *inContextMenu);
     ~SidePanel();
     
+    //==============================================================================
     void resized() override;
     
 private:
     
+    //==============================================================================
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SidePanel)
 };

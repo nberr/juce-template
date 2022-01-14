@@ -10,8 +10,10 @@
 
 #include "ContextMenu.h"
 
-#include "PluginEditor.h"
+#include "PluginNameInternalParameters.h" // for GUIScale
+#include "InterfaceDefines.h" // for Scale sizes
 
+//==============================================================================
 ContextMenu::ContextMenu(float* inScale)
 :   small("small"),
     medium("medium"),
@@ -63,6 +65,7 @@ ContextMenu::~ContextMenu()
     
 }
 
+//==============================================================================
 void ContextMenu::showMenu(const juce::String itemClicked)
 {
     if (itemClicked == "MainPanel") {

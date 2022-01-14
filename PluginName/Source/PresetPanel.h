@@ -12,18 +12,24 @@
 
 #include "PanelBase.h"
 
+//==============================================================================
 class PresetPanel
 :   public PanelBase,
     public juce::Button::Listener
 {
 public:
+    //==============================================================================
     PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
     ~PresetPanel();
     
+    //==============================================================================
     void resized() override;
         
+    //==============================================================================
     void buttonClicked(juce::Button*) override;
+    
 private:
+    //==============================================================================
     juce::TextButton undo {"<"};
     juce::TextButton redo {">"};
     
@@ -35,9 +41,13 @@ private:
     juce::TextButton presetCopy {"->"};
     juce::TextButton presetB    {"B"};
     
+    //==============================================================================
     std::vector<juce::TextButton*> buttons = {
         &undo, &redo,
         &prevPreset, &presetMenu, &nextPreset,
         &presetA, &presetCopy, &presetB
     };
+    
+    //==============================================================================
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetPanel)
 };

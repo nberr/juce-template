@@ -10,6 +10,7 @@
 
 #include "ParameterToggleButton.h"
 
+//==============================================================================
 ParameterToggleButton::ParameterToggleButton(juce::AudioProcessorValueTreeState& stateToControl,
                       const juce::String& parameterID,
                       const juce::String& parameterLabel)

@@ -10,6 +10,7 @@
 
 #include "PresetOverlay.h"
 
+//==============================================================================
 PresetOverlay::PresetOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 :   PanelBase(inProcessor, inContextMenu)
 {
@@ -37,6 +38,7 @@ PresetOverlay::~PresetOverlay()
     
 }
 
+//==============================================================================
 void PresetOverlay::resized()
 {
     float scale = PluginNameInternalParameters::GUIScale;
@@ -60,6 +62,7 @@ void PresetOverlay::resized()
                               height);
 }
 
+//==============================================================================
 void PresetOverlay::buttonClicked(juce::Button* b)
 {
     bool rightClick = juce::ModifierKeys::getCurrentModifiers().isPopupMenu();

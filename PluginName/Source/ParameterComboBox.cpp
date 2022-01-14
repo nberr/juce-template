@@ -10,6 +10,7 @@
 
 #include "ParameterComboBox.h"
 
+//==============================================================================
 ParameterComboBox::ParameterComboBox(juce::AudioProcessorValueTreeState& stateToControl, const juce::String& parameterID)
 :   juce::ComboBox(parameterID),
     attachment(stateToControl, parameterID, *this)

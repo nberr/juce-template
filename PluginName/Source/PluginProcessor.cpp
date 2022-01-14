@@ -193,6 +193,8 @@ juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
     return new PluginNameAudioProcessor();
 }
 
+//==============================================================================
+// Programmatically initialize parameters based on PluginNameParaters.h
 juce::AudioProcessorValueTreeState::ParameterLayout PluginNameAudioProcessor::createParameterLayout()
 {
     juce::AudioProcessorValueTreeState::ParameterLayout layout;

@@ -10,6 +10,7 @@
 
 #include "SidePanel.h"
 
+//==============================================================================
 SidePanel::SidePanel(PluginNameAudioProcessor *inProcessor, ContextMenu *inContextMenu)
 :   PanelBase(inProcessor, inContextMenu)
 {
@@ -23,6 +24,7 @@ SidePanel::~SidePanel()
     
 }
 
+//==============================================================================
 void SidePanel::resized()
 {
     

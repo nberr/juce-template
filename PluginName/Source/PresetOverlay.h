@@ -12,20 +12,28 @@
 
 #include "PanelBase.h"
 
+//==============================================================================
 class PresetOverlay
 :   public PanelBase,
     public juce::Button::Listener
 {
 public:
+    //==============================================================================
     PresetOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
     ~PresetOverlay();
     
+    //==============================================================================
     void resized() override;
     
+    //==============================================================================
     void buttonClicked(juce::Button*) override;
     
 private:
+    //==============================================================================
     juce::TextButton mAddNewPreset;
     juce::TextButton mSetDefault;
     juce::TextButton mDismissOverlay;
+    
+    //==============================================================================
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetOverlay)
 };

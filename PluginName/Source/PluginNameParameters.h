@@ -12,8 +12,10 @@
 
 #include <JuceHeader.h>
 
+//==============================================================================
 class PluginNameParameters {
 public:
+    //==============================================================================
     enum Parameters {
         PNP_Int = 0,
         PNP_Float,
@@ -22,6 +24,7 @@ public:
         PNP_TotalNumParameters
     };
     
+    //==============================================================================
     typedef enum type_t {
         is_int,
         is_float,
@@ -29,6 +32,7 @@ public:
         is_choice
     } type;
 
+    //==============================================================================
     typedef union value_t {
         int ivalue;
         float fvalue;
@@ -36,6 +40,7 @@ public:
         int cvalue;
     } value;
     
+    //==============================================================================
     inline static const juce::StringArray Choices[PNP_TotalNumParameters]  = {
         juce::StringArray(),
         juce::StringArray(),
@@ -43,6 +48,7 @@ public:
         juce::StringArray("choice 1", "choice 2")
     };
 
+    //==============================================================================
     inline static type Types[PNP_TotalNumParameters] = {
         is_int,
         is_float,
@@ -50,6 +56,7 @@ public:
         is_choice
     };
 
+    //==============================================================================
     inline static const value Defaults[PNP_TotalNumParameters] = {
         {.ivalue = 1},
         {.fvalue = 1.0},
@@ -71,6 +78,7 @@ public:
         {.cvalue = 3}
     };
 
+    //==============================================================================
     inline static const juce::String IDs[PNP_TotalNumParameters] =
     {
         "Int",

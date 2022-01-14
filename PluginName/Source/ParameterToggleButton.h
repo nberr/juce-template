@@ -12,15 +12,20 @@
 
 #include <JuceHeader.h>
 
+//==============================================================================
 class ParameterToggleButton
 :   public juce::TextButton
 {
 public:
+    //==============================================================================
     ParameterToggleButton(juce::AudioProcessorValueTreeState& stateToControl,
                           const juce::String& parameterID,
                           const juce::String& parameterLabel);
     ~ParameterToggleButton();
     
 private:
+    //==============================================================================
     juce::AudioProcessorValueTreeState::ButtonAttachment attachment;
+    
+    //==============================================================================
 };

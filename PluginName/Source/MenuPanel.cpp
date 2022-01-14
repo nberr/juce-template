@@ -12,6 +12,7 @@
 
 #include "PluginNameParameters.h"
 
+//==============================================================================
 MenuPanel::MenuPanel(PluginNameAudioProcessor *inProcessor, ContextMenu *inContextMenu)
 :   PanelBase(inProcessor, inContextMenu)
 {
@@ -27,11 +28,13 @@ MenuPanel::~MenuPanel()
     
 }
 
+//==============================================================================
 void MenuPanel::resized()
 {
     mAdvButton.setBounds(getWidth()*0.1f, getHeight() * 0.50f, getWidth() * 0.8f, 40);
 }
 
+//==============================================================================
 void MenuPanel::buttonClicked(juce::Button* b)
 {
     if (b == &mAdvButton) {

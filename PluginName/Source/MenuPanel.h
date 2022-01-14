@@ -12,18 +12,24 @@
 
 #include "PanelBase.h"
 
+//==============================================================================
 class MenuPanel
 :   public PanelBase,
     public juce::Button::Listener
 {
 public:
+    //==============================================================================
     MenuPanel(PluginNameAudioProcessor *inProcessor, ContextMenu *inContextMenu);
     ~MenuPanel();
     
+    //==============================================================================
     void resized() override;
+    
+    //==============================================================================
     void buttonClicked(juce::Button* b) override;
     
 private:
+    //==============================================================================
     // plugin logo
     
     // display info
@@ -34,4 +40,7 @@ private:
     juce::TextButton accountButton{"account"};
     
     // company logo
+    
+    //==============================================================================
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MenuPanel)
 };

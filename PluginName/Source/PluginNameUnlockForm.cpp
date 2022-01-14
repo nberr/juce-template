@@ -10,6 +10,7 @@
 
 #include "PluginNameUnlockForm.h"
 
+//==============================================================================
 PluginNameUnlockForm::PluginNameUnlockForm(PluginNameMarketplaceStatus& status)
 :   juce::OnlineUnlockForm(status, "Please provide your email and password.")
 {

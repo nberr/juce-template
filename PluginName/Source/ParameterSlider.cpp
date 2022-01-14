@@ -10,6 +10,7 @@
 
 #include "ParameterSlider.h"
 
+//==============================================================================
 ParameterSlider::ParameterSlider(juce::AudioProcessorValueTreeState& stateToControl,
                                  const juce::String& parameterID,
                                  const juce::String& parameterLabel)

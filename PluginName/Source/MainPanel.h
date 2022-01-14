@@ -19,17 +19,25 @@
 #include "ParameterSlider.h"
 #include "ParameterToggleButton.h"
 
+//==============================================================================
 class MainPanel
 :   public PanelBase
 {
 public:
+    //==============================================================================
     MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
     ~MainPanel();
     
+    //==============================================================================
     void resized() override;
+    
 private:
+    //==============================================================================
     ParameterComboBox pChoice;
     ParameterSlider pInt;
     ParameterSlider pFloat;
     ParameterToggleButton pBool;
+    
+    //==============================================================================
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainPanel)
 };
