@@ -45,9 +45,10 @@ PluginNameAudioProcessorEditor::PluginNameAudioProcessorEditor (PluginNameAudioP
     mPresetOverlay.setAlwaysOnTop(true);
     addChildComponent(mPresetOverlay);
     
-    //
+    // initialize the unlock form
+    // add to scene but don't make visible
     unlockForm.setAlwaysOnTop(true);
-    addChildComponent (unlockForm);
+    addChildComponent(unlockForm);
     
     unlockButton.setSize(100, 100);
     unlockButton.setTopLeftPosition(50, 50);
@@ -154,17 +155,17 @@ void PluginNameAudioProcessorEditor::resized()
     mPresetOverlay.setBounds(mMenuPanel.getRight(), mPresetPanel.getBottom(),
                              MainPanelGUI::width * scale,
                              MainPanelGUI::height * scale);
+    
+    unlockForm.setBounds(0, 0, getWidth(), getHeight());
 
     // React UI implementation
     //appRoot.setBounds(getLocalBounds());
-    
-    unlockForm.setBounds(0, 0, getWidth(), getHeight());
 }
 
 //==============================================================================
 void PluginNameAudioProcessorEditor::showForm()
 {
-    unlockForm.setVisible (true);
+    unlockForm.setVisible(true);
 }
 
 //==============================================================================
@@ -173,6 +174,7 @@ void PluginNameAudioProcessorEditor::timerCallback()
     // need this to resize the plugin form the context menu
     resized();
     
+    // check if the plugin is unlocked
     if (! isUnlocked && marketplaceStatus.isUnlocked())
     {
         isUnlocked = true;
@@ -182,8 +184,10 @@ void PluginNameAudioProcessorEditor::timerCallback()
 
 void PluginNameAudioProcessorEditor::unlockApp()
 {
-    secretButton.setEnabled (true);
-    unlockButton.setEnabled (false);
+    unlockForm.setVisible(false);
+    
+    secretButton.setEnabled(true);
+    unlockButton.setEnabled(false);
 }
 
 void PluginNameAudioProcessorEditor::checkFeature()
