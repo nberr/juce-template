@@ -36,10 +36,15 @@ private:
     // extra buttons
 
     juce::TextButton masterButton{"master"};
-    juce::TextButton mAdvButton{"ADV"};
+    juce::TextButton advancedButton{"advanced"};
     juce::TextButton accountButton{"account"};
     
     // company logo
+    
+    //==============================================================================
+    std::vector<juce::TextButton*> buttons = {
+        &masterButton, &advancedButton, &accountButton
+    };
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MenuPanel)

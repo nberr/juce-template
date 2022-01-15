@@ -12,6 +12,7 @@
 #include "PluginProcessor.h"
 
 // panels
+#include "PanelBase.h"
 #include "MenuPanel.h"
 #include "PresetPanel.h"
 #include "PresetOverlay.h"
@@ -41,11 +42,13 @@ public:
     //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
+    
+    //==============================================================================
+    void showForm();
 
 private:
     //==============================================================================
     void timerCallback() override;
-    void showForm();
     void unlockApp();
     void checkFeature();
     
@@ -66,12 +69,19 @@ private:
     MainPanel mMainPanel;
     SidePanel mSidePanel;
     
+    //==============================================================================
+    std::vector<PanelBase *> panels = {
+        &mMenuPanel,
+        &mPresetPanel,
+        &mMainPanel,
+        &mSidePanel
+    };
+    
     // 2 - react-juce; see jsui/src/index.js
     reactjuce::ReactApplicationRoot appRoot;
     reactjuce::AppHarness appHarness;
     
     //==============================================================================
-    juce::Label      unlockLabel  { {}, "Status: Locked" };
     juce::TextButton unlockButton { "Unlock" },
                      secretButton { "Super Secret Feature" };
 

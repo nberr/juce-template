@@ -43,4 +43,5 @@ private:
     std::unique_ptr<juce::WebInputStream> stream;
     
     //==============================================================================
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginNameMarketplaceStatus)
 };

@@ -22,26 +22,47 @@ PluginNameAudioProcessorEditor::PluginNameAudioProcessorEditor (PluginNameAudioP
     appHarness(appRoot),
     unlockForm(marketplaceStatus)
 {
-    setSize (PluginNameGUI::width, PluginNameGUI::height);
-    
     // This template allows two ways to display a UI
     // 1 - pure JUCE; see UI folder for panel hierarchy
     // 2 - react-juce; see jsui/src/index.js
     
+    //==============================================================================
     // JUCE UI implementation
+    
+    // initialize the main window
     setSize(PluginNameGUI::width, PluginNameGUI::height);
     setName("PluginEditor");
     setComponentID("PluginEditorID");
     setResizable(false, false);
     
-    mPresetOverlay.setAlwaysOnTop(true);
+    // add each panel to the scene
+    for (PanelBase* panel : panels) {
+        addAndMakeVisible(panel);
+    }
         
-    addAndMakeVisible(mMenuPanel);
-    addAndMakeVisible(mPresetPanel);
-    addChildComponent(mPresetOverlay); // add to scene but don't make visible
-    addAndMakeVisible(mMainPanel);
-    addAndMakeVisible(mSidePanel); // add to scene but don't make visible
+    // intialize the preset panel overlay
+    // add to scene but don't make visible
+    mPresetOverlay.setAlwaysOnTop(true);
+    addChildComponent(mPresetOverlay);
     
+    //
+    unlockForm.setAlwaysOnTop(true);
+    addChildComponent (unlockForm);
+    
+    unlockButton.setSize(100, 100);
+    unlockButton.setTopLeftPosition(50, 50);
+    unlockButton.onClick = [this] {
+        showForm();
+    };
+    //addAndMakeVisible (unlockButton);
+
+    secretButton.setEnabled (false);
+    secretButton.onClick = [this] { checkFeature(); };
+    //addAndMakeVisible (secretButton);
+
+    startTimer(100);
+    
+    //==============================================================================
     // React UI implementation
     // Use this code if your js is stored locally
     //juce::File bundle = juce::File("/Users/nberr/Developer/plugin-dev/plugin-template/PluginName/Source/jsui/build/js/main.js");
@@ -94,29 +115,6 @@ PluginNameAudioProcessorEditor::PluginNameAudioProcessorEditor (PluginNameAudioP
     //appHarness.watch(bundle);
     //addAndMakeVisible(appRoot);
     //appHarness.start();
-    
-    unlockLabel.setSize(50, 50);
-    unlockLabel.setTopLeftPosition(0, 0);
-    unlockLabel.setFont (juce::Font (15.0f, juce::Font::bold));
-    unlockLabel.setColour (juce::Label::textColourId, juce::Colours::red);
-    //addAndMakeVisible (unlockLabel);
-
-    unlockButton.setSize(100, 100);
-    unlockButton.setTopLeftPosition(50, 50);
-    unlockButton.onClick = [this] {
-        showForm();
-    };
-    //addAndMakeVisible (unlockButton);
-
-    secretButton.setEnabled (false);
-    secretButton.onClick = [this] { checkFeature(); };
-    //addAndMakeVisible (secretButton);
-
-    unlockForm.setSize(MainPanelGUI::width, MainPanelGUI::height);
-    unlockForm.setTopLeftPosition(0, 0);
-    //addChildComponent (unlockForm);
-    
-    startTimer(100);
 }
 
 PluginNameAudioProcessorEditor::~PluginNameAudioProcessorEditor()
@@ -159,6 +157,14 @@ void PluginNameAudioProcessorEditor::resized()
 
     // React UI implementation
     //appRoot.setBounds(getLocalBounds());
+    
+    unlockForm.setBounds(0, 0, getWidth(), getHeight());
+}
+
+//==============================================================================
+void PluginNameAudioProcessorEditor::showForm()
+{
+    unlockForm.setVisible (true);
 }
 
 //==============================================================================
@@ -174,18 +180,10 @@ void PluginNameAudioProcessorEditor::timerCallback()
     }
 }
 
-void PluginNameAudioProcessorEditor::showForm()
-{
-    unlockForm.setVisible (true);
-}
-
 void PluginNameAudioProcessorEditor::unlockApp()
 {
     secretButton.setEnabled (true);
     unlockButton.setEnabled (false);
-
-    unlockLabel.setText ("Status: Unlocked", juce::dontSendNotification);
-    unlockLabel.setColour (juce::Label::textColourId, juce::Colours::green);
 }
 
 void PluginNameAudioProcessorEditor::checkFeature()
