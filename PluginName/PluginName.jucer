@@ -10,10 +10,9 @@
   <MAINGROUP id="rG13mo" name="PluginName">
     <GROUP id="{A69D8F93-3BCE-9AD3-66FB-82DC085FE56F}" name="Source">
       <GROUP id="{8342A970-953C-2714-B70C-3F1BB6B1F124}" name="Preset">
-        <FILE id="DTaPq6" name="PluginNamePresetManager.cpp" compile="1" resource="0"
-              file="Source/PluginNamePresetManager.cpp"/>
-        <FILE id="GYvZPf" name="PluginNamePresetManager.h" compile="0" resource="0"
-              file="Source/PluginNamePresetManager.h"/>
+        <FILE id="DTaPq6" name="PresetManager.cpp" compile="1" resource="0"
+              file="Source/PresetManager.cpp"/>
+        <FILE id="GYvZPf" name="PresetManager.h" compile="0" resource="0" file="Source/PresetManager.h"/>
       </GROUP>
       <GROUP id="{72DCA701-CF27-B8CA-FCE3-842C30867F9F}" name="Parameters">
         <GROUP id="{CF004890-1408-9A1C-649C-4822D3AB72C6}" name="Controllers">
@@ -36,24 +35,28 @@
                   file="Source/ParameterSlider.h"/>
           </GROUP>
         </GROUP>
-        <FILE id="St2wlL" name="PluginNameInternalParameters.h" compile="0"
-              resource="0" file="Source/PluginNameInternalParameters.h"/>
         <FILE id="ZtnuMG" name="PluginNameParameters.h" compile="0" resource="0"
               file="Source/PluginNameParameters.h"/>
       </GROUP>
       <GROUP id="{84D0E007-1FF8-ED93-9A51-51F2943F255A}" name="Registration">
         <GROUP id="{4EB93E76-2A39-753E-7750-0A8377E4770A}" name="Status">
-          <FILE id="yp9zN5" name="PluginNameMarketplaceStatus.cpp" compile="1"
-                resource="0" file="Source/PluginNameMarketplaceStatus.cpp"/>
-          <FILE id="ARSL4U" name="PluginNameMarketplaceStatus.h" compile="0"
-                resource="0" file="Source/PluginNameMarketplaceStatus.h"/>
+          <FILE id="yp9zN5" name="MarketplaceStatus.cpp" compile="1" resource="0"
+                file="Source/MarketplaceStatus.cpp"/>
+          <FILE id="ARSL4U" name="MarketplaceStatus.h" compile="0" resource="0"
+                file="Source/MarketplaceStatus.h"/>
         </GROUP>
         <GROUP id="{CF260F75-9E27-A85E-1F75-4376AAFEA0B8}" name="Unlock">
-          <FILE id="i5Xppa" name="PluginNameUnlockForm.cpp" compile="1" resource="0"
-                file="Source/PluginNameUnlockForm.cpp"/>
-          <FILE id="jEGoZi" name="PluginNameUnlockForm.h" compile="0" resource="0"
-                file="Source/PluginNameUnlockForm.h"/>
+          <FILE id="i5Xppa" name="UnlockForm.cpp" compile="1" resource="0" file="Source/UnlockForm.cpp"/>
+          <FILE id="jEGoZi" name="UnlockForm.h" compile="0" resource="0" file="Source/UnlockForm.h"/>
         </GROUP>
+      </GROUP>
+      <GROUP id="{F8A22243-8168-510B-EEF6-7871213F9C2B}" name="Settings">
+        <FILE id="St2wlL" name="PluginNameSettings.h" compile="0" resource="0"
+              file="Source/PluginNameSettings.h"/>
+        <FILE id="yjXSGX" name="SettingsManager.cpp" compile="1" resource="0"
+              file="Source/SettingsManager.cpp"/>
+        <FILE id="REzDFK" name="SettingsManager.h" compile="0" resource="0"
+              file="Source/SettingsManager.h"/>
       </GROUP>
       <GROUP id="{388B85AD-E66C-206A-3B65-780B5597D18D}" name="UI">
         <GROUP id="{268804BC-FB6D-6751-5DDC-90853AF58214}" name="ContextMenu">
@@ -83,8 +86,7 @@
             <FILE id="uK6kKs" name="MenuPanel.h" compile="0" resource="0" file="Source/MenuPanel.h"/>
           </GROUP>
         </GROUP>
-        <FILE id="n92iCR" name="InterfaceDefines.h" compile="0" resource="0"
-              file="Source/InterfaceDefines.h"/>
+        <FILE id="n92iCR" name="PluginNameGUI.h" compile="0" resource="0" file="Source/PluginNameGUI.h"/>
         <FILE id="tRi67d" name="PluginNameLookAndFeel.h" compile="0" resource="0"
               file="Source/PluginNameLookAndFeel.h"/>
       </GROUP>

@@ -1,54 +1,54 @@
 /*
   ==============================================================================
 
-    PluginNameMarketplaceStatus.cpp
+    MarketplaceStatus.cpp
     Created: 25 Nov 2021 9:01:11am
     Author:  Nicholas Berriochoa
 
   ==============================================================================
 */
 
-#include "PluginNameMarketplaceStatus.h"
+#include "MarketplaceStatus.h"
 
 //==============================================================================
-juce::String PluginNameMarketplaceStatus::getProductID()
+juce::String MarketplaceStatus::getProductID()
 {
     return "PluginNameApp";
 }
 
-bool PluginNameMarketplaceStatus::doesProductIDMatch(const juce::String& returnedIDFromServer)
+bool MarketplaceStatus::doesProductIDMatch(const juce::String& returnedIDFromServer)
 {
     return getProductID() == returnedIDFromServer;
 }
 
-juce::RSAKey PluginNameMarketplaceStatus::getPublicKey()
+juce::RSAKey MarketplaceStatus::getPublicKey()
 {
     return juce::RSAKey("PluginName_PUBLIC_KEY");
 }
 
 //==============================================================================
-void PluginNameMarketplaceStatus::saveState(const juce::String&)
+void MarketplaceStatus::saveState(const juce::String&)
 {
     
 }
 
-juce::String PluginNameMarketplaceStatus::getState()
+juce::String MarketplaceStatus::getState()
 {
     return {};
 }
 
 //==============================================================================
-juce::String PluginNameMarketplaceStatus::getWebsiteName()
+juce::String MarketplaceStatus::getWebsiteName()
 {
     return "nberr.io";
 }
 
-juce::URL PluginNameMarketplaceStatus::getServerAuthenticationURL()
+juce::URL MarketplaceStatus::getServerAuthenticationURL()
 {
     return juce::URL ("https://localhost:8443/auth.php");
 }
 
-juce::String PluginNameMarketplaceStatus::readReplyFromWebserver(const juce::String& email, const juce::String& password)
+juce::String MarketplaceStatus::readReplyFromWebserver(const juce::String& email, const juce::String& password)
 {
     juce::URL url (getServerAuthenticationURL()
                 .withParameter ("product", getProductID())
@@ -103,7 +103,7 @@ juce::String PluginNameMarketplaceStatus::readReplyFromWebserver(const juce::Str
 }
 
 //==============================================================================
-void PluginNameMarketplaceStatus::userCancelled()
+void MarketplaceStatus::userCancelled()
 {
     juce::ScopedLock lock(streamCreationLock);
     

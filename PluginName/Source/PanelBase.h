@@ -12,11 +12,11 @@
 
 #include <JuceHeader.h>
 
-#include "InterfaceDefines.h"
+#include "PluginNameGUI.h"
 #include "PluginNameLookAndFeel.h"
 #include "PluginProcessor.h"
 #include "ContextMenu.h"
-#include "PluginNameInternalParameters.h"
+#include "PluginNameSettings.h"
 
 //==============================================================================
 class PanelBase

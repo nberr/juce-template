@@ -9,11 +9,11 @@
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
 
-#include "InterfaceDefines.h"
+#include "PluginNameGUI.h"
 
 //==============================================================================
 PluginNameAudioProcessorEditor::PluginNameAudioProcessorEditor (PluginNameAudioProcessor& p)
-    : AudioProcessorEditor (&p), audioProcessor (p), mContextMenu(&(PluginNameInternalParameters::GUIScale)),
+    : AudioProcessorEditor (&p), audioProcessor (p),
     mMenuPanel(&audioProcessor, &mContextMenu),
     mPresetPanel(&audioProcessor, &mContextMenu),
     mPresetOverlay(&audioProcessor, &mContextMenu),
@@ -131,9 +131,9 @@ void PluginNameAudioProcessorEditor::paint (juce::Graphics& g)
 void PluginNameAudioProcessorEditor::resized()
 {
     // JUCE UI implementation
-    float scale = PluginNameInternalParameters::GUIScale;
+    float scale = PluginNameSettings::GUIScale;
     int width = PluginNameGUI::width;
-    if (PluginNameInternalParameters::showSidePanel) {
+    if (PluginNameSettings::showSidePanel) {
         width += SidePanelGUI::width;
     }
         

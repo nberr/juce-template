@@ -17,6 +17,7 @@ class PluginNameParameters {
 public:
     //==============================================================================
     enum Parameters {
+        // PNP_MasterOnOff,
         PNP_Int = 0,
         PNP_Float,
         PNP_Bool,

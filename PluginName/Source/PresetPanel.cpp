@@ -16,7 +16,7 @@
 PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 :   PanelBase(inProcessor, inContextMenu)
 {
-    float scale = PluginNameInternalParameters::GUIScale;
+    float scale = PluginNameSettings::GUIScale;
     setSize(PresetPanelGUI::width * scale, PresetPanelGUI::height * scale);
     setName("PresetPanel");
     setComponentID("PresetPanelID");
@@ -43,7 +43,7 @@ PresetPanel::~PresetPanel()
 //==============================================================================
 void PresetPanel::resized()
 {
-    float scale = PluginNameInternalParameters::GUIScale;
+    float scale = PluginNameSettings::GUIScale;
     float centered_height = (PresetPanelGUI::height - PresetPanelGUI::undo_redo_height) * 0.5f * scale;
     int buffer = 5 * scale;
     

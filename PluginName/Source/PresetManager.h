@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    PluginNamePresetManager.h
+    PresetManager.h
     Created: 25 Nov 2021 9:02:19am
     Author:  Nicholas Berriochoa
 
@@ -12,15 +12,15 @@
 
 #include <JuceHeader.h>
 
-#define PRESET_FILE_EXTENSION ".kpf"
+#define PRESET_FILE_EXTENSION ".xml"
 
 //==============================================================================
-class PluginNamePresetManager
+class PresetManager
 {
 public:
     //==============================================================================
-    PluginNamePresetManager(juce::AudioProcessor* inProcssor);
-    ~PluginNamePresetManager();
+    PresetManager(juce::AudioProcessor* inProcssor);
+    ~PresetManager();
     
     //==============================================================================
     void getXmlForPreset(juce::XmlElement* inElement);
@@ -62,4 +62,5 @@ private:
     juce::XmlElement* mCurrentPresetXml;
     
     //==============================================================================
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetManager)
 };

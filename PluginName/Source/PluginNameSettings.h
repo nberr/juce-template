@@ -11,7 +11,7 @@
 #pragma once
 
 //==============================================================================
-class PluginNameInternalParameters{
+class PluginNameSettings {
 public:
     //==============================================================================
     inline static float GUIScale = 1;
@@ -20,7 +20,4 @@ public:
     
     //==============================================================================
     inline static int defaultPreset = 0;
-    
-    //==============================================================================
-    inline static bool masterOnOff = true;
 };

@@ -10,11 +10,11 @@
 
 #include "ContextMenu.h"
 
-#include "PluginNameInternalParameters.h" // for GUIScale
-#include "InterfaceDefines.h" // for Scale sizes
+#include "PluginNameSettings.h" // for GUIScale
+#include "PluginNameGUI.h" // for Scale sizes
 
 //==============================================================================
-ContextMenu::ContextMenu(float* inScale)
+ContextMenu::ContextMenu()
 :   small("small"),
     medium("medium"),
     large("large")
@@ -22,15 +22,15 @@ ContextMenu::ContextMenu(float* inScale)
     setName("ContextMenu");
     setComponentID("ContextMenuID");
     
-    float *scale = &PluginNameInternalParameters::GUIScale;
+    float *scale = &PluginNameSettings::GUIScale;
     
-    if (*inScale == PluginNameGUI::Scale::small) {
+    if (*scale == PluginNameGUI::Scale::small) {
         small.setTicked(true);
     }
-    else if (*inScale == PluginNameGUI::Scale::normal) {
+    else if (*scale == PluginNameGUI::Scale::normal) {
         medium.setTicked(true);
     }
-    else if (*inScale == PluginNameGUI::Scale::large) {
+    else if (*scale == PluginNameGUI::Scale::large) {
         large.setTicked(true);
     }
     

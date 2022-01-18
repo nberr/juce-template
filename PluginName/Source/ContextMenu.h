@@ -12,7 +12,7 @@
 
 #include <JuceHeader.h>
 
-//
+#include "SettingsManager.h"
 
 //==============================================================================
 class ContextMenu
@@ -20,7 +20,7 @@ class ContextMenu
 {
 public:
     //==============================================================================
-    ContextMenu(float *inScale);
+    ContextMenu();
     ~ContextMenu();
     
     //==============================================================================
@@ -47,6 +47,9 @@ private:
     juce::PopupMenu::Item small;
     juce::PopupMenu::Item medium;
     juce::PopupMenu::Item large;
+    
+    //==============================================================================
+    SettingsManager settingsManager;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ContextMenu)

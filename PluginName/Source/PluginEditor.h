@@ -20,8 +20,8 @@
 #include "SidePanel.h"
 
 // registration
-#include "PluginNameMarketplaceStatus.h"
-#include "PluginNameUnlockForm.h"
+#include "MarketplaceStatus.h"
+#include "UnlockForm.h"
 
 #include "ContextMenu.h"
 
@@ -85,8 +85,8 @@ private:
     juce::TextButton unlockButton { "Unlock" },
                      secretButton { "Super Secret Feature" };
 
-    PluginNameMarketplaceStatus marketplaceStatus;
-    PluginNameUnlockForm unlockForm;
+    MarketplaceStatus marketplaceStatus;
+    UnlockForm unlockForm;
 
     bool isUnlocked = false;
 

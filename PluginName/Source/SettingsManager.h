@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    PluginNameUnlockForm.h
-    Created: 25 Nov 2021 9:00:34am
+    SettingsManager.h
+    Created: 17 Jan 2022 6:52:58pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
@@ -12,18 +12,19 @@
 
 #include <JuceHeader.h>
 
-#include "PluginNameMarketplaceStatus.h"
-
 //==============================================================================
-class PluginNameUnlockForm
-:   public juce::OnlineUnlockForm
+class SettingsManager
 {
 public:
     //==============================================================================
-    PluginNameUnlockForm(PluginNameMarketplaceStatus& status);
-    void dismiss() override;
+    SettingsManager();
+    ~SettingsManager();
+    
+    //==============================================================================
+    void saveSettings();
     
 private:
+    
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginNameUnlockForm)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SettingsManager)
 };

@@ -57,14 +57,15 @@ void MenuPanel::buttonClicked(juce::Button* b)
     }
     else {
         if (b == &masterButton) {
-            PluginNameInternalParameters::masterOnOff = !PluginNameInternalParameters::masterOnOff;
+            // TODO: add masterOnOff parameter and toggle it here
+            // PluginNameSettings::masterOnOff = !PluginNameSettings::masterOnOff;
         }
         else if (b == &advancedButton) {
             if (advancedButton.getToggleState()) {
-                PluginNameInternalParameters::showSidePanel = true;
+                PluginNameSettings::showSidePanel = true;
             }
             else {
-                PluginNameInternalParameters::showSidePanel = false;
+                PluginNameSettings::showSidePanel = false;
             }
             getParentComponent()->resized();
         }

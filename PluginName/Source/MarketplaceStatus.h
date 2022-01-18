@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    PluginNameMarketplaceStatus.h
+    MarketplaceStatus.h
     Created: 25 Nov 2021 9:01:11am
     Author:  Nicholas Berriochoa
 
@@ -13,12 +13,12 @@
 #include <JuceHeader.h>
 
 //==============================================================================
-class PluginNameMarketplaceStatus
+class MarketplaceStatus
 :   public juce::OnlineUnlockStatus
 {
 public:
     //==============================================================================
-    PluginNameMarketplaceStatus() = default;
+    MarketplaceStatus() = default;
     
     //==============================================================================
     juce::String getProductID() override;
@@ -43,5 +43,5 @@ private:
     std::unique_ptr<juce::WebInputStream> stream;
     
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginNameMarketplaceStatus)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MarketplaceStatus)
 };
