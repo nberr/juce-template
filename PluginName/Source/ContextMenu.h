@@ -12,7 +12,7 @@
 
 #include <JuceHeader.h>
 
-#include "SettingsManager.h"
+#include "PluginProcessor.h"
 
 //==============================================================================
 class ContextMenu
@@ -20,18 +20,8 @@ class ContextMenu
 {
 public:
     //==============================================================================
-    ContextMenu();
+    ContextMenu(PluginNameAudioProcessor* inProcssor);
     ~ContextMenu();
-    
-    //==============================================================================
-    // TODO: each item in the context menu should have an ID so triggers can be set properly
-    enum ItemID {
-        GUI_Small,
-        GUI_Medium,
-        GUI_Large,
-        GUI_XL,
-        GUI_XXL
-    };
     
     //==============================================================================
     void showMenu(const juce::String itemClicked);
@@ -39,17 +29,21 @@ public:
         
 private:
     //==============================================================================
+    PluginNameAudioProcessor* mProcessor;
+    
+    //==============================================================================
     juce::PopupMenu menu;
     juce::PopupMenu preferences;
     juce::PopupMenu sizes;
     
     //==============================================================================
-    juce::PopupMenu::Item small;
-    juce::PopupMenu::Item medium;
-    juce::PopupMenu::Item large;
+    void initMenuSize();
     
-    //==============================================================================
-    SettingsManager settingsManager;
+    juce::PopupMenu::Item small {"Small"};
+    juce::PopupMenu::Item standard {"Standard"};
+    juce::PopupMenu::Item large {"Large"};
+    juce::PopupMenu::Item extra_large {"Extra Large"};
+    juce::PopupMenu::Item xxl {"XXL"};
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ContextMenu)

@@ -14,6 +14,7 @@
 //==============================================================================
 PluginNameAudioProcessorEditor::PluginNameAudioProcessorEditor (PluginNameAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p),
+    mContextMenu(&audioProcessor),
     mMenuPanel(&audioProcessor, &mContextMenu),
     mPresetPanel(&audioProcessor, &mContextMenu),
     mPresetOverlay(&audioProcessor, &mContextMenu),

@@ -10,6 +10,9 @@
 
 #include <JuceHeader.h>
 
+#include "PresetManager.h"
+#include "SettingsManager.h"
+
 //==============================================================================
 /**
 */
@@ -59,11 +62,13 @@ public:
     juce::AudioProcessorValueTreeState parameters;
     
     //==============================================================================
-    void createSettingsLayout();
+    SettingsManager* getSettingsManager();
+    PresetManager* getPresetManager();
     
-    juce::ValueTree settings;
-
 private:
+    //==============================================================================
+    SettingsManager settingsManager;
+    PresetManager presetManager;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginNameAudioProcessor)

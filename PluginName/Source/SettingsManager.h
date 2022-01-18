@@ -17,13 +17,19 @@ class SettingsManager
 {
 public:
     //==============================================================================
-    SettingsManager();
+    SettingsManager(juce::AudioProcessor* inProcssor);
     ~SettingsManager();
     
     //==============================================================================
     void saveSettings();
     
 private:
+    //==============================================================================
+    juce::AudioProcessor* mProcessor;
+    
+    //==============================================================================
+    juce::ValueTree settings;
+    juce::String settingsDirectory;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SettingsManager)

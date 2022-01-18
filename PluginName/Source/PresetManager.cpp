@@ -10,22 +10,17 @@
 
 #include "PresetManager.h"
 
-#if JUCE_WINDOWS
-    #define DIR_SEP "\\"
-#elseif JUCE_MAC
-    #define DIR_SEP "/"
-#else
-    #define DIR_SEP "/"
-#endif
-
 //==============================================================================
 PresetManager::PresetManager(juce::AudioProcessor* inProcssor)
 :   mCurrentPresetIsSaved(false),
     mCurrentPresetName("Untitled"),
     mProcessor(inProcssor)
 {
-    const juce::String pluginName = (juce::String)mProcessor->getName();
-    mPresetDirectory = juce::File::getSpecialLocation(juce::File::userHomeDirectory).getFullPathName() + DIR_SEP + pluginName;
+    juce::String dir_sep = juce::File::getSeparatorString();
+    mPresetDirectory = juce::File::getSpecialLocation(juce::File::userMusicDirectory).getFullPathName()
+                       + dir_sep + JucePlugin_Manufacturer
+                       + dir_sep + JucePlugin_Name
+                       + dir_sep + "Presets";
     
     if (!juce::File(mPresetDirectory).exists())
     {
@@ -118,7 +113,8 @@ void PresetManager::savePreset()
 
 void PresetManager::saveAsPreset(juce::String inPresetName)
 {
-    juce::File presetFile = juce::File(mPresetDirectory + DIR_SEP + inPresetName + PRESET_FILE_EXTENSION);
+    juce::String dir_sep = juce::File::getSeparatorString();
+    juce::File presetFile = juce::File(mPresetDirectory + dir_sep + inPresetName + PRESET_FILE_EXTENSION);
     
     if (!presetFile.exists())
     {

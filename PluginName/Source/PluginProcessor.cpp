@@ -10,7 +10,6 @@
 #include "PluginEditor.h"
 
 #include "PluginNameParameters.h"
-#include "PluginNameSettings.h"
 
 //==============================================================================
 PluginNameAudioProcessor::PluginNameAudioProcessor()
@@ -24,7 +23,9 @@ PluginNameAudioProcessor::PluginNameAudioProcessor()
                      #endif
                        ),
 #endif
-parameters(*this, nullptr, "PARAMETERS", createParameterLayout())
+    parameters(*this, nullptr, "PARAMETERS", createParameterLayout()),
+    settingsManager(this),
+    presetManager(this)
 {
 }
 
@@ -251,7 +252,12 @@ juce::AudioProcessorValueTreeState::ParameterLayout PluginNameAudioProcessor::cr
 }
 
 //==============================================================================
-void PluginNameAudioProcessor::createSettingsLayout()
+SettingsManager* PluginNameAudioProcessor::getSettingsManager()
 {
-    
+    return &settingsManager;
+}
+
+PresetManager* PluginNameAudioProcessor::getPresetManager()
+{
+    return &presetManager;
 }

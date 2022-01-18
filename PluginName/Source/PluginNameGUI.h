@@ -21,7 +21,7 @@ public:
     class Scale {
     public:
         static constexpr float small = 0.8f,
-        normal = 1.0f,
+        standard = 1.0f,
         large = 1.2f,
         extra_large = 1.4f,
         XXL = 2.0f;
