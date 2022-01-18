@@ -10,6 +10,7 @@
 #include "PluginEditor.h"
 
 #include "PluginNameParameters.h"
+#include "PluginNameInternalParameters.h"
 
 //==============================================================================
 PluginNameAudioProcessor::PluginNameAudioProcessor()

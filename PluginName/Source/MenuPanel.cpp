@@ -57,7 +57,7 @@ void MenuPanel::buttonClicked(juce::Button* b)
     }
     else {
         if (b == &masterButton) {
-            
+            PluginNameInternalParameters::masterOnOff = !PluginNameInternalParameters::masterOnOff;
         }
         else if (b == &advancedButton) {
             if (advancedButton.getToggleState()) {
