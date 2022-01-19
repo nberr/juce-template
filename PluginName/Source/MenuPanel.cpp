@@ -58,14 +58,15 @@ void MenuPanel::buttonClicked(juce::Button* b)
     else {
         if (b == &masterButton) {
             // TODO: add masterOnOff parameter and toggle it here
-            // PluginNameSettings::masterOnOff = !PluginNameSettings::masterOnOff;
         }
         else if (b == &advancedButton) {
+            juce::Identifier value ("value");
+            
             if (advancedButton.getToggleState()) {
-                //PluginNameSettings::settings[PluginNameSettings::PNS_showSidePanel] = true;
+                mProcessor->settings.getChild(PluginNameSettings::PNS_showSidePanel).setProperty(value, true, nullptr);
             }
             else {
-                //PluginNameSettings::settings[PluginNameSettings::PNS_showSidePanel] = false;
+                mProcessor->settings.getChild(PluginNameSettings::PNS_showSidePanel).setProperty(value, false, nullptr);
             }
             getParentComponent()->resized();
         }
