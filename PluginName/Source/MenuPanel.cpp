@@ -18,6 +18,7 @@ MenuPanel::MenuPanel(PluginNameAudioProcessor *inProcessor, ContextMenu *inConte
 :   PanelBase(inProcessor, inContextMenu)
 {
     setName("MenuPanel");
+    setComponentID("MenuPanelID");
     
     // initialize each button and add them to the scene
     for (juce::TextButton* button : buttons) {

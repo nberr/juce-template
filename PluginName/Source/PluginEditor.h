@@ -15,17 +15,20 @@
 #include "PanelBase.h"
 #include "MenuPanel.h"
 #include "PresetPanel.h"
-#include "PresetOverlay.h"
 #include "MainPanel.h"
 #include "SidePanel.h"
+
+// overlays
+#include "DisplayPresetsOverlay.h"
+#include "SavePresetOverlay.h"
+#include "DeletePresetOverlay.h"
+#include "UpdatePresetOverlay.h"
 
 // registration
 #include "MarketplaceStatus.h"
 #include "UnlockForm.h"
 
 #include "ContextMenu.h"
-
-#include "PluginNameParameters.h"
 
 //==============================================================================
 /**
@@ -65,7 +68,6 @@ private:
     // panel hierarchy
     MenuPanel mMenuPanel;
     PresetPanel mPresetPanel;
-    PresetOverlay mPresetOverlay;
     MainPanel mMainPanel;
     SidePanel mSidePanel;
     
@@ -75,6 +77,19 @@ private:
         &mPresetPanel,
         &mMainPanel,
         &mSidePanel
+    };
+    
+    // overlays
+    DisplayPresetsOverlay mDisplayPresetOverlay;
+    SavePresetOverlay savePresetOverlay;
+    DeletePresetOverlay deletePresetOverlay;
+    UpdatePresetOverlay updatePresetOverlay;
+    
+    std::vector<PanelBase *> overlays = {
+        &mDisplayPresetOverlay,
+        &savePresetOverlay,
+        &deletePresetOverlay,
+        &updatePresetOverlay
     };
     
     // 2 - react-juce; see jsui/src/index.js

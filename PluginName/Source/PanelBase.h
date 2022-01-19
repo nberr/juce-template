@@ -38,5 +38,7 @@ protected:
     PluginNameAudioProcessor *mProcessor;
     ContextMenu *mContextMenu;
     
+    //==============================================================================
     juce::ValueTree guiScale;
+    bool isOverlay;
 };

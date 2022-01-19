@@ -71,9 +71,32 @@
             <FILE id="aEEQll" name="MainPanel.h" compile="0" resource="0" file="Source/MainPanel.h"/>
           </GROUP>
           <GROUP id="{8081B5BA-8452-B9B3-33EE-EFC31025B7A2}" name="Preset">
-            <FILE id="CdgVtu" name="PresetOverlay.cpp" compile="1" resource="0"
-                  file="Source/PresetOverlay.cpp"/>
-            <FILE id="ku9N1D" name="PresetOverlay.h" compile="0" resource="0" file="Source/PresetOverlay.h"/>
+            <GROUP id="{7060C5BE-F5EF-0A16-A937-E2D621D667CF}" name="Overlays">
+              <GROUP id="{DCB5B414-4406-EFAB-F48B-0434C5077E10}" name="Actions">
+                <GROUP id="{24586964-0500-3020-84FE-7297D55CD242}" name="Update">
+                  <FILE id="Gsdvvd" name="UpdatePresetOverlay.cpp" compile="1" resource="0"
+                        file="Source/UpdatePresetOverlay.cpp"/>
+                  <FILE id="jaPgoC" name="UpdatePresetOverlay.h" compile="0" resource="0"
+                        file="Source/UpdatePresetOverlay.h"/>
+                </GROUP>
+                <GROUP id="{E4832FC5-FD25-FB84-72BE-9A346D094B1C}" name="Delete">
+                  <FILE id="kPcpL6" name="DeletePresetOverlay.cpp" compile="1" resource="0"
+                        file="Source/DeletePresetOverlay.cpp"/>
+                  <FILE id="Plowjp" name="DeletePresetOverlay.h" compile="0" resource="0"
+                        file="Source/DeletePresetOverlay.h"/>
+                </GROUP>
+                <GROUP id="{7D7E870B-2CAB-2FA8-2E03-2264E76D3E56}" name="Save">
+                  <FILE id="vv8IJ2" name="SavePresetOverlay.cpp" compile="1" resource="0"
+                        file="Source/SavePresetOverlay.cpp"/>
+                  <FILE id="z98CAp" name="SavePresetOverlay.h" compile="0" resource="0"
+                        file="Source/SavePresetOverlay.h"/>
+                </GROUP>
+              </GROUP>
+              <FILE id="CdgVtu" name="DisplayPresetsOverlay.cpp" compile="1" resource="0"
+                    file="Source/DisplayPresetsOverlay.cpp"/>
+              <FILE id="ku9N1D" name="DisplayPresetsOverlay.h" compile="0" resource="0"
+                    file="Source/DisplayPresetsOverlay.h"/>
+            </GROUP>
             <FILE id="DGgZ7N" name="PresetPanel.cpp" compile="1" resource="0" file="Source/PresetPanel.cpp"/>
             <FILE id="MzUTOS" name="PresetPanel.h" compile="0" resource="0" file="Source/PresetPanel.h"/>
           </GROUP>

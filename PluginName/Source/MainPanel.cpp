@@ -20,8 +20,6 @@ MainPanel::MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inConte
     pFloat(inProcessor->parameters, "Float", "Parameter Float"),
     pBool(inProcessor->parameters, "Bool", "Parameter Bool")
 {
-    float scale = guiScale.getProperty(juce::Identifier("value"));
-    setSize(MainPanelGUI::width * scale, MainPanelGUI::height * scale);
     setName("MainPanel");
     setComponentID("MainPanelID");
     

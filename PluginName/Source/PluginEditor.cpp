@@ -17,9 +17,12 @@ PluginNameAudioProcessorEditor::PluginNameAudioProcessorEditor (PluginNameAudioP
     mContextMenu(&audioProcessor),
     mMenuPanel(&audioProcessor, &mContextMenu),
     mPresetPanel(&audioProcessor, &mContextMenu),
-    mPresetOverlay(&audioProcessor, &mContextMenu),
     mMainPanel(&audioProcessor, &mContextMenu),
     mSidePanel(&audioProcessor, &mContextMenu),
+    mDisplayPresetOverlay(&audioProcessor, &mContextMenu),
+    savePresetOverlay(&audioProcessor, &mContextMenu),
+    deletePresetOverlay(&audioProcessor, &mContextMenu),
+    updatePresetOverlay(&audioProcessor, &mContextMenu),
     appHarness(appRoot),
     unlockForm(marketplaceStatus)
 {
@@ -31,21 +34,23 @@ PluginNameAudioProcessorEditor::PluginNameAudioProcessorEditor (PluginNameAudioP
     // JUCE UI implementation
     
     // initialize the main window
-    setSize(PluginNameGUI::width, PluginNameGUI::height);
     setName("PluginEditor");
     setComponentID("PluginEditorID");
+    setSize(PluginNameGUI::width, PluginNameGUI::height);
     setResizable(false, false);
     
     // add each panel to the scene
     for (PanelBase* panel : panels) {
         addAndMakeVisible(panel);
     }
-        
-    // intialize the preset panel overlay
-    // add to scene but don't make visible
-    mPresetOverlay.setAlwaysOnTop(true);
-    addChildComponent(mPresetOverlay);
     
+    // add overlays to the scene but don't make them visible
+    for (PanelBase* overlay : overlays) {
+        
+        overlay->setAlwaysOnTop(true);
+        addChildComponent(overlay);
+    }
+        
     // initialize the unlock form
     // add to scene but don't make visible
     unlockForm.setAlwaysOnTop(true);
@@ -133,12 +138,11 @@ void PluginNameAudioProcessorEditor::resized()
 {
     // JUCE UI implementation
     juce::ValueTree guiScale = audioProcessor.settings.getChild(PluginNameSettings::PNS_GUIScale);
-    juce::Identifier value ("value");
-    float scale = guiScale.getProperty(value);
+    float scale = guiScale.getProperty(juce::Identifier("value"));
     
     int width = PluginNameGUI::width;
     juce::ValueTree showSidePanel = audioProcessor.settings.getChild(PluginNameSettings::PNS_showSidePanel);
-    if (showSidePanel.getProperty(value)) {
+    if (showSidePanel.getProperty(juce::Identifier("value"))) {
         width += SidePanelGUI::width;
     }
         
@@ -157,9 +161,12 @@ void PluginNameAudioProcessorEditor::resized()
                          SidePanelGUI::width * scale,
                          SidePanelGUI::height * scale);
     
-    mPresetOverlay.setBounds(mMenuPanel.getRight(), mPresetPanel.getBottom(),
+    // overlays
+    mDisplayPresetOverlay.setBounds(mMenuPanel.getRight(), mPresetPanel.getBottom(),
                              MainPanelGUI::width * scale,
                              MainPanelGUI::height * scale);
+    
+    savePresetOverlay.setBounds(0, 0, getWidth(), getHeight());
     
     unlockForm.setBounds(0, 0, getWidth(), getHeight());
 

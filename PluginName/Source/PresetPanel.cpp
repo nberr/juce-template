@@ -10,18 +10,16 @@
 
 #include "PresetPanel.h"
 
-#include "PresetOverlay.h"
+#include "DisplayPresetsOverlay.h"
 
 //==============================================================================
 PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 :   PanelBase(inProcessor, inContextMenu)
 {
-    undoManager = mProcessor->getUndoManager();
-    
-    float scale = guiScale.getProperty(juce::Identifier("value"));;
-    setSize(PresetPanelGUI::width * scale, PresetPanelGUI::height * scale);
     setName("PresetPanel");
     setComponentID("PresetPanelID");
+    
+    undoManager = mProcessor->getUndoManager();
     
     // initialize each button and add them to the scene
     for (juce::TextButton* button : buttons) {
@@ -48,6 +46,8 @@ void PresetPanel::resized()
     float scale = guiScale.getProperty(juce::Identifier("value"));;
     float centered_height = (PresetPanelGUI::height - PresetPanelGUI::undo_redo_height) * 0.5f * scale;
     int buffer = 5 * scale;
+    
+    setSize(PresetPanelGUI::width * scale, PresetPanelGUI::height * scale);
     
     // undo, redo
     undo.setBounds(buffer, centered_height,
@@ -112,7 +112,7 @@ void PresetPanel::buttonClicked(juce::Button* b)
         }
         else if (b == &presetMenu) {
             // toggle overlay
-            juce::Component* overlay = getParentComponent()->findChildWithID("PresetOverlayID");
+            juce::Component* overlay = getParentComponent()->findChildWithID("DisplayPresetsOverlayID");
             if (overlay != nullptr) {
                 overlay->setVisible(!overlay->isVisible());
             }

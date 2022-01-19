@@ -1,69 +1,66 @@
 /*
   ==============================================================================
 
-    PresetOverlay.cpp
+    DisplayPresetsOverlay.cpp
     Created: 25 Nov 2021 8:57:24am
     Author:  Nicholas Berriochoa
 
   ==============================================================================
 */
 
-#include "PresetOverlay.h"
+#include "DisplayPresetsOverlay.h"
 
 //==============================================================================
-PresetOverlay::PresetOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
+DisplayPresetsOverlay::DisplayPresetsOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 :   PanelBase(inProcessor, inContextMenu)
 {
-    setName("PresetOverlay");
-    setComponentID("PresetOverlayID");
+    setName("DisplayPresetsOverlay");
+    setComponentID("DisplayPresetsOverlayID");
     
-    mAddNewPreset.setButtonText("+");
-    mAddNewPreset.setTriggeredOnMouseDown(true);
-    mAddNewPreset.addListener(this);
-    addAndMakeVisible(&mAddNewPreset);
+    presetManager = mProcessor->getPresetManager();
     
-    mSetDefault.setButtonText("default");
-    mSetDefault.setTriggeredOnMouseDown(true);
-    mSetDefault.addListener(this);
-    addAndMakeVisible(&mSetDefault);
+    isOverlay = true;
     
-    mDismissOverlay.setButtonText("x");
-    mDismissOverlay.setTriggeredOnMouseDown(true);
-    mDismissOverlay.addListener(this);
-    addAndMakeVisible(&mDismissOverlay);
+    // initialize each button and add them to the scene
+    for (juce::TextButton* button : buttons) {
+        button->setTriggeredOnMouseDown(true);
+        button->addListener(this);
+        addAndMakeVisible(button);
+    }
 }
 
-PresetOverlay::~PresetOverlay()
+DisplayPresetsOverlay::~DisplayPresetsOverlay()
 {
     
 }
 
 //==============================================================================
-void PresetOverlay::resized()
+void DisplayPresetsOverlay::resized()
 {
     float scale = guiScale.getProperty(juce::Identifier("value"));;
+    
     int buffer = 5 * scale;
     float width = PresetPanelGUI::A_B_Copy_width * scale,
           height = PresetPanelGUI::A_B_Copy_height * scale;
     
-    mAddNewPreset.setBounds(buffer,
+    addNewPreset.setBounds(buffer,
                             buffer,
                             width,
                             height);
     
-    mSetDefault.setBounds(mAddNewPreset.getRight() + buffer,
+    setDefault.setBounds(addNewPreset.getRight() + buffer,
                           buffer,
                           width,
                           height);
     
-    mDismissOverlay.setBounds((MainPanelGUI::width * scale) - (PresetPanelGUI::A_B_Copy_width * scale) - buffer,
+    dismissOverlay.setBounds((MainPanelGUI::width * scale) - (PresetPanelGUI::A_B_Copy_width * scale) - buffer,
                               buffer,
                               width,
                               height);
 }
 
 //==============================================================================
-void PresetOverlay::buttonClicked(juce::Button* b)
+void DisplayPresetsOverlay::buttonClicked(juce::Button* b)
 {
     bool rightClick = juce::ModifierKeys::getCurrentModifiers().isPopupMenu();
     
@@ -71,13 +68,20 @@ void PresetOverlay::buttonClicked(juce::Button* b)
         
     }
     else {
-        if (b == &mAddNewPreset) {
+        if (b == &addNewPreset) {
+            setVisible(false);
+            
             // display save preset overlay
+            juce::Component* overlay = getParentComponent()->findChildWithID("SavePresetOverlayID");
+
+            if (overlay != nullptr) {
+                overlay->setVisible(true);
+            }
         }
-        else if (b == &mSetDefault) {
+        else if (b == &setDefault) {
             // set default
         }
-        else if (b == &mDismissOverlay) {
+        else if (b == &dismissOverlay) {
             setVisible(false);
         }
     }

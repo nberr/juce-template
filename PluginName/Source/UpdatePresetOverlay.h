@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    MainPanel.h
-    Created: 25 Nov 2021 8:56:29am
+    UpdatePresetOverlay.h
+    Created: 19 Jan 2022 12:34:28pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
@@ -12,31 +12,28 @@
 
 #include "PanelBase.h"
 
-#include "PresetPanel.h"
-
-#include "ParameterComboBox.h"
-#include "ParameterSlider.h"
-#include "ParameterToggleButton.h"
+#include "PresetManager.h"
 
 //==============================================================================
-class MainPanel
-:   public PanelBase
+class UpdatePresetOverlay
+:   public PanelBase,
+    public juce::Button::Listener
 {
 public:
     //==============================================================================
-    MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
-    ~MainPanel();
+    UpdatePresetOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    ~UpdatePresetOverlay();
     
     //==============================================================================
     void resized() override;
     
+    //==============================================================================
+    void buttonClicked(juce::Button*) override;
+    
 private:
     //==============================================================================
-    ParameterComboBox pChoice;
-    ParameterSlider pInt;
-    ParameterSlider pFloat;
-    ParameterToggleButton pBool;
+    PresetManager *presetManager;
     
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainPanel)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (UpdatePresetOverlay)
 };

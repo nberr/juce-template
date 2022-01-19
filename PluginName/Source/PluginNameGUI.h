@@ -61,14 +61,6 @@ public:
 };
 
 //==============================================================================
-class PresetOverlayGUI {
-public:
-    //==============================================================================
-    static constexpr int width  = PluginNameGUI::width - MenuPanelGUI::width,
-                         height = PluginNameGUI::height;
-};
-
-//==============================================================================
 class MainPanelGUI {
 public:
     //==============================================================================
@@ -84,5 +76,21 @@ public:
     static constexpr int width  = PluginNameGUI::width - PluginNameGUI::height,
                          height = PluginNameGUI::height;
     
+};
+
+//==============================================================================
+class DisplayPresetOverlayGUI {
+public:
+    //==============================================================================
+    static constexpr int width  = PluginNameGUI::width - MenuPanelGUI::width,
+                         height = PluginNameGUI::height;
+};
+
+//==============================================================================
+class ActionPresetOverlayGUI {
+public:
+    //==============================================================================
+    static constexpr int width  = PluginNameGUI::width,
+                         height = PluginNameGUI::height;
 };
 

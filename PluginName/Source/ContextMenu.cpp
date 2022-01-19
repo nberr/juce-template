@@ -116,7 +116,7 @@ void ContextMenu::initMenuSize()
     
     small.setAction([this, sm](){
         juce::ValueTree guiScale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale);
-        guiScale.setProperty( juce::Identifier("value"), PluginNameGUI::Scale::small, nullptr);
+        guiScale.setProperty(juce::Identifier("value"), PluginNameGUI::Scale::small, nullptr);
         
         small.setTicked(true);
         standard.setTicked(false);
@@ -130,7 +130,7 @@ void ContextMenu::initMenuSize()
     
     standard.setAction([this, sm](){
         juce::ValueTree guiScale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale);
-        guiScale.setProperty( juce::Identifier("value"), PluginNameGUI::Scale::standard, nullptr);
+        guiScale.setProperty(juce::Identifier("value"), PluginNameGUI::Scale::standard, nullptr);
         
         small.setTicked(false);
         standard.setTicked(true);
@@ -144,7 +144,7 @@ void ContextMenu::initMenuSize()
     
     large.setAction([this, sm](){
         juce::ValueTree guiScale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale);
-        guiScale.setProperty( juce::Identifier("value"), PluginNameGUI::Scale::large, nullptr);
+        guiScale.setProperty(juce::Identifier("value"), PluginNameGUI::Scale::large, nullptr);
         
         small.setTicked(false);
         standard.setTicked(false);
@@ -157,7 +157,7 @@ void ContextMenu::initMenuSize()
     
     extra_large.setAction([this, sm](){
         juce::ValueTree guiScale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale);
-        guiScale.setProperty( juce::Identifier("value"), PluginNameGUI::Scale::extra_large, nullptr);
+        guiScale.setProperty(juce::Identifier("value"), PluginNameGUI::Scale::extra_large, nullptr);
         
         small.setTicked(false);
         standard.setTicked(false);
@@ -170,7 +170,7 @@ void ContextMenu::initMenuSize()
     
     xxl.setAction([this, sm](){
         juce::ValueTree guiScale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale);
-        guiScale.setProperty( juce::Identifier("value"), PluginNameGUI::Scale::XXL, nullptr);
+        guiScale.setProperty(juce::Identifier("value"), PluginNameGUI::Scale::XXL, nullptr);
         
         small.setTicked(false);
         standard.setTicked(false);

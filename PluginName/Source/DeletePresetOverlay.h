@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    PresetOverlay.h
-    Created: 25 Nov 2021 8:57:24am
+    DeletePresetOverlay.h
+    Created: 19 Jan 2022 12:33:42pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
@@ -12,15 +12,17 @@
 
 #include "PanelBase.h"
 
+#include "PresetManager.h"
+
 //==============================================================================
-class PresetOverlay
+class DeletePresetOverlay
 :   public PanelBase,
     public juce::Button::Listener
 {
 public:
     //==============================================================================
-    PresetOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
-    ~PresetOverlay();
+    DeletePresetOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    ~DeletePresetOverlay();
     
     //==============================================================================
     void resized() override;
@@ -30,10 +32,8 @@ public:
     
 private:
     //==============================================================================
-    juce::TextButton mAddNewPreset;
-    juce::TextButton mSetDefault;
-    juce::TextButton mDismissOverlay;
+    PresetManager *presetManager;
     
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetOverlay)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DeletePresetOverlay)
 };
