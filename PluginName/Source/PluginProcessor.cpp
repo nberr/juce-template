@@ -23,7 +23,7 @@ PluginNameAudioProcessor::PluginNameAudioProcessor()
                      #endif
                        ),
 #endif
-    parameters(*this, nullptr, "PARAMETERS", createParameterLayout()),
+    parameters(*this, &undoManager, "PARAMETERS", createParameterLayout()),
     settingsManager(this, &settings),
     presetManager(this)
 {
@@ -257,8 +257,12 @@ SettingsManager* PluginNameAudioProcessor::getSettingsManager()
     return &settingsManager;
 }
 
-//==============================================================================
 PresetManager* PluginNameAudioProcessor::getPresetManager()
 {
     return &presetManager;
+}
+
+juce::UndoManager* PluginNameAudioProcessor::getUndoManager()
+{
+    return &undoManager;
 }

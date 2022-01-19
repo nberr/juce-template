@@ -16,6 +16,8 @@
 PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 :   PanelBase(inProcessor, inContextMenu)
 {
+    undoManager = mProcessor->getUndoManager();
+    
     float scale = guiScale.getProperty(juce::Identifier("value"));;
     setSize(PresetPanelGUI::width * scale, PresetPanelGUI::height * scale);
     setName("PresetPanel");
@@ -99,21 +101,33 @@ void PresetPanel::buttonClicked(juce::Button* b)
         resized();
     }
     else {
-        if (b == &prevPreset)
-        {
+        if (b == &undo) {
+            undoManager->undo();
+        }
+        else if (b == &redo) {
+            undoManager->redo();
+        }
+        else if (b == &prevPreset) {
             
         }
-        else if (b == &nextPreset)
-        {
-            
-        }
-        else if (b == &presetMenu)
-        {
+        else if (b == &presetMenu) {
             // toggle overlay
             juce::Component* overlay = getParentComponent()->findChildWithID("PresetOverlayID");
             if (overlay != nullptr) {
                 overlay->setVisible(!overlay->isVisible());
             }
+        }
+        else if (b == &nextPreset) {
+            
+        }
+        else if (b == &presetA) {
+            
+        }
+        else if (b == &presetCopy) {
+            
+        }
+        else if (b == &presetB) {
+            
         }
     }
 }

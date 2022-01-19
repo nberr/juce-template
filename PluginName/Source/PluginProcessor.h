@@ -63,16 +63,16 @@ public:
     
     //==============================================================================
     SettingsManager* getSettingsManager();
+    PresetManager* getPresetManager();
+    juce::UndoManager* getUndoManager();
     
     juce::ValueTree settings;
-    
-    //==============================================================================
-    PresetManager* getPresetManager();
     
 private:
     //==============================================================================
     SettingsManager settingsManager;
     PresetManager presetManager;
+    juce::UndoManager undoManager;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginNameAudioProcessor)
