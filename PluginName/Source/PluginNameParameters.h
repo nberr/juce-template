@@ -32,51 +32,41 @@ public:
         is_bool,
         is_choice
     } type;
-
-    //==============================================================================
-    typedef union value_t {
-        int ivalue;
-        float fvalue;
-        bool bvalue;
-        int cvalue;
-    } value;
     
-    //==============================================================================
-    inline static const juce::StringArray Choices[PNP_TotalNumParameters]  = {
-        juce::StringArray(),
-        juce::StringArray(),
-        juce::StringArray(),
-        juce::StringArray("choice 1", "choice 2")
-    };
-
-    //==============================================================================
     inline static type Types[PNP_TotalNumParameters] = {
         is_int,
         is_float,
         is_bool,
         is_choice
     };
-
+    
     //==============================================================================
-    inline static const value Defaults[PNP_TotalNumParameters] = {
-        {.ivalue = 1},
-        {.fvalue = 1.0},
-        {.bvalue = false},
-        {.cvalue = 2}
+    inline static const juce::var Defaults[PNP_TotalNumParameters] = {
+        1,
+        1.0,
+        false,
+        2
+    };
+    
+    inline static const juce::var Mins[PNP_TotalNumParameters] = {
+        0,
+        0.0,
+        false,
+        0
     };
 
-    inline static const value Mins[PNP_TotalNumParameters] = {
-        {.ivalue = 0},
-        {.fvalue = 0.0},
-        {.bvalue = false},
-        {.cvalue = 0}
+    inline static const juce::var Maxs[PNP_TotalNumParameters] = {
+        10,
+        1.0,
+        true,
+        3
     };
-
-    inline static const value Maxs[PNP_TotalNumParameters] = {
-        {.ivalue = 10},
-        {.fvalue = 1.0},
-        {.bvalue = true},
-        {.cvalue = 3}
+    
+    inline static const juce::StringArray Choices[PNP_TotalNumParameters]  = {
+        juce::StringArray(),
+        juce::StringArray(),
+        juce::StringArray(),
+        juce::StringArray("choice 1", "choice 2")
     };
 
     //==============================================================================

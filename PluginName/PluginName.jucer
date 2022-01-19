@@ -2,10 +2,10 @@
 
 <JUCERPROJECT id="B9gRIA" name="PluginName" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
-              cppLanguageStandard="latest" version="1.0.0" companyName="nberr"
-              companyWebsite="nberr.io" companyEmail="nberr@protonmail.com"
+              cppLanguageStandard="latest" version="1.0.0" companyName="CompanyName"
+              companyWebsite="companywebsite.com" companyEmail="contact@companywebsite.com"
               bundleIdentifier="io.nberr.PluginName" pluginName="PluginName"
-              pluginDesc="Plugin template with common features" pluginManufacturer="nberr"
+              pluginDesc="Plugin template with common features" pluginManufacturer="CompanyManufacturer"
               defines="REACTJUCE_USE_DUKTAPE=1">
   <MAINGROUP id="rG13mo" name="PluginName">
     <GROUP id="{A69D8F93-3BCE-9AD3-66FB-82DC085FE56F}" name="Source">

@@ -62,10 +62,10 @@ void MenuPanel::buttonClicked(juce::Button* b)
         }
         else if (b == &advancedButton) {
             if (advancedButton.getToggleState()) {
-                PluginNameSettings::showSidePanel = true;
+                //PluginNameSettings::settings[PluginNameSettings::PNS_showSidePanel] = true;
             }
             else {
-                PluginNameSettings::showSidePanel = false;
+                //PluginNameSettings::settings[PluginNameSettings::PNS_showSidePanel] = false;
             }
             getParentComponent()->resized();
         }

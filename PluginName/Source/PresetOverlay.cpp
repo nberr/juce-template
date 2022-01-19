@@ -41,7 +41,7 @@ PresetOverlay::~PresetOverlay()
 //==============================================================================
 void PresetOverlay::resized()
 {
-    float scale = PluginNameSettings::GUIScale;
+    float scale = guiScale.getProperty(juce::Identifier("value"));;
     int buffer = 5 * scale;
     float width = PresetPanelGUI::A_B_Copy_width * scale,
           height = PresetPanelGUI::A_B_Copy_height * scale;

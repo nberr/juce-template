@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    PluginNameInternalParameters.h
+    PluginNameSettings.h
     Created: 10 Jan 2022 1:19:26pm
     Author:  Nicholas Berriochoa
 
@@ -14,10 +14,28 @@
 class PluginNameSettings {
 public:
     //==============================================================================
-    inline static float GUIScale = 1;
-    inline static bool showSidePanel = false;
-    inline static bool showHoverTips = false;
+    enum Settings {
+        PNS_GUIScale = 0,
+        PNS_showSidePanel,
+        PNS_showHoverTips,
+        PNS_defaultPresetIndex,
+        PNS_TotalNumSettings
+    };
     
     //==============================================================================
-    inline static int defaultPreset = 0;
+    inline static const juce::String IDs[PNS_TotalNumSettings] =
+    {
+        "GUIScale",
+        "showSidePanel",
+        "showHoverTips",
+        "defaultPresetIndex"
+    };
+    
+    inline static const juce::var Values[PNS_TotalNumSettings] =
+    {
+        1.0,
+        false,
+        true,
+        0
+    };
 };

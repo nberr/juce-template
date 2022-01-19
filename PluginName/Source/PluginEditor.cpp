@@ -132,9 +132,13 @@ void PluginNameAudioProcessorEditor::paint (juce::Graphics& g)
 void PluginNameAudioProcessorEditor::resized()
 {
     // JUCE UI implementation
-    float scale = PluginNameSettings::GUIScale;
+    juce::ValueTree guiScale = audioProcessor.settings.getChild(PluginNameSettings::PNS_GUIScale);
+    juce::Identifier value ("value");
+    float scale = guiScale.getProperty(value);
+    
     int width = PluginNameGUI::width;
-    if (PluginNameSettings::showSidePanel) {
+    juce::ValueTree showSidePanel = audioProcessor.settings.getChild(PluginNameSettings::PNS_showSidePanel);
+    if (showSidePanel.getProperty(value)) {
         width += SidePanelGUI::width;
     }
         

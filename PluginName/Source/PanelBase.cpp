@@ -15,6 +15,8 @@ PanelBase::PanelBase(PluginNameAudioProcessor* inProcessor, ContextMenu* inConte
 {
     mProcessor = inProcessor;
     mContextMenu = inContextMenu;
+    
+    guiScale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale);
 }
 
 PanelBase::~PanelBase()

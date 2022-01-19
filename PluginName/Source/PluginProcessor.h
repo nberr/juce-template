@@ -63,6 +63,10 @@ public:
     
     //==============================================================================
     SettingsManager* getSettingsManager();
+    
+    juce::ValueTree settings;
+    
+    //==============================================================================
     PresetManager* getPresetManager();
     
 private:

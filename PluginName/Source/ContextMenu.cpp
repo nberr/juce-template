@@ -22,8 +22,8 @@ ContextMenu::ContextMenu(PluginNameAudioProcessor* inProcssor)
     
     mProcessor = inProcssor;
     
-    float scale = PluginNameSettings::GUIScale;
-    
+    // set the size menu based on the current scale
+    float scale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale).getProperty(juce::Identifier("value"));
     if (scale == PluginNameGUI::Scale::small) {
         small.setTicked(true);
     }
@@ -112,11 +112,11 @@ void ContextMenu::buildBaseMenu()
 //==============================================================================
 void ContextMenu::initMenuSize()
 {
-    float *scale = &PluginNameSettings::GUIScale;
     SettingsManager *sm = mProcessor->getSettingsManager();
     
-    small.setAction([this, scale, sm](){
-        *scale = PluginNameGUI::Scale::small;
+    small.setAction([this, sm](){
+        juce::ValueTree guiScale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale);
+        guiScale.setProperty( juce::Identifier("value"), PluginNameGUI::Scale::small, nullptr);
         
         small.setTicked(true);
         standard.setTicked(false);
@@ -128,8 +128,9 @@ void ContextMenu::initMenuSize()
     });
     
     
-    standard.setAction([this, scale, sm](){
-        *scale = PluginNameGUI::Scale::standard;
+    standard.setAction([this, sm](){
+        juce::ValueTree guiScale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale);
+        guiScale.setProperty( juce::Identifier("value"), PluginNameGUI::Scale::standard, nullptr);
         
         small.setTicked(false);
         standard.setTicked(true);
@@ -141,8 +142,9 @@ void ContextMenu::initMenuSize()
     });
     
     
-    large.setAction([this, scale, sm](){
-        *scale = PluginNameGUI::Scale::large;
+    large.setAction([this, sm](){
+        juce::ValueTree guiScale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale);
+        guiScale.setProperty( juce::Identifier("value"), PluginNameGUI::Scale::large, nullptr);
         
         small.setTicked(false);
         standard.setTicked(false);
@@ -153,8 +155,9 @@ void ContextMenu::initMenuSize()
         sm->saveSettings();
     });
     
-    extra_large.setAction([this, scale, sm](){
-        *scale = PluginNameGUI::Scale::extra_large;
+    extra_large.setAction([this, sm](){
+        juce::ValueTree guiScale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale);
+        guiScale.setProperty( juce::Identifier("value"), PluginNameGUI::Scale::extra_large, nullptr);
         
         small.setTicked(false);
         standard.setTicked(false);
@@ -165,8 +168,9 @@ void ContextMenu::initMenuSize()
         sm->saveSettings();
     });
     
-    xxl.setAction([this, scale, sm](){
-        *scale = PluginNameGUI::Scale::XXL;
+    xxl.setAction([this, sm](){
+        juce::ValueTree guiScale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale);
+        guiScale.setProperty( juce::Identifier("value"), PluginNameGUI::Scale::XXL, nullptr);
         
         small.setTicked(false);
         standard.setTicked(false);
