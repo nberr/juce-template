@@ -1,5 +1,5 @@
 # juce-template
-The aim of this project is to create a template plugin that contains common features that exist across plugins. The project includes a script written in python that can be used to generate a new JUCE project from the template. 
+The aim of this project is to create a template plugin that contains common features that exist across plugins. The implementation tries to handle "Everything the processing". In short, it handles all the other stuff your plugin should need besides DSP, whether that be audio or MIDI. The project includes a script written in python that can be used to generate a new JUCE project from the template. 
 
 ## Components
 The project contains a few different components that I found useful.
