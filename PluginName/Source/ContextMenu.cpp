@@ -40,7 +40,9 @@ ContextMenu::ContextMenu(PluginNameAudioProcessor* inProcssor)
         xxl.setTicked(true);
     }
     
-    initMenuSize();
+    showSidePanel.setTicked(mProcessor->settings.getChild(PluginNameSettings::PNS_showSidePanel).getProperty(juce::Identifier("value")));
+    
+    initMenuActions();
 }
 
 ContextMenu::~ContextMenu()
@@ -101,8 +103,10 @@ void ContextMenu::buildBaseMenu()
     sizes.addItem(xxl);
     
     preferences.clear();
-    preferences.addItem("Dark Mode", [](){});
-    preferences.addSubMenu("Size", sizes);
+    preferences.addItem(showSidePanel);
+    preferences.addItem("Enable Dark Mode", [](){});
+    preferences.addItem("Enable Scroll Input", [](){});
+    preferences.addSubMenu("Window Size", sizes);
     
     menu.addSubMenu("Preferences", preferences);
     menu.addSeparator();
@@ -110,7 +114,7 @@ void ContextMenu::buildBaseMenu()
 }
 
 //==============================================================================
-void ContextMenu::initMenuSize()
+void ContextMenu::initMenuActions()
 {
     SettingsManager *sm = mProcessor->getSettingsManager();
     
@@ -177,6 +181,15 @@ void ContextMenu::initMenuSize()
         large.setTicked(false);
         extra_large.setTicked(false);
         xxl.setTicked(true);
+        
+        sm->saveSettings();
+    });
+    
+    showSidePanel.setAction([this, sm](){
+        showSidePanel.setTicked(!showSidePanel.isTicked);
+        
+        juce::ValueTree ssp = mProcessor->settings.getChild(PluginNameSettings::PNS_showSidePanel);
+        ssp.setProperty(juce::Identifier("value"), showSidePanel.isTicked, nullptr);
         
         sm->saveSettings();
     });

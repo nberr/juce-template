@@ -38,4 +38,6 @@ public:
         true,
         0
     };
+    
+    inline static bool showSidePanel;
 };

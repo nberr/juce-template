@@ -37,13 +37,15 @@ private:
     juce::PopupMenu sizes;
     
     //==============================================================================
-    void initMenuSize();
+    void initMenuActions();
     
     juce::PopupMenu::Item small {"Small"};
     juce::PopupMenu::Item standard {"Standard"};
     juce::PopupMenu::Item large {"Large"};
     juce::PopupMenu::Item extra_large {"Extra Large"};
     juce::PopupMenu::Item xxl {"XXL"};
+    
+    juce::PopupMenu::Item showSidePanel {"Always Show Side Panel"};
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ContextMenu)

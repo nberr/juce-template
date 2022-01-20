@@ -16,6 +16,8 @@ SidePanel::SidePanel(PluginNameAudioProcessor *inProcessor, ContextMenu *inConte
 {
     setName("SidePanel");
     setComponentID("SidePanelID");
+    
+    addAndMakeVisible(b);
 }
 
 SidePanel::~SidePanel()
@@ -26,6 +28,6 @@ SidePanel::~SidePanel()
 //==============================================================================
 void SidePanel::resized()
 {
-    //float scale = guiScale.getProperty(juce::Identifier("value"));
-
+    float scale = guiScale.getProperty(juce::Identifier("value"));
+    b.setBounds(0, 0, 20 * scale, 20 * scale);
 }

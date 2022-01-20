@@ -29,7 +29,9 @@ MenuPanel::MenuPanel(PluginNameAudioProcessor *inProcessor, ContextMenu *inConte
     
     // master and advanced need to be toggleable 
     masterButton.setClickingTogglesState(true);
+    
     advancedButton.setClickingTogglesState(true);
+    advancedButton.setToggleable(mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale).getProperty(juce::Identifier("value")));
 }
 
 MenuPanel::~MenuPanel()
@@ -61,14 +63,8 @@ void MenuPanel::buttonClicked(juce::Button* b)
             // TODO: add masterOnOff parameter and toggle it here
         }
         else if (b == &advancedButton) {
-            juce::Identifier value ("value");
+            PluginNameSettings::showSidePanel = advancedButton.getToggleState();
             
-            if (advancedButton.getToggleState()) {
-                mProcessor->settings.getChild(PluginNameSettings::PNS_showSidePanel).setProperty(value, true, nullptr);
-            }
-            else {
-                mProcessor->settings.getChild(PluginNameSettings::PNS_showSidePanel).setProperty(value, false, nullptr);
-            }
             getParentComponent()->resized();
         }
         else if (b == &accountButton) {

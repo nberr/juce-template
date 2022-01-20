@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    InterfaceDefines.h
+    PluginNameGUI.h
     Created: 25 Nov 2021 8:56:01am
     Author:  Nicholas Berriochoa
 
