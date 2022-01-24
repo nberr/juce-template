@@ -10,8 +10,6 @@
 
 #include "PresetPanel.h"
 
-#include "DisplayPresetsOverlay.h"
-
 //==============================================================================
 PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 :   PanelBase(inProcessor, inContextMenu)
@@ -112,7 +110,7 @@ void PresetPanel::buttonClicked(juce::Button* b)
         }
         else if (b == &presetMenu) {
             // toggle overlay
-            juce::Component* overlay = getParentComponent()->findChildWithID("DisplayPresetsOverlayID");
+            juce::Component* overlay = getParentComponent()->findChildWithID("PresetDisplayOverlayID");
             if (overlay != nullptr) {
                 overlay->setVisible(!overlay->isVisible());
             }

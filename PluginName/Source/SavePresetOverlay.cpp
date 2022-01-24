@@ -12,14 +12,12 @@
 
 //==============================================================================
 SavePresetOverlay::SavePresetOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
-:   PanelBase(inProcessor, inContextMenu)
+:   OverlayBase(inProcessor, inContextMenu)
 {
     setName("SavePresetOverlay");
     setComponentID("SavePresetOverlayID");
     
     presetManager = mProcessor->getPresetManager();
-    
-    isOverlay = true;
     
     // initialize each button and add them to the scene
     for (juce::TextButton* button : buttons) {
@@ -46,7 +44,7 @@ void SavePresetOverlay::buttonClicked(juce::Button* b)
     if (b == &close) {
         setVisible(false);
         
-        juce::Component* overlay = getParentComponent()->findChildWithID("DisplayPresetsOverlayID");
+        juce::Component* overlay = getParentComponent()->findChildWithID("PresetDisplayOverlayID");
         if (overlay != nullptr) {
             overlay->setVisible(true);
         }

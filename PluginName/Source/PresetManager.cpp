@@ -81,6 +81,11 @@ juce::String PresetManager::getPresetName(int inPresetIndex)
     return mLocalPresets[inPresetIndex].getFileNameWithoutExtension();
 }
 
+juce::String PresetManager::getPresetPath()
+{
+    return mPresetDirectory;
+}
+
 //==============================================================================
 void PresetManager::createNewPreset()
 {

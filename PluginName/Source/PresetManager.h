@@ -29,6 +29,7 @@ public:
     //==============================================================================
     int getNumberOfPresets();
     juce::String getPresetName(int inPresetIndex);
+    juce::String getPresetPath();
     
     //==============================================================================
     void createNewPreset();
@@ -53,6 +54,7 @@ private:
     
     //==============================================================================
     juce::String mCurrentPresetName;
+    juce::String presetNotes;
     juce::String mPresetDirectory;
     
     //==============================================================================

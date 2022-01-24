@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    PanelBase.h
-    Created: 25 Nov 2021 8:55:47am
+    OverlayBase.h
+    Created: 23 Jan 2022 8:12:54am
     Author:  Nicholas Berriochoa
 
   ==============================================================================
@@ -10,22 +10,16 @@
 
 #pragma once
 
-#include <JuceHeader.h>
-
-#include "PluginNameGUI.h"
-#include "PluginNameLookAndFeel.h"
-#include "PluginProcessor.h"
-#include "ContextMenu.h"
-#include "PluginNameSettings.h"
+#include "PanelBase.h"
 
 //==============================================================================
-class PanelBase
-:   public juce::Component
+class OverlayBase
+:   public PanelBase
 {
 public:
     //==============================================================================
-    PanelBase(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
-    ~PanelBase();
+    OverlayBase(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    ~OverlayBase();
     
     //==============================================================================
     void paint(juce::Graphics& g) override;
@@ -33,11 +27,4 @@ public:
     //==============================================================================
     void mouseDown(const juce::MouseEvent& event) override;
     
-protected:
-    //==============================================================================
-    PluginNameAudioProcessor *mProcessor;
-    ContextMenu *mContextMenu;
-    
-    //==============================================================================
-    juce::ValueTree guiScale;
 };

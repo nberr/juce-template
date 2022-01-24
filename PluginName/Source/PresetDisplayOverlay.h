@@ -1,7 +1,7 @@
 /*
   ==============================================================================
 
-    DisplayPresetsOverlay.h
+    PresetDisplayOverlay.h
     Created: 25 Nov 2021 8:57:24am
     Author:  Nicholas Berriochoa
 
@@ -10,19 +10,21 @@
 
 #pragma once
 
-#include "PanelBase.h"
+#include "OverlayBase.h"
 
 #include "PresetManager.h"
+#include "PresetViewItem.h"
+#include "PresetViewManager.h"
 
 //==============================================================================
-class DisplayPresetsOverlay
-:   public PanelBase,
+class PresetDisplayOverlay
+:   public OverlayBase,
     public juce::Button::Listener
 {
 public:
     //==============================================================================
-    DisplayPresetsOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
-    ~DisplayPresetsOverlay();
+    PresetDisplayOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    ~PresetDisplayOverlay();
     
     //==============================================================================
     void resized() override;
@@ -46,6 +48,11 @@ private:
         &dismissOverlay
     };
     
+    PresetViewItem *rootViewItem;
+    PresetViewItem *userPresets, *factoryPresets;
+    
+    juce::TreeView presetsDisplay;
+    
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DisplayPresetsOverlay)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetDisplayOverlay)
 };

@@ -8,7 +8,7 @@
   ==============================================================================
 */
 
-#include "MarketplaceStatus.h"
+#include "RegistrationStatus.h"
 
 //==============================================================================
 juce::String MarketplaceStatus::getProductID()

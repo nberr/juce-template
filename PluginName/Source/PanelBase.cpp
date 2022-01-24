@@ -13,11 +13,13 @@
 //==============================================================================
 PanelBase::PanelBase(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 {
+    setName("PanelBase");
+    setComponentID("PanelBaseID");
+    
     mProcessor = inProcessor;
     mContextMenu = inContextMenu;
     
     guiScale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale);
-    isOverlay = false;
 }
 
 PanelBase::~PanelBase()
@@ -29,10 +31,6 @@ PanelBase::~PanelBase()
 void PanelBase::paint(juce::Graphics& g)
 {
     g.setColour(juce::Colours::white);
-    if (isOverlay) {
-        g.setColour(juce::Colours::white.withAlpha(0.5f));
-    }
-    
     g.fillAll();
     
     g.setColour(juce::Colours::black);

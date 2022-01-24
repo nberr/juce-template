@@ -10,13 +10,13 @@
 
 #pragma once
 
-#include "PanelBase.h"
+#include "OverlayBase.h"
 
 #include "PresetManager.h"
 
 //==============================================================================
 class SavePresetOverlay
-:   public PanelBase,
+:   public OverlayBase,
     public juce::Button::Listener
 {
 public:

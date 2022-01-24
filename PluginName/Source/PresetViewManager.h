@@ -1,8 +1,8 @@
 /*
   ==============================================================================
 
-    UnlockForm.h
-    Created: 25 Nov 2021 9:00:34am
+    PresetViewManager.h
+    Created: 21 Jan 2022 2:59:30pm
     Author:  Nicholas Berriochoa
 
   ==============================================================================
@@ -12,18 +12,17 @@
 
 #include <JuceHeader.h>
 
-#include "RegistrationStatus.h"
-
 //==============================================================================
-class UnlockForm
-:   public juce::OnlineUnlockForm
+class PresetViewManager
 {
 public:
     //==============================================================================
-    UnlockForm(MarketplaceStatus& status);
-    void dismiss() override;
+    PresetViewManager();
+    ~PresetViewManager();
     
 private:
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (UnlockForm)
+    
+    //==============================================================================
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetViewManager)
 };

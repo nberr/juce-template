@@ -1,25 +1,27 @@
 /*
   ==============================================================================
 
-    DisplayPresetsOverlay.cpp
+    PresetDisplayOverlay.cpp
     Created: 25 Nov 2021 8:57:24am
     Author:  Nicholas Berriochoa
 
   ==============================================================================
 */
 
-#include "DisplayPresetsOverlay.h"
+#include "PresetDisplayOverlay.h"
 
 //==============================================================================
-DisplayPresetsOverlay::DisplayPresetsOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
-:   PanelBase(inProcessor, inContextMenu)
+PresetDisplayOverlay::PresetDisplayOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
+:   OverlayBase(inProcessor, inContextMenu)
 {
-    setName("DisplayPresetsOverlay");
-    setComponentID("DisplayPresetsOverlayID");
+    setName("PresetDisplayOverlay");
+    setComponentID("PresetDisplayOverlayID");
     
     presetManager = mProcessor->getPresetManager();
     
-    isOverlay = true;
+    rootViewItem = new PresetViewItem("root", "", false, false);
+    userPresets = new PresetViewItem("User", "", false, true);
+    factoryPresets = new PresetViewItem("Defaults", "", false, true);
     
     // initialize each button and add them to the scene
     for (juce::TextButton* button : buttons) {
@@ -27,15 +29,27 @@ DisplayPresetsOverlay::DisplayPresetsOverlay(PluginNameAudioProcessor* inProcess
         button->addListener(this);
         addAndMakeVisible(button);
     }
+    
+    rootViewItem->setOpen(true);
+    
+    
+    
+    rootViewItem->addSubItem(userPresets);
+    rootViewItem->addSubItem(factoryPresets);
+    
+    presetsDisplay.setRootItem(rootViewItem);
+    presetsDisplay.setRootItemVisible(false);
+    
+    addAndMakeVisible(presetsDisplay);
 }
 
-DisplayPresetsOverlay::~DisplayPresetsOverlay()
+PresetDisplayOverlay::~PresetDisplayOverlay()
 {
-    
+    presetsDisplay.deleteRootItem();
 }
 
 //==============================================================================
-void DisplayPresetsOverlay::resized()
+void PresetDisplayOverlay::resized()
 {
     float scale = guiScale.getProperty(juce::Identifier("value"));;
     
@@ -57,10 +71,12 @@ void DisplayPresetsOverlay::resized()
                               buffer,
                               width,
                               height);
+    
+    presetsDisplay.setBounds(0, dismissOverlay.getBottom() + buffer, getWidth(), getHeight() - height);
 }
 
 //==============================================================================
-void DisplayPresetsOverlay::buttonClicked(juce::Button* b)
+void PresetDisplayOverlay::buttonClicked(juce::Button* b)
 {
     bool rightClick = juce::ModifierKeys::getCurrentModifiers().isPopupMenu();
     

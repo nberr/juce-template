@@ -27,13 +27,13 @@ public:
     
     //==============================================================================
     typedef enum type_t {
-        is_int,
+        is_int = 0,
         is_float,
         is_bool,
         is_choice
     } type;
     
-    inline static type Types[PNP_TotalNumParameters] = {
+    inline static const type Types[PNP_TotalNumParameters] = {
         is_int,
         is_float,
         is_bool,

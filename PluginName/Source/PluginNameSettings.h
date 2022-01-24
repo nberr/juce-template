@@ -18,7 +18,7 @@ public:
         PNS_GUIScale = 0,
         PNS_showSidePanel,
         PNS_showHoverTips,
-        PNS_defaultPresetIndex,
+        PNS_defaultPresetName,
         PNS_TotalNumSettings
     };
     
@@ -28,7 +28,7 @@ public:
         "GUIScale",
         "showSidePanel",
         "showHoverTips",
-        "defaultPresetIndex"
+        "defaultPresetName"
     };
     
     inline static const juce::var Values[PNS_TotalNumSettings] =
@@ -36,7 +36,7 @@ public:
         1.0,
         false,
         true,
-        0
+        "Default"
     };
     
     inline static bool showSidePanel;
