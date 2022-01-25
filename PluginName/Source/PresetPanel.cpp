@@ -10,6 +10,8 @@
 
 #include "PresetPanel.h"
 
+#include "PresetManager.h"
+
 //==============================================================================
 PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 :   PanelBase(inProcessor, inContextMenu)
@@ -119,7 +121,25 @@ void PresetPanel::buttonClicked(juce::Button* b)
             
         }
         else if (b == &presetA) {
+            
+            switch(mProcessor->getPresetManager()->quickPresetInUse) {
+                case PresetManager::QuickPreset::Preset_A:
+                    
+                    presetCopy.setButtonText("<-");
+                    
+                    break;
+                case PresetManager::QuickPreset::Preset_B:
+                    
+                    presetCopy.setButtonText("->");
+                    
+                    break;
+                default:
+                    jassertfalse;
+            }
+            
+            mProcessor->getPresetManager()->fromToggle = true;
             mProcessor->getPresetManager()->toggleQuickPreset();
+            mProcessor->getPresetManager()->fromToggle = false;
         }
         else if (b == &presetCopy) {
             mProcessor->getPresetManager()->copyQuickPreset();

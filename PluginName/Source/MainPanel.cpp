@@ -81,7 +81,7 @@ void MainPanel::sliderValueChanged(juce::Slider* s)
     }
 }
 
-void MainPanel::comboBoxChanged (juce::ComboBox* cb)
+void MainPanel::comboBoxChanged(juce::ComboBox* cb)
 {
     if (cb == &pChoice) {
         mProcessor->getPresetManager()->updateQuickPreset();

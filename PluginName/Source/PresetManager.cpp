@@ -210,6 +210,15 @@ void PresetManager::populateViewItem(PresetViewItem* item)
 //==============================================================================
 void PresetManager::updateQuickPreset()
 {
+    // if this function was called from toggling the presets, exit.
+    // this is necessary because calling toggleQuickPreset triggers
+    // the listener for comboBoxChanged and sliderValueChanged which
+    // then calls this function. This doesn't and shouldn't be done
+    // so this boolean protects that from happening
+    if (fromToggle) {
+        return;
+    }
+    
     switch (quickPresetInUse) {
         case QuickPreset::Preset_A:
             
