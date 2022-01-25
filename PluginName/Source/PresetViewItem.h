@@ -21,16 +21,20 @@ public:
     PresetViewItem(juce::String inName, juce::String inNotes, bool inIsDefault, bool inIsDirectory);
     ~PresetViewItem();
     
+    //==============================================================================
     bool mightContainSubItems() override;
     void paintItem(juce::Graphics& g, int width, int height) override;
+    
+    //==============================================================================
+    bool isDirectory = false;
     
 private:
     //==============================================================================
     juce::String name;
     juce::String notes;
+    juce::String path;
     
     bool isDefault = false;
-    bool isDirectory = false;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetViewItem)

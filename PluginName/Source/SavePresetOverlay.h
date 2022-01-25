@@ -40,7 +40,7 @@ private:
     juce::TextButton cancel {"cancel"};
     
     //==============================================================================
-    std::vector<juce::TextButton*> buttons = {
+    std::vector<juce::Button*> buttons = {
         &close,
         &save,
         &cancel
@@ -51,6 +51,16 @@ private:
     juce::Label presetName {"Preset Name"};
     juce::Label notes {"Notes (optional)"};
     juce::Label makeDefault {"Make Default"};
+    juce::Label presetNameRequired {"Preset Name Is Required"};
+    
+    //==============================================================================
+    std::vector<juce::Label*> labels = {
+        &saveNewPreset,
+        &presetName,
+        &notes,
+        &makeDefault,
+        &presetNameRequired
+    };
     
     //==============================================================================
     juce::TextEditor presetNameInput;

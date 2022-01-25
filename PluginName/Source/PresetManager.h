@@ -12,6 +12,8 @@
 
 #include <JuceHeader.h>
 
+#include "PresetViewItem.h"
+
 #define PRESET_FILE_EXTENSION ".xml"
 
 //==============================================================================
@@ -19,7 +21,7 @@ class PresetManager
 {
 public:
     //==============================================================================
-    PresetManager(juce::AudioProcessor* inProcssor);
+    PresetManager(juce::AudioProcessor* inProcssor, juce::AudioProcessorValueTreeState* inParameters);
     ~PresetManager();
     
     //==============================================================================
@@ -41,9 +43,16 @@ public:
     bool getIsCurrentPresetSaved();
     juce::String getCurrentPresetName();
     
+    //==============================================================================
+    void populateViewItem(PresetViewItem* item);
+    
 private:
     //==============================================================================
     void storeLocalPreset();
+    
+    //==============================================================================
+    juce::AudioProcessor* mProcessor;
+    juce::AudioProcessorValueTreeState *parameters;
     
     //==============================================================================
     bool mCurrentPresetIsSaved;
@@ -56,9 +65,6 @@ private:
     juce::String mCurrentPresetName;
     juce::String presetNotes;
     juce::String mPresetDirectory;
-    
-    //==============================================================================
-    juce::AudioProcessor* mProcessor;
     
     //==============================================================================
     juce::XmlElement* mCurrentPresetXml;

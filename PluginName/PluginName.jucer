@@ -40,12 +40,6 @@
           <FILE id="ZxvZAr" name="PresetViewItem.h" compile="0" resource="0"
                 file="Source/PresetViewItem.h"/>
         </GROUP>
-        <GROUP id="{50AD59E9-E34F-C19D-6928-6C43F257DC94}" name="PresetViewManager">
-          <FILE id="kw9OTw" name="PresetViewManager.cpp" compile="1" resource="0"
-                file="Source/PresetViewManager.cpp"/>
-          <FILE id="qX4yq9" name="PresetViewManager.h" compile="0" resource="0"
-                file="Source/PresetViewManager.h"/>
-        </GROUP>
         <FILE id="DTaPq6" name="PresetManager.cpp" compile="1" resource="0"
               file="Source/PresetManager.cpp"/>
         <FILE id="GYvZPf" name="PresetManager.h" compile="0" resource="0" file="Source/PresetManager.h"/>

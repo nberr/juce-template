@@ -25,7 +25,7 @@ PluginNameAudioProcessor::PluginNameAudioProcessor()
 #endif
     parameters(*this, &undoManager, "PARAMETERS", createParameterLayout()),
     settingsManager(this, &settings),
-    presetManager(this)
+    presetManager(this, &parameters)
 {
 }
 

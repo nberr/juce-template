@@ -51,6 +51,9 @@ PluginNameAudioProcessorEditor::PluginNameAudioProcessorEditor (PluginNameAudioP
         addChildComponent(overlay);
     }
         
+    juce::ValueTree ssp = audioProcessor.settings.getChild(PluginNameSettings::PNS_showSidePanel);
+    PluginNameSettings::showSidePanel = ssp.getProperty(juce::Identifier("value"));
+    
     // initialize the unlock form
     // add to scene but don't make visible
     unlockForm.setAlwaysOnTop(true);
@@ -139,9 +142,6 @@ void PluginNameAudioProcessorEditor::resized()
     // JUCE UI implementation
     juce::ValueTree guiScale = audioProcessor.settings.getChild(PluginNameSettings::PNS_GUIScale);
     float scale = guiScale.getProperty(juce::Identifier("value"));
-    
-    juce::ValueTree ssp = audioProcessor.settings.getChild(PluginNameSettings::PNS_showSidePanel);
-    PluginNameSettings::showSidePanel = ssp.getProperty(juce::Identifier("value"));
     
     int width = PluginNameGUI::width;
     if (PluginNameSettings::showSidePanel) {

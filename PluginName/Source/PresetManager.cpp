@@ -11,10 +11,11 @@
 #include "PresetManager.h"
 
 //==============================================================================
-PresetManager::PresetManager(juce::AudioProcessor* inProcssor)
-:   mCurrentPresetIsSaved(false),
-    mCurrentPresetName("Untitled"),
-    mProcessor(inProcssor)
+PresetManager::PresetManager(juce::AudioProcessor* inProcssor, juce::AudioProcessorValueTreeState* inParameters)
+:   mProcessor(inProcssor),
+    parameters(inParameters),
+    mCurrentPresetIsSaved(false),
+    mCurrentPresetName("Untitled")
 {
     juce::String dir_sep = juce::File::getSeparatorString();
     mPresetDirectory = juce::File::getSpecialLocation(juce::File::userMusicDirectory).getFullPathName()
@@ -22,9 +23,13 @@ PresetManager::PresetManager(juce::AudioProcessor* inProcssor)
                        + dir_sep + JucePlugin_Name
                        + dir_sep + "Presets";
     
-    if (!juce::File(mPresetDirectory).exists())
-    {
-        juce::File(mPresetDirectory).createDirectory();
+    
+    if (!juce::File(mPresetDirectory).exists()) {
+        
+        // create the preset directory
+        if(juce::File(mPresetDirectory).createDirectory().fail("Failed to create preset directory")) {
+            jassertfalse;
+        }
     }
     
     storeLocalPreset();
@@ -118,23 +123,24 @@ void PresetManager::savePreset()
 
 void PresetManager::saveAsPreset(juce::String inPresetName)
 {
+    // path information
     juce::String dir_sep = juce::File::getSeparatorString();
-    juce::File presetFile = juce::File(mPresetDirectory + dir_sep + inPresetName + PRESET_FILE_EXTENSION);
+    juce::File presetXML = juce::File(mPresetDirectory + dir_sep + inPresetName + PRESET_FILE_EXTENSION);
     
-    if (!presetFile.exists())
-    {
-        presetFile.create();
-    }
-    else
-    {
-        presetFile.deleteFile();
+    // delete the preset file if it exists
+    // save as overwrites the existing settings
+    if (presetXML.exists()) {
+        presetXML.deleteFile();
     }
     
-    juce::MemoryBlock destinationData;
-    mProcessor->getStateInformation(destinationData);
+    if (presetXML.create().fail("Failed to create xml file")) {
+        jassertfalse;
+    }
     
-    presetFile.appendData(destinationData.getData(),
-                          destinationData.getSize());
+    // convert parameter state to xml and write to data to the file
+    auto state = parameters->copyState();
+    std::unique_ptr<juce::XmlElement> xml = state.createXml();
+    xml->writeTo(presetXML);
     
     mCurrentPresetIsSaved = true;
     mCurrentPresetName = inPresetName;
@@ -155,6 +161,7 @@ void PresetManager::loadPreset(int inPresetIndex)
         mProcessor->setStateInformation(presetBinary.getData(),
                                         (int)presetBinary.getSize());
     }
+
 }
 
 //==============================================================================
@@ -180,5 +187,19 @@ void PresetManager::storeLocalPreset()
     {
         juce::File preset = entry.getFile();
         mLocalPresets.add(preset);
+    }
+}
+
+//==============================================================================
+void PresetManager::populateViewItem(PresetViewItem* item)
+{
+    if (item->isDirectory) {
+        juce::File directory(mPresetDirectory);
+        
+        juce::Array<juce::File> presets = directory.findChildFiles(juce::File::TypesOfFileToFind::findFiles, false, "*.xml");
+        
+        for (juce::File f : presets) {
+            item->addSubItem(new PresetViewItem(f.getFileName(), "", false, false));
+        }
     }
 }

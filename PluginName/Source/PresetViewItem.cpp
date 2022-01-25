@@ -17,7 +17,6 @@ PresetViewItem::PresetViewItem(juce::String inName, juce::String inNotes, bool i
     notes = inNotes;
     isDefault = inIsDefault;
     isDirectory = inIsDirectory;
-    //addSubItem(new PresetViewItem(level));
 }
 
 PresetViewItem::~PresetViewItem()
@@ -34,5 +33,5 @@ void PresetViewItem::paintItem(juce::Graphics& g, int width, int height)
 {
     g.fillAll(juce::Colours::grey);
     g.setColour(juce::Colours::black);
-    g.drawText("item", 0, 0, width, height, juce::Justification::left);
+    g.drawText(name, 5, 0, width, height, juce::Justification::left);
 }

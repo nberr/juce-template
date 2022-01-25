@@ -30,17 +30,25 @@ PresetDisplayOverlay::PresetDisplayOverlay(PluginNameAudioProcessor* inProcessor
         addAndMakeVisible(button);
     }
     
+    // Configure the preset view
     rootViewItem->setOpen(true);
     
+    // populate the preset categories
+    presetManager->populateViewItem(userPresets);
+    presetManager->populateViewItem(factoryPresets);
     
-    
+    // add the items to the tree
     rootViewItem->addSubItem(userPresets);
     rootViewItem->addSubItem(factoryPresets);
     
+    // Configures the preset display and add it to the viewport
+    // added to the viewpoint to show scroll bars when there a
+    // lot of presets
     presetsDisplay.setRootItem(rootViewItem);
     presetsDisplay.setRootItemVisible(false);
     
-    addAndMakeVisible(presetsDisplay);
+    displayViewport.addAndMakeVisible(presetsDisplay);
+    addAndMakeVisible(displayViewport);
 }
 
 PresetDisplayOverlay::~PresetDisplayOverlay()
@@ -72,7 +80,9 @@ void PresetDisplayOverlay::resized()
                               width,
                               height);
     
-    presetsDisplay.setBounds(0, dismissOverlay.getBottom() + buffer, getWidth(), getHeight() - height);
+    // TODO: adjust values to work with changing GUI size
+    displayViewport.setBounds(0, dismissOverlay.getBottom() + buffer, getWidth(), getHeight() - (buffer * 2) - height);
+    presetsDisplay.setBounds(0, 0, displayViewport.getWidth(), displayViewport.getHeight());
 }
 
 //==============================================================================

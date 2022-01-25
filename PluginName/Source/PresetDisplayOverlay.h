@@ -14,7 +14,6 @@
 
 #include "PresetManager.h"
 #include "PresetViewItem.h"
-#include "PresetViewManager.h"
 
 //==============================================================================
 class PresetDisplayOverlay
@@ -48,6 +47,10 @@ private:
         &dismissOverlay
     };
     
+    //==============================================================================
+    juce::Viewport displayViewport;
+    
+    //==============================================================================
     PresetViewItem *rootViewItem;
     PresetViewItem *userPresets, *factoryPresets;
     
