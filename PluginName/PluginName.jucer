@@ -40,6 +40,7 @@
           <FILE id="ZxvZAr" name="PresetViewItem.h" compile="0" resource="0"
                 file="Source/PresetViewItem.h"/>
         </GROUP>
+        <GROUP id="{376A1EF7-91B6-105B-4131-82A94E0D23BE}" name="Toggle"/>
         <FILE id="DTaPq6" name="PresetManager.cpp" compile="1" resource="0"
               file="Source/PresetManager.cpp"/>
         <FILE id="GYvZPf" name="PresetManager.h" compile="0" resource="0" file="Source/PresetManager.h"/>

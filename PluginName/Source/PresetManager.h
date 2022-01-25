@@ -46,6 +46,12 @@ public:
     //==============================================================================
     void populateViewItem(PresetViewItem* item);
     
+    //==============================================================================
+    void updateQuickPreset();
+    void toggleQuickPreset();
+    void copyQuickPreset();
+    
+    
 private:
     //==============================================================================
     void storeLocalPreset();
@@ -68,6 +74,11 @@ private:
     
     //==============================================================================
     juce::XmlElement* mCurrentPresetXml;
+    
+    //==============================================================================
+    juce::MemoryBlock presetA;
+    juce::MemoryBlock presetB;
+    bool presetToggle = false;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetManager)

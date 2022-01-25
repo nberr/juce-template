@@ -32,6 +32,9 @@ PresetManager::PresetManager(juce::AudioProcessor* inProcssor, juce::AudioProces
         }
     }
     
+    mProcessor->getStateInformation(presetA);
+    mProcessor->getStateInformation(presetB);
+    
     storeLocalPreset();
 }
 
@@ -202,4 +205,32 @@ void PresetManager::populateViewItem(PresetViewItem* item)
             item->addSubItem(new PresetViewItem(f.getFileName(), "", false, false));
         }
     }
+}
+
+//==============================================================================
+void PresetManager::updateQuickPreset()
+{
+    if (presetToggle) {
+        mProcessor->getStateInformation(presetA);
+    }
+    else {
+        mProcessor->getStateInformation(presetB);
+    }
+}
+
+void PresetManager::toggleQuickPreset()
+{
+    if (presetToggle) {
+        mProcessor->setStateInformation(presetA.getData(), (int)presetA.getSize());
+    }
+    else {
+        mProcessor->setStateInformation(presetB.getData(), (int)presetB.getSize());
+    }
+    
+    presetToggle = !presetToggle;
+}
+
+void PresetManager::copyQuickPreset()
+{
+    DBG("Preset Copied");
 }

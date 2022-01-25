@@ -119,13 +119,13 @@ void PresetPanel::buttonClicked(juce::Button* b)
             
         }
         else if (b == &presetA) {
-            
+            mProcessor->getPresetManager()->toggleQuickPreset();
         }
         else if (b == &presetCopy) {
-            
+            mProcessor->getPresetManager()->copyQuickPreset();
         }
         else if (b == &presetB) {
-            
+            mProcessor->getPresetManager()->toggleQuickPreset();
         }
     }
 }

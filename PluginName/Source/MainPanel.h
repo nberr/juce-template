@@ -20,7 +20,10 @@
 
 //==============================================================================
 class MainPanel
-:   public PanelBase
+:   public PanelBase,
+    public juce::Button::Listener,
+    public juce::Slider::Listener,
+    public juce::ComboBox::Listener
 {
 public:
     //==============================================================================
@@ -29,6 +32,11 @@ public:
     
     //==============================================================================
     void resized() override;
+    
+    //==============================================================================
+    void buttonClicked(juce::Button* b) override;
+    void sliderValueChanged(juce::Slider* s) override;
+    void comboBoxChanged(juce::ComboBox* cb) override;
     
 private:
     //==============================================================================

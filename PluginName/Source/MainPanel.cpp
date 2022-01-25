@@ -25,15 +25,19 @@ MainPanel::MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inConte
     
     pInt.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     pInt.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 0, 0);
+    pInt.addListener(this);
     
     pFloat.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     pFloat.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 0, 0);
+    pFloat.addListener(this);
     
     int i = 1;
     for (juce::String choice : PluginNameParameters::Choices[3]) {
         pChoice.addItem(choice, i++);
     }
+    pChoice.addListener(this);
     
+    pBool.addListener(this);
     pBool.setClickingTogglesState(true);
     
     addAndMakeVisible(pInt);
@@ -57,4 +61,20 @@ void MainPanel::resized()
     pFloat.setBounds(0, 50, 50, 50);
     pChoice.setBounds(100, 0, 100, 50);
     pBool.setBounds(100, 100, 100, 50);
+}
+
+//==============================================================================
+void MainPanel::buttonClicked(juce::Button* b)
+{
+    mProcessor->getPresetManager()->updateQuickPreset();
+}
+
+void MainPanel::sliderValueChanged(juce::Slider* s)
+{
+    mProcessor->getPresetManager()->updateQuickPreset();
+}
+
+void MainPanel::comboBoxChanged (juce::ComboBox* cb)
+{
+    mProcessor->getPresetManager()->updateQuickPreset();
 }
