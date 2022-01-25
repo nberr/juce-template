@@ -76,9 +76,14 @@ private:
     juce::XmlElement* mCurrentPresetXml;
     
     //==============================================================================
+    enum QuickPreset {
+        Preset_A = 0,
+        Preset_B
+    };
+    
     juce::MemoryBlock presetA;
     juce::MemoryBlock presetB;
-    bool presetToggle = false;
+    QuickPreset quickPresetInUse = QuickPreset::Preset_A;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetManager)

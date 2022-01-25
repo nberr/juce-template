@@ -210,27 +210,66 @@ void PresetManager::populateViewItem(PresetViewItem* item)
 //==============================================================================
 void PresetManager::updateQuickPreset()
 {
-    if (presetToggle) {
-        mProcessor->getStateInformation(presetA);
-    }
-    else {
-        mProcessor->getStateInformation(presetB);
+    switch (quickPresetInUse) {
+        case QuickPreset::Preset_A:
+            
+            DBG("Updated A");
+            mProcessor->getStateInformation(presetA);
+            
+            break;
+        case QuickPreset::Preset_B:
+            
+            DBG("Updated B");
+            mProcessor->getStateInformation(presetB);
+            
+            break;
+        default:
+            jassertfalse;
     }
 }
 
 void PresetManager::toggleQuickPreset()
 {
-    if (presetToggle) {
-        mProcessor->setStateInformation(presetA.getData(), (int)presetA.getSize());
+    switch (quickPresetInUse) {
+        case QuickPreset::Preset_A:
+            DBG("Swapped from A to B");
+            // change the current preset and load the data
+            quickPresetInUse = QuickPreset::Preset_B;
+            mProcessor->setStateInformation(presetB.getData(), (int)presetB.getSize());
+            
+            break;
+        case QuickPreset::Preset_B:
+            DBG("Swapped from B to A");
+            // change the current preset and load the data
+            quickPresetInUse = QuickPreset::Preset_A;
+            mProcessor->setStateInformation(presetA.getData(), (int)presetA.getSize());
+            
+            break;
+        default:
+            jassertfalse;
     }
-    else {
-        mProcessor->setStateInformation(presetB.getData(), (int)presetB.getSize());
-    }
-    
-    presetToggle = !presetToggle;
 }
 
 void PresetManager::copyQuickPreset()
 {
-    DBG("Preset Copied");
+    switch (quickPresetInUse) {
+        case QuickPreset::Preset_A:
+            DBG("Copying A to B");
+            
+            // change the current preset and copy it to the other
+            quickPresetInUse = QuickPreset::Preset_B;
+            presetA.copyTo(presetB.getData(), 0, presetB.getSize());
+            
+            break;
+        case QuickPreset::Preset_B:
+            DBG("Copying B to A");
+            
+            // change the current preset and copy it to the other
+            quickPresetInUse = QuickPreset::Preset_A;
+            presetB.copyTo(presetA.getData(), 0, presetA.getSize());
+            
+            break;
+        default:
+            jassertfalse;
+    }
 }

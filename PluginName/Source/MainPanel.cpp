@@ -66,15 +66,24 @@ void MainPanel::resized()
 //==============================================================================
 void MainPanel::buttonClicked(juce::Button* b)
 {
-    mProcessor->getPresetManager()->updateQuickPreset();
+    if (b == &pBool) {
+        mProcessor->getPresetManager()->updateQuickPreset();
+    }
 }
 
 void MainPanel::sliderValueChanged(juce::Slider* s)
 {
-    mProcessor->getPresetManager()->updateQuickPreset();
+    if (s == &pInt) {
+        mProcessor->getPresetManager()->updateQuickPreset();
+    }
+    else if (s == &pFloat) {
+        mProcessor->getPresetManager()->updateQuickPreset();
+    }
 }
 
 void MainPanel::comboBoxChanged (juce::ComboBox* cb)
 {
-    mProcessor->getPresetManager()->updateQuickPreset();
+    if (cb == &pChoice) {
+        mProcessor->getPresetManager()->updateQuickPreset();
+    }
 }

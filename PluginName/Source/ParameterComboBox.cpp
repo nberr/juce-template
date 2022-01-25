@@ -15,7 +15,7 @@ ParameterComboBox::ParameterComboBox(juce::AudioProcessorValueTreeState& stateTo
 :   juce::ComboBox(parameterID),
     attachment(stateToControl, parameterID, *this)
 {
-    
+    setSelectedId(1);
 }
 
 ParameterComboBox::~ParameterComboBox()
