@@ -120,7 +120,7 @@ void PresetPanel::buttonClicked(juce::Button* b)
         else if (b == &nextPreset) {
             
         }
-        else if (b == &presetA) {
+        else if (b == &presetA || b == &presetB) {
             
             switch(mProcessor->getPresetManager()->quickPresetInUse) {
                 case PresetManager::QuickPreset::Preset_A:
@@ -137,15 +137,10 @@ void PresetPanel::buttonClicked(juce::Button* b)
                     jassertfalse;
             }
             
-            mProcessor->getPresetManager()->fromToggle = true;
             mProcessor->getPresetManager()->toggleQuickPreset();
-            mProcessor->getPresetManager()->fromToggle = false;
         }
         else if (b == &presetCopy) {
             mProcessor->getPresetManager()->copyQuickPreset();
-        }
-        else if (b == &presetB) {
-            mProcessor->getPresetManager()->toggleQuickPreset();
         }
     }
 }

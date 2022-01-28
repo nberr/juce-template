@@ -124,7 +124,7 @@ void PresetManager::savePreset()
     mCurrentPresetIsSaved = true;
 }
 
-void PresetManager::saveAsPreset(juce::String inPresetName)
+void PresetManager::saveAsPreset(juce::String inPresetName, juce::String notes)
 {
     // path information
     juce::String dir_sep = juce::File::getSeparatorString();
@@ -144,6 +144,8 @@ void PresetManager::saveAsPreset(juce::String inPresetName)
     auto state = parameters->copyState();
     std::unique_ptr<juce::XmlElement> xml = state.createXml();
     xml->writeTo(presetXML);
+    
+    juce::ValueTree notesTree = juce::ValueTree(juce::Identifier("Notes"));
     
     mCurrentPresetIsSaved = true;
     mCurrentPresetName = inPresetName;
@@ -235,10 +237,14 @@ void PresetManager::updateQuickPreset()
         default:
             jassertfalse;
     }
+    
+    fromToggle = false;
 }
 
 void PresetManager::toggleQuickPreset()
 {
+    fromToggle = true;
+    
     switch (quickPresetInUse) {
         case QuickPreset::Preset_A:
             DBG("Swapped from A to B");

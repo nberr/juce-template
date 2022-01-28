@@ -36,7 +36,7 @@ public:
     //==============================================================================
     void createNewPreset();
     void savePreset();
-    void saveAsPreset(juce::String inPresetName);
+    void saveAsPreset(juce::String inPresetName, juce::String notes);
     void loadPreset(int inPresetIndex);
     
     //==============================================================================
@@ -57,8 +57,6 @@ public:
     };
     
     QuickPreset quickPresetInUse = QuickPreset::Preset_A;
-    bool fromToggle = false;
-    
     
 private:
     //==============================================================================
@@ -86,6 +84,8 @@ private:
     //==============================================================================
     juce::MemoryBlock presetA;
     juce::MemoryBlock presetB;
+    
+    bool fromToggle = false;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetManager)
