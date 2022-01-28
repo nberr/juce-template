@@ -1,6 +1,6 @@
 [submodule "JUCE"]
-	path = JUCE
+	path = PluginName/External/JUCE
 	url = https://github.com/juce-framework/JUCE.git
 [submodule "react-juce"]
-	path = react-juce
+	path = PluginName/External/react-juce
 	url = https://github.com/nick-thompson/react-juce
