@@ -1,0 +1,6 @@
+[submodule "JUCE"]
+	path = JUCE
+	url = https://github.com/juce-framework/JUCE
+[submodule "react-juce"]
+	path = react-juce
+	url = https://github.com/nick-thompson/react-juce

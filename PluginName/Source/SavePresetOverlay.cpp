@@ -72,7 +72,8 @@ void SavePresetOverlay::buttonClicked(juce::Button* b)
             return;
         }
         
-        presetManager->saveAsPreset(name);
+        // TODO: sanitize notes text
+        presetManager->saveAsPreset(name, notes.getText());
         
         // TODO: reload values in PresetDisplayOverlay
     }
