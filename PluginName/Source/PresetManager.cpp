@@ -128,24 +128,41 @@ void PresetManager::saveAsPreset(juce::String inPresetName, juce::String notes)
 {
     // path information
     juce::String dir_sep = juce::File::getSeparatorString();
-    juce::File presetXML = juce::File(mPresetDirectory + dir_sep + inPresetName + PRESET_FILE_EXTENSION);
+    juce::File presetFile = juce::File(mPresetDirectory + dir_sep + inPresetName + PRESET_FILE_EXTENSION);
     
     // delete the preset file if it exists
     // save as overwrites the existing settings
-    if (presetXML.exists()) {
-        presetXML.deleteFile();
+    if (presetFile.exists()) {
+        presetFile.deleteFile();
     }
     
-    if (presetXML.create().fail("Failed to create xml file")) {
+    if (presetFile.create().fail("Failed to create xml file")) {
         jassertfalse;
     }
     
-    // convert parameter state to xml and write to data to the file
-    auto state = parameters->copyState();
-    std::unique_ptr<juce::XmlElement> xml = state.createXml();
-    xml->writeTo(presetXML);
+    // XML tree setup
+    juce::ValueTree mainTree = juce::ValueTree(juce::Identifier("Preset"));
     
+    // convert parameter state to xml and write to data to the file
+    juce::ValueTree parameterTree = parameters->copyState();
+    
+    // notes tree for user notes. this is optional.
     juce::ValueTree notesTree = juce::ValueTree(juce::Identifier("Notes"));
+    DBG(notes);
+    if (notes.isNotEmpty()) {
+        DBG(notes);
+        notesTree.setProperty(juce::Identifier("text"), notes, nullptr);
+    }
+    
+    // add the sub-trees
+    mainTree.appendChild(parameterTree, nullptr);
+    mainTree.appendChild(notesTree, nullptr);
+    
+    // create the xml and write the file
+    std::unique_ptr<juce::XmlElement> xml = mainTree.createXml();
+    if (!xml->writeTo(presetFile)) {
+        jassertfalse;
+    }
     
     mCurrentPresetIsSaved = true;
     mCurrentPresetName = inPresetName;
@@ -204,7 +221,15 @@ void PresetManager::populateViewItem(PresetViewItem* item)
         juce::Array<juce::File> presets = directory.findChildFiles(juce::File::TypesOfFileToFind::findFiles, false, "*.xml");
         
         for (juce::File f : presets) {
-            item->addSubItem(new PresetViewItem(f.getFileName(), "", false, false));
+            
+            // parse the notes from the XML file
+            juce::String notes;
+            juce::XmlDocument xmlDoc {f};
+            juce::XmlElement element = *xmlDoc.getDocumentElement();
+            
+            notes = element.getChildByName("Notes")->getStringAttribute("text");
+            
+            item->addSubItem(new PresetViewItem(f.getFileName(), notes, false, false));
         }
     }
 }
