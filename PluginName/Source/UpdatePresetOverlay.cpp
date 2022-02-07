@@ -11,13 +11,13 @@
 #include "UpdatePresetOverlay.h"
 
 //==============================================================================
-UpdatePresetOverlay::UpdatePresetOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
-:   PanelBase(inProcessor, inContextMenu)
+UpdatePresetOverlay::UpdatePresetOverlay(PluginNameAudioProcessor* processor, ContextMenu* contextMenu)
+:   PanelBase(processor, contextMenu)
 {
     setName("UpdatePresetOverlay");
     setComponentID("UpdatePresetOverlayID");
     
-    presetManager = mProcessor->getPresetManager();
+    presetManager = processor->getPresetManager();
 }
 
 UpdatePresetOverlay::~UpdatePresetOverlay()

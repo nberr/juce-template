@@ -11,9 +11,9 @@
 #include "PresetManager.h"
 
 //==============================================================================
-PresetManager::PresetManager(juce::AudioProcessor* inProcssor, juce::AudioProcessorValueTreeState* inParameters)
-:   mProcessor(inProcssor),
-    parameters(inParameters),
+PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcessorValueTreeState* parameters)
+:   processor(processor),
+    parameters(parameters),
     mCurrentPresetIsSaved(false),
     mCurrentPresetName("Untitled")
 {
@@ -32,8 +32,8 @@ PresetManager::PresetManager(juce::AudioProcessor* inProcssor, juce::AudioProces
         }
     }
     
-    mProcessor->getStateInformation(presetA);
-    mProcessor->getStateInformation(presetB);
+    processor->getStateInformation(presetA);
+    processor->getStateInformation(presetB);
     
     storeLocalPreset();
 }
@@ -46,7 +46,7 @@ PresetManager::~PresetManager()
 //==============================================================================
 void PresetManager::getXmlForPreset(juce::XmlElement* inElement)
 {
-    auto& parameters = mProcessor->getParameters();
+    const juce::Array<juce::AudioProcessorParameter*>& parameters = processor->getParameters();
     
     for (int i = 0; i < parameters.size(); i++)
     {
@@ -60,7 +60,7 @@ void PresetManager::loadPresetForXml(juce::XmlElement* inElement)
 {
     mCurrentPresetXml = inElement;
     
-    auto& parameters = mProcessor->getParameters();
+    const juce::Array<juce::AudioProcessorParameter*>& parameters = processor->getParameters();
     
     for (int i = 0; i < mCurrentPresetXml->getNumAttributes(); i++)
     {
@@ -97,7 +97,7 @@ juce::String PresetManager::getPresetPath()
 //==============================================================================
 void PresetManager::createNewPreset()
 {
-    auto& parameters = mProcessor->getParameters();
+    const juce::Array<juce::AudioProcessorParameter*>& parameters = processor->getParameters();
     
     for (int i = 0; i < parameters.size(); i++)
     {
@@ -115,7 +115,7 @@ void PresetManager::createNewPreset()
 void PresetManager::savePreset()
 {
     juce::MemoryBlock destinationData;
-    mProcessor->getStateInformation(destinationData);
+    processor->getStateInformation(destinationData);
     
     mCurrentlyLoadedPreset.deleteFile();
     mCurrentlyLoadedPreset.appendData(destinationData.getData(),
@@ -163,7 +163,7 @@ void PresetManager::loadPreset(int inPresetIndex)
     {
         mCurrentPresetIsSaved = true;
         mCurrentPresetName = getPresetName(inPresetIndex);
-        mProcessor->setStateInformation(presetBinary.getData(),
+        processor->setStateInformation(presetBinary.getData(),
                                         (int)presetBinary.getSize());
     }
 
@@ -225,13 +225,13 @@ void PresetManager::updateQuickPreset()
         case QuickPreset::Preset_A:
             
             DBG("Updated A");
-            mProcessor->getStateInformation(presetA);
+            processor->getStateInformation(presetA);
             
             break;
         case QuickPreset::Preset_B:
             
             DBG("Updated B");
-            mProcessor->getStateInformation(presetB);
+            processor->getStateInformation(presetB);
             
             break;
         default:
@@ -250,14 +250,14 @@ void PresetManager::toggleQuickPreset()
             DBG("Swapped from A to B");
             // change the current preset and load the data
             quickPresetInUse = QuickPreset::Preset_B;
-            mProcessor->setStateInformation(presetB.getData(), (int)presetB.getSize());
+            processor->setStateInformation(presetB.getData(), (int)presetB.getSize());
             
             break;
         case QuickPreset::Preset_B:
             DBG("Swapped from B to A");
             // change the current preset and load the data
             quickPresetInUse = QuickPreset::Preset_A;
-            mProcessor->setStateInformation(presetA.getData(), (int)presetA.getSize());
+            processor->setStateInformation(presetA.getData(), (int)presetA.getSize());
             
             break;
         default:

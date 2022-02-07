@@ -18,7 +18,7 @@ class PresetViewItem
 {
 public:
     //==============================================================================
-    PresetViewItem(juce::String inName, juce::String inNotes, bool inIsDefault, bool inIsDirectory);
+    PresetViewItem(juce::String name, juce::String notes, bool isDefault, bool isDirectory);
     ~PresetViewItem();
     
     //==============================================================================

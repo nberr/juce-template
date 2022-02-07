@@ -21,23 +21,23 @@ class PresetManager
 {
 public:
     //==============================================================================
-    PresetManager(juce::AudioProcessor* inProcssor, juce::AudioProcessorValueTreeState* inParameters);
+    PresetManager(juce::AudioProcessor* processor, juce::AudioProcessorValueTreeState* parameters);
     ~PresetManager();
     
     //==============================================================================
-    void getXmlForPreset(juce::XmlElement* inElement);
-    void loadPresetForXml(juce::XmlElement* inElement);
+    void getXmlForPreset(juce::XmlElement* element);
+    void loadPresetForXml(juce::XmlElement* element);
     
     //==============================================================================
     int getNumberOfPresets();
-    juce::String getPresetName(int inPresetIndex);
+    juce::String getPresetName(int index);
     juce::String getPresetPath();
     
     //==============================================================================
     void createNewPreset();
     void savePreset();
-    void saveAsPreset(juce::String inPresetName, juce::String notes);
-    void loadPreset(int inPresetIndex);
+    void saveAsPreset(juce::String name, juce::String notes);
+    void loadPreset(int index);
     
     //==============================================================================
     bool getIsCurrentPresetSaved();
@@ -63,7 +63,7 @@ private:
     void storeLocalPreset();
     
     //==============================================================================
-    juce::AudioProcessor* mProcessor;
+    juce::AudioProcessor* processor;
     juce::AudioProcessorValueTreeState *parameters;
     
     //==============================================================================

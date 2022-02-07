@@ -63,33 +63,33 @@ private:
     //==============================================================================
     // This template allows two ways to display a UI
     // 1 - pure JUCE; see UI folder for panel hierarchy
-    ContextMenu mContextMenu;
+    ContextMenu contextMenu;
     
     //==============================================================================
     // panel hierarchy
-    MenuPanel mMenuPanel;
-    PresetPanel mPresetPanel;
-    MainPanel mMainPanel;
-    SidePanel mSidePanel;
+    MenuPanel menuPanel;
+    PresetPanel presetPanel;
+    MainPanel mainPanel;
+    SidePanel sidePanel;
     
     //==============================================================================
     std::vector<PanelBase *> panels = {
-        &mMenuPanel,
-        &mPresetPanel,
-        &mMainPanel,
-        &mSidePanel
+        &menuPanel,
+        &presetPanel,
+        &mainPanel,
+        &sidePanel
     };
     
     //==============================================================================
     // overlays
-    PresetDisplayOverlay mDisplayPresetOverlay;
+    PresetDisplayOverlay displayPresetOverlay;
     SavePresetOverlay savePresetOverlay;
     DeletePresetOverlay deletePresetOverlay;
     UpdatePresetOverlay updatePresetOverlay;
     
     //==============================================================================
     std::vector<PanelBase *> overlays = {
-        &mDisplayPresetOverlay,
+        &displayPresetOverlay,
         &savePresetOverlay,
         &deletePresetOverlay,
         &updatePresetOverlay

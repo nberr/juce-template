@@ -24,7 +24,7 @@ class PanelBase
 {
 public:
     //==============================================================================
-    PanelBase(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    PanelBase(PluginNameAudioProcessor* processor, ContextMenu* contextMenu);
     ~PanelBase();
     
     //==============================================================================
@@ -35,8 +35,8 @@ public:
     
 protected:
     //==============================================================================
-    PluginNameAudioProcessor *mProcessor;
-    ContextMenu *mContextMenu;
+    PluginNameAudioProcessor *processor;
+    ContextMenu *contextMenu;
     
     //==============================================================================
     juce::ValueTree guiScale;

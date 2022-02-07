@@ -11,12 +11,12 @@
 #include "PresetViewItem.h"
 
 //==============================================================================
-PresetViewItem::PresetViewItem(juce::String inName, juce::String inNotes, bool inIsDefault, bool inIsDirectory)
+PresetViewItem::PresetViewItem(juce::String name, juce::String notes, bool isDefault, bool isDirectory)
 {
-    name = inName;
-    notes = inNotes;
-    isDefault = inIsDefault;
-    isDirectory = inIsDirectory;
+    this->name = name;
+    this->notes = notes;
+    this->isDefault = isDefault;
+    this->isDirectory = isDirectory;
 }
 
 PresetViewItem::~PresetViewItem()

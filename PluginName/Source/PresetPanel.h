@@ -19,7 +19,7 @@ class PresetPanel
 {
 public:
     //==============================================================================
-    PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    PresetPanel(PluginNameAudioProcessor* processor, ContextMenu* contextMenu);
     ~PresetPanel();
     
     //==============================================================================

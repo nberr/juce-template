@@ -18,7 +18,7 @@ class OverlayBase
 {
 public:
     //==============================================================================
-    OverlayBase(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    OverlayBase(PluginNameAudioProcessor* processor, ContextMenu* contextMenu);
     ~OverlayBase();
     
     //==============================================================================

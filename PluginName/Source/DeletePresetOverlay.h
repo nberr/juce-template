@@ -21,7 +21,7 @@ class DeletePresetOverlay
 {
 public:
     //==============================================================================
-    DeletePresetOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    DeletePresetOverlay(PluginNameAudioProcessor* processor, ContextMenu* contextMenu);
     ~DeletePresetOverlay();
     
     //==============================================================================

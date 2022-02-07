@@ -19,7 +19,7 @@ class MenuPanel
 {
 public:
     //==============================================================================
-    MenuPanel(PluginNameAudioProcessor *inProcessor, ContextMenu *inContextMenu);
+    MenuPanel(PluginNameAudioProcessor *processor, ContextMenu *contextMenu);
     ~MenuPanel();
     
     //==============================================================================

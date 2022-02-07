@@ -21,7 +21,7 @@ class SavePresetOverlay
 {
 public:
     //==============================================================================
-    SavePresetOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    SavePresetOverlay(PluginNameAudioProcessor* processor, ContextMenu* contextMenu);
     ~SavePresetOverlay();
     
     //==============================================================================

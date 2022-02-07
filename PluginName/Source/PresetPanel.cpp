@@ -13,13 +13,13 @@
 #include "PresetManager.h"
 
 //==============================================================================
-PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
-:   PanelBase(inProcessor, inContextMenu)
+PresetPanel::PresetPanel(PluginNameAudioProcessor *processor, ContextMenu *contextMenu)
+:   PanelBase(processor, contextMenu)
 {
     setName("PresetPanel");
     setComponentID("PresetPanelID");
     
-    undoManager = mProcessor->getUndoManager();
+    undoManager = processor->getUndoManager();
     
     // initialize each button and add them to the scene
     for (juce::TextButton* button : buttons) {
@@ -95,7 +95,7 @@ void PresetPanel::buttonClicked(juce::Button* b)
     bool rightClick = juce::ModifierKeys::getCurrentModifiers().isPopupMenu();
     
     if (rightClick) {
-        mContextMenu->showMenu(b->getName());
+        contextMenu->showMenu(b->getName());
         auto editor = findParentComponentOfClass<juce::AudioProcessorEditor>();
         editor->resized();
         resized();
@@ -122,7 +122,7 @@ void PresetPanel::buttonClicked(juce::Button* b)
         }
         else if (b == &presetA || b == &presetB) {
             
-            switch(mProcessor->getPresetManager()->quickPresetInUse) {
+            switch(processor->getPresetManager()->quickPresetInUse) {
                 case PresetManager::QuickPreset::Preset_A:
                     
                     presetCopy.setButtonText("<-");
@@ -137,10 +137,10 @@ void PresetPanel::buttonClicked(juce::Button* b)
                     jassertfalse;
             }
             
-            mProcessor->getPresetManager()->toggleQuickPreset();
+            processor->getPresetManager()->toggleQuickPreset();
         }
         else if (b == &presetCopy) {
-            mProcessor->getPresetManager()->copyQuickPreset();
+            processor->getPresetManager()->copyQuickPreset();
         }
     }
 }

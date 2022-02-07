@@ -13,12 +13,12 @@
 #include "PluginNameParameters.h"
 
 //==============================================================================
-MainPanel::MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
-:   PanelBase(inProcessor, inContextMenu),
-    pChoice(inProcessor->parameters, "Choice"),
-    pInt(inProcessor->parameters, "Int", "Parameter Int"),
-    pFloat(inProcessor->parameters, "Float", "Parameter Float"),
-    pBool(inProcessor->parameters, "Bool", "Parameter Bool")
+MainPanel::MainPanel(PluginNameAudioProcessor* processor, ContextMenu* contextMenu)
+:   PanelBase(processor, contextMenu),
+    pChoice(processor->parameters, "Choice"),
+    pInt(processor->parameters, "Int", "Parameter Int"),
+    pFloat(processor->parameters, "Float", "Parameter Float"),
+    pBool(processor->parameters, "Bool", "Parameter Bool")
 {
     setName("MainPanel");
     setComponentID("MainPanelID");
@@ -67,23 +67,23 @@ void MainPanel::resized()
 void MainPanel::buttonClicked(juce::Button* b)
 {
     if (b == &pBool) {
-        mProcessor->getPresetManager()->updateQuickPreset();
+        processor->getPresetManager()->updateQuickPreset();
     }
 }
 
 void MainPanel::sliderValueChanged(juce::Slider* s)
 {
     if (s == &pInt) {
-        mProcessor->getPresetManager()->updateQuickPreset();
+        processor->getPresetManager()->updateQuickPreset();
     }
     else if (s == &pFloat) {
-        mProcessor->getPresetManager()->updateQuickPreset();
+        processor->getPresetManager()->updateQuickPreset();
     }
 }
 
 void MainPanel::comboBoxChanged(juce::ComboBox* cb)
 {
     if (cb == &pChoice) {
-        mProcessor->getPresetManager()->updateQuickPreset();
+        processor->getPresetManager()->updateQuickPreset();
     }
 }

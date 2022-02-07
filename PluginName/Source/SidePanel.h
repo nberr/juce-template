@@ -18,7 +18,7 @@ class SidePanel
 {
 public:
     //==============================================================================
-    SidePanel(PluginNameAudioProcessor *inProcessor, ContextMenu *inContextMenu);
+    SidePanel(PluginNameAudioProcessor *processor, ContextMenu *contextMenu);
     ~SidePanel();
     
     //==============================================================================

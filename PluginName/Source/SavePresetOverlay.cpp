@@ -11,13 +11,13 @@
 #include "SavePresetOverlay.h"
 
 //==============================================================================
-SavePresetOverlay::SavePresetOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
-:   OverlayBase(inProcessor, inContextMenu)
+SavePresetOverlay::SavePresetOverlay(PluginNameAudioProcessor* processor, ContextMenu* contextMenu)
+:   OverlayBase(processor, contextMenu)
 {
     setName("SavePresetOverlay");
     setComponentID("SavePresetOverlayID");
     
-    presetManager = mProcessor->getPresetManager();
+    presetManager = processor->getPresetManager();
     
     // initialize each button and add them to the scene
     for (juce::Button* button : buttons) {

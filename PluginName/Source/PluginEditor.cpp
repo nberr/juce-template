@@ -14,15 +14,15 @@
 //==============================================================================
 PluginNameAudioProcessorEditor::PluginNameAudioProcessorEditor (PluginNameAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p),
-    mContextMenu(&audioProcessor),
-    mMenuPanel(&audioProcessor, &mContextMenu),
-    mPresetPanel(&audioProcessor, &mContextMenu),
-    mMainPanel(&audioProcessor, &mContextMenu),
-    mSidePanel(&audioProcessor, &mContextMenu),
-    mDisplayPresetOverlay(&audioProcessor, &mContextMenu),
-    savePresetOverlay(&audioProcessor, &mContextMenu),
-    deletePresetOverlay(&audioProcessor, &mContextMenu),
-    updatePresetOverlay(&audioProcessor, &mContextMenu),
+    contextMenu(&audioProcessor),
+    menuPanel(&audioProcessor, &contextMenu),
+    presetPanel(&audioProcessor, &contextMenu),
+    mainPanel(&audioProcessor, &contextMenu),
+    sidePanel(&audioProcessor, &contextMenu),
+    displayPresetOverlay(&audioProcessor, &contextMenu),
+    savePresetOverlay(&audioProcessor, &contextMenu),
+    deletePresetOverlay(&audioProcessor, &contextMenu),
+    updatePresetOverlay(&audioProcessor, &contextMenu),
     appHarness(appRoot),
     unlockForm(marketplaceStatus)
 {
@@ -150,21 +150,21 @@ void PluginNameAudioProcessorEditor::resized()
         
     setSize(width * scale, PluginNameGUI::height * scale);
         
-    mMenuPanel.setBounds(0, 0,
+    menuPanel.setBounds(0, 0,
                          MenuPanelGUI::width * scale,
                          MenuPanelGUI::height * scale);
-    mPresetPanel.setBounds(mMenuPanel.getRight(), 0,
+    presetPanel.setBounds(menuPanel.getRight(), 0,
                            PresetPanelGUI::width * scale,
                            PresetPanelGUI::height * scale);
-    mMainPanel.setBounds(mMenuPanel.getRight(), mPresetPanel.getBottom(),
+    mainPanel.setBounds(menuPanel.getRight(), presetPanel.getBottom(),
                          MainPanelGUI::width * scale,
                          MainPanelGUI::height * scale);
-    mSidePanel.setBounds(mMainPanel.getRight(), 0,
+    sidePanel.setBounds(mainPanel.getRight(), 0,
                          SidePanelGUI::width * scale,
                          SidePanelGUI::height * scale);
     
     // overlays
-    mDisplayPresetOverlay.setBounds(mMenuPanel.getRight(), mPresetPanel.getBottom(),
+    displayPresetOverlay.setBounds(menuPanel.getRight(), presetPanel.getBottom(),
                              MainPanelGUI::width * scale,
                              MainPanelGUI::height * scale);
     

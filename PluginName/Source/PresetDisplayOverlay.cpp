@@ -11,13 +11,13 @@
 #include "PresetDisplayOverlay.h"
 
 //==============================================================================
-PresetDisplayOverlay::PresetDisplayOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
-:   OverlayBase(inProcessor, inContextMenu)
+PresetDisplayOverlay::PresetDisplayOverlay(PluginNameAudioProcessor* processor, ContextMenu* contextMenu)
+:   OverlayBase(processor, contextMenu)
 {
     setName("PresetDisplayOverlay");
     setComponentID("PresetDisplayOverlayID");
     
-    presetManager = mProcessor->getPresetManager();
+    presetManager = processor->getPresetManager();
     
     rootViewItem = new PresetViewItem("root", "", false, false);
     userPresets = new PresetViewItem("User", "", false, true);

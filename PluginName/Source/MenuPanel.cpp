@@ -14,8 +14,8 @@
 #include "PluginEditor.h"
 
 //==============================================================================
-MenuPanel::MenuPanel(PluginNameAudioProcessor *inProcessor, ContextMenu *inContextMenu)
-:   PanelBase(inProcessor, inContextMenu)
+MenuPanel::MenuPanel(PluginNameAudioProcessor *processor, ContextMenu *contextMenu)
+:   PanelBase(processor, contextMenu)
 {
     setName("MenuPanel");
     setComponentID("MenuPanelID");
@@ -31,7 +31,7 @@ MenuPanel::MenuPanel(PluginNameAudioProcessor *inProcessor, ContextMenu *inConte
     masterButton.setClickingTogglesState(true);
     
     advancedButton.setClickingTogglesState(true);
-    advancedButton.setToggleable(mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale).getProperty(juce::Identifier("value")));
+    advancedButton.setToggleable(processor->settings.getChild(PluginNameSettings::PNS_GUIScale).getProperty(juce::Identifier("value")));
 }
 
 MenuPanel::~MenuPanel()
@@ -53,7 +53,7 @@ void MenuPanel::buttonClicked(juce::Button* b)
     bool rightClick = juce::ModifierKeys::getCurrentModifiers().isPopupMenu();
     
     if (rightClick) {
-        mContextMenu->showMenu(b->getName());
+        contextMenu->showMenu(b->getName());
         auto editor = findParentComponentOfClass<juce::AudioProcessorEditor>();
         editor->resized();
         resized();

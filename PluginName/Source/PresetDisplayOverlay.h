@@ -22,7 +22,7 @@ class PresetDisplayOverlay
 {
 public:
     //==============================================================================
-    PresetDisplayOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    PresetDisplayOverlay(PluginNameAudioProcessor* processor, ContextMenu* contextMenu);
     ~PresetDisplayOverlay();
     
     //==============================================================================

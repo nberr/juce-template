@@ -11,13 +11,13 @@
 #include "DeletePresetOverlay.h"
 
 //==============================================================================
-DeletePresetOverlay::DeletePresetOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
-:   PanelBase(inProcessor, inContextMenu)
+DeletePresetOverlay::DeletePresetOverlay(PluginNameAudioProcessor* processor, ContextMenu* contextMenu)
+:   PanelBase(processor, contextMenu)
 {
     setName("DeletePresetOverlay");
     setComponentID("DeletePresetOverlayID");
     
-    presetManager = mProcessor->getPresetManager();
+    presetManager = processor->getPresetManager();
 }
 
 DeletePresetOverlay::~DeletePresetOverlay()

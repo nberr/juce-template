@@ -21,7 +21,7 @@ class UpdatePresetOverlay
 {
 public:
     //==============================================================================
-    UpdatePresetOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    UpdatePresetOverlay(PluginNameAudioProcessor* processor, ContextMenu* contextMenu);
     ~UpdatePresetOverlay();
     
     //==============================================================================

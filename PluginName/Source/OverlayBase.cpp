@@ -11,8 +11,8 @@
 #include "OverlayBase.h"
 
 //==============================================================================
-OverlayBase::OverlayBase(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
-:   PanelBase(inProcessor, inContextMenu)
+OverlayBase::OverlayBase(PluginNameAudioProcessor* processor, ContextMenu* contextMenu)
+:   PanelBase(processor, contextMenu)
 {
     setName("OverlayBase");
     setComponentID("OverlayBaseID");

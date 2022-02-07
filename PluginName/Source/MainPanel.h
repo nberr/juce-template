@@ -27,7 +27,7 @@ class MainPanel
 {
 public:
     //==============================================================================
-    MainPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    MainPanel(PluginNameAudioProcessor* processor, ContextMenu* contextMenu);
     ~MainPanel();
     
     //==============================================================================

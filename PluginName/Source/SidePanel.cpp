@@ -11,13 +11,13 @@
 #include "SidePanel.h"
 
 //==============================================================================
-SidePanel::SidePanel(PluginNameAudioProcessor *inProcessor, ContextMenu *inContextMenu)
-:   PanelBase(inProcessor, inContextMenu)
+SidePanel::SidePanel(PluginNameAudioProcessor *processor, ContextMenu *contextMenu)
+:   PanelBase(processor, contextMenu)
 {
     setName("SidePanel");
     setComponentID("SidePanelID");
     
-    addAndMakeVisible(b);
+    // addAndMakeVisible(b);
 }
 
 SidePanel::~SidePanel()
