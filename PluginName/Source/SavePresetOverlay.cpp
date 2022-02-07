@@ -27,6 +27,7 @@ SavePresetOverlay::SavePresetOverlay(PluginNameAudioProcessor* processor, Contex
     }
     
     addAndMakeVisible(presetNameInput);
+    addAndMakeVisible(notesInput);
 }
 
 SavePresetOverlay::~SavePresetOverlay()
@@ -40,6 +41,7 @@ void SavePresetOverlay::resized()
     close.setBounds(0, 0, 40, 40);
     save.setBounds (40, 40, 40, 40);
     presetNameInput.setBounds(100, 100, 200, 50);
+    notesInput.setBounds(200, 200, 200, 50);
 }
 
 //==============================================================================
@@ -73,7 +75,7 @@ void SavePresetOverlay::buttonClicked(juce::Button* b)
         }
         
         // TODO: sanitize notes text
-        presetManager->saveAsPreset(name, notes.getText());
+        presetManager->saveAsPreset(name, notesInput.getText());
         
         // TODO: reload values in PresetDisplayOverlay
     }

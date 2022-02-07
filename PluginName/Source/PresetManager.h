@@ -75,7 +75,7 @@ private:
     
     //==============================================================================
     juce::String mCurrentPresetName;
-    juce::String presetNotes;
+    // juce::String presetNotes;
     juce::String mPresetDirectory;
     
     //==============================================================================
