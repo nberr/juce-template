@@ -142,19 +142,14 @@ void PresetManager::saveAsPreset(juce::String inPresetName, juce::String notes)
     
     // XML tree setup
     juce::ValueTree mainTree = juce::ValueTree(juce::Identifier("Preset"));
+    mainTree.setProperty(juce::Identifier("name"), inPresetName, nullptr);
+    mainTree.setProperty(juce::Identifier("notes"), notes, nullptr);
     
     // convert parameter state to xml and write to data to the file
     juce::ValueTree parameterTree = parameters->copyState();
     
-    // notes tree for user notes. this is optional.
-    juce::ValueTree notesTree = juce::ValueTree(juce::Identifier("Notes"));
-    if (notes.isNotEmpty() && !notes.contains("bad text")) {
-        notesTree.setProperty(juce::Identifier("text"), notes, nullptr);
-    }
-    
     // add the sub-trees
     mainTree.appendChild(parameterTree, nullptr);
-    mainTree.appendChild(notesTree, nullptr);
     
     // create the xml and write the file
     std::unique_ptr<juce::XmlElement> xml = mainTree.createXml();
@@ -223,11 +218,10 @@ void PresetManager::populateUserPresets(PresetViewItem* userPresets)
         juce::XmlDocument xmlDoc {f};
         juce::XmlElement element = *xmlDoc.getDocumentElement();
         
-        notes = element.getChildByName("Notes")->getStringAttribute("text");
+        notes = element.getStringAttribute("notes");
         
         userPresets->addSubItem(new PresetViewItem(f.getFileName(), notes, false));
     }
-    
 }
 
 void PresetManager::populateFactoryPresets(std::vector<PresetViewItem *>& factoryPresets)
