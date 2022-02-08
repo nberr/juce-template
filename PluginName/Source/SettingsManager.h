@@ -17,7 +17,7 @@ class SettingsManager
 {
 public:
     //==============================================================================
-    SettingsManager(juce::AudioProcessor* inProcssor, juce::ValueTree* inSettings);
+    SettingsManager(juce::AudioProcessor* procssor, juce::ValueTree* settings);
     ~SettingsManager();
     
     //==============================================================================
@@ -26,7 +26,7 @@ public:
     
 private:
     //==============================================================================
-    juce::AudioProcessor* mProcessor;
+    juce::AudioProcessor* processor;
     
     //==============================================================================
     void createSettingsLayout();

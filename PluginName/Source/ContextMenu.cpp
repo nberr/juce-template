@@ -15,15 +15,15 @@
 #include "SettingsManager.h"
 
 //==============================================================================
-ContextMenu::ContextMenu(PluginNameAudioProcessor* inProcssor)
+ContextMenu::ContextMenu(PluginNameAudioProcessor* procssor)
 {
     setName("ContextMenu");
     setComponentID("ContextMenuID");
     
-    mProcessor = inProcssor;
+    this->processor = procssor;
     
     // set the size menu based on the current scale
-    float scale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale).getProperty(juce::Identifier("value"));
+    float scale = processor->settings.getChild(PluginNameSettings::PNS_GUIScale).getProperty(juce::Identifier("value"));
     if (scale == PluginNameGUI::Scale::small) {
         small.setTicked(true);
     }
@@ -40,7 +40,7 @@ ContextMenu::ContextMenu(PluginNameAudioProcessor* inProcssor)
         xxl.setTicked(true);
     }
     
-    showSidePanel.setTicked(mProcessor->settings.getChild(PluginNameSettings::PNS_showSidePanel).getProperty(juce::Identifier("value")));
+    showSidePanel.setTicked(processor->settings.getChild(PluginNameSettings::PNS_showSidePanel).getProperty(juce::Identifier("value")));
     
     initMenuActions();
 }
@@ -116,10 +116,10 @@ void ContextMenu::buildBaseMenu()
 //==============================================================================
 void ContextMenu::initMenuActions()
 {
-    SettingsManager *sm = mProcessor->getSettingsManager();
+    SettingsManager *sm = processor->getSettingsManager();
     
     small.setAction([this, sm](){
-        juce::ValueTree guiScale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale);
+        juce::ValueTree guiScale = processor->settings.getChild(PluginNameSettings::PNS_GUIScale);
         guiScale.setProperty(juce::Identifier("value"), PluginNameGUI::Scale::small, nullptr);
         
         small.setTicked(true);
@@ -133,7 +133,7 @@ void ContextMenu::initMenuActions()
     
     
     standard.setAction([this, sm](){
-        juce::ValueTree guiScale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale);
+        juce::ValueTree guiScale = processor->settings.getChild(PluginNameSettings::PNS_GUIScale);
         guiScale.setProperty(juce::Identifier("value"), PluginNameGUI::Scale::standard, nullptr);
         
         small.setTicked(false);
@@ -147,7 +147,7 @@ void ContextMenu::initMenuActions()
     
     
     large.setAction([this, sm](){
-        juce::ValueTree guiScale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale);
+        juce::ValueTree guiScale = processor->settings.getChild(PluginNameSettings::PNS_GUIScale);
         guiScale.setProperty(juce::Identifier("value"), PluginNameGUI::Scale::large, nullptr);
         
         small.setTicked(false);
@@ -160,7 +160,7 @@ void ContextMenu::initMenuActions()
     });
     
     extra_large.setAction([this, sm](){
-        juce::ValueTree guiScale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale);
+        juce::ValueTree guiScale = processor->settings.getChild(PluginNameSettings::PNS_GUIScale);
         guiScale.setProperty(juce::Identifier("value"), PluginNameGUI::Scale::extra_large, nullptr);
         
         small.setTicked(false);
@@ -173,7 +173,7 @@ void ContextMenu::initMenuActions()
     });
     
     xxl.setAction([this, sm](){
-        juce::ValueTree guiScale = mProcessor->settings.getChild(PluginNameSettings::PNS_GUIScale);
+        juce::ValueTree guiScale = processor->settings.getChild(PluginNameSettings::PNS_GUIScale);
         guiScale.setProperty(juce::Identifier("value"), PluginNameGUI::Scale::XXL, nullptr);
         
         small.setTicked(false);
@@ -188,7 +188,7 @@ void ContextMenu::initMenuActions()
     showSidePanel.setAction([this, sm](){
         showSidePanel.setTicked(!showSidePanel.isTicked);
         
-        juce::ValueTree ssp = mProcessor->settings.getChild(PluginNameSettings::PNS_showSidePanel);
+        juce::ValueTree ssp = processor->settings.getChild(PluginNameSettings::PNS_showSidePanel);
         ssp.setProperty(juce::Identifier("value"), showSidePanel.isTicked, nullptr);
         
         sm->saveSettings();

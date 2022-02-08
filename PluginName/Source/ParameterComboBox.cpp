@@ -15,6 +15,7 @@ ParameterComboBox::ParameterComboBox(juce::AudioProcessorValueTreeState& stateTo
 :   juce::ComboBox(parameterID),
     attachment(stateToControl, parameterID, *this)
 {
+    // TODO: set the selected ID based on parameter state
     setSelectedId(1, juce::NotificationType::dontSendNotification);
 }
 

@@ -25,23 +25,23 @@ public:
     ~PresetManager();
     
     //==============================================================================
-    void getXmlForPreset(juce::XmlElement* element);
-    void loadPresetForXml(juce::XmlElement* element);
+    // void getXmlForPreset(juce::XmlElement* element);
+    // void loadPresetForXml(juce::XmlElement* element);
     
     //==============================================================================
-    int getNumberOfPresets();
-    juce::String getPresetName(int index);
-    juce::String getPresetPath();
+    // int getNumberOfPresets();
+    // juce::String getPresetName(int index);
+    // juce::String getPresetPath();
     
     //==============================================================================
-    void createNewPreset();
-    void savePreset();
+    // void createNewPreset();
+    // void savePreset();
     void saveAsPreset(juce::String name, juce::String notes);
-    void loadPreset(int index);
+    // void loadPreset(int index);
     
     //==============================================================================
-    bool getIsCurrentPresetSaved();
-    juce::String getCurrentPresetName();
+    // bool getIsCurrentPresetSaved();
+    // juce::String getCurrentPresetName();
     
     //==============================================================================
     void populateUserPresets(PresetViewItem* userPresets);
@@ -61,26 +61,25 @@ public:
     
 private:
     //==============================================================================
-    void storeLocalPreset();
+    // void storeLocalPreset();
     
     //==============================================================================
     juce::AudioProcessor* processor;
     juce::AudioProcessorValueTreeState *parameters;
     
     //==============================================================================
-    bool mCurrentPresetIsSaved;
+    // bool mCurrentPresetIsSaved;
     
     //==============================================================================
-    juce::File mCurrentlyLoadedPreset;
-    juce::Array<juce::File> mLocalPresets;
+    // juce::File mCurrentlyLoadedPreset;
+    // juce::Array<juce::File> mLocalPresets;
     
     //==============================================================================
-    juce::String mCurrentPresetName;
-    // juce::String presetNotes;
-    juce::String mPresetDirectory;
+    // juce::String currentPresetName;
+    juce::String presetDirectory;
     
     //==============================================================================
-    juce::XmlElement* mCurrentPresetXml;
+    // juce::XmlElement* mCurrentPresetXml;
     
     //==============================================================================
     juce::MemoryBlock presetA;

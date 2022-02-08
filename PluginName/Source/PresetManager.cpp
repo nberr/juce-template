@@ -13,21 +13,21 @@
 //==============================================================================
 PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcessorValueTreeState* parameters)
 :   processor(processor),
-    parameters(parameters),
-    mCurrentPresetIsSaved(false),
-    mCurrentPresetName("Untitled")
+    parameters(parameters)
+    //mCurrentPresetIsSaved(false),
+    // currentPresetName("Untitled")
 {
     juce::String dir_sep = juce::File::getSeparatorString();
-    mPresetDirectory = juce::File::getSpecialLocation(juce::File::userMusicDirectory).getFullPathName()
+    presetDirectory = juce::File::getSpecialLocation(juce::File::userMusicDirectory).getFullPathName()
                        + dir_sep + JucePlugin_Manufacturer
                        + dir_sep + JucePlugin_Name
                        + dir_sep + "Presets";
     
     
-    if (!juce::File(mPresetDirectory).exists()) {
+    if (!juce::File(presetDirectory).exists()) {
         
         // create the preset directory
-        if(juce::File(mPresetDirectory).createDirectory().fail("Failed to create preset directory")) {
+        if(juce::File(presetDirectory).createDirectory().fail("Failed to create preset directory")) {
             jassertfalse;
         }
     }
@@ -35,7 +35,7 @@ PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcess
     processor->getStateInformation(presetA);
     processor->getStateInformation(presetB);
     
-    storeLocalPreset();
+    // storeLocalPreset();
 }
 
 PresetManager::~PresetManager()
@@ -44,7 +44,7 @@ PresetManager::~PresetManager()
 }
 
 //==============================================================================
-void PresetManager::getXmlForPreset(juce::XmlElement* inElement)
+/*void PresetManager::getXmlForPreset(juce::XmlElement* inElement)
 {
     const juce::Array<juce::AudioProcessorParameter*>& parameters = processor->getParameters();
     
@@ -76,10 +76,10 @@ void PresetManager::loadPresetForXml(juce::XmlElement* inElement)
             }
         }
     }
-}
+}*/
 
 //==============================================================================
-int PresetManager::getNumberOfPresets()
+/*int PresetManager::getNumberOfPresets()
 {
     return mLocalPresets.size();
 }
@@ -92,10 +92,10 @@ juce::String PresetManager::getPresetName(int inPresetIndex)
 juce::String PresetManager::getPresetPath()
 {
     return mPresetDirectory;
-}
+}*/
 
 //==============================================================================
-void PresetManager::createNewPreset()
+/*void PresetManager::createNewPreset()
 {
     const juce::Array<juce::AudioProcessorParameter*>& parameters = processor->getParameters();
     
@@ -108,8 +108,8 @@ void PresetManager::createNewPreset()
         parameter->setValueNotifyingHost(defaultValue);
     }
     
-    mCurrentPresetIsSaved = false;
-    mCurrentPresetName = "Untitled";
+    //mCurrentPresetIsSaved = false;
+    //mCurrentPresetName = "Untitled";
 }
 
 void PresetManager::savePreset()
@@ -122,13 +122,13 @@ void PresetManager::savePreset()
                                       destinationData.getSize());
     
     mCurrentPresetIsSaved = true;
-}
+}*/
 
 void PresetManager::saveAsPreset(juce::String inPresetName, juce::String notes)
 {
     // path information
     juce::String dir_sep = juce::File::getSeparatorString();
-    juce::File presetFile = juce::File(mPresetDirectory + dir_sep + inPresetName + PRESET_FILE_EXTENSION);
+    juce::File presetFile = juce::File(presetDirectory + dir_sep + inPresetName + PRESET_FILE_EXTENSION);
     
     // delete the preset file if it exists
     // save as overwrites the existing settings
@@ -157,13 +157,13 @@ void PresetManager::saveAsPreset(juce::String inPresetName, juce::String notes)
         jassertfalse;
     }
     
-    mCurrentPresetIsSaved = true;
-    mCurrentPresetName = inPresetName;
+    // mCurrentPresetIsSaved = true;
+    // mCurrentPresetName = inPresetName;
     
-    storeLocalPreset();
+    // storeLocalPreset();
 }
 
-void PresetManager::loadPreset(int inPresetIndex)
+/*void PresetManager::loadPreset(int inPresetIndex)
 {
     mCurrentlyLoadedPreset = mLocalPresets[inPresetIndex];
     
@@ -176,11 +176,10 @@ void PresetManager::loadPreset(int inPresetIndex)
         processor->setStateInformation(presetBinary.getData(),
                                         (int)presetBinary.getSize());
     }
-
-}
+}*/
 
 //==============================================================================
-bool PresetManager::getIsCurrentPresetSaved()
+/*bool PresetManager::getIsCurrentPresetSaved()
 {
     return mCurrentPresetIsSaved;
 }
@@ -188,10 +187,10 @@ bool PresetManager::getIsCurrentPresetSaved()
 juce::String PresetManager::getCurrentPresetName()
 {
     return mCurrentPresetName;
-}
+}*/
 
 //==============================================================================
-void PresetManager::storeLocalPreset()
+/*void PresetManager::storeLocalPreset()
 {
     mLocalPresets.clear();
             
@@ -203,12 +202,12 @@ void PresetManager::storeLocalPreset()
         juce::File preset = entry.getFile();
         mLocalPresets.add(preset);
     }
-}
+}*/
 
 //==============================================================================
 void PresetManager::populateUserPresets(PresetViewItem* userPresets)
 {
-    juce::File directory(mPresetDirectory);
+    juce::File directory(presetDirectory);
     juce::Array<juce::File> presets = directory.findChildFiles(juce::File::TypesOfFileToFind::findFiles, false, "*.xml");
     
     for (juce::File f : presets) {

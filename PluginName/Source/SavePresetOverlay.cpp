@@ -55,7 +55,6 @@ void SavePresetOverlay::buttonClicked(juce::Button* b)
         if (overlay != nullptr) {
             overlay->setVisible(true);
         }
-        
     }
     else if (b == &save) {
         juce::String name = "";
@@ -78,5 +77,13 @@ void SavePresetOverlay::buttonClicked(juce::Button* b)
         presetManager->saveAsPreset(name, notesInput.getText());
         
         // TODO: reload values in PresetDisplayOverlay
+        presetNameInput.setText("");
+        notesInput.setText("");
+        setVisible(false);
+        
+        juce::Component* overlay = getParentComponent()->findChildWithID("PresetDisplayOverlayID");
+        if (overlay != nullptr) {
+            overlay->setVisible(true);
+        }
     }
 }
