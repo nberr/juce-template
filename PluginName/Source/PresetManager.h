@@ -44,7 +44,8 @@ public:
     juce::String getCurrentPresetName();
     
     //==============================================================================
-    void populateViewItem(PresetViewItem* item);
+    void populateUserPresets(PresetViewItem* userTree);
+    void populateFactoryPresets(PresetViewItem* factoryTree);
     
     //==============================================================================
     void updateQuickPreset();

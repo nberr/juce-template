@@ -11,17 +11,16 @@
 #include "PresetViewItem.h"
 
 //==============================================================================
-PresetViewItem::PresetViewItem(juce::String name, juce::String notes, bool isDefault, bool isDirectory)
+PresetViewItem::PresetViewItem(juce::String name, juce::String notes, bool isDefault)
 {
     this->name = name;
     this->notes = notes;
     this->isDefault = isDefault;
-    this->isDirectory = isDirectory;
 }
 
 PresetViewItem::~PresetViewItem()
 {
-    
+
 }
 
 bool PresetViewItem::mightContainSubItems()
@@ -31,17 +30,14 @@ bool PresetViewItem::mightContainSubItems()
 
 void PresetViewItem::paintItem(juce::Graphics& g, int width, int height)
 {
-    juce::String text;
+    juce::String text = name;
     
-    if (isDirectory) {
-        text = name;
-    }
-    else {
+    if (name.endsWith(".xml")) {
         text = name.substring(0, name.length() - 4);
-        
-        if (notes.isNotEmpty()) {
-            text = name.substring(0, name.length() - 4) + " - " + notes;
-        }
+    }
+    
+    if (notes.isNotEmpty()) {
+        text = text + " - " + notes;
     }
     
     g.fillAll(juce::Colours::grey);

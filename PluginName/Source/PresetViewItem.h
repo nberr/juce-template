@@ -18,21 +18,17 @@ class PresetViewItem
 {
 public:
     //==============================================================================
-    PresetViewItem(juce::String name, juce::String notes, bool isDefault, bool isDirectory);
+    PresetViewItem(juce::String name, juce::String notes, bool isDefault);
     ~PresetViewItem();
     
     //==============================================================================
     bool mightContainSubItems() override;
     void paintItem(juce::Graphics& g, int width, int height) override;
     
-    //==============================================================================
-    bool isDirectory = false;
-    
 private:
     //==============================================================================
     juce::String name;
     juce::String notes;
-    juce::String path;
     
     bool isDefault = false;
     

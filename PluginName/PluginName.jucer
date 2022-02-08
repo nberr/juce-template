@@ -9,6 +9,10 @@
               defines="REACTJUCE_USE_DUKTAPE=1">
   <MAINGROUP id="rG13mo" name="PluginName">
     <GROUP id="{A69D8F93-3BCE-9AD3-66FB-82DC085FE56F}" name="Source">
+      <GROUP id="{33A4FED4-0705-D62A-66BC-E12368B9DFAD}" name="Assets">
+        <FILE id="oZEz6l" name="FactoryPresets.xml" compile="0" resource="1"
+              file="Assets/FactoryPresets.xml"/>
+      </GROUP>
       <GROUP id="{72DCA701-CF27-B8CA-FCE3-842C30867F9F}" name="Parameters">
         <GROUP id="{CF004890-1408-9A1C-649C-4822D3AB72C6}" name="Controllers">
           <GROUP id="{DAD9ED3A-AE22-48E1-C60F-20CD0D39CF1F}" name="ComboBox">
@@ -65,6 +69,12 @@
           <FILE id="cU55PE" name="ContextMenu.h" compile="0" resource="0" file="Source/ContextMenu.h"/>
         </GROUP>
         <GROUP id="{7060C5BE-F5EF-0A16-A937-E2D621D667CF}" name="Overlays">
+          <GROUP id="{DCB5B414-4406-EFAB-F48B-0434C5077E10}" name="Update">
+            <FILE id="AoY70Y" name="UpdatePluginOverlay.cpp" compile="1" resource="0"
+                  file="Source/UpdatePluginOverlay.cpp"/>
+            <FILE id="GkZ3PM" name="UpdatePluginOverlay.h" compile="0" resource="0"
+                  file="Source/UpdatePluginOverlay.h"/>
+          </GROUP>
           <GROUP id="{06931257-3913-D85A-0B43-9462E0BC06EA}" name="Preset">
             <GROUP id="{E4832FC5-FD25-FB84-72BE-9A346D094B1C}" name="Delete">
               <FILE id="kPcpL6" name="DeletePresetOverlay.cpp" compile="1" resource="0"

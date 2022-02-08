@@ -148,9 +148,7 @@ void PresetManager::saveAsPreset(juce::String inPresetName, juce::String notes)
     
     // notes tree for user notes. this is optional.
     juce::ValueTree notesTree = juce::ValueTree(juce::Identifier("Notes"));
-    DBG(notes);
-    if (notes.isNotEmpty()) {
-        DBG(notes);
+    if (notes.isNotEmpty() && !notes.contains("bad text")) {
         notesTree.setProperty(juce::Identifier("text"), notes, nullptr);
     }
     
@@ -213,23 +211,40 @@ void PresetManager::storeLocalPreset()
 }
 
 //==============================================================================
-void PresetManager::populateViewItem(PresetViewItem* item)
+void PresetManager::populateUserPresets(PresetViewItem* userTree)
 {
-    if (item->isDirectory) {
-        juce::File directory(mPresetDirectory);
+    juce::File directory(mPresetDirectory);
+    
+    // TODO: allow recursive calls for user folders
+    juce::Array<juce::File> presets = directory.findChildFiles(juce::File::TypesOfFileToFind::findFiles, false, "*.xml");
+    
+    for (juce::File f : presets) {
         
-        juce::Array<juce::File> presets = directory.findChildFiles(juce::File::TypesOfFileToFind::findFiles, false, "*.xml");
+        // parse the notes from the XML file
+        juce::String notes;
+        juce::XmlDocument xmlDoc {f};
+        juce::XmlElement element = *xmlDoc.getDocumentElement();
         
-        for (juce::File f : presets) {
-            
-            // parse the notes from the XML file
-            juce::String notes;
-            juce::XmlDocument xmlDoc {f};
-            juce::XmlElement element = *xmlDoc.getDocumentElement();
-            
-            notes = element.getChildByName("Notes")->getStringAttribute("text");
-            
-            item->addSubItem(new PresetViewItem(f.getFileName(), notes, false, false));
+        notes = element.getChildByName("Notes")->getStringAttribute("text");
+        
+        userTree->addSubItem(new PresetViewItem(f.getFileName(), notes, false));
+    }
+    
+}
+
+void PresetManager::populateFactoryPresets(PresetViewItem* factoryTree)
+{
+    std::unique_ptr<juce::XmlElement> xml = juce::parseXML(BinaryData::FactoryPresets_xml);
+    
+    for (auto* group : xml->getChildIterator()) {
+        
+        juce::String groupName = group->getStringAttribute("name");
+    
+        for (auto* preset : group->getChildIterator()) {
+            juce::String presetName = preset->getStringAttribute("name");
+            juce::String presetNotes = preset->getStringAttribute("notes");
+
+            factoryTree->addSubItem(new PresetViewItem(presetName, presetNotes, false));
         }
     }
 }

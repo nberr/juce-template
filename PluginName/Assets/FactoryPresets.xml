@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Presets>
+  <Group name="General">
+      <Preset name="General Preset 1" notes="user notes go here">
+          <PARAMETERS>
+            <PARAM id="Bool" value="0.0"/>
+            <PARAM id="Choice" value="1.0"/>
+            <PARAM id="Float" value="1.0"/>
+            <PARAM id="Int" value="1.0"/>
+          </PARAMETERS>
+      </Preset>
+      <Preset name="General Preset 2" notes="user notes go here">
+          <PARAMETERS>
+            <PARAM id="Bool" value="0.0"/>
+            <PARAM id="Choice" value="1.0"/>
+            <PARAM id="Float" value="1.0"/>
+            <PARAM id="Int" value="1.0"/>
+          </PARAMETERS>
+      </Preset>
+      <Preset name="General Preset 3" notes="">
+          <PARAMETERS>
+            <PARAM id="Bool" value="0.0"/>
+            <PARAM id="Choice" value="1.0"/>
+            <PARAM id="Float" value="1.0"/>
+            <PARAM id="Int" value="1.0"/>
+          </PARAMETERS>
+      </Preset>
+  </Group>
+  <Group name="Other">
+      <Preset name="Other Preset 1" notes="user notes go here">
+          <PARAMETERS>
+            <PARAM id="Bool" value="0.0"/>
+            <PARAM id="Choice" value="1.0"/>
+            <PARAM id="Float" value="1.0"/>
+            <PARAM id="Int" value="1.0"/>
+          </PARAMETERS>
+      </Preset>
+      <Preset name="Other Preset 2" notes="user notes go here">
+          <PARAMETERS>
+            <PARAM id="Bool" value="0.0"/>
+            <PARAM id="Choice" value="1.0"/>
+            <PARAM id="Float" value="1.0"/>
+            <PARAM id="Int" value="1.0"/>
+          </PARAMETERS>
+      </Preset>
+      <Preset name="Other Preset 3" notes="">
+          <PARAMETERS>
+            <PARAM id="Bool" value="0.0"/>
+            <PARAM id="Choice" value="1.0"/>
+            <PARAM id="Float" value="1.0"/>
+            <PARAM id="Int" value="1.0"/>
+          </PARAMETERS>
+      </Preset>
+  </Group>
+</Presets>
+  
+      
+      
+    
+        
+    
+     
