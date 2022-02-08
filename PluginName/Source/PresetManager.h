@@ -44,8 +44,8 @@ public:
     juce::String getCurrentPresetName();
     
     //==============================================================================
-    void populateUserPresets(PresetViewItem* userTree);
-    void populateFactoryPresets(PresetViewItem* factoryTree);
+    void populateUserPresets(PresetViewItem* userPresets);
+    void populateFactoryPresets(std::vector<PresetViewItem *>& factoryPresets);
     
     //==============================================================================
     void updateQuickPreset();

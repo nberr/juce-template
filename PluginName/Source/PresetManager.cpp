@@ -211,11 +211,9 @@ void PresetManager::storeLocalPreset()
 }
 
 //==============================================================================
-void PresetManager::populateUserPresets(PresetViewItem* userTree)
+void PresetManager::populateUserPresets(PresetViewItem* userPresets)
 {
     juce::File directory(mPresetDirectory);
-    
-    // TODO: allow recursive calls for user folders
     juce::Array<juce::File> presets = directory.findChildFiles(juce::File::TypesOfFileToFind::findFiles, false, "*.xml");
     
     for (juce::File f : presets) {
@@ -227,25 +225,34 @@ void PresetManager::populateUserPresets(PresetViewItem* userTree)
         
         notes = element.getChildByName("Notes")->getStringAttribute("text");
         
-        userTree->addSubItem(new PresetViewItem(f.getFileName(), notes, false));
+        userPresets->addSubItem(new PresetViewItem(f.getFileName(), notes, false));
     }
     
 }
 
-void PresetManager::populateFactoryPresets(PresetViewItem* factoryTree)
+void PresetManager::populateFactoryPresets(std::vector<PresetViewItem *>& factoryPresets)
 {
+    // parse xml from binary data
     std::unique_ptr<juce::XmlElement> xml = juce::parseXML(BinaryData::FactoryPresets_xml);
     
+    // for each group in the xml file
     for (auto* group : xml->getChildIterator()) {
         
+        // create a group
         juce::String groupName = group->getStringAttribute("name");
-    
+        PresetViewItem *groupItem = new PresetViewItem(groupName, "", false);
+        
+        // for each preset in the group
+        // add it to the tree
         for (auto* preset : group->getChildIterator()) {
             juce::String presetName = preset->getStringAttribute("name");
             juce::String presetNotes = preset->getStringAttribute("notes");
 
-            factoryTree->addSubItem(new PresetViewItem(presetName, presetNotes, false));
+            groupItem->addSubItem(new PresetViewItem(presetName, presetNotes, false));
         }
+        
+        // push the tree to the vector to be used by the display
+        factoryPresets.push_back(groupItem);
     }
 }
 
