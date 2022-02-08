@@ -49,12 +49,6 @@ private:
     
     //==============================================================================
     juce::Viewport displayViewport;
-    
-    //==============================================================================
-    PresetViewItem *rootViewItem;
-    PresetViewItem *userPresets;
-    std::vector<PresetViewItem *> factoryPresets;
-    
     juce::TreeView presetsDisplay;
     
     //==============================================================================

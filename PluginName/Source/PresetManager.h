@@ -46,6 +46,8 @@ public:
     //==============================================================================
     void populateUserPresets(PresetViewItem* userPresets);
     void populateFactoryPresets(std::vector<PresetViewItem *>& factoryPresets);
+    PresetViewItem* getRootItem();
+    void addUserPreset(PresetViewItem* item);
     
     //==============================================================================
     void updateQuickPreset();
@@ -86,6 +88,10 @@ private:
     juce::MemoryBlock presetB;
     
     bool fromToggle = false;
+    
+    //==============================================================================
+    PresetViewItem *rootViewItem, *userPresets;
+    std::vector<PresetViewItem *> factoryPresets;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetManager)

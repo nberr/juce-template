@@ -35,6 +35,27 @@ PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcess
     processor->getStateInformation(presetA);
     processor->getStateInformation(presetB);
     
+    rootViewItem = new PresetViewItem("root", "", false);
+    userPresets = new PresetViewItem("User", "", false);
+    
+    // Configure the preset view
+    rootViewItem->setOpen(true);
+    
+    // populate the user presets
+    populateUserPresets(userPresets);
+    
+    // populate the factory presets
+    populateFactoryPresets(factoryPresets);
+    
+    // add the items to the tree
+    rootViewItem->addSubItem(userPresets);
+    //rootViewItem->addSubItem(factoryPresets);
+    
+    
+    for (PresetViewItem *item : factoryPresets) {
+        rootViewItem->addSubItem(item);
+    }
+    
     // storeLocalPreset();
 }
 
@@ -247,6 +268,16 @@ void PresetManager::populateFactoryPresets(std::vector<PresetViewItem *>& factor
         // push the tree to the vector to be used by the display
         factoryPresets.push_back(groupItem);
     }
+}
+
+PresetViewItem* PresetManager::getRootItem()
+{
+    return rootViewItem;
+}
+
+void PresetManager::addUserPreset(PresetViewItem* item)
+{
+    userPresets->addSubItem(item);
 }
 
 //==============================================================================
