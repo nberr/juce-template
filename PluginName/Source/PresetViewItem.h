@@ -24,6 +24,7 @@ public:
     //==============================================================================
     bool mightContainSubItems() override;
     void paintItem(juce::Graphics& g, int width, int height) override;
+    void itemClicked(const juce::MouseEvent& m) override;
     
 private:
     //==============================================================================

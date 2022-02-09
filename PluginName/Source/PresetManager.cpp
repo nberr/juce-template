@@ -229,7 +229,6 @@ void PresetManager::populateUserPresets(PresetViewItem* userTree)
         
         userTree->addSubItem(new PresetViewItem(f.getFileName(), notes, false));
     }
-    
 }
 
 void PresetManager::populateFactoryPresets(PresetViewItem* factoryTree)
