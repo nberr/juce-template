@@ -10,6 +10,9 @@
 
 #include "PresetViewItem.h"
 
+#include "PresetPanel.h"
+#include "PresetDisplayOverlay.h"
+
 //==============================================================================
 PresetViewItem::PresetViewItem(juce::String name, juce::String notes, bool isDefault)
 {
@@ -51,5 +54,19 @@ void PresetViewItem::paintItem(juce::Graphics& g, int width, int height)
 
 void PresetViewItem::itemClicked(const juce::MouseEvent& m)
 {
+    bool rightClick = juce::ModifierKeys::getCurrentModifiers().isPopupMenu();
     
+    if (rightClick) {
+        // TODO: show the context menu on right click
+    }
+    else {
+        // talk to the preset manager
+        PresetDisplayOverlay *overlay = (PresetDisplayOverlay *)getOwnerView()->getParentComponent()->getParentComponent();
+        PresetPanel *panel = (PresetPanel *)overlay->getParentComponent()->findChildWithID("PresetPanelID");
+        
+        auto pm = overlay->getPresetManager();
+        
+        pm->loadPreset(name);
+        panel->setPresetMenu(name);
+    }
 }

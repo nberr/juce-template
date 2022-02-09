@@ -32,6 +32,7 @@ PresetDisplayOverlay::PresetDisplayOverlay(PluginNameAudioProcessor* processor, 
     // lot of presets
     presetsDisplay.setRootItem(presetManager->getRootItem());
     presetsDisplay.setRootItemVisible(false);
+    //presetsDisplay.setName("Preset Display");
     
     displayViewport.addAndMakeVisible(presetsDisplay);
     addAndMakeVisible(displayViewport);
@@ -97,4 +98,10 @@ void PresetDisplayOverlay::buttonClicked(juce::Button* b)
             setVisible(false);
         }
     }
+}
+
+//==============================================================================
+PresetManager* PresetDisplayOverlay::getPresetManager()
+{
+    return presetManager;
 }
