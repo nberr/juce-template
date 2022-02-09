@@ -19,9 +19,6 @@ PresetDisplayOverlay::PresetDisplayOverlay(PluginNameAudioProcessor* processor, 
     
     presetManager = processor->getPresetManager();
     
-    rootViewItem = new PresetViewItem("root", "", false);
-    userPresets = new PresetViewItem("User", "", false);
-    factoryPresets = new PresetViewItem("Factory", "", false);
     
     // initialize each button and add them to the scene
     for (juce::TextButton* button : buttons) {
@@ -30,30 +27,10 @@ PresetDisplayOverlay::PresetDisplayOverlay(PluginNameAudioProcessor* processor, 
         addAndMakeVisible(button);
     }
     
-    // Configure the preset view
-    rootViewItem->setOpen(true);
-    
-    // populate the user presets
-    presetManager->populateUserPresets(userPresets);
-    
-    // populate the factory presets
-    presetManager->populateFactoryPresets(factoryPresets);
-    
-    // add the items to the tree
-    rootViewItem->addSubItem(userPresets);
-    rootViewItem->addSubItem(factoryPresets);
-    
-    /*
-    for (int i = factoryPresets->getNumSubItems(); i > 0; i--) {
-        PresetViewItem *item = (PresetViewItem *)factoryPresets->getSubItem(i-1);
-        rootViewItem->addSubItem(item);
-    }*/
-    
-    
     // Configures the preset display and add it to the viewport
     // added to the viewpoint to show scroll bars when there a
     // lot of presets
-    presetsDisplay.setRootItem(rootViewItem);
+    presetsDisplay.setRootItem(presetManager->getRootItem());
     presetsDisplay.setRootItemVisible(false);
     //presetsDisplay.setName("Preset Display");
     

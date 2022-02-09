@@ -17,7 +17,7 @@ ParameterSlider::ParameterSlider(juce::AudioProcessorValueTreeState& stateToCont
 :   juce::Slider(parameterLabel),
     attachment(stateToControl, parameterID, *this)
 {
-    
+    // TODO: set slider value based on parameter value
 }
 
 ParameterSlider::~ParameterSlider()

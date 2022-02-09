@@ -25,27 +25,29 @@ public:
     ~PresetManager();
     
     //==============================================================================
-    void getXmlForPreset(juce::XmlElement* element);
-    void loadPresetForXml(juce::XmlElement* element);
+    // void getXmlForPreset(juce::XmlElement* element);
+    // void loadPresetForXml(juce::XmlElement* element);
     
     //==============================================================================
-    int getNumberOfPresets();
-    juce::String getPresetName(int index);
-    juce::String getPresetPath();
+    // int getNumberOfPresets();
+    // juce::String getPresetName(int index);
+    // juce::String getPresetPath();
     
     //==============================================================================
-    void createNewPreset();
-    void savePreset();
+    // void createNewPreset();
+    // void savePreset();
     void saveAsPreset(juce::String name, juce::String notes);
-    void loadPreset(int index);
+    // void loadPreset(int index);
     
     //==============================================================================
-    bool getIsCurrentPresetSaved();
-    juce::String getCurrentPresetName();
+    // bool getIsCurrentPresetSaved();
+    // juce::String getCurrentPresetName();
     
     //==============================================================================
-    void populateUserPresets(PresetViewItem* userTree);
-    void populateFactoryPresets(PresetViewItem* factoryTree);
+    void populateUserPresets(PresetViewItem* userPresets);
+    void populateFactoryPresets(std::vector<PresetViewItem *>& factoryPresets);
+    PresetViewItem* getRootItem();
+    void addUserPreset(PresetViewItem* item);
     
     //==============================================================================
     void updateQuickPreset();
@@ -61,32 +63,36 @@ public:
     
 private:
     //==============================================================================
-    void storeLocalPreset();
+    // void storeLocalPreset();
     
     //==============================================================================
     juce::AudioProcessor* processor;
     juce::AudioProcessorValueTreeState *parameters;
     
     //==============================================================================
-    bool mCurrentPresetIsSaved;
+    juce::String currentPresetName;
+    bool currentPresetIsSaved;
     
     //==============================================================================
-    juce::File mCurrentlyLoadedPreset;
-    juce::Array<juce::File> mLocalPresets;
+    juce::File currentlyLoadedPreset;
+    juce::Array<juce::File> localPresets;
     
     //==============================================================================
-    juce::String mCurrentPresetName;
-    // juce::String presetNotes;
-    juce::String mPresetDirectory;
+    // juce::String currentPresetName;
+    juce::String presetDirectory;
     
     //==============================================================================
-    juce::XmlElement* mCurrentPresetXml;
+    juce::XmlElement* currentPresetXml;
     
     //==============================================================================
     juce::MemoryBlock presetA;
     juce::MemoryBlock presetB;
     
     bool fromToggle = false;
+    
+    //==============================================================================
+    PresetViewItem *rootViewItem, *userPresets;
+    std::vector<PresetViewItem *> factoryPresets;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetManager)

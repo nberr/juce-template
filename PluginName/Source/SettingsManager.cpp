@@ -12,10 +12,10 @@
 
 #include "PluginNameSettings.h"
 
-SettingsManager::SettingsManager(juce::AudioProcessor* inProcssor, juce::ValueTree* inSettings)
+SettingsManager::SettingsManager(juce::AudioProcessor* procssor, juce::ValueTree* settings)
 {
-    mProcessor = inProcssor;
-    settings = inSettings;
+    this->processor = procssor;
+    this->settings = settings;
     
     juce::String dir_sep = juce::File::getSeparatorString();
     settingsDirectory = juce::File::getSpecialLocation(juce::File::userMusicDirectory).getFullPathName()
@@ -84,6 +84,7 @@ void SettingsManager::saveSettings()
 
 void SettingsManager::loadSettings()
 {
+    // TODO: check if this process fails
     juce::XmlDocument xmlDoc {juce::File(settingsXML)};
     juce::XmlElement element = *xmlDoc.getDocumentElement();
     

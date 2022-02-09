@@ -10,6 +10,8 @@
 
 #include "SavePresetOverlay.h"
 
+#include "PresetPanel.h"
+
 //==============================================================================
 SavePresetOverlay::SavePresetOverlay(PluginNameAudioProcessor* processor, ContextMenu* contextMenu)
 :   OverlayBase(processor, contextMenu)
@@ -55,10 +57,10 @@ void SavePresetOverlay::buttonClicked(juce::Button* b)
         if (overlay != nullptr) {
             overlay->setVisible(true);
         }
-        
     }
     else if (b == &save) {
         juce::String name = "";
+        juce::String notes = notesInput.getText();
         
         if (presetNameInput.isEmpty()) {
             // preset name is required
@@ -74,9 +76,29 @@ void SavePresetOverlay::buttonClicked(juce::Button* b)
             return;
         }
         
-        // TODO: sanitize notes text
-        presetManager->saveAsPreset(name, notesInput.getText());
+        // check if notes contain bad text
+        if (notes.contains("bad text")) {
+            return;
+        }
         
-        // TODO: reload values in PresetDisplayOverlay
+        // save the preset to a file
+        presetManager->saveAsPreset(name, notes);
+        
+        // add the preset to the user PresetViewItem tree
+        // display automatically updates when a new item is added
+        presetManager->addUserPreset(new PresetViewItem(name, notes, false));
+        
+        // reset the form for next time
+        presetNameInput.setText("");
+        notesInput.setText("");
+        setVisible(false);
+        
+        juce::Component *overlay = getParentComponent()->findChildWithID("PresetDisplayOverlayID");
+        if (overlay != nullptr) {
+            overlay->setVisible(true);
+        }
+        
+        auto presetPanel = (PresetPanel *)getParentComponent()->findChildWithID("PresetPanelID");
+        presetPanel->setPresetMenu(name);
     }
 }

@@ -18,6 +18,8 @@ ParameterToggleButton::ParameterToggleButton(juce::AudioProcessorValueTreeState&
     attachment(stateToControl, parameterID, *this)
 {
     setToggleable(true);
+    
+    // TODO: set toggle state based on parameter state
 }
 
 ParameterToggleButton::~ParameterToggleButton()

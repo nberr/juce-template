@@ -20,7 +20,7 @@ class ContextMenu
 {
 public:
     //==============================================================================
-    ContextMenu(PluginNameAudioProcessor* inProcssor);
+    ContextMenu(PluginNameAudioProcessor* procssor);
     ~ContextMenu();
     
     //==============================================================================
@@ -29,7 +29,7 @@ public:
         
 private:
     //==============================================================================
-    PluginNameAudioProcessor* mProcessor;
+    PluginNameAudioProcessor* processor;
     
     //==============================================================================
     juce::PopupMenu menu;
