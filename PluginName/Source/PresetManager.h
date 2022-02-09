@@ -70,18 +70,19 @@ private:
     juce::AudioProcessorValueTreeState *parameters;
     
     //==============================================================================
-    // bool mCurrentPresetIsSaved;
+    juce::String currentPresetName;
+    bool currentPresetIsSaved;
     
     //==============================================================================
-    // juce::File mCurrentlyLoadedPreset;
-    // juce::Array<juce::File> mLocalPresets;
+    juce::File currentlyLoadedPreset;
+    juce::Array<juce::File> localPresets;
     
     //==============================================================================
     // juce::String currentPresetName;
     juce::String presetDirectory;
     
     //==============================================================================
-    // juce::XmlElement* mCurrentPresetXml;
+    juce::XmlElement* currentPresetXml;
     
     //==============================================================================
     juce::MemoryBlock presetA;

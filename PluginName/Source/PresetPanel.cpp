@@ -144,3 +144,9 @@ void PresetPanel::buttonClicked(juce::Button* b)
         }
     }
 }
+
+//==============================================================================
+void PresetPanel::setPresetMenu(juce::String presetName)
+{
+    presetMenu.setButtonText(presetName);
+}

@@ -26,7 +26,10 @@ public:
     void resized() override;
         
     //==============================================================================
-    void buttonClicked(juce::Button*) override;
+    void buttonClicked(juce::Button* b) override;
+    
+    //==============================================================================
+    void setPresetMenu(juce::String presetName);
     
 private:
     //==============================================================================

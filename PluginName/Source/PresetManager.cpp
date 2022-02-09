@@ -178,8 +178,8 @@ void PresetManager::saveAsPreset(juce::String inPresetName, juce::String notes)
         jassertfalse;
     }
     
-    // mCurrentPresetIsSaved = true;
-    // mCurrentPresetName = inPresetName;
+    currentPresetIsSaved = true;
+    currentPresetName = inPresetName;
     
     // storeLocalPreset();
 }

@@ -10,6 +10,8 @@
 
 #include "SavePresetOverlay.h"
 
+#include "PresetPanel.h"
+
 //==============================================================================
 SavePresetOverlay::SavePresetOverlay(PluginNameAudioProcessor* processor, ContextMenu* contextMenu)
 :   OverlayBase(processor, contextMenu)
@@ -91,9 +93,12 @@ void SavePresetOverlay::buttonClicked(juce::Button* b)
         notesInput.setText("");
         setVisible(false);
         
-        juce::Component* overlay = getParentComponent()->findChildWithID("PresetDisplayOverlayID");
+        juce::Component *overlay = getParentComponent()->findChildWithID("PresetDisplayOverlayID");
         if (overlay != nullptr) {
             overlay->setVisible(true);
         }
+        
+        auto presetPanel = (PresetPanel *)getParentComponent()->findChildWithID("PresetPanelID");
+        presetPanel->setPresetMenu(name);
     }
 }
