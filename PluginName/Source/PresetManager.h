@@ -37,7 +37,7 @@ public:
     // void createNewPreset();
     // void savePreset();
     void saveAsPreset(juce::String name, juce::String notes);
-    // void loadPreset(int index);
+    void loadPreset(juce::String name);
     
     //==============================================================================
     // bool getIsCurrentPresetSaved();

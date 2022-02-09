@@ -184,8 +184,9 @@ void PresetManager::saveAsPreset(juce::String inPresetName, juce::String notes)
     // storeLocalPreset();
 }
 
-/*void PresetManager::loadPreset(int inPresetIndex)
+void PresetManager::loadPreset(juce::String name)
 {
+    /*
     mCurrentlyLoadedPreset = mLocalPresets[inPresetIndex];
     
     juce::MemoryBlock presetBinary;
@@ -196,8 +197,9 @@ void PresetManager::saveAsPreset(juce::String inPresetName, juce::String notes)
         mCurrentPresetName = getPresetName(inPresetIndex);
         processor->setStateInformation(presetBinary.getData(),
                                         (int)presetBinary.getSize());
-    }
-}*/
+    }*/
+    
+}
 
 //==============================================================================
 /*bool PresetManager::getIsCurrentPresetSaved()

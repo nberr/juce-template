@@ -64,7 +64,9 @@ void PresetViewItem::itemClicked(const juce::MouseEvent& m)
         PresetDisplayOverlay *overlay = (PresetDisplayOverlay *)getOwnerView()->getParentComponent()->getParentComponent();
         PresetPanel *panel = (PresetPanel *)overlay->getParentComponent()->findChildWithID("PresetPanelID");
         
+        auto pm = overlay->getPresetManager();
         
-        //auto pm = overlay->getPresetManager();
+        pm->loadPreset(name);
+        panel->setPresetMenu(name);
     }
 }
