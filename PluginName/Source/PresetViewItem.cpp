@@ -48,3 +48,8 @@ void PresetViewItem::paintItem(juce::Graphics& g, int width, int height)
     g.setColour(juce::Colours::black);
     g.drawText(text , 5, 0, width, height, juce::Justification::left);
 }
+
+void PresetViewItem::itemClicked(const juce::MouseEvent& m)
+{
+    
+}
