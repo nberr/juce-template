@@ -44,8 +44,14 @@ bool PresetViewItem::mightContainSubItems()
 void PresetViewItem::paintItem(juce::Graphics& g, int width, int height)
 {
     // paint the display
-    // TODO: adjust this to look better
-    g.fillAll(juce::Colours::grey);
+    if (isSelected()) {
+        g.fillAll(juce::Colours::blue.withAlpha (0.3f));
+    }
+    
+    if (isDirectory) {
+        g.fillAll(juce::Colours::blue.withAlpha (0.4f));
+    }
+    
     g.setColour(juce::Colours::black);
     g.drawText(display , 5, 0, width, height, juce::Justification::left);
 }
