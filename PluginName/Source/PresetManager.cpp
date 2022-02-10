@@ -35,8 +35,8 @@ PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcess
     processor->getStateInformation(presetA);
     processor->getStateInformation(presetB);
     
-    rootViewItem = new PresetViewItem("root", "", false);
-    userPresets = new PresetViewItem("User", "", false);
+    rootViewItem = new PresetViewItem("root", "", false, true);
+    userPresets = new PresetViewItem("User", "", false, true);
     
     // Configure the preset view
     rootViewItem->setOpen(true);
@@ -242,7 +242,7 @@ void PresetManager::populateUserPresets(PresetViewItem* userPresets)
         
         notes = element.getStringAttribute("notes");
         
-        userPresets->addSubItem(new PresetViewItem(f.getFileName(), notes, false));
+        userPresets->addSubItem(new PresetViewItem(f.getFileName(), notes, false, false));
     }
 }
 
@@ -256,7 +256,7 @@ void PresetManager::populateFactoryPresets(std::vector<PresetViewItem *>& factor
         
         // create a group
         juce::String groupName = group->getStringAttribute("name");
-        PresetViewItem *groupItem = new PresetViewItem(groupName, "", false);
+        PresetViewItem *groupItem = new PresetViewItem(groupName, "", false, true);
         
         // for each preset in the group
         // add it to the tree
@@ -264,7 +264,7 @@ void PresetManager::populateFactoryPresets(std::vector<PresetViewItem *>& factor
             juce::String presetName = preset->getStringAttribute("name");
             juce::String presetNotes = preset->getStringAttribute("notes");
 
-            groupItem->addSubItem(new PresetViewItem(presetName, presetNotes, false));
+            groupItem->addSubItem(new PresetViewItem(presetName, presetNotes, false, false));
         }
         
         // push the tree to the vector to be used by the display

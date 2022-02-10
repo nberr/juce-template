@@ -86,7 +86,7 @@ void SavePresetOverlay::buttonClicked(juce::Button* b)
         
         // add the preset to the user PresetViewItem tree
         // display automatically updates when a new item is added
-        presetManager->addUserPreset(new PresetViewItem(name, notes, false));
+        presetManager->addUserPreset(new PresetViewItem(name, notes, false, true));
         
         // reset the form for next time
         presetNameInput.setText("");

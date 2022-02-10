@@ -105,3 +105,9 @@ PresetManager* PresetDisplayOverlay::getPresetManager()
 {
     return presetManager;
 }
+
+//==============================================================================
+void PresetDisplayOverlay::showContextMenu(juce::String name)
+{
+    contextMenu->showMenu(name);
+}

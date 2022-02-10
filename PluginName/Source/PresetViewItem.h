@@ -18,7 +18,7 @@ class PresetViewItem
 {
 public:
     //==============================================================================
-    PresetViewItem(juce::String name, juce::String notes, bool isDefault);
+    PresetViewItem(juce::String name, juce::String notes, bool isDefault, bool isDirectory);
     ~PresetViewItem();
     
     //==============================================================================
@@ -28,8 +28,8 @@ public:
     
 private:
     //==============================================================================
-    juce::String name, notes;
-    bool isDefault = false;
+    juce::String fileName, displayName, display, notes;
+    bool isDefault = false, isDirectory;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetViewItem)

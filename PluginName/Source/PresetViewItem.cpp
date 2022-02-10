@@ -13,12 +13,22 @@
 #include "PresetPanel.h"
 #include "PresetDisplayOverlay.h"
 
+#include "ContextMenu.h"
+
 //==============================================================================
-PresetViewItem::PresetViewItem(juce::String name, juce::String notes, bool isDefault)
+PresetViewItem::PresetViewItem(juce::String name, juce::String notes, bool isDefault, bool isDirectory)
 {
-    this->name = name;
+    this->fileName = name;
     this->notes = notes;
     this->isDefault = isDefault;
+    this->isDirectory = isDirectory;
+    
+    // set the display name
+    // remove the ".xml" at the end if it's not a directory
+    displayName = (fileName.endsWith(".xml")) ? fileName.substring(0, fileName.length() - 4) : fileName;
+    
+    // add notes to the end of the displayName if there are any
+    display = (notes.isNotEmpty()) ? displayName + " - " + notes : displayName;
 }
 
 PresetViewItem::~PresetViewItem()
@@ -33,40 +43,33 @@ bool PresetViewItem::mightContainSubItems()
 
 void PresetViewItem::paintItem(juce::Graphics& g, int width, int height)
 {
-    juce::String text = name;
-    
-    // remove the .xml at the end
-    if (name.endsWith(".xml")) {
-        text = name.substring(0, name.length() - 4);
-    }
-    
-    // append notes if there are any
-    if (notes.isNotEmpty()) {
-        text = text + " - " + notes;
-    }
-    
     // paint the display
     // TODO: adjust this to look better
     g.fillAll(juce::Colours::grey);
     g.setColour(juce::Colours::black);
-    g.drawText(text , 5, 0, width, height, juce::Justification::left);
+    g.drawText(display , 5, 0, width, height, juce::Justification::left);
 }
 
 void PresetViewItem::itemClicked(const juce::MouseEvent& m)
 {
+    // ignore if the item is a directory
+    if (isDirectory) {
+        return;
+    }
+    
     bool rightClick = juce::ModifierKeys::getCurrentModifiers().isPopupMenu();
     
+    PresetDisplayOverlay *overlay = (PresetDisplayOverlay *)getOwnerView()->getParentComponent()->getParentComponent();
+    PresetPanel *panel = (PresetPanel *)overlay->getParentComponent()->findChildWithID("PresetPanelID");
+    
+    auto pm = overlay->getPresetManager();
+    
     if (rightClick) {
-        // TODO: show the context menu on right click
+        overlay->showContextMenu(displayName);
     }
     else {
         // talk to the preset manager
-        PresetDisplayOverlay *overlay = (PresetDisplayOverlay *)getOwnerView()->getParentComponent()->getParentComponent();
-        PresetPanel *panel = (PresetPanel *)overlay->getParentComponent()->findChildWithID("PresetPanelID");
-        
-        auto pm = overlay->getPresetManager();
-        
-        pm->loadPreset(name);
-        panel->setPresetMenu(name);
+        pm->loadPreset(fileName);
+        panel->setPresetMenu(displayName);
     }
 }
