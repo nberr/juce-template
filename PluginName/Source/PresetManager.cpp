@@ -25,6 +25,21 @@ PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcess
         }
     }
     
+    rootViewItem = new PresetViewItem("root", "", false, true);
+    //userPresets = new PresetViewItem("User", "", false, true);
+    
+    //rootViewItem->addSubItem(userPresets);
+    
+    // Configure the preset view
+    rootViewItem->setOpen(true);
+    
+    // populate the factory presets
+    populateFactoryPresets(factoryPresets);
+    
+    for (PresetViewItem *item : factoryPresets) {
+        rootViewItem->addSubItem(item);
+    }
+    
     if (presetsFile.exists()) {
         // try to load the file into the tree
         std::unique_ptr<juce::XmlElement> xml = juce::XmlDocument(presetsFile).getDocumentElement();
@@ -36,36 +51,17 @@ PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcess
             jassertfalse;
         }
         
-        // populate the user presets
-        // populateUserPresets(userPresets);
+        userPresets = new PresetViewItem("User", "", false, true);
+        
+        populateUserPresets(userPresets);
+        
+        if (userPresets->getNumSubItems() > 0) {
+            rootViewItem->addSubItem(userPresets, 0);
+        }
     }
     
     processor->getStateInformation(presetA);
     processor->getStateInformation(presetB);
-    
-    rootViewItem = new PresetViewItem("root", "", false, true);
-    userPresets = new PresetViewItem("User", "", false, true);
-    
-    rootViewItem->addSubItem(userPresets);
-    
-    // Configure the preset view
-    rootViewItem->setOpen(true);
-    
-    // populate the factory presets
-    populateFactoryPresets(factoryPresets);
-    
-    // add the items to the tree
-    if (userPresets->getNumSubItems() > 0) {
-        rootViewItem->addSubItem(userPresets);
-    }
-    //rootViewItem->addSubItem(factoryPresets);
-    
-    
-    for (PresetViewItem *item : factoryPresets) {
-        rootViewItem->addSubItem(item);
-    }
-    
-    // storeLocalPreset();
 }
 
 PresetManager::~PresetManager()
@@ -88,6 +84,8 @@ void PresetManager::savePreset(juce::String name, juce::String notes, bool shoul
         if(presetsFile.create().fail("Failed to create presetFile")) {
             jassertfalse;
         }
+        
+        userPresets = new PresetViewItem("User", "", false, true);
     }
     
     // add new preset to the tree and rewrite the file
@@ -113,12 +111,12 @@ void PresetManager::savePreset(juce::String name, juce::String notes, bool shoul
     }
     
     if (userPresets->getNumSubItems() == 0) {
-        // populateUserPresets(userPresets);
         rootViewItem->addSubItem(userPresets, 0);
     }
     
     PresetViewItem *newPreset = new PresetViewItem(name, notes, shouldBeDefault, false);
-    newPreset->setSelected(true, false);
+    userPresets->setSelected(false, true);
+    newPreset->setSelected(true, true);
     userPresets->addSubItem(newPreset);
 }
 
@@ -143,22 +141,6 @@ void PresetManager::populateUserPresets(PresetViewItem* userPresets)
         
         userPresets->addSubItem(new PresetViewItem(presetName, presetNotes, false, false));
     }
-    
-    /*
-    juce::File directory(pluginDirectory);
-    juce::Array<juce::File> presets = directory.findChildFiles(juce::File::TypesOfFileToFind::findFiles, false, "*.xml");
-    
-    for (juce::File f : presets) {
-        
-        // parse the notes from the XML file
-        juce::String notes;
-        juce::XmlDocument xmlDoc {f};
-        juce::XmlElement element = *xmlDoc.getDocumentElement();
-        
-        notes = element.getStringAttribute("notes");
-        
-        userPresets->addSubItem(new PresetViewItem(f.getFileName(), notes, false, false));
-    }*/
 }
 
 void PresetManager::populateFactoryPresets(std::vector<PresetViewItem *>& factoryPresets)
