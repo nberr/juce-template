@@ -17,19 +17,27 @@ PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcess
     //mCurrentPresetIsSaved(false),
     // currentPresetName("Untitled")
 {
-    juce::String dir_sep = juce::File::getSeparatorString();
-    presetDirectory = juce::File::getSpecialLocation(juce::File::userMusicDirectory).getFullPathName()
-                       + dir_sep + JucePlugin_Manufacturer
-                       + dir_sep + JucePlugin_Name
-                       + dir_sep + "Presets";
-    
-    
-    if (!juce::File(presetDirectory).exists()) {
-        
+    // create the plugin directory
+    if (!juce::File(pluginDirectory).exists()) {
         // create the preset directory
-        if(juce::File(presetDirectory).createDirectory().fail("Failed to create preset directory")) {
+        if(juce::File(pluginDirectory).createDirectory().fail("Failed to create preset directory")) {
             jassertfalse;
         }
+    }
+    
+    if (presetsFile.exists()) {
+        // try to load the file into the tree
+        std::unique_ptr<juce::XmlElement> xml = juce::XmlDocument(presetsFile).getDocumentElement();
+        
+        presetsTree = juce::ValueTree::fromXml(*xml);
+        
+        // tree didn't load properly. maybe bad xml?
+        if (!presetsTree.isValid()) {
+            jassertfalse;
+        }
+        
+        // populate the user presets
+        // populateUserPresets(userPresets);
     }
     
     processor->getStateInformation(presetA);
@@ -38,17 +46,18 @@ PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcess
     rootViewItem = new PresetViewItem("root", "", false, true);
     userPresets = new PresetViewItem("User", "", false, true);
     
+    rootViewItem->addSubItem(userPresets);
+    
     // Configure the preset view
     rootViewItem->setOpen(true);
-    
-    // populate the user presets
-    populateUserPresets(userPresets);
     
     // populate the factory presets
     populateFactoryPresets(factoryPresets);
     
     // add the items to the tree
-    rootViewItem->addSubItem(userPresets);
+    if (userPresets->getNumSubItems() > 0) {
+        rootViewItem->addSubItem(userPresets);
+    }
     //rootViewItem->addSubItem(factoryPresets);
     
     
@@ -65,172 +74,78 @@ PresetManager::~PresetManager()
 }
 
 //==============================================================================
-/*void PresetManager::getXmlForPreset(juce::XmlElement* inElement)
+void PresetManager::savePreset(juce::String name, juce::String notes, bool shouldBeDefault)
 {
-    const juce::Array<juce::AudioProcessorParameter*>& parameters = processor->getParameters();
-    
-    for (int i = 0; i < parameters.size(); i++)
-    {
-        juce::AudioProcessorParameterWithID* parameter = (juce::AudioProcessorParameterWithID*)parameters.getUnchecked(i);
+    // presetManager should handle
+    // 1. saving the preset to the xml file
+    // 2. adding the preset to the PresetViewTree
+    // user hasn't saved presets before
+    if (!presetsFile.exists()) {
+        // initialize the tree
+        presetsTree = juce::ValueTree(juce::Identifier("Preset"));
         
-        inElement->setAttribute(parameter->paramID, parameter->getValue());
-    }
-}
-
-void PresetManager::loadPresetForXml(juce::XmlElement* inElement)
-{
-    mCurrentPresetXml = inElement;
-    
-    const juce::Array<juce::AudioProcessorParameter*>& parameters = processor->getParameters();
-    
-    for (int i = 0; i < mCurrentPresetXml->getNumAttributes(); i++)
-    {
-        const juce::String paramID = mCurrentPresetXml->getAttributeName(i);
-        const float value = mCurrentPresetXml->getDoubleAttribute(paramID);
-        
-        for (int j = 0; j < parameters.size(); j++) {
-            juce::AudioProcessorParameterWithID* parameter = (juce::AudioProcessorParameterWithID*)parameters.getUnchecked(i);
-            
-            if (paramID == parameter->paramID)
-            {
-                parameter->setValueNotifyingHost(value);
-            }
+        // create presetsFile and check for errors
+        if(presetsFile.create().fail("Failed to create presetFile")) {
+            jassertfalse;
         }
     }
-}*/
-
-//==============================================================================
-/*int PresetManager::getNumberOfPresets()
-{
-    return mLocalPresets.size();
-}
-
-juce::String PresetManager::getPresetName(int inPresetIndex)
-{
-    return mLocalPresets[inPresetIndex].getFileNameWithoutExtension();
-}
-
-juce::String PresetManager::getPresetPath()
-{
-    return mPresetDirectory;
-}*/
-
-//==============================================================================
-/*void PresetManager::createNewPreset()
-{
-    const juce::Array<juce::AudioProcessorParameter*>& parameters = processor->getParameters();
     
-    for (int i = 0; i < parameters.size(); i++)
-    {
-        juce::AudioProcessorParameterWithID* parameter = (juce::AudioProcessorParameterWithID*)parameters.getUnchecked(i);
-        
-        const float defaultValue = parameter->getDefaultValue();
-        
-        parameter->setValueNotifyingHost(defaultValue);
-    }
+    // add new preset to the tree and rewrite the file
+    juce::ValueTree presetTree = juce::ValueTree(juce::Identifier("Preset"));
     
-    //mCurrentPresetIsSaved = false;
-    //mCurrentPresetName = "Untitled";
-}
-
-void PresetManager::savePreset()
-{
-    juce::MemoryBlock destinationData;
-    processor->getStateInformation(destinationData);
+    // set the preset properties
+    presetTree.setProperty(juce::Identifier("name"), name, nullptr);
+    presetTree.setProperty(juce::Identifier("notes"), notes, nullptr);
+    presetTree.setProperty(juce::Identifier("url"), JucePlugin_ManufacturerWebsite, nullptr);
+    presetTree.setProperty(juce::Identifier("uuid"), juce::Uuid().toDashedString(), nullptr);
     
-    mCurrentlyLoadedPreset.deleteFile();
-    mCurrentlyLoadedPreset.appendData(destinationData.getData(),
-                                      destinationData.getSize());
-    
-    mCurrentPresetIsSaved = true;
-}*/
-
-void PresetManager::saveAsPreset(juce::String inPresetName, juce::String notes)
-{
-    // path information
-    juce::String dir_sep = juce::File::getSeparatorString();
-    juce::File presetFile = juce::File(presetDirectory + dir_sep + inPresetName + PRESET_FILE_EXTENSION);
-    
-    // delete the preset file if it exists
-    // save as overwrites the existing settings
-    if (presetFile.exists()) {
-        presetFile.deleteFile();
-    }
-    
-    if (presetFile.create().fail("Failed to create xml file")) {
-        jassertfalse;
-    }
-    
-    // XML tree setup
-    juce::ValueTree mainTree = juce::ValueTree(juce::Identifier("Preset"));
-    mainTree.setProperty(juce::Identifier("name"), inPresetName, nullptr);
-    mainTree.setProperty(juce::Identifier("notes"), notes, nullptr);
-    
-    // convert parameter state to xml and write to data to the file
+    // copy parameter state to a ValueTree and add it to the preset
     juce::ValueTree parameterTree = parameters->copyState();
+    presetTree.appendChild(parameterTree, nullptr);
     
-    // add the sub-trees
-    mainTree.appendChild(parameterTree, nullptr);
+    // add the preset to the presetsTree
+    presetsTree.appendChild(presetTree, nullptr);
     
     // create the xml and write the file
-    std::unique_ptr<juce::XmlElement> xml = mainTree.createXml();
-    if (!xml->writeTo(presetFile)) {
+    std::unique_ptr<juce::XmlElement> xml = presetsTree.createXml();
+    if (!xml->writeTo(presetsFile)) {
         jassertfalse;
     }
     
-    currentPresetIsSaved = true;
-    currentPresetName = inPresetName;
+    if (userPresets->getNumSubItems() == 0) {
+        // populateUserPresets(userPresets);
+        rootViewItem->addSubItem(userPresets, 0);
+    }
     
-    // storeLocalPreset();
+    PresetViewItem *newPreset = new PresetViewItem(name, notes, shouldBeDefault, false);
+    newPreset->setSelected(true, false);
+    userPresets->addSubItem(newPreset);
+}
+
+void PresetManager::updatePreset(juce::String name)
+{
+    
 }
 
 void PresetManager::loadPreset(juce::String name)
 {
-    /*
-    mCurrentlyLoadedPreset = mLocalPresets[inPresetIndex];
-    
-    juce::MemoryBlock presetBinary;
-    
-    if (mCurrentlyLoadedPreset.loadFileAsData(presetBinary))
-    {
-        mCurrentPresetIsSaved = true;
-        mCurrentPresetName = getPresetName(inPresetIndex);
-        processor->setStateInformation(presetBinary.getData(),
-                                        (int)presetBinary.getSize());
-    }*/
     
 }
-
-//==============================================================================
-/*bool PresetManager::getIsCurrentPresetSaved()
-{
-    return mCurrentPresetIsSaved;
-}
-
-juce::String PresetManager::getCurrentPresetName()
-{
-    return mCurrentPresetName;
-}*/
-
-//==============================================================================
-/*void PresetManager::storeLocalPreset()
-{
-    mLocalPresets.clear();
-            
-    for (juce::DirectoryEntry entry: juce::RangedDirectoryIterator(juce::File(mPresetDirectory),
-                                                                       false,
-                                                                       "*" + (juce::String)PRESET_FILE_EXTENSION,
-                                                                       juce::File::TypesOfFileToFind::findFiles))
-    {
-        juce::File preset = entry.getFile();
-        mLocalPresets.add(preset);
-    }
-}*/
 
 //==============================================================================
 void PresetManager::populateUserPresets(PresetViewItem* userPresets)
 {
-    juce::File directory(presetDirectory);
+    std::unique_ptr<juce::XmlElement> xml = juce::XmlDocument(presetsFile).getDocumentElement();
+    
+    for (auto* preset : xml->getChildIterator()) {
+        juce::String presetName = preset->getStringAttribute("name");
+        juce::String presetNotes = preset->getStringAttribute("notes");
+        
+        userPresets->addSubItem(new PresetViewItem(presetName, presetNotes, false, false));
+    }
+    
+    /*
+    juce::File directory(pluginDirectory);
     juce::Array<juce::File> presets = directory.findChildFiles(juce::File::TypesOfFileToFind::findFiles, false, "*.xml");
     
     for (juce::File f : presets) {
@@ -243,7 +158,7 @@ void PresetManager::populateUserPresets(PresetViewItem* userPresets)
         notes = element.getStringAttribute("notes");
         
         userPresets->addSubItem(new PresetViewItem(f.getFileName(), notes, false, false));
-    }
+    }*/
 }
 
 void PresetManager::populateFactoryPresets(std::vector<PresetViewItem *>& factoryPresets)
@@ -275,11 +190,6 @@ void PresetManager::populateFactoryPresets(std::vector<PresetViewItem *>& factor
 PresetViewItem* PresetManager::getRootItem()
 {
     return rootViewItem;
-}
-
-void PresetManager::addUserPreset(PresetViewItem* item)
-{
-    userPresets->addSubItem(item);
 }
 
 //==============================================================================

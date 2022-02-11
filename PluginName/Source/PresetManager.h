@@ -25,29 +25,14 @@ public:
     ~PresetManager();
     
     //==============================================================================
-    // void getXmlForPreset(juce::XmlElement* element);
-    // void loadPresetForXml(juce::XmlElement* element);
-    
-    //==============================================================================
-    // int getNumberOfPresets();
-    // juce::String getPresetName(int index);
-    // juce::String getPresetPath();
-    
-    //==============================================================================
-    // void createNewPreset();
-    // void savePreset();
-    void saveAsPreset(juce::String name, juce::String notes);
+    void savePreset(juce::String name, juce::String notes, bool shouldBeDefault);
+    void updatePreset(juce::String name);
     void loadPreset(juce::String name);
-    
-    //==============================================================================
-    // bool getIsCurrentPresetSaved();
-    // juce::String getCurrentPresetName();
     
     //==============================================================================
     void populateUserPresets(PresetViewItem* userPresets);
     void populateFactoryPresets(std::vector<PresetViewItem *>& factoryPresets);
     PresetViewItem* getRootItem();
-    void addUserPreset(PresetViewItem* item);
     
     //==============================================================================
     void updateQuickPreset();
@@ -63,26 +48,16 @@ public:
     
 private:
     //==============================================================================
-    // void storeLocalPreset();
-    
-    //==============================================================================
     juce::AudioProcessor* processor;
     juce::AudioProcessorValueTreeState *parameters;
     
-    //==============================================================================
-    juce::String currentPresetName;
-    bool currentPresetIsSaved;
+    const juce::String dir_sep = juce::File::getSeparatorString();
+    const juce::String pluginDirectory = juce::File::getSpecialLocation(juce::File::userMusicDirectory).getFullPathName()
+                                         + dir_sep + JucePlugin_Manufacturer
+                                         + dir_sep + JucePlugin_Name;
+    juce::File presetsFile = juce::File(pluginDirectory + dir_sep + "presets.xml");
     
-    //==============================================================================
-    juce::File currentlyLoadedPreset;
-    juce::Array<juce::File> localPresets;
-    
-    //==============================================================================
-    // juce::String currentPresetName;
-    juce::String presetDirectory;
-    
-    //==============================================================================
-    juce::XmlElement* currentPresetXml;
+    juce::ValueTree presetsTree;
     
     //==============================================================================
     juce::MemoryBlock presetA;

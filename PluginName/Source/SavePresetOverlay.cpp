@@ -81,12 +81,12 @@ void SavePresetOverlay::buttonClicked(juce::Button* b)
             return;
         }
         
-        // save the preset to a file
-        presetManager->saveAsPreset(name, notes);
+        // save the preset
+        presetManager->savePreset(name, notes, makeDefaultButton.isDown());
         
         // add the preset to the user PresetViewItem tree
         // display automatically updates when a new item is added
-        presetManager->addUserPreset(new PresetViewItem(name, notes, false, true));
+        // presetManager->addUserPreset(new PresetViewItem(name, notes, false, false));
         
         // reset the form for next time
         presetNameInput.setText("");
