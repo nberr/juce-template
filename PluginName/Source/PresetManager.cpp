@@ -14,8 +14,6 @@
 PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcessorValueTreeState* parameters)
 :   processor(processor),
     parameters(parameters)
-    //mCurrentPresetIsSaved(false),
-    // currentPresetName("Untitled")
 {
     // create the plugin directory
     if (!juce::File(pluginDirectory).exists()) {
@@ -26,9 +24,6 @@ PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcess
     }
     
     rootViewItem = new PresetViewItem("root", "", false, true);
-    //userPresets = new PresetViewItem("User", "", false, true);
-    
-    //rootViewItem->addSubItem(userPresets);
     
     // Configure the preset view
     rootViewItem->setOpen(true);
@@ -202,8 +197,6 @@ void PresetManager::updateQuickPreset()
         default:
             jassertfalse;
     }
-    
-    fromToggle = false;
 }
 
 void PresetManager::toggleQuickPreset()
@@ -228,6 +221,8 @@ void PresetManager::toggleQuickPreset()
         default:
             jassertfalse;
     }
+    
+    fromToggle = false;
 }
 
 void PresetManager::copyQuickPreset()

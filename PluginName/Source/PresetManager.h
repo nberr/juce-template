@@ -51,23 +51,36 @@ private:
     juce::AudioProcessor* processor;
     juce::AudioProcessorValueTreeState *parameters;
     
+    //==============================================================================
     const juce::String dir_sep = juce::File::getSeparatorString();
     const juce::String pluginDirectory = juce::File::getSpecialLocation(juce::File::userMusicDirectory).getFullPathName()
                                          + dir_sep + JucePlugin_Manufacturer
                                          + dir_sep + JucePlugin_Name;
     juce::File presetsFile = juce::File(pluginDirectory + dir_sep + "presets.xml");
     
+    //==============================================================================
+    // connection between the presetsFile file and the PresetManager
     juce::ValueTree presetsTree;
+    
+    //==============================================================================
+    // used to display the presets
+    PresetViewItem *rootViewItem, *userPresets;
+    std::vector<PresetViewItem *> factoryPresets;
+    
+    //==============================================================================
+    // the actual preset values
+    std::vector<juce::XmlElement> presetsValues;
+    int userPresetsIndex = 0;
+    
+    std::vector<juce::String> presetsNames;
+    juce::String currentPresetName;
+    int currentPresetIndex = 0;
     
     //==============================================================================
     juce::MemoryBlock presetA;
     juce::MemoryBlock presetB;
     
     bool fromToggle = false;
-    
-    //==============================================================================
-    PresetViewItem *rootViewItem, *userPresets;
-    std::vector<PresetViewItem *> factoryPresets;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetManager)

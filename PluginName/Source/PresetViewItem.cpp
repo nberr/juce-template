@@ -36,6 +36,7 @@ PresetViewItem::~PresetViewItem()
 
 }
 
+//==============================================================================
 bool PresetViewItem::mightContainSubItems()
 {
     return getNumSubItems() != 0;
@@ -60,6 +61,7 @@ void PresetViewItem::itemClicked(const juce::MouseEvent& m)
 {
     // ignore if the item is a directory
     if (isDirectory) {
+        setOpen(!isOpen());
         return;
     }
     
@@ -78,4 +80,9 @@ void PresetViewItem::itemClicked(const juce::MouseEvent& m)
         pm->loadPreset(fileName);
         panel->setPresetMenu(displayName);
     }
+}
+
+bool PresetViewItem::canBeSelected() const
+{
+    return !isDirectory;
 }
