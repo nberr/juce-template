@@ -48,6 +48,9 @@ void PresetViewItem::paintItem(juce::Graphics& g, int width, int height)
     if (isSelected()) {
         g.fillAll(juce::Colours::blue.withAlpha (0.3f));
     }
+    else {
+        g.fillAll(juce::Colours::blue.withAlpha (0.1f));
+    }
     
     if (isDirectory) {
         g.fillAll(juce::Colours::blue.withAlpha (0.4f));
@@ -79,6 +82,8 @@ void PresetViewItem::itemClicked(const juce::MouseEvent& m)
         // talk to the preset manager
         pm->loadPreset(fileName);
         panel->setPresetMenu(displayName);
+        
+        pm->loadPreset(displayName);
     }
 }
 
