@@ -35,6 +35,8 @@ public:
     //==============================================================================
     PresetViewItem* getRootItem();
     
+    juce::String getCurrentPresetName();
+    
     //==============================================================================
     void updateQuickPreset();
     void toggleQuickPreset();

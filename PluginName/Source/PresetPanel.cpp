@@ -108,7 +108,9 @@ void PresetPanel::buttonClicked(juce::Button* b)
             undoManager->redo();
         }
         else if (b == &prevPreset) {
-            
+            auto pm = processor->getPresetManager();
+            pm->loadPreviousPreset();
+            presetMenu.setButtonText(pm->getCurrentPresetName());
         }
         else if (b == &presetMenu) {
             // toggle overlay
@@ -118,7 +120,9 @@ void PresetPanel::buttonClicked(juce::Button* b)
             }
         }
         else if (b == &nextPreset) {
-            
+            auto pm = processor->getPresetManager();
+            pm->loadNextPreset();
+            presetMenu.setButtonText(pm->getCurrentPresetName());
         }
         else if (b == &presetA || b == &presetB) {
             

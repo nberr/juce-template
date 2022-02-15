@@ -110,16 +110,36 @@ void PresetManager::loadPreset(juce::String name)
         return;
     }
     
-    for (int i = 0; i < presetsXmlData.size(); i++) {
+    std::vector<int> numSubItems;
+    
+    int numUserSubItems = userPresets->getNumSubItems();
+    if (numUserSubItems > 0) {
+        numSubItems.push_back(numUserSubItems);
+    }
+    
+    for (auto p : factoryPresets) {
+        numSubItems.push_back(p->getNumSubItems());
+    }
+
+    for (int i = 0, groupIndex = 0, itemIndex = 0; i < presetsXmlData.size(); i++, itemIndex++) {
         
         juce::XmlElement xmlToLoad = presetsXmlData[i];
         
+        // needed to keep track of which PresetViewItem should be selected
+        // since you can't iterate over a TreeViewItem structure
+        if (itemIndex >= numSubItems[groupIndex]) {
+            itemIndex = 0;
+            groupIndex++;
+        }
+        
         if (xmlToLoad.getStringAttribute("name") == name) {
-            
             // load the xml
             juce::MemoryBlock mb;
             processor->copyXmlToBinary(*xmlToLoad.getChildByName("PARAMETERS"), mb);
             processor->setStateInformation(mb.getData(), (int)mb.getSize());
+            
+            // set the item to be selected
+            rootViewItem->getSubItem(groupIndex)->getSubItem(itemIndex)->setSelected(true, true);
             
             currentPresetIndex = i;
             currentPresetName = name;
@@ -154,6 +174,11 @@ void PresetManager::loadPreviousPreset()
 PresetViewItem* PresetManager::getRootItem()
 {
     return rootViewItem;
+}
+
+juce::String PresetManager::getCurrentPresetName()
+{
+    return currentPresetName;
 }
 
 //==============================================================================
