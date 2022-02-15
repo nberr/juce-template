@@ -14,8 +14,6 @@
 PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcessorValueTreeState* parameters)
 :   processor(processor),
     parameters(parameters)
-    //mCurrentPresetIsSaved(false),
-    // currentPresetName("Untitled")
 {
     // create the plugin directory
     if (!juce::File(pluginDirectory).exists()) {
@@ -183,6 +181,7 @@ void PresetManager::updateQuickPreset()
     // then calls this function. This doesn't and shouldn't be done
     // so this boolean protects that from happening
     if (fromToggle) {
+        DBG("From toggle");
         return;
     }
     
