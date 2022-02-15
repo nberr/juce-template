@@ -36,6 +36,7 @@ PresetViewItem::~PresetViewItem()
 
 }
 
+//==============================================================================
 bool PresetViewItem::mightContainSubItems()
 {
     return getNumSubItems() != 0;
@@ -46,6 +47,9 @@ void PresetViewItem::paintItem(juce::Graphics& g, int width, int height)
     // paint the display
     if (isSelected()) {
         g.fillAll(juce::Colours::blue.withAlpha (0.3f));
+    }
+    else {
+        g.fillAll(juce::Colours::blue.withAlpha (0.1f));
     }
     
     if (isDirectory) {
@@ -60,6 +64,7 @@ void PresetViewItem::itemClicked(const juce::MouseEvent& m)
 {
     // ignore if the item is a directory
     if (isDirectory) {
+        setOpen(!isOpen());
         return;
     }
     
@@ -77,5 +82,12 @@ void PresetViewItem::itemClicked(const juce::MouseEvent& m)
         // talk to the preset manager
         pm->loadPreset(fileName);
         panel->setPresetMenu(displayName);
+        
+        pm->loadPreset(displayName);
     }
+}
+
+bool PresetViewItem::canBeSelected() const
+{
+    return !isDirectory;
 }
