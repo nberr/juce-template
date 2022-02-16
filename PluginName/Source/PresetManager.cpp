@@ -110,6 +110,8 @@ void PresetManager::loadPreset(juce::String name)
         return;
     }
     
+    notifyQuickPreset = juce::NotificationType::dontSendNotification;
+    
     std::vector<int> numSubItems;
     
     int numUserSubItems = userPresets->getNumSubItems();
@@ -146,6 +148,8 @@ void PresetManager::loadPreset(juce::String name)
             break;
         }
     }
+    
+    notifyQuickPreset = juce::NotificationType::sendNotification;
 }
 
 void PresetManager::loadNextPreset()
@@ -189,7 +193,7 @@ void PresetManager::updateQuickPreset()
     // the listener for comboBoxChanged and sliderValueChanged which
     // then calls this function. This doesn't and shouldn't be done
     // so this boolean protects that from happening
-    if (fromToggle) {
+    if (notifyQuickPreset == juce::NotificationType::dontSendNotification) {
         DBG("From toggle");
         return;
     }
@@ -214,7 +218,7 @@ void PresetManager::updateQuickPreset()
 
 void PresetManager::toggleQuickPreset()
 {
-    fromToggle = true;
+    notifyQuickPreset = juce::NotificationType::sendNotification;
     
     switch (quickPresetInUse) {
         case QuickPreset::Preset_A:
@@ -235,7 +239,7 @@ void PresetManager::toggleQuickPreset()
             jassertfalse;
     }
     
-    fromToggle = false;
+    notifyQuickPreset = juce::NotificationType::dontSendNotification;
 }
 
 void PresetManager::copyQuickPreset()

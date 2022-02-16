@@ -92,7 +92,7 @@ private:
     juce::MemoryBlock presetA;
     juce::MemoryBlock presetB;
     
-    bool fromToggle = false;
+    juce::NotificationType notifyQuickPreset = juce::NotificationType::dontSendNotification;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetManager)
