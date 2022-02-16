@@ -29,6 +29,9 @@ PresetPanel::PresetPanel(PluginNameAudioProcessor *processor, ContextMenu *conte
     }
     
     // TODO: set the text to the current preset
+    auto pm = processor->getPresetManager();
+    presetMenu.setButtonText(pm->getCurrentPresetName());
+    
     // TODO: set arrow based on if A or B is selected
 }
 

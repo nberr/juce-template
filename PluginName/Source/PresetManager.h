@@ -21,7 +21,7 @@ class PresetManager
 {
 public:
     //==============================================================================
-    PresetManager(juce::AudioProcessor* processor, juce::AudioProcessorValueTreeState* parameters);
+    PresetManager(juce::AudioProcessor* processor, juce::AudioProcessorValueTreeState* parameters, juce::ValueTree* settings);
     ~PresetManager();
     
     //==============================================================================
@@ -53,6 +53,7 @@ private:
     //==============================================================================
     juce::AudioProcessor* processor;
     juce::AudioProcessorValueTreeState *parameters;
+    juce::ValueTree* settings;
     
     //==============================================================================
     int currentPresetIndex = -1;

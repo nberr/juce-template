@@ -10,10 +10,13 @@
 
 #include "PresetManager.h"
 
+#include "PluginNameSettings.h"
+
 //==============================================================================
-PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcessorValueTreeState* parameters)
+PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcessorValueTreeState* parameters, juce::ValueTree* settings)
 :   processor(processor),
-    parameters(parameters)
+    parameters(parameters),
+    settings(settings)
 {
     // create the plugin directory
     if (!juce::File(pluginDirectory).exists()) {
@@ -33,9 +36,11 @@ PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcess
     initializePresetsTree();
     initializeRootViewItem();
     initializePresetsXmlData();
-
+    
     processor->getStateInformation(presetA);
     processor->getStateInformation(presetB);
+    
+    loadPreset(settings->getChild(PluginNameSettings::PNS_defaultPresetName).getProperty(juce::Identifier("value").toString()));
 }
 
 PresetManager::~PresetManager()
@@ -194,7 +199,7 @@ void PresetManager::updateQuickPreset()
     // then calls this function. This doesn't and shouldn't be done
     // so this boolean protects that from happening
     if (notifyQuickPreset == juce::NotificationType::dontSendNotification) {
-        DBG("From toggle");
+        DBG("Did not update");
         return;
     }
     
