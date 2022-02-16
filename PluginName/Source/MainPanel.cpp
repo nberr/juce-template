@@ -57,10 +57,12 @@ void MainPanel::resized()
 {
     float scale = guiScale.getProperty(juce::Identifier("value"));
     
-    pInt.setBounds(0, 0, 50 * scale, 50 * scale);
-    pFloat.setBounds(0, 50, 50, 50);
-    pChoice.setBounds(100, 0, 100, 50);
-    pBool.setBounds(100, 100, 100, 50);
+    float width = getWidth() * 0.5f, height = getHeight() * 0.5f;
+    
+    //pInt.setBounds(0, 0, width * scale, height * scale);
+    //pFloat.setBounds(0, pInt.getBottom(), width * scale, height * scale);
+    //pChoice.setBounds(width * scale, 0, width * scale, height * scale);
+    //pBool.setBounds(width * scale, height * scale, width * scale, height * scale);
 }
 
 //==============================================================================

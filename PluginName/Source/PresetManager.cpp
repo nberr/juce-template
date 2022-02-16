@@ -10,8 +10,6 @@
 
 #include "PresetManager.h"
 
-#include "PluginNameSettings.h"
-
 //==============================================================================
 PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcessorValueTreeState* parameters, juce::ValueTree* settings)
 :   processor(processor),
@@ -39,8 +37,6 @@ PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcess
     
     processor->getStateInformation(presetA);
     processor->getStateInformation(presetB);
-    
-    loadPreset(settings->getChild(PluginNameSettings::PNS_defaultPresetName).getProperty(juce::Identifier("value").toString()));
 }
 
 PresetManager::~PresetManager()

@@ -27,6 +27,7 @@ PluginNameAudioProcessor::PluginNameAudioProcessor()
     settingsManager(this, &settings),
     presetManager(this, &parameters, &settings)
 {
+    presetManager.loadPreset(settings.getChild(PluginNameSettings::PNS_defaultPresetName).getProperty(juce::Identifier("value").toString()));
 }
 
 PluginNameAudioProcessor::~PluginNameAudioProcessor()
