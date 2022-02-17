@@ -55,14 +55,12 @@ MainPanel::~MainPanel()
 //==============================================================================
 void MainPanel::resized()
 {
-    float scale = guiScale.getProperty(juce::Identifier("value"));
+    // float scale = guiScale.getProperty(juce::Identifier("value"));
     
-    float width = getWidth() * 0.5f, height = getHeight() * 0.5f;
-    
-    //pInt.setBounds(0, 0, width * scale, height * scale);
-    //pFloat.setBounds(0, pInt.getBottom(), width * scale, height * scale);
-    //pChoice.setBounds(width * scale, 0, width * scale, height * scale);
-    //pBool.setBounds(width * scale, height * scale, width * scale, height * scale);
+    pChoice.setBounds(getWidth() * 0.15f, getHeight() * 0.05f, getWidth() * 0.7f, getHeight() * 0.1f);
+    pBool.setBounds(getWidth() * 0.4f, getHeight() * 0.4f, getWidth() * 0.2f, getHeight() * 0.1f);
+    pInt.setBounds(getWidth() * 0.05f, getHeight() * 0.5f, getWidth() * 0.2f, getWidth() * 0.2f);
+    pFloat.setBounds((getWidth() * 0.95f) - (getWidth() * 0.2f), getHeight() * 0.5f, getWidth() * 0.2f, getWidth() * 0.2f);
 }
 
 //==============================================================================
