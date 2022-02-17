@@ -18,7 +18,7 @@ class PresetViewItem
 {
 public:
     //==============================================================================
-    PresetViewItem(juce::String name, juce::String notes, bool isDefault, bool isDirectory);
+    PresetViewItem(juce::String name, juce::String notes, bool isDefault, bool isDirectory, bool isUserPreset);
     ~PresetViewItem();
     
     //==============================================================================
@@ -27,10 +27,13 @@ public:
     void itemClicked(const juce::MouseEvent& m) override;
     bool canBeSelected() const override;
     
+    //==============================================================================
+    juce::String getDisplayName();
+    
 private:
     //==============================================================================
     juce::String fileName, displayName, display, notes;
-    bool isDefault = false, isDirectory;
+    bool isDefault = false, isDirectory, isUserPreset;
     
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PresetViewItem)

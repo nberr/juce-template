@@ -16,12 +16,13 @@
 #include "ContextMenu.h"
 
 //==============================================================================
-PresetViewItem::PresetViewItem(juce::String name, juce::String notes, bool isDefault, bool isDirectory)
+PresetViewItem::PresetViewItem(juce::String name, juce::String notes, bool isDefault, bool isDirectory, bool isUserPreset)
 {
     this->fileName = name;
     this->notes = notes;
     this->isDefault = isDefault;
     this->isDirectory = isDirectory;
+    this->isUserPreset = isUserPreset;
     
     // set the display name
     // remove the ".xml" at the end if it's not a directory
@@ -90,4 +91,10 @@ void PresetViewItem::itemClicked(const juce::MouseEvent& m)
 bool PresetViewItem::canBeSelected() const
 {
     return !isDirectory;
+}
+
+//==============================================================================
+juce::String PresetViewItem::getDisplayName()
+{
+    return displayName;
 }

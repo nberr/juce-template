@@ -26,6 +26,9 @@ public:
     //==============================================================================
     void showMenu(const juce::String itemClicked);
     void buildBaseMenu();
+    
+    //==============================================================================
+    void showPresetMenu(const juce::String itemClicked, bool isUserPreset);
         
 private:
     //==============================================================================

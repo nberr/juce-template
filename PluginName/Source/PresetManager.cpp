@@ -58,7 +58,7 @@ void PresetManager::savePreset(juce::String name, juce::String notes, bool shoul
             jassertfalse;
         }
         
-        userPresets = new PresetViewItem("User", "", false, true);
+        userPresets = new PresetViewItem("User", "", false, true, false);
     }
     
     // add new preset to the tree and rewrite the file
@@ -89,7 +89,7 @@ void PresetManager::savePreset(juce::String name, juce::String notes, bool shoul
     }
     
     // add the preset to the rootViewItem via userPresets
-    PresetViewItem *newPreset = new PresetViewItem(name, notes, shouldBeDefault, false);
+    PresetViewItem *newPreset = new PresetViewItem(name, notes, shouldBeDefault, false, true);
     userPresets->setSelected(false, true);
     newPreset->setSelected(true, true);
     userPresets->addSubItem(newPreset);
@@ -173,6 +173,63 @@ void PresetManager::loadPreviousPreset()
     
     juce::XmlElement presetToLoad = presetsXmlData[currentPresetIndex];
     loadPreset(presetToLoad.getStringAttribute("name"));
+}
+
+void PresetManager::deletePreset(juce::String name, bool isUserPreset)
+{
+    // can only delete user presets
+    if (!isUserPreset) {
+        return;
+    }
+    
+    // this function will only be called if a user preset has been created
+    // however, the user may have deleted the xml file after loading the plugin
+    // so a check still needs to be in place
+    if (presetsFile.exists()) {
+        // rebuild the xml but remove the specified preset
+        std::unique_ptr<juce::XmlElement> xml = juce::XmlDocument(presetsFile).getDocumentElement();
+        
+        // clear the file
+        presetsFile.deleteFile();
+        presetsFile.create();
+        
+        // for each preset that doesn't match the name
+        for (auto* preset : xml->getChildIterator()) {
+            if (preset->getStringAttribute("name") != name) {
+                preset->writeTo(presetsFile);
+            }
+        }
+    }
+    
+    // remove from userPresets
+    for (int i = 0; i < userPresets->getNumSubItems(); i++) {
+        auto preset = (PresetViewItem *)userPresets->getSubItem(i);
+        
+        if (preset->getDisplayName() == name) {
+            userPresets->removeSubItem(i);
+            break;
+        }
+    }
+    
+    // check if the user folder should be displayed
+    if (userPresets->getNumSubItems() == 0) {
+        rootViewItem->removeSubItem(0);
+    }
+    
+    // remove from vector
+    for (int i = 0; i < presetsXmlData.size(); i++) {
+        if (presetsXmlData[i].getStringAttribute("name") == name) {
+            presetsXmlData.erase(presetsXmlData.begin() + i);
+            break;
+        }
+    }
+    
+    numUserPresets--;
+    currentPresetName = defaultPresetName;
+    
+    // after deleting a preset, the current plugin parameters should stay the
+    // same. However, these values should be compared to whatever the default
+    // preset is. If these values differ, the display name should be italicized.
 }
 
 //==============================================================================
@@ -294,7 +351,7 @@ void PresetManager::initializeRootViewItem()
     // both the user presets and the factory presets need to be loaded here
     // since the display needs to show both sets
     
-    rootViewItem = new PresetViewItem("root", "", false, true);
+    rootViewItem = new PresetViewItem("root", "", false, true, false);
     
     // Configure the preset view
     rootViewItem->setOpen(true);
@@ -308,7 +365,7 @@ void PresetManager::initializeRootViewItem()
     
     // prepend the user presets if they are valid
     if (presetsTree.isValid()) {
-        userPresets = new PresetViewItem("User", "", false, true);
+        userPresets = new PresetViewItem("User", "", false, true, false);
         populateUserPresets(userPresets);
         
         if (userPresets->getNumSubItems() > 0) {
@@ -325,7 +382,7 @@ void PresetManager::populateUserPresets(PresetViewItem* userPresets)
         juce::String presetName = preset->getStringAttribute("name");
         juce::String presetNotes = preset->getStringAttribute("notes");
         
-        userPresets->addSubItem(new PresetViewItem(presetName, presetNotes, false, false));
+        userPresets->addSubItem(new PresetViewItem(presetName, presetNotes, false, false, true));
     }
 }
 
@@ -339,7 +396,7 @@ void PresetManager::populateFactoryPresets(std::vector<PresetViewItem *>& factor
         
         // create a group
         juce::String groupName = group->getStringAttribute("name");
-        PresetViewItem *groupItem = new PresetViewItem(groupName, "", false, true);
+        PresetViewItem *groupItem = new PresetViewItem(groupName, "", false, true, false);
         
         // for each preset in the group
         // add it to the tree
@@ -347,7 +404,7 @@ void PresetManager::populateFactoryPresets(std::vector<PresetViewItem *>& factor
             juce::String presetName = preset->getStringAttribute("name");
             juce::String presetNotes = preset->getStringAttribute("notes");
 
-            groupItem->addSubItem(new PresetViewItem(presetName, presetNotes, false, false));
+            groupItem->addSubItem(new PresetViewItem(presetName, presetNotes, false, false, false));
         }
         
         // push the tree to the vector to be used by the display

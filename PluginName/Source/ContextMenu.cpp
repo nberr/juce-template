@@ -13,6 +13,7 @@
 #include "PluginNameSettings.h" // for GUIScale
 #include "PluginNameGUI.h" // for Scale sizes
 #include "SettingsManager.h"
+#include "PresetManager.h"
 
 //==============================================================================
 ContextMenu::ContextMenu(PluginNameAudioProcessor* procssor)
@@ -111,6 +112,36 @@ void ContextMenu::buildBaseMenu()
     menu.addSubMenu("Preferences", preferences);
     menu.addSeparator();
     menu.addItem("PluginName version 1.0", [](){});
+}
+
+void ContextMenu::showPresetMenu(const juce::String itemClicked, bool isUserPreset)
+{
+    PresetManager *pm = processor->getPresetManager();
+    
+    menu.clear();
+    menu.addItem("Make \"" + itemClicked + "\" default", [this, pm, itemClicked](){
+        DBG("default: " + itemClicked);
+    });
+    
+    if (!isUserPreset) {
+        return;
+    }
+    
+    menu.addItem("Edit \"" + itemClicked + "\" properties", [this, pm, itemClicked](){
+        DBG("editing " + itemClicked);
+    });
+    
+    menu.addItem("Update \"" + itemClicked + "\" to current settings", [this, pm, itemClicked](){
+        DBG("updating " + itemClicked);
+    });
+    
+    menu.addItem("Delete \"" + itemClicked + "\"", [this, pm, itemClicked, isUserPreset](){
+        DBG("deleting " + itemClicked);
+    });
+    
+    menu.showMenuAsync(juce::PopupMenu::Options().withMinimumWidth (100)
+                               .withMaximumNumColumns (3)
+                               .withTargetComponent (this).withMousePosition());
 }
 
 //==============================================================================

@@ -32,6 +32,8 @@ public:
     void loadNextPreset();
     void loadPreviousPreset();
     
+    void deletePreset(juce::String name, bool isUserPreset);
+    
     //==============================================================================
     PresetViewItem* getRootItem();
     
@@ -58,6 +60,7 @@ private:
     //==============================================================================
     int currentPresetIndex = -1;
     juce::String currentPresetName = "";
+    juce::String defaultPresetName = "";
     
     //==============================================================================
     const juce::String dir_sep = juce::File::getSeparatorString();
