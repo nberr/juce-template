@@ -115,9 +115,12 @@ void PresetManager::loadPreset(juce::String name)
     
     std::vector<int> numSubItems;
     
-    int numUserSubItems = userPresets->getNumSubItems();
-    if (numUserSubItems > 0) {
-        numSubItems.push_back(numUserSubItems);
+    int numUserSubItems = 0;
+    if (presetsTree.isValid()) {
+        numUserSubItems = userPresets->getNumSubItems();
+        if (numUserSubItems > 0) {
+            numSubItems.push_back(numUserSubItems);
+        }
     }
     
     for (auto p : factoryPresets) {
@@ -192,6 +195,9 @@ void PresetManager::deletePreset(juce::String name, bool isUserPreset)
         // clear the file
         presetsFile.deleteFile();
         presetsFile.create();
+        
+        juce::XmlElement tmp ("Presets");
+        tmp.writeTo(presetsFile);
         
         // for each preset that doesn't match the name
         for (auto* preset : xml->getChildIterator()) {

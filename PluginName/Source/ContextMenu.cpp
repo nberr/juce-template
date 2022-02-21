@@ -137,6 +137,7 @@ void ContextMenu::showPresetMenu(const juce::String itemClicked, bool isUserPres
     
     menu.addItem("Delete \"" + itemClicked + "\"", [this, pm, itemClicked, isUserPreset](){
         DBG("deleting " + itemClicked);
+        pm->deletePreset(itemClicked, isUserPreset);
     });
     
     menu.showMenuAsync(juce::PopupMenu::Options().withMinimumWidth (100)
