@@ -35,7 +35,7 @@ public:
     PresetManager* getPresetManager();
     
     //==============================================================================
-    void showContextMenu(juce::String name);
+    void showContextMenu(juce::String name, bool isUserPreset);
     
 private:
     //==============================================================================

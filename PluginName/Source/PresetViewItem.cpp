@@ -77,7 +77,7 @@ void PresetViewItem::itemClicked(const juce::MouseEvent& m)
     auto pm = overlay->getPresetManager();
     
     if (rightClick) {
-        overlay->showContextMenu(displayName);
+        overlay->showContextMenu(displayName, isUserPreset);
     }
     else {
         // talk to the preset manager

@@ -123,22 +123,19 @@ void ContextMenu::showPresetMenu(const juce::String itemClicked, bool isUserPres
         DBG("default: " + itemClicked);
     });
     
-    if (!isUserPreset) {
-        return;
+    if (isUserPreset) {
+        menu.addItem("Edit \"" + itemClicked + "\" properties", [this, pm, itemClicked](){
+            DBG("editing " + itemClicked);
+        });
+        
+        menu.addItem("Update \"" + itemClicked + "\" to current settings", [this, pm, itemClicked](){
+            DBG("updating " + itemClicked);
+        });
+        
+        menu.addItem("Delete \"" + itemClicked + "\"", [this, pm, itemClicked, isUserPreset](){
+            pm->deletePreset(itemClicked, isUserPreset);
+        });
     }
-    
-    menu.addItem("Edit \"" + itemClicked + "\" properties", [this, pm, itemClicked](){
-        DBG("editing " + itemClicked);
-    });
-    
-    menu.addItem("Update \"" + itemClicked + "\" to current settings", [this, pm, itemClicked](){
-        DBG("updating " + itemClicked);
-    });
-    
-    menu.addItem("Delete \"" + itemClicked + "\"", [this, pm, itemClicked, isUserPreset](){
-        DBG("deleting " + itemClicked);
-        pm->deletePreset(itemClicked, isUserPreset);
-    });
     
     menu.showMenuAsync(juce::PopupMenu::Options().withMinimumWidth (100)
                                .withMaximumNumColumns (3)
