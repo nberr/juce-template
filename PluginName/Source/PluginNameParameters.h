@@ -70,7 +70,15 @@ public:
     };
 
     //==============================================================================
-    inline static const juce::String IDs[PNP_TotalNumParameters] =
+    inline static const juce::StringArray IDs =
+    {
+        "Int",
+        "Float",
+        "Bool",
+        "Choice"
+    };
+    
+    inline static const juce::StringArray Names =
     {
         "Int",
         "Float",
@@ -78,15 +86,7 @@ public:
         "Choice"
     };
 
-    inline static const juce::String Names[PNP_TotalNumParameters] =
-    {
-        "Int",
-        "Float",
-        "Bool",
-        "Choice"
-    };
-
-    inline static const juce::String Labels[PNP_TotalNumParameters] =
+    inline static const juce::StringArray Labels =
     {
         "Int",
         "Float",

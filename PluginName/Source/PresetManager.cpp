@@ -383,6 +383,9 @@ void PresetManager::initializeRootViewItem()
         if (userPresets->getNumSubItems() > 0) {
             rootViewItem->addSubItem(userPresets, 0);
         }
+        else {
+            delete userPresets;
+        }
     }
 }
 

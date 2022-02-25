@@ -173,7 +173,7 @@
         <MODULEPATH id="juce_gui_extra" path="../lib/JUCE/modules"/>
         <MODULEPATH id="juce_product_unlocking" path="../lib/JUCE/modules"/>
         <MODULEPATH id="juce_cryptography" path="../lib/JUCE/modules"/>
-        <MODULEPATH id="react_juce" path="../../../lib/react-juce"/>
+        <MODULEPATH id="react_juce" path="../../../../lib/react-juce"/>
       </MODULEPATHS>
     </XCODE_MAC>
   </EXPORTFORMATS>

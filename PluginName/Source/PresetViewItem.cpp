@@ -30,6 +30,14 @@ PresetViewItem::PresetViewItem(juce::String name, juce::String notes, bool isDef
     
     // add notes to the end of the displayName if there are any
     display = (notes.isNotEmpty()) ? displayName + " - " + notes : displayName;
+    
+    // set the initial paint type
+    if (isDirectory) {
+        paintType = PaintType::Directory;
+    }
+    else {
+        paintType = PaintType::UnselectedPreset;
+    }
 }
 
 PresetViewItem::~PresetViewItem()
@@ -45,16 +53,16 @@ bool PresetViewItem::mightContainSubItems()
 
 void PresetViewItem::paintItem(juce::Graphics& g, int width, int height)
 {
-    // paint the display
-    if (isSelected()) {
-        g.fillAll(juce::Colours::blue.withAlpha (0.3f));
-    }
-    else {
-        g.fillAll(juce::Colours::blue.withAlpha (0.1f));
-    }
-    
-    if (isDirectory) {
-        g.fillAll(juce::Colours::blue.withAlpha (0.4f));
+    switch(paintType) {
+        case PaintType::Directory:
+            g.fillAll(juce::Colours::blue.withAlpha (0.4f));
+            break;
+        case PaintType::SelectedPreset:
+            g.fillAll(juce::Colours::blue.withAlpha (0.3f));
+            break;
+        case PaintType::UnselectedPreset:
+            g.fillAll(juce::Colours::blue.withAlpha (0.1f));
+            break;
     }
     
     g.setColour(juce::Colours::black);
@@ -91,6 +99,34 @@ void PresetViewItem::itemClicked(const juce::MouseEvent& m)
 bool PresetViewItem::canBeSelected() const
 {
     return !isDirectory;
+}
+
+void PresetViewItem::itemSelectionChanged(bool isNowSelected)
+{
+    bool rightClick = juce::ModifierKeys::getCurrentModifiers().isPopupMenu();
+    
+    if (isNowSelected) {
+        // currently selected item
+        if (rightClick) {
+            // paint like a normal unselected item
+            paintType = PaintType::UnselectedPreset;
+        }
+        else {
+            // paint like the item is selected
+            paintType = PaintType::SelectedPreset;
+        }
+    }
+    else {
+        // previously selected item
+        if (rightClick) {
+            // paint like the item is selected
+            paintType = PaintType::SelectedPreset;
+        }
+        else {
+            // paint like an normal unselected item
+            paintType = PaintType::UnselectedPreset;
+        }
+    }
 }
 
 //==============================================================================
