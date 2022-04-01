@@ -181,6 +181,7 @@ void PresetManager::loadPreviousPreset()
 void PresetManager::deletePreset(juce::String name, bool isUserPreset)
 {
     // can only delete user presets
+    // TODO: is this needed? the function will only be called from a user preset
     if (!isUserPreset) {
         return;
     }
@@ -196,23 +197,28 @@ void PresetManager::deletePreset(juce::String name, bool isUserPreset)
         presetsFile.deleteFile();
         presetsFile.create();
         
-        juce::XmlElement tmp ("Presets");
-        tmp.writeTo(presetsFile);
-        
         // for each preset that doesn't match the name
-        for (auto* preset : xml->getChildIterator()) {
-            if (preset->getStringAttribute("name") != name) {
-                preset->writeTo(presetsFile);
+        //for (auto* preset : xml->getChildIterator()) {
+        for (int i = 0; i < xml->getNumChildElements(); i++) {
+            auto *preset = xml->getChildElement(i);
+            
+            // remove the matching preset
+            if (preset->getStringAttribute("name") == name) {
+                xml->removeChildElement(preset, true);
             }
         }
+        
+        xml->writeTo(presetsFile);
     }
+    
+    initializePresetsTree();
     
     // remove from userPresets
     for (int i = 0; i < userPresets->getNumSubItems(); i++) {
         auto preset = (PresetViewItem *)userPresets->getSubItem(i);
         
         if (preset->getDisplayName() == name) {
-            userPresets->removeSubItem(i);
+            userPresets->removeSubItem(i, true);
             break;
         }
     }
@@ -376,6 +382,9 @@ void PresetManager::initializeRootViewItem()
         
         if (userPresets->getNumSubItems() > 0) {
             rootViewItem->addSubItem(userPresets, 0);
+        }
+        else {
+            delete userPresets;
         }
     }
 }

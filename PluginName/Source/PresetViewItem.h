@@ -26,13 +26,21 @@ public:
     void paintItem(juce::Graphics& g, int width, int height) override;
     void itemClicked(const juce::MouseEvent& m) override;
     bool canBeSelected() const override;
+    void itemSelectionChanged(bool isNowSelected) override;
     
     //==============================================================================
     juce::String getDisplayName();
     
+    enum PaintType {
+        Directory = 0,
+        SelectedPreset,
+        UnselectedPreset
+    };
+    
 private:
     //==============================================================================
     juce::String fileName, displayName, display, notes;
+    PaintType paintType;
     bool isDefault = false, isDirectory, isUserPreset;
     
     //==============================================================================
