@@ -264,20 +264,17 @@ void PresetManager::updateQuickPreset()
     // then calls this function. This doesn't and shouldn't be done
     // so this boolean protects that from happening
     if (notifyQuickPreset == juce::NotificationType::dontSendNotification) {
-        DBG("Did not update");
         return;
     }
     
     switch (quickPresetInUse) {
         case QuickPreset::Preset_A:
             
-            DBG("Updated A");
             processor->getStateInformation(presetA);
             
             break;
         case QuickPreset::Preset_B:
             
-            DBG("Updated B");
             processor->getStateInformation(presetB);
             
             break;
@@ -292,14 +289,12 @@ void PresetManager::toggleQuickPreset()
     
     switch (quickPresetInUse) {
         case QuickPreset::Preset_A:
-            DBG("Swapped from A to B");
             // change the current preset and load the data
             quickPresetInUse = QuickPreset::Preset_B;
             processor->setStateInformation(presetB.getData(), (int)presetB.getSize());
             
             break;
         case QuickPreset::Preset_B:
-            DBG("Swapped from B to A");
             // change the current preset and load the data
             quickPresetInUse = QuickPreset::Preset_A;
             processor->setStateInformation(presetA.getData(), (int)presetA.getSize());
@@ -316,7 +311,6 @@ void PresetManager::copyQuickPreset()
 {
     switch (quickPresetInUse) {
         case QuickPreset::Preset_A:
-            DBG("Copying A to B");
             
             // change the current preset and copy it to the other
             quickPresetInUse = QuickPreset::Preset_B;
@@ -324,7 +318,6 @@ void PresetManager::copyQuickPreset()
             
             break;
         case QuickPreset::Preset_B:
-            DBG("Copying B to A");
             
             // change the current preset and copy it to the other
             quickPresetInUse = QuickPreset::Preset_A;

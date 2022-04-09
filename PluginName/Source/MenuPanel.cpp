@@ -11,7 +11,6 @@
 #include "MenuPanel.h"
 
 #include "PluginNameParameters.h"
-#include "PluginEditor.h"
 
 //==============================================================================
 MenuPanel::MenuPanel(PluginNameAudioProcessor *processor, ContextMenu *contextMenu)
@@ -68,8 +67,7 @@ void MenuPanel::buttonClicked(juce::Button* b)
             getParentComponent()->resized();
         }
         else if (b == &accountButton) {
-            auto editor = (PluginNameAudioProcessorEditor *)getParentComponent();
-            editor->showForm();
+            juce::MessageManager::broadcastMessage("PluginName Show_Form");
         }
     }
 }

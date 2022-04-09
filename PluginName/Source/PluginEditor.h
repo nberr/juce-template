@@ -35,6 +35,7 @@
 */
 class PluginNameAudioProcessorEditor
 :   public juce::AudioProcessorEditor,
+    public juce::ActionListener,
     private juce::Timer
 {
 public:
@@ -47,7 +48,7 @@ public:
     void resized() override;
     
     //==============================================================================
-    void showForm();
+    void actionListenerCallback(const juce::String& message) override;
 
 private:
     //==============================================================================

@@ -120,16 +120,16 @@ void ContextMenu::showPresetMenu(const juce::String itemClicked, bool isUserPres
     
     menu.clear();
     menu.addItem("Make \"" + itemClicked + "\" default", [this, pm, itemClicked](){
-        DBG("default: " + itemClicked);
+        
     });
     
     if (isUserPreset) {
         menu.addItem("Edit \"" + itemClicked + "\" properties", [this, pm, itemClicked](){
-            DBG("editing " + itemClicked);
+            
         });
         
         menu.addItem("Update \"" + itemClicked + "\" to current settings", [this, pm, itemClicked](){
-            DBG("updating " + itemClicked);
+            
         });
         
         menu.addItem("Delete \"" + itemClicked + "\"", [this, pm, itemClicked, isUserPreset](){

@@ -26,6 +26,8 @@ PluginNameAudioProcessorEditor::PluginNameAudioProcessorEditor (PluginNameAudioP
     appHarness(appRoot),
     unlockForm(marketplaceStatus)
 {
+    juce::MessageManager::getInstance()->registerBroadcastListener(this);
+    
     // This template allows two ways to display a UI
     // 1 - pure JUCE; see UI folder for panel hierarchy
     // 2 - react-juce; see jsui/src/index.js
@@ -62,7 +64,7 @@ PluginNameAudioProcessorEditor::PluginNameAudioProcessorEditor (PluginNameAudioP
     unlockButton.setSize(100, 100);
     unlockButton.setTopLeftPosition(50, 50);
     unlockButton.onClick = [this] {
-        showForm();
+        unlockForm.setVisible(true);
     };
     //addAndMakeVisible (unlockButton);
 
@@ -177,9 +179,11 @@ void PluginNameAudioProcessorEditor::resized()
 }
 
 //==============================================================================
-void PluginNameAudioProcessorEditor::showForm()
+void PluginNameAudioProcessorEditor::actionListenerCallback(const juce::String& message)
 {
-    unlockForm.setVisible(true);
+    if (message == "PluginName Show_Form") {
+        unlockForm.setVisible(true);
+    }
 }
 
 //==============================================================================
