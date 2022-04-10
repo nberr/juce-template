@@ -53,9 +53,7 @@ void MenuPanel::buttonClicked(juce::Button* b)
     
     if (rightClick) {
         contextMenu->showMenu(b->getName());
-        auto editor = findParentComponentOfClass<juce::AudioProcessorEditor>();
-        editor->resized();
-        resized();
+        juce::MessageManager::broadcastMessage("PluginName Context_Menu_Shown");
     }
     else {
         if (b == &masterButton) {

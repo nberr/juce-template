@@ -184,6 +184,9 @@ void PluginNameAudioProcessorEditor::actionListenerCallback(const juce::String& 
     if (message == "PluginName Show_Form") {
         unlockForm.setVisible(true);
     }
+    else if (message == "PluginName Context_Menu_Shown") {
+        resized();
+    }
 }
 
 //==============================================================================
