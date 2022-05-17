@@ -16,6 +16,8 @@ PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcess
     parameters(parameters),
     settings(settings)
 {
+    juce::MessageManager::getInstance()->registerBroadcastListener(this);
+    
     // create the plugin directory
     if (!juce::File(pluginDirectory).exists()) {
         // create the preset directory
@@ -42,6 +44,12 @@ PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcess
 PresetManager::~PresetManager()
 {
     
+}
+
+//==============================================================================
+void PresetManager::actionListenerCallback(const juce::String& message)
+{
+   
 }
 
 //==============================================================================

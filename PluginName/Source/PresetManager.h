@@ -18,11 +18,15 @@
 
 //==============================================================================
 class PresetManager
+:   public juce::ActionListener
 {
 public:
     //==============================================================================
     PresetManager(juce::AudioProcessor* processor, juce::AudioProcessorValueTreeState* parameters, juce::ValueTree* settings);
     ~PresetManager();
+    
+    //==============================================================================
+    void actionListenerCallback(const juce::String& message) override;
     
     //==============================================================================
     void savePreset(juce::String name, juce::String notes, bool shouldBeDefault);

@@ -10,6 +10,7 @@
 #include "PluginEditor.h"
 
 #include "PluginNameGUI.h"
+#include "PluginNameMessage.h"
 
 //==============================================================================
 PluginNameAudioProcessorEditor::PluginNameAudioProcessorEditor (PluginNameAudioProcessor& p)
@@ -181,10 +182,18 @@ void PluginNameAudioProcessorEditor::resized()
 //==============================================================================
 void PluginNameAudioProcessorEditor::actionListenerCallback(const juce::String& message)
 {
-    if (message == "PluginName Show_Form") {
+    PluginNameMessage m = PluginNameMessage(message);
+    
+    if (!m.isValid()) {
+        return;
+    }
+    
+    juce::String cmd = m.getCommand();
+    
+    if (cmd == "Show_Form") {
         unlockForm.setVisible(true);
     }
-    else if (message == "PluginName Context_Menu_Shown") {
+    else if (cmd == "Context_Menu_Shown") {
         resized();
     }
 }

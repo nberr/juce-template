@@ -13,6 +13,33 @@
         <FILE id="oZEz6l" name="FactoryPresets.xml" compile="0" resource="1"
               file="Assets/FactoryPresets.xml"/>
       </GROUP>
+      <GROUP id="{C2E3B25D-187E-CB7F-0D8E-CABE430BAC54}" name="Messaging">
+        <GROUP id="{466C6131-018A-9850-2E3F-FCD1EB1916E4}" name="Listener">
+          <FILE id="jXkCNZ" name="MessageListener.cpp" compile="1" resource="0"
+                file="Source/MessageListener.cpp"/>
+          <FILE id="MQhr4w" name="MessageListener.h" compile="0" resource="0"
+                file="Source/MessageListener.h"/>
+        </GROUP>
+        <GROUP id="{863504CD-15B7-BC00-0680-BA5F40BD9A5F}" name="Broadcaster">
+          <FILE id="rTBQCI" name="MessageBroadcaster.cpp" compile="1" resource="0"
+                file="Source/MessageBroadcaster.cpp"/>
+          <FILE id="L7QOhL" name="MessageBroadcaster.h" compile="0" resource="0"
+                file="Source/MessageBroadcaster.h"/>
+        </GROUP>
+        <GROUP id="{DCD9A653-1841-7FD0-6C98-6ECE8D25300B}" name="Manager">
+          <FILE id="w4Yj3R" name="MessageManger.cpp" compile="1" resource="0"
+                file="Source/MessageManger.cpp"/>
+          <FILE id="Q0EdtB" name="MessageManger.h" compile="0" resource="0" file="Source/MessageManger.h"/>
+        </GROUP>
+        <GROUP id="{63BD0CCB-7CD6-7495-7846-AAB9768B00C5}" name="Message">
+          <FILE id="WQT2Kw" name="PluginNameMessage.cpp" compile="1" resource="0"
+                file="Source/PluginNameMessage.cpp"/>
+          <FILE id="aNAIFd" name="PluginNameMessage.h" compile="0" resource="0"
+                file="Source/PluginNameMessage.h"/>
+        </GROUP>
+        <FILE id="F5BL9O" name="PluginNameMessages.h" compile="0" resource="0"
+              file="Source/PluginNameMessages.h"/>
+      </GROUP>
       <GROUP id="{72DCA701-CF27-B8CA-FCE3-842C30867F9F}" name="Parameters">
         <GROUP id="{CF004890-1408-9A1C-649C-4822D3AB72C6}" name="Controllers">
           <GROUP id="{DAD9ED3A-AE22-48E1-C60F-20CD0D39CF1F}" name="ComboBox">
