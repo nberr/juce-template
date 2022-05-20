@@ -11,8 +11,8 @@
 #include "SidePanel.h"
 
 //==============================================================================
-SidePanel::SidePanel(PluginNameAudioProcessor *processor, ContextMenu *contextMenu)
-:   PanelBase(processor, contextMenu)
+SidePanel::SidePanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
+:   PanelBase(inProcessor, inContextMenu)
 {
     setName("SidePanel");
     setComponentID("SidePanelID");

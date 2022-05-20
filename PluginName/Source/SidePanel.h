@@ -18,8 +18,8 @@ class SidePanel
 {
 public:
     //==============================================================================
-    SidePanel(PluginNameAudioProcessor *processor, ContextMenu *contextMenu);
-    ~SidePanel();
+    SidePanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    ~SidePanel() override;
     
     //==============================================================================
     void resized() override;

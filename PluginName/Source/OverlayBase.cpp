@@ -11,8 +11,8 @@
 #include "OverlayBase.h"
 
 //==============================================================================
-OverlayBase::OverlayBase(PluginNameAudioProcessor* processor, ContextMenu* contextMenu)
-:   PanelBase(processor, contextMenu)
+OverlayBase::OverlayBase(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
+:   PanelBase(inProcessor, inContextMenu)
 {
     setName("OverlayBase");
     setComponentID("OverlayBaseID");
@@ -34,7 +34,7 @@ void OverlayBase::paint(juce::Graphics& g)
 }
 
 //==============================================================================
-void OverlayBase::mouseDown(const juce::MouseEvent& event)
+void OverlayBase::mouseDown([[maybe_unused]]const juce::MouseEvent& event)
 {
     
 }

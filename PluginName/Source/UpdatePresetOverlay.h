@@ -21,8 +21,8 @@ class UpdatePresetOverlay
 {
 public:
     //==============================================================================
-    UpdatePresetOverlay(PluginNameAudioProcessor* processor, ContextMenu* contextMenu);
-    ~UpdatePresetOverlay();
+    UpdatePresetOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    ~UpdatePresetOverlay() override;
     
     //==============================================================================
     void resized() override;

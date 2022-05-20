@@ -19,8 +19,8 @@ class MenuPanel
 {
 public:
     //==============================================================================
-    MenuPanel(PluginNameAudioProcessor *processor, ContextMenu *contextMenu);
-    ~MenuPanel();
+    MenuPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    ~MenuPanel() override;
     
     //==============================================================================
     void resized() override;

@@ -17,8 +17,8 @@ class UpdatePluginOverlay
 {
 public:
     //==============================================================================
-    UpdatePluginOverlay(PluginNameAudioProcessor* processor, ContextMenu* contextMenu);
-    ~UpdatePluginOverlay();
+    UpdatePluginOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    ~UpdatePluginOverlay() override;
     
     //==============================================================================
     void resized() override;

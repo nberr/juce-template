@@ -24,7 +24,6 @@ PluginNameAudioProcessorEditor::PluginNameAudioProcessorEditor (PluginNameAudioP
     savePresetOverlay(&audioProcessor, &contextMenu),
     deletePresetOverlay(&audioProcessor, &contextMenu),
     updatePresetOverlay(&audioProcessor, &contextMenu),
-    appHarness(appRoot),
     unlockForm(marketplaceStatus)
 {
     juce::MessageManager::getInstance()->registerBroadcastListener(this);
@@ -137,7 +136,7 @@ PluginNameAudioProcessorEditor::~PluginNameAudioProcessorEditor()
 //==============================================================================
 void PluginNameAudioProcessorEditor::paint (juce::Graphics& g)
 {
-   
+    g.fillAll(juce::Colours::black);
 }
 
 void PluginNameAudioProcessorEditor::resized()

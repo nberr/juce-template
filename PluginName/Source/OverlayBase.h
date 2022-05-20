@@ -18,8 +18,8 @@ class OverlayBase
 {
 public:
     //==============================================================================
-    OverlayBase(PluginNameAudioProcessor* processor, ContextMenu* contextMenu);
-    ~OverlayBase();
+    OverlayBase(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    ~OverlayBase() override;
     
     //==============================================================================
     void paint(juce::Graphics& g) override;

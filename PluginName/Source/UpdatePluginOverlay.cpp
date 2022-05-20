@@ -11,8 +11,8 @@
 #include "UpdatePluginOverlay.h"
 
 //==============================================================================
-UpdatePluginOverlay::UpdatePluginOverlay(PluginNameAudioProcessor* processor, ContextMenu* contextMenu)
-:   OverlayBase(processor, contextMenu)
+UpdatePluginOverlay::UpdatePluginOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
+:   OverlayBase(inProcessor, inContextMenu)
 {
     
 }

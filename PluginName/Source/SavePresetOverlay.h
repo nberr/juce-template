@@ -21,8 +21,8 @@ class SavePresetOverlay
 {
 public:
     //==============================================================================
-    SavePresetOverlay(PluginNameAudioProcessor* processor, ContextMenu* contextMenu);
-    ~SavePresetOverlay();
+    SavePresetOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    ~SavePresetOverlay() override;
     
     //==============================================================================
     void resized() override;
@@ -49,7 +49,7 @@ private:
     //==============================================================================
     juce::Label saveNewPreset {"Save New Preset"};
     juce::Label presetName {"Preset Name"};
-    juce::Label notes {"Notes (optional)"};
+    juce::Label notesLabel {"Notes (optional)"};
     juce::Label makeDefault {"Make Default"};
     juce::Label presetNameRequired {"Preset Name Is Required"};
     
@@ -57,7 +57,7 @@ private:
     std::vector<juce::Label*> labels = {
         &saveNewPreset,
         &presetName,
-        &notes,
+        &notesLabel,
         &makeDefault,
         &presetNameRequired
     };

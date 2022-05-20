@@ -11,13 +11,13 @@
 #include "PanelBase.h"
 
 //==============================================================================
-PanelBase::PanelBase(PluginNameAudioProcessor* processor, ContextMenu* contextMenu)
+PanelBase::PanelBase(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
 {
     setName("PanelBase");
     setComponentID("PanelBaseID");
     
-    this->processor = processor;
-    this->contextMenu = contextMenu;
+    processor = inProcessor;
+    contextMenu = inContextMenu;
     
     guiScale = processor->settings.getChild(PluginNameSettings::PNS_GUIScale);
 }
@@ -38,7 +38,7 @@ void PanelBase::paint(juce::Graphics& g)
 }
 
 //==============================================================================
-void PanelBase::mouseDown(const juce::MouseEvent& event)
+void PanelBase::mouseDown([[maybe_unused]]const juce::MouseEvent& event)
 {
     bool rightClick = juce::ModifierKeys::getCurrentModifiers().isPopupMenu();
     

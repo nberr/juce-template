@@ -16,13 +16,13 @@
 #include "ContextMenu.h"
 
 //==============================================================================
-PresetViewItem::PresetViewItem(juce::String name, juce::String notes, bool isDefault, bool isDirectory, bool isUserPreset)
+PresetViewItem::PresetViewItem(juce::String inName, juce::String inNotes, bool inIsDefault, bool inIsDirectory, bool inIsUserPreset)
 {
-    this->fileName = name;
-    this->notes = notes;
-    this->isDefault = isDefault;
-    this->isDirectory = isDirectory;
-    this->isUserPreset = isUserPreset;
+    fileName = inName;
+    notes = inNotes;
+    isDefault = inIsDefault;
+    isDirectory = inIsDirectory;
+    isUserPreset = inIsUserPreset;
     
     // set the display name
     // remove the ".xml" at the end if it's not a directory
@@ -69,7 +69,7 @@ void PresetViewItem::paintItem(juce::Graphics& g, int width, int height)
     g.drawText(display + ((isDefault) ? " default" : ""), 5, 0, width, height, juce::Justification::left);
 }
 
-void PresetViewItem::itemClicked(const juce::MouseEvent& m)
+void PresetViewItem::itemClicked([[maybe_unused]]const juce::MouseEvent& m)
 {
     // ignore if the item is a directory
     if (isDirectory) {

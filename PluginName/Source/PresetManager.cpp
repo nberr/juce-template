@@ -11,10 +11,10 @@
 #include "PresetManager.h"
 
 //==============================================================================
-PresetManager::PresetManager(juce::AudioProcessor* processor, juce::AudioProcessorValueTreeState* parameters, juce::ValueTree* settings)
-:   processor(processor),
-    parameters(parameters),
-    settings(settings)
+PresetManager::PresetManager(juce::AudioProcessor* inProcessor, juce::AudioProcessorValueTreeState* inParameters, juce::ValueTree* inSettings)
+:   processor(inProcessor),
+    parameters(inParameters),
+    settings(inSettings)
 {
     juce::MessageManager::getInstance()->registerBroadcastListener(this);
     
@@ -47,7 +47,7 @@ PresetManager::~PresetManager()
 }
 
 //==============================================================================
-void PresetManager::actionListenerCallback(const juce::String& message)
+void PresetManager::actionListenerCallback([[maybe_unused]]const juce::String& message)
 {
    
 }
@@ -108,7 +108,7 @@ void PresetManager::savePreset(juce::String name, juce::String notes, bool shoul
     numUserPresets++;
 }
 
-void PresetManager::updatePreset(juce::String name)
+void PresetManager::updatePreset([[maybe_unused]]juce::String name)
 {
     
 }
@@ -121,7 +121,7 @@ void PresetManager::loadPreset(juce::String name)
     
     notifyQuickPreset = juce::NotificationType::dontSendNotification;
     
-    std::vector<int> numSubItems;
+    std::vector<size_t> numSubItems;
     
     int numUserSubItems = 0;
     if (presetsTree.isValid()) {
@@ -135,7 +135,7 @@ void PresetManager::loadPreset(juce::String name)
         numSubItems.push_back(p->getNumSubItems());
     }
 
-    for (int i = 0, groupIndex = 0, itemIndex = 0; i < presetsXmlData.size(); i++, itemIndex++) {
+    for (size_t i = 0, groupIndex = 0, itemIndex = 0; i < presetsXmlData.size(); i++, itemIndex++) {
         
         juce::XmlElement xmlToLoad = presetsXmlData[i];
         

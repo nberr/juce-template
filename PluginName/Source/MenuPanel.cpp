@@ -13,8 +13,8 @@
 #include "PluginNameParameters.h"
 
 //==============================================================================
-MenuPanel::MenuPanel(PluginNameAudioProcessor *processor, ContextMenu *contextMenu)
-:   PanelBase(processor, contextMenu)
+MenuPanel::MenuPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
+:   PanelBase(inProcessor, inContextMenu)
 {
     setName("MenuPanel");
     setComponentID("MenuPanelID");

@@ -22,8 +22,8 @@ class PresetDisplayOverlay
 {
 public:
     //==============================================================================
-    PresetDisplayOverlay(PluginNameAudioProcessor* processor, ContextMenu* contextMenu);
-    ~PresetDisplayOverlay();
+    PresetDisplayOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    ~PresetDisplayOverlay() override;
     
     //==============================================================================
     void resized() override;

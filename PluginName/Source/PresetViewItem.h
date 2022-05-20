@@ -18,8 +18,8 @@ class PresetViewItem
 {
 public:
     //==============================================================================
-    PresetViewItem(juce::String name, juce::String notes, bool isDefault, bool isDirectory, bool isUserPreset);
-    ~PresetViewItem();
+    PresetViewItem(juce::String inName, juce::String inNotes, bool inIsDefault, bool inIsDirectory, bool inIsUserPreset);
+    ~PresetViewItem() override;
     
     //==============================================================================
     bool mightContainSubItems() override;

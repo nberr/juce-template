@@ -19,8 +19,8 @@ class PresetPanel
 {
 public:
     //==============================================================================
-    PresetPanel(PluginNameAudioProcessor* processor, ContextMenu* contextMenu);
-    ~PresetPanel();
+    PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    ~PresetPanel() override;
     
     //==============================================================================
     void resized() override;

@@ -21,8 +21,8 @@ class DeletePresetOverlay
 {
 public:
     //==============================================================================
-    DeletePresetOverlay(PluginNameAudioProcessor* processor, ContextMenu* contextMenu);
-    ~DeletePresetOverlay();
+    DeletePresetOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    ~DeletePresetOverlay() override;
     
     //==============================================================================
     void resized() override;

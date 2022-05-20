@@ -22,8 +22,8 @@ class PresetManager
 {
 public:
     //==============================================================================
-    PresetManager(juce::AudioProcessor* processor, juce::AudioProcessorValueTreeState* parameters, juce::ValueTree* settings);
-    ~PresetManager();
+    PresetManager(juce::AudioProcessor* inProcessor, juce::AudioProcessorValueTreeState* inParameters, juce::ValueTree* inSettings);
+    ~PresetManager() override;
     
     //==============================================================================
     void actionListenerCallback(const juce::String& message) override;
@@ -62,7 +62,7 @@ private:
     juce::ValueTree* settings;
     
     //==============================================================================
-    int currentPresetIndex = -1;
+    size_t currentPresetIndex = 0;
     juce::String currentPresetName = "";
     juce::String defaultPresetName = "";
     

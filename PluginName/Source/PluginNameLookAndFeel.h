@@ -20,12 +20,12 @@ public:
     PluginNameLookAndFeel()
     {
         
-    };
+    }
     
     ~PluginNameLookAndFeel()
     {
         
-    };
+    }
     
 private:
     

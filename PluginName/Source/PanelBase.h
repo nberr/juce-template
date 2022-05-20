@@ -24,8 +24,8 @@ class PanelBase
 {
 public:
     //==============================================================================
-    PanelBase(PluginNameAudioProcessor* processor, ContextMenu* contextMenu);
-    ~PanelBase();
+    PanelBase(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu);
+    ~PanelBase() override;
     
     //==============================================================================
     void paint(juce::Graphics& g) override;

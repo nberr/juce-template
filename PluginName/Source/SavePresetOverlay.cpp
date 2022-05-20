@@ -13,8 +13,8 @@
 #include "PresetPanel.h"
 
 //==============================================================================
-SavePresetOverlay::SavePresetOverlay(PluginNameAudioProcessor* processor, ContextMenu* contextMenu)
-:   OverlayBase(processor, contextMenu)
+SavePresetOverlay::SavePresetOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
+:   OverlayBase(inProcessor, inContextMenu)
 {
     setName("SavePresetOverlay");
     setComponentID("SavePresetOverlayID");

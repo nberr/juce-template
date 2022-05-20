@@ -11,8 +11,8 @@
 #include "PresetDisplayOverlay.h"
 
 //==============================================================================
-PresetDisplayOverlay::PresetDisplayOverlay(PluginNameAudioProcessor* processor, ContextMenu* contextMenu)
-:   OverlayBase(processor, contextMenu)
+PresetDisplayOverlay::PresetDisplayOverlay(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
+:   OverlayBase(inProcessor, inContextMenu)
 {
     setName("PresetDisplayOverlay");
     setComponentID("PresetDisplayOverlayID");

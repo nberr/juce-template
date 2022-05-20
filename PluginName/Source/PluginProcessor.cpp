@@ -83,21 +83,21 @@ int PluginNameAudioProcessor::getCurrentProgram()
     return 0;
 }
 
-void PluginNameAudioProcessor::setCurrentProgram (int index)
+void PluginNameAudioProcessor::setCurrentProgram ([[maybe_unused]]int index)
 {
 }
 
-const juce::String PluginNameAudioProcessor::getProgramName (int index)
+const juce::String PluginNameAudioProcessor::getProgramName ([[maybe_unused]]int index)
 {
     return {};
 }
 
-void PluginNameAudioProcessor::changeProgramName (int index, const juce::String& newName)
+void PluginNameAudioProcessor::changeProgramName ([[maybe_unused]]int index, [[maybe_unused]]const juce::String& newName)
 {
 }
 
 //==============================================================================
-void PluginNameAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void PluginNameAudioProcessor::prepareToPlay ([[maybe_unused]]double sampleRate, [[maybe_unused]]int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
@@ -135,7 +135,7 @@ bool PluginNameAudioProcessor::isBusesLayoutSupported (const BusesLayout& layout
 }
 #endif
 
-void PluginNameAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
+void PluginNameAudioProcessor::processBlock ([[maybe_unused]]juce::AudioBuffer<float>& buffer, [[maybe_unused]]juce::MidiBuffer& midiMessages)
 {
     juce::ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();

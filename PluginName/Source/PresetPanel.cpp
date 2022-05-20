@@ -13,8 +13,8 @@
 #include "PresetManager.h"
 
 //==============================================================================
-PresetPanel::PresetPanel(PluginNameAudioProcessor *processor, ContextMenu *contextMenu)
-:   PanelBase(processor, contextMenu)
+PresetPanel::PresetPanel(PluginNameAudioProcessor* inProcessor, ContextMenu* inContextMenu)
+:   PanelBase(inProcessor, inContextMenu)
 {
     setName("PresetPanel");
     setComponentID("PresetPanelID");

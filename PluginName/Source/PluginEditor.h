@@ -62,8 +62,6 @@ private:
     PluginNameAudioProcessor& audioProcessor;
     
     //==============================================================================
-    // This template allows two ways to display a UI
-    // 1 - pure JUCE; see UI folder for panel hierarchy
     ContextMenu contextMenu;
     
     //==============================================================================
@@ -95,11 +93,6 @@ private:
         &deletePresetOverlay,
         &updatePresetOverlay
     };
-    
-    //==============================================================================
-    // 2 - react-juce; see jsui/src/index.js
-    reactjuce::ReactApplicationRoot appRoot;
-    reactjuce::AppHarness appHarness;
     
     //==============================================================================
     juce::TextButton unlockButton { "Unlock" },
