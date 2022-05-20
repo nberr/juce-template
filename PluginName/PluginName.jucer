@@ -6,168 +6,190 @@
               companyWebsite="companywebsite.com" companyEmail="contact@companywebsite.com"
               bundleIdentifier="io.nberr.PluginName" pluginName="PluginName"
               pluginDesc="Plugin template with common features" pluginManufacturer="CompanyManufacturer"
-              defines="REACTJUCE_USE_DUKTAPE=1">
+              defines="REACTJUCE_USE_DUKTAPE=1" headerPath="../../Source&#10;../../Source/UI&#10;../../Source/UI/Overlays&#10;../../Source/UI/Overlays/Registration&#10;../../Source/UI/Overlays/Registration/Logout&#10;../../Source/UI/Overlays/Registration/Login&#10;../../Source/UI/Overlays/Update&#10;../../Source/UI/Overlays/Preset&#10;../../Source/UI/Overlays/Preset/Update&#10;../../Source/UI/Overlays/Preset/Delete&#10;../../Source/UI/Overlays/Preset/Display&#10;../../Source/UI/Overlays/Preset/Save&#10;../../Source/UI/Panels&#10;../../Source/UI/Panels/Preset&#10;../../Source/UI/Panels/Side&#10;../../Source/UI/Panels/Menu&#10;../../Source/UI/Panels/Main&#10;../../Source/UI/ContextMenu&#10;../../Source/Settings&#10;../../Source/Registration&#10;../../Source/Preset&#10;../../Source/Preset/ViewItem&#10;../../Source/Preset/Toggle&#10;../../Source/Parameters&#10;../../Source/Parameters/Controllers&#10;../../Source/Parameters/Controllers/ToggleButton&#10;../../Source/Parameters/Controllers/Slider&#10;../../Source/Parameters/Controllers/ComboBox&#10;../../Source/Messaging&#10;../../Source/Messaging/Listener&#10;../../Source/Messaging/Message&#10;../../Source/Messaging/Manager&#10;../../Source/Messaging/Broadcaster">
   <MAINGROUP id="rG13mo" name="PluginName">
     <GROUP id="{A69D8F93-3BCE-9AD3-66FB-82DC085FE56F}" name="Source">
       <GROUP id="{33A4FED4-0705-D62A-66BC-E12368B9DFAD}" name="Assets">
         <FILE id="oZEz6l" name="FactoryPresets.xml" compile="0" resource="1"
               file="Assets/FactoryPresets.xml"/>
       </GROUP>
-      <GROUP id="{C2E3B25D-187E-CB7F-0D8E-CABE430BAC54}" name="Messaging">
-        <GROUP id="{466C6131-018A-9850-2E3F-FCD1EB1916E4}" name="Listener">
-          <FILE id="jXkCNZ" name="MessageListener.cpp" compile="1" resource="0"
-                file="Source/MessageListener.cpp"/>
-          <FILE id="MQhr4w" name="MessageListener.h" compile="0" resource="0"
-                file="Source/MessageListener.h"/>
+      <GROUP id="{81986E4A-90A9-6F22-2437-F6D4739FF82E}" name="jsui">
+        <GROUP id="{9C30383F-11D3-9240-4A39-012C1808C06E}" name="src">
+          <FILE id="aj9C4k" name="App.js" compile="0" resource="1" file="Source/jsui/src/App.js"/>
+          <FILE id="xOU37u" name="index.js" compile="0" resource="1" file="Source/jsui/src/index.js"/>
         </GROUP>
-        <GROUP id="{863504CD-15B7-BC00-0680-BA5F40BD9A5F}" name="Broadcaster">
-          <FILE id="rTBQCI" name="MessageBroadcaster.cpp" compile="1" resource="0"
-                file="Source/MessageBroadcaster.cpp"/>
-          <FILE id="L7QOhL" name="MessageBroadcaster.h" compile="0" resource="0"
-                file="Source/MessageBroadcaster.h"/>
-        </GROUP>
-        <GROUP id="{DCD9A653-1841-7FD0-6C98-6ECE8D25300B}" name="Manager">
-          <FILE id="w4Yj3R" name="MessageManger.cpp" compile="1" resource="0"
-                file="Source/MessageManger.cpp"/>
-          <FILE id="Q0EdtB" name="MessageManger.h" compile="0" resource="0" file="Source/MessageManger.h"/>
-        </GROUP>
-        <GROUP id="{63BD0CCB-7CD6-7495-7846-AAB9768B00C5}" name="Message">
-          <FILE id="WQT2Kw" name="PluginNameMessage.cpp" compile="1" resource="0"
-                file="Source/PluginNameMessage.cpp"/>
-          <FILE id="aNAIFd" name="PluginNameMessage.h" compile="0" resource="0"
-                file="Source/PluginNameMessage.h"/>
-        </GROUP>
-        <FILE id="F5BL9O" name="PluginNameMessages.h" compile="0" resource="0"
-              file="Source/PluginNameMessages.h"/>
+        <FILE id="dz2pgo" name="babel.config.js" compile="0" resource="1" file="Source/jsui/babel.config.js"/>
+        <FILE id="E7lrwR" name="package-lock.json" compile="0" resource="1"
+              file="Source/jsui/package-lock.json"/>
+        <FILE id="n95Its" name="package.json" compile="0" resource="1" file="Source/jsui/package.json"/>
+        <FILE id="DtZ5kA" name="webpack.config.js" compile="0" resource="1"
+              file="Source/jsui/webpack.config.js"/>
       </GROUP>
-      <GROUP id="{72DCA701-CF27-B8CA-FCE3-842C30867F9F}" name="Parameters">
-        <GROUP id="{CF004890-1408-9A1C-649C-4822D3AB72C6}" name="Controllers">
-          <GROUP id="{DAD9ED3A-AE22-48E1-C60F-20CD0D39CF1F}" name="ComboBox">
-            <FILE id="ORP4T1" name="ParameterComboBox.cpp" compile="1" resource="0"
-                  file="Source/ParameterComboBox.cpp"/>
-            <FILE id="OSdPSB" name="ParameterComboBox.h" compile="0" resource="0"
-                  file="Source/ParameterComboBox.h"/>
-          </GROUP>
-          <GROUP id="{B4351D21-CDB4-EFAC-23CF-E6A2F2F50628}" name="ToggleButton">
-            <FILE id="u7uUxm" name="ParameterToggleButton.cpp" compile="1" resource="0"
-                  file="Source/ParameterToggleButton.cpp"/>
-            <FILE id="Uvh29S" name="ParameterToggleButton.h" compile="0" resource="0"
-                  file="Source/ParameterToggleButton.h"/>
-          </GROUP>
-          <GROUP id="{C9CE7E95-B116-7A11-15AC-16599BBCBA3D}" name="Slider">
-            <FILE id="q8BHiA" name="ParameterSlider.cpp" compile="1" resource="0"
-                  file="Source/ParameterSlider.cpp"/>
-            <FILE id="ATovLz" name="ParameterSlider.h" compile="0" resource="0"
-                  file="Source/ParameterSlider.h"/>
-          </GROUP>
+      <GROUP id="{A2DB0730-9F38-2F86-DD50-4AD85757C687}" name="Messaging">
+        <GROUP id="{1A7DD14A-3909-4EF1-E051-79CCA8DB49A6}" name="Broadcaster">
+          <FILE id="nQ93to" name="MessageBroadcaster.cpp" compile="1" resource="0"
+                file="Source/Messaging/Broadcaster/MessageBroadcaster.cpp"/>
+          <FILE id="J19QLA" name="MessageBroadcaster.h" compile="0" resource="0"
+                file="Source/Messaging/Broadcaster/MessageBroadcaster.h"/>
         </GROUP>
-        <FILE id="ZtnuMG" name="PluginNameParameters.h" compile="0" resource="0"
-              file="Source/PluginNameParameters.h"/>
+        <GROUP id="{1CF15617-E5B2-1F23-B5FA-D0160E58284F}" name="Listener">
+          <FILE id="yJHBEz" name="MessageListener.cpp" compile="1" resource="0"
+                file="Source/Messaging/Listener/MessageListener.cpp"/>
+          <FILE id="AgfFJG" name="MessageListener.h" compile="0" resource="0"
+                file="Source/Messaging/Listener/MessageListener.h"/>
+        </GROUP>
+        <GROUP id="{147150F9-7DAF-81B1-CC63-C51363870DB6}" name="Manager">
+          <FILE id="JVEZ9b" name="MessageManger.cpp" compile="1" resource="0"
+                file="Source/Messaging/Manager/MessageManger.cpp"/>
+          <FILE id="ZOIdQn" name="MessageManger.h" compile="0" resource="0" file="Source/Messaging/Manager/MessageManger.h"/>
+        </GROUP>
+        <GROUP id="{134652ED-7A14-156B-4F59-66D763F2F8C2}" name="Message">
+          <FILE id="QKsbtz" name="PluginNameMessage.cpp" compile="1" resource="0"
+                file="Source/Messaging/Message/PluginNameMessage.cpp"/>
+          <FILE id="NqbuhQ" name="PluginNameMessage.h" compile="0" resource="0"
+                file="Source/Messaging/Message/PluginNameMessage.h"/>
+        </GROUP>
+        <FILE id="kvo4lR" name="PluginNameMessages.h" compile="0" resource="0"
+              file="Source/Messaging/PluginNameMessages.h"/>
       </GROUP>
-      <GROUP id="{8342A970-953C-2714-B70C-3F1BB6B1F124}" name="Preset">
-        <GROUP id="{D28B10CF-25CF-357E-FA3F-E70854DC37FB}" name="PresetViewItem">
-          <FILE id="P0ANBT" name="PresetViewItem.cpp" compile="1" resource="0"
-                file="Source/PresetViewItem.cpp"/>
-          <FILE id="ZxvZAr" name="PresetViewItem.h" compile="0" resource="0"
-                file="Source/PresetViewItem.h"/>
+      <GROUP id="{687D3D2A-180D-9549-35F1-0AB6AF262590}" name="Parameters">
+        <GROUP id="{614AF0FE-17F7-997E-19A5-628B1BD26F4F}" name="Controllers">
+          <GROUP id="{078CB001-803B-478F-8785-CB4EBDD24F4F}" name="ComboBox">
+            <FILE id="O8xV97" name="ParameterComboBox.cpp" compile="1" resource="0"
+                  file="Source/Parameters/Controllers/ComboBox/ParameterComboBox.cpp"/>
+            <FILE id="S7LSOR" name="ParameterComboBox.h" compile="0" resource="0"
+                  file="Source/Parameters/Controllers/ComboBox/ParameterComboBox.h"/>
+          </GROUP>
+          <GROUP id="{4CFC60EB-6839-CAF2-38D5-F9EDA4F7EC7C}" name="Slider">
+            <FILE id="l0hXE7" name="ParameterSlider.cpp" compile="1" resource="0"
+                  file="Source/Parameters/Controllers/Slider/ParameterSlider.cpp"/>
+            <FILE id="zgDzI5" name="ParameterSlider.h" compile="0" resource="0"
+                  file="Source/Parameters/Controllers/Slider/ParameterSlider.h"/>
+          </GROUP>
+          <GROUP id="{2ADEA18F-ACB1-D3F0-1EB5-77D630FA0AD4}" name="ToggleButton">
+            <FILE id="xgzgSF" name="ParameterToggleButton.cpp" compile="1" resource="0"
+                  file="Source/Parameters/Controllers/ToggleButton/ParameterToggleButton.cpp"/>
+            <FILE id="DAlT6s" name="ParameterToggleButton.h" compile="0" resource="0"
+                  file="Source/Parameters/Controllers/ToggleButton/ParameterToggleButton.h"/>
+          </GROUP>
         </GROUP>
-        <GROUP id="{376A1EF7-91B6-105B-4131-82A94E0D23BE}" name="Toggle"/>
-        <FILE id="DTaPq6" name="PresetManager.cpp" compile="1" resource="0"
-              file="Source/PresetManager.cpp"/>
-        <FILE id="GYvZPf" name="PresetManager.h" compile="0" resource="0" file="Source/PresetManager.h"/>
+        <FILE id="ja0wcn" name="PluginNameParameters.h" compile="0" resource="0"
+              file="Source/Parameters/PluginNameParameters.h"/>
       </GROUP>
-      <GROUP id="{84D0E007-1FF8-ED93-9A51-51F2943F255A}" name="Registration">
-        <FILE id="yp9zN5" name="RegistrationStatus.cpp" compile="1" resource="0"
-              file="Source/RegistrationStatus.cpp"/>
-        <FILE id="ARSL4U" name="RegistrationStatus.h" compile="0" resource="0"
-              file="Source/RegistrationStatus.h"/>
+      <GROUP id="{548FB838-6BD9-2F80-E1C5-01E099D129AF}" name="Preset">
+        <GROUP id="{A662A408-6E63-8292-71F7-492601A17DC7}" name="Toggle"/>
+        <GROUP id="{95CF7D2B-0BCD-A8E4-A672-8276FD47C475}" name="ViewItem">
+          <FILE id="CMhPD7" name="PresetViewItem.cpp" compile="1" resource="0"
+                file="Source/Preset/ViewItem/PresetViewItem.cpp"/>
+          <FILE id="c1RaZ0" name="PresetViewItem.h" compile="0" resource="0"
+                file="Source/Preset/ViewItem/PresetViewItem.h"/>
+        </GROUP>
+        <FILE id="WpBiOt" name="PresetManager.cpp" compile="1" resource="0"
+              file="Source/Preset/PresetManager.cpp"/>
+        <FILE id="VFpx6V" name="PresetManager.h" compile="0" resource="0" file="Source/Preset/PresetManager.h"/>
       </GROUP>
-      <GROUP id="{F8A22243-8168-510B-EEF6-7871213F9C2B}" name="Settings">
-        <FILE id="St2wlL" name="PluginNameSettings.h" compile="0" resource="0"
-              file="Source/PluginNameSettings.h"/>
-        <FILE id="yjXSGX" name="SettingsManager.cpp" compile="1" resource="0"
-              file="Source/SettingsManager.cpp"/>
-        <FILE id="REzDFK" name="SettingsManager.h" compile="0" resource="0"
-              file="Source/SettingsManager.h"/>
+      <GROUP id="{EA3EFBCF-F514-04DD-F814-383D5D793BD8}" name="Registration">
+        <FILE id="ITlJ0d" name="RegistrationStatus.cpp" compile="1" resource="0"
+              file="Source/Registration/RegistrationStatus.cpp"/>
+        <FILE id="PCOYzW" name="RegistrationStatus.h" compile="0" resource="0"
+              file="Source/Registration/RegistrationStatus.h"/>
       </GROUP>
-      <GROUP id="{388B85AD-E66C-206A-3B65-780B5597D18D}" name="UI">
-        <GROUP id="{268804BC-FB6D-6751-5DDC-90853AF58214}" name="ContextMenu">
-          <FILE id="EuWjV7" name="ContextMenu.cpp" compile="1" resource="0" file="Source/ContextMenu.cpp"/>
-          <FILE id="cU55PE" name="ContextMenu.h" compile="0" resource="0" file="Source/ContextMenu.h"/>
+      <GROUP id="{39F4DC16-9B19-C38D-095C-A387E8DCD2D0}" name="rust-dsp">
+        <GROUP id="{1BCFF273-6A5E-6CC5-1444-6A96C30ED99F}" name="src">
+          <FILE id="W7YVfV" name="gain.rs" compile="0" resource="1" file="Source/rust-dsp/src/gain.rs"/>
+          <FILE id="HtOf64" name="lib.rs" compile="0" resource="1" file="Source/rust-dsp/src/lib.rs"/>
         </GROUP>
-        <GROUP id="{7060C5BE-F5EF-0A16-A937-E2D621D667CF}" name="Overlays">
-          <GROUP id="{DCB5B414-4406-EFAB-F48B-0434C5077E10}" name="Update">
-            <FILE id="AoY70Y" name="UpdatePluginOverlay.cpp" compile="1" resource="0"
-                  file="Source/UpdatePluginOverlay.cpp"/>
-            <FILE id="GkZ3PM" name="UpdatePluginOverlay.h" compile="0" resource="0"
-                  file="Source/UpdatePluginOverlay.h"/>
-          </GROUP>
-          <GROUP id="{06931257-3913-D85A-0B43-9462E0BC06EA}" name="Preset">
-            <GROUP id="{E4832FC5-FD25-FB84-72BE-9A346D094B1C}" name="Delete">
-              <FILE id="kPcpL6" name="DeletePresetOverlay.cpp" compile="1" resource="0"
-                    file="Source/DeletePresetOverlay.cpp"/>
-              <FILE id="Plowjp" name="DeletePresetOverlay.h" compile="0" resource="0"
-                    file="Source/DeletePresetOverlay.h"/>
-            </GROUP>
-            <GROUP id="{2CB387AB-00AF-B0CB-FC0D-35C4BCCB5EBC}" name="Display">
-              <FILE id="CdgVtu" name="PresetDisplayOverlay.cpp" compile="1" resource="0"
-                    file="Source/PresetDisplayOverlay.cpp"/>
-              <FILE id="ku9N1D" name="PresetDisplayOverlay.h" compile="0" resource="0"
-                    file="Source/PresetDisplayOverlay.h"/>
-            </GROUP>
-            <GROUP id="{7D7E870B-2CAB-2FA8-2E03-2264E76D3E56}" name="Save">
-              <FILE id="vv8IJ2" name="SavePresetOverlay.cpp" compile="1" resource="0"
-                    file="Source/SavePresetOverlay.cpp"/>
-              <FILE id="z98CAp" name="SavePresetOverlay.h" compile="0" resource="0"
-                    file="Source/SavePresetOverlay.h"/>
-            </GROUP>
-            <GROUP id="{24586964-0500-3020-84FE-7297D55CD242}" name="Update">
-              <FILE id="Gsdvvd" name="UpdatePresetOverlay.cpp" compile="1" resource="0"
-                    file="Source/UpdatePresetOverlay.cpp"/>
-              <FILE id="jaPgoC" name="UpdatePresetOverlay.h" compile="0" resource="0"
-                    file="Source/UpdatePresetOverlay.h"/>
-            </GROUP>
-          </GROUP>
-          <GROUP id="{C64FAEA4-4947-1F9C-06F0-C40353E80E70}" name="Registration">
-            <GROUP id="{453FCC60-C5D7-C8A2-2C4C-A7422D339EEC}" name="Login">
-              <FILE id="i5Xppa" name="UnlockForm.cpp" compile="1" resource="0" file="Source/UnlockForm.cpp"/>
-              <FILE id="jEGoZi" name="UnlockForm.h" compile="0" resource="0" file="Source/UnlockForm.h"/>
-              <FILE id="Ne3Obh" name="LoginOverlay.cpp" compile="1" resource="0"
-                    file="Source/LoginOverlay.cpp"/>
-              <FILE id="kKfjnm" name="LoginOverlay.h" compile="0" resource="0" file="Source/LoginOverlay.h"/>
-            </GROUP>
-            <GROUP id="{C3C9336E-0981-F850-3F67-BDE07A4E462C}" name="Logout">
-              <FILE id="WM5Wd2" name="LogoutOverlay.cpp" compile="1" resource="0"
-                    file="Source/LogoutOverlay.cpp"/>
-              <FILE id="cpmJun" name="LogoutOverlay.h" compile="0" resource="0" file="Source/LogoutOverlay.h"/>
-            </GROUP>
-          </GROUP>
-          <FILE id="C4AO3h" name="OverlayBase.cpp" compile="1" resource="0" file="Source/OverlayBase.cpp"/>
-          <FILE id="wAXntP" name="OverlayBase.h" compile="0" resource="0" file="Source/OverlayBase.h"/>
+        <FILE id="aH5NkF" name="Cargo.toml" compile="0" resource="1" file="Source/rust-dsp/Cargo.toml"/>
+        <FILE id="EqMRzC" name="cbindgen.toml" compile="0" resource="1" file="Source/rust-dsp/cbindgen.toml"/>
+        <FILE id="yzgx1Z" name="gain.hpp" compile="0" resource="0" file="Source/rust-dsp/gain.hpp"/>
+        <FILE id="AEiUAb" name="test.cpp" compile="1" resource="0" file="Source/rust-dsp/test.cpp"/>
+      </GROUP>
+      <GROUP id="{F49E5BC2-31FA-C84E-FD52-B495D914A76E}" name="Settings">
+        <FILE id="sdHrlq" name="PluginNameSettings.h" compile="0" resource="0"
+              file="Source/Settings/PluginNameSettings.h"/>
+        <FILE id="GzhtTx" name="SettingsManager.cpp" compile="1" resource="0"
+              file="Source/Settings/SettingsManager.cpp"/>
+        <FILE id="PjGe48" name="SettingsManager.h" compile="0" resource="0"
+              file="Source/Settings/SettingsManager.h"/>
+      </GROUP>
+      <GROUP id="{7D1F5A0F-9219-C442-E752-8A995FD85BA4}" name="UI">
+        <GROUP id="{1179C1B3-2EC8-A4B1-4B9E-14C55053DAE0}" name="ContextMenu">
+          <FILE id="JanQaK" name="ContextMenu.cpp" compile="1" resource="0" file="Source/UI/ContextMenu/ContextMenu.cpp"/>
+          <FILE id="fiHqlq" name="ContextMenu.h" compile="0" resource="0" file="Source/UI/ContextMenu/ContextMenu.h"/>
         </GROUP>
-        <GROUP id="{1E258759-405D-5C93-E761-4771C567FD46}" name="Panels">
-          <GROUP id="{5C4CFEEF-4619-3B69-1A39-EAADB514BBC8}" name="Main">
-            <FILE id="XgxmmI" name="MainPanel.cpp" compile="1" resource="0" file="Source/MainPanel.cpp"/>
-            <FILE id="aEEQll" name="MainPanel.h" compile="0" resource="0" file="Source/MainPanel.h"/>
+        <GROUP id="{1373B6F7-6D12-CC32-1378-F6BB055CD0EC}" name="Overlays">
+          <GROUP id="{DB4B47E7-135F-7D32-B1F9-8B26669171B6}" name="Preset">
+            <GROUP id="{ED1AD5D5-8531-E48C-0018-4201D85F26E3}" name="Delete">
+              <FILE id="Zg2OPW" name="DeletePresetOverlay.cpp" compile="1" resource="0"
+                    file="Source/UI/Overlays/Preset/Delete/DeletePresetOverlay.cpp"/>
+              <FILE id="XVLzOR" name="DeletePresetOverlay.h" compile="0" resource="0"
+                    file="Source/UI/Overlays/Preset/Delete/DeletePresetOverlay.h"/>
+            </GROUP>
+            <GROUP id="{D6949733-1445-A7CE-8EA4-4AAE1E6A78CA}" name="Display">
+              <FILE id="JrgpME" name="PresetDisplayOverlay.cpp" compile="1" resource="0"
+                    file="Source/UI/Overlays/Preset/Display/PresetDisplayOverlay.cpp"/>
+              <FILE id="jeYw4o" name="PresetDisplayOverlay.h" compile="0" resource="0"
+                    file="Source/UI/Overlays/Preset/Display/PresetDisplayOverlay.h"/>
+            </GROUP>
+            <GROUP id="{74B17576-D657-9BA7-CACD-01F035DFE279}" name="Save">
+              <FILE id="UlMYKx" name="SavePresetOverlay.cpp" compile="1" resource="0"
+                    file="Source/UI/Overlays/Preset/Save/SavePresetOverlay.cpp"/>
+              <FILE id="THiYOi" name="SavePresetOverlay.h" compile="0" resource="0"
+                    file="Source/UI/Overlays/Preset/Save/SavePresetOverlay.h"/>
+            </GROUP>
+            <GROUP id="{3CC39600-303C-8E8D-25E2-67F6E83AE5BE}" name="Update">
+              <FILE id="iCA4wg" name="UpdatePresetOverlay.cpp" compile="1" resource="0"
+                    file="Source/UI/Overlays/Preset/Update/UpdatePresetOverlay.cpp"/>
+              <FILE id="RqZfdB" name="UpdatePresetOverlay.h" compile="0" resource="0"
+                    file="Source/UI/Overlays/Preset/Update/UpdatePresetOverlay.h"/>
+            </GROUP>
           </GROUP>
-          <GROUP id="{5F7A0AC8-5B25-2CA7-903A-3DEB99BBD095}" name="Menu">
-            <FILE id="N1J6MN" name="MenuPanel.cpp" compile="1" resource="0" file="Source/MenuPanel.cpp"/>
-            <FILE id="uK6kKs" name="MenuPanel.h" compile="0" resource="0" file="Source/MenuPanel.h"/>
+          <GROUP id="{B9B3AAC2-20ED-8DE8-75C9-3B0C466F1FCE}" name="Registration">
+            <GROUP id="{6E61ED51-5AD5-C9AC-E72B-43800040A90C}" name="Login">
+              <FILE id="JUQy7R" name="LoginOverlay.cpp" compile="1" resource="0"
+                    file="Source/UI/Overlays/Registration/Login/LoginOverlay.cpp"/>
+              <FILE id="qDLIfG" name="LoginOverlay.h" compile="0" resource="0" file="Source/UI/Overlays/Registration/Login/LoginOverlay.h"/>
+              <FILE id="XilCo5" name="UnlockForm.cpp" compile="1" resource="0" file="Source/UI/Overlays/Registration/Login/UnlockForm.cpp"/>
+              <FILE id="KBnV99" name="UnlockForm.h" compile="0" resource="0" file="Source/UI/Overlays/Registration/Login/UnlockForm.h"/>
+            </GROUP>
+            <GROUP id="{F8528CF8-569C-5786-8B4A-DAE937C159C5}" name="Logout">
+              <FILE id="eGZarN" name="LogoutOverlay.cpp" compile="1" resource="0"
+                    file="Source/UI/Overlays/Registration/Logout/LogoutOverlay.cpp"/>
+              <FILE id="DTpVaJ" name="LogoutOverlay.h" compile="0" resource="0" file="Source/UI/Overlays/Registration/Logout/LogoutOverlay.h"/>
+            </GROUP>
           </GROUP>
-          <GROUP id="{8081B5BA-8452-B9B3-33EE-EFC31025B7A2}" name="Preset">
-            <FILE id="DGgZ7N" name="PresetPanel.cpp" compile="1" resource="0" file="Source/PresetPanel.cpp"/>
-            <FILE id="MzUTOS" name="PresetPanel.h" compile="0" resource="0" file="Source/PresetPanel.h"/>
+          <GROUP id="{50435E2B-912D-9E8E-0EF0-84E07AABCE6A}" name="Update">
+            <FILE id="OYscC3" name="UpdatePluginOverlay.cpp" compile="1" resource="0"
+                  file="Source/UI/Overlays/Update/UpdatePluginOverlay.cpp"/>
+            <FILE id="aBL1dh" name="UpdatePluginOverlay.h" compile="0" resource="0"
+                  file="Source/UI/Overlays/Update/UpdatePluginOverlay.h"/>
           </GROUP>
-          <GROUP id="{03F6DB09-199E-115D-6B2F-170D860689C0}" name="Side">
-            <FILE id="tiizCc" name="SidePanel.cpp" compile="1" resource="0" file="Source/SidePanel.cpp"/>
-            <FILE id="eHZ2Yj" name="SidePanel.h" compile="0" resource="0" file="Source/SidePanel.h"/>
-          </GROUP>
-          <FILE id="Sqtvka" name="PanelBase.cpp" compile="1" resource="0" file="Source/PanelBase.cpp"/>
-          <FILE id="rnHRp3" name="PanelBase.h" compile="0" resource="0" file="Source/PanelBase.h"/>
+          <FILE id="GShvLO" name="OverlayBase.cpp" compile="1" resource="0" file="Source/UI/Overlays/OverlayBase.cpp"/>
+          <FILE id="qcQvZo" name="OverlayBase.h" compile="0" resource="0" file="Source/UI/Overlays/OverlayBase.h"/>
         </GROUP>
-        <FILE id="n92iCR" name="PluginNameGUI.h" compile="0" resource="0" file="Source/PluginNameGUI.h"/>
-        <FILE id="tRi67d" name="PluginNameLookAndFeel.h" compile="0" resource="0"
-              file="Source/PluginNameLookAndFeel.h"/>
+        <GROUP id="{45BDAEE9-5DED-F30D-99EE-DB8A53BD00A7}" name="Panels">
+          <GROUP id="{DC7C2738-0A5E-D12B-C81E-039CCC6822C6}" name="Main">
+            <FILE id="iyXOGR" name="MainPanel.cpp" compile="1" resource="0" file="Source/UI/Panels/Main/MainPanel.cpp"/>
+            <FILE id="JE5NCj" name="MainPanel.h" compile="0" resource="0" file="Source/UI/Panels/Main/MainPanel.h"/>
+          </GROUP>
+          <GROUP id="{6A5845E5-5561-7CF2-9F8C-38648F7C405E}" name="Menu">
+            <FILE id="TuJTy3" name="MenuPanel.cpp" compile="1" resource="0" file="Source/UI/Panels/Menu/MenuPanel.cpp"/>
+            <FILE id="Pxp8aP" name="MenuPanel.h" compile="0" resource="0" file="Source/UI/Panels/Menu/MenuPanel.h"/>
+          </GROUP>
+          <GROUP id="{676D10AA-43D5-C615-974F-D1DA93FC0DD9}" name="Preset">
+            <FILE id="X7JteB" name="PresetPanel.cpp" compile="1" resource="0" file="Source/UI/Panels/Preset/PresetPanel.cpp"/>
+            <FILE id="OOfELZ" name="PresetPanel.h" compile="0" resource="0" file="Source/UI/Panels/Preset/PresetPanel.h"/>
+          </GROUP>
+          <GROUP id="{5CD03FF4-21F4-2F23-993A-425709D7630D}" name="Side">
+            <FILE id="Dzo2BL" name="SidePanel.cpp" compile="1" resource="0" file="Source/UI/Panels/Side/SidePanel.cpp"/>
+            <FILE id="my3bsc" name="SidePanel.h" compile="0" resource="0" file="Source/UI/Panels/Side/SidePanel.h"/>
+          </GROUP>
+          <FILE id="ER8o42" name="PanelBase.cpp" compile="1" resource="0" file="Source/UI/Panels/PanelBase.cpp"/>
+          <FILE id="o6VihO" name="PanelBase.h" compile="0" resource="0" file="Source/UI/Panels/PanelBase.h"/>
+        </GROUP>
+        <FILE id="hinzlA" name="PluginNameGUI.h" compile="0" resource="0" file="Source/UI/PluginNameGUI.h"/>
+        <FILE id="Z22ckA" name="PluginNameLookAndFeel.h" compile="0" resource="0"
+              file="Source/UI/PluginNameLookAndFeel.h"/>
       </GROUP>
       <FILE id="oqODir" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>

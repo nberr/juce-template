@@ -4,8 +4,8 @@ import sys, shutil, os
 
 def main():
 
-   pre = '../../Source/'
-   directory = './'
+   pre = '../..'
+   directory = '../Source'
    for x in os.walk(directory):
       print(pre + x[0][2:])
 
