@@ -212,12 +212,17 @@ juce::AudioProcessorValueTreeState::ParameterLayout PluginNameAudioProcessor::cr
 {
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
     
+    int version = 1;
+    
     for (int p = 0; p < PluginNameParameters::PNP_TotalNumParameters; p++)
     {
+        
+        auto param_id = juce::ParameterID(PluginNameParameters::IDs[p], version);
+        
         switch (PluginNameParameters::Types[p])
         {
             case PluginNameParameters::is_int:
-                layout.add(std::make_unique<juce::AudioParameterInt>(PluginNameParameters::IDs[p],
+                layout.add(std::make_unique<juce::AudioParameterInt>(param_id,
                                                                      PluginNameParameters::Names[p],
                                                                      PluginNameParameters::Mins[p],
                                                                      PluginNameParameters::Maxs[p],
@@ -225,20 +230,20 @@ juce::AudioProcessorValueTreeState::ParameterLayout PluginNameAudioProcessor::cr
                                                                      PluginNameParameters::Labels[p]));
                 break;
             case PluginNameParameters::is_float:
-                layout.add(std::make_unique<juce::AudioParameterFloat>(PluginNameParameters::IDs[p],
+                layout.add(std::make_unique<juce::AudioParameterFloat>(param_id,
                                                                        PluginNameParameters::Names[p],
                                                                        juce::NormalisableRange<float>(PluginNameParameters::Mins[p], PluginNameParameters::Maxs[p]),
                                                                        PluginNameParameters::Defaults[p],
                                                                        PluginNameParameters::Labels[p]));
                 break;
             case PluginNameParameters::is_bool:
-                layout.add(std::make_unique<juce::AudioParameterBool>(PluginNameParameters::IDs[p],
+                layout.add(std::make_unique<juce::AudioParameterBool>(param_id,
                                                                       PluginNameParameters::Names[p],
                                                                       PluginNameParameters::Defaults[p],
                                                                       PluginNameParameters::Labels[p]));
                 break;
             case PluginNameParameters::is_choice:
-                layout.add(std::make_unique<juce::AudioParameterChoice>(PluginNameParameters::IDs[p],
+                layout.add(std::make_unique<juce::AudioParameterChoice>(param_id,
                                                                         PluginNameParameters::Names[p],
                                                                         PluginNameParameters::Choices[p],
                                                                         PluginNameParameters::Defaults[p],
