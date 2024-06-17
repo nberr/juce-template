@@ -48,21 +48,23 @@ def main():
             os.rename(f'{dest}/Source/{sourcefile}', f'{dest}/Source/{renamedfile}')
 
     # source file internals
-    for sourcefile in os.listdir(f'{dest}/Source'):
-        with open(f'{dest}/Source/{sourcefile}', 'r') as cursource:
-            filedata = cursource.read()
+    for root, dirs, files in os.walk(f'{dest}/Source'):
+        for file in files:
+            filepath = os.path.join(root, file)
+            with open(filepath, 'r') as cursource:
+                filedata = cursource.read()
+            filedata = filedata.replace('PluginName', plugin_name)
+            filedata = filedata.replace('PNP', plugin_prefix)
+            filedata = filedata.replace('Nicholas Berriochoa', plugin_author)
 
-        filedata = filedata.replace('PluginName', plugin_name)
-        filedata = filedata.replace('PNP', plugin_prefix)
-        filedata = filedata.replace('Nicholas Berriochoa', plugin_author)
+            curr_date = datetime.datetime.now()
+            for line in filedata.split('\n'):
+                if "Created: " in line:
+                    filedata = filedata.replace(line.strip(), f'Created: {curr_date.strftime("%d %b %Y %I:%M:%S%p")}')
 
-        curr_date = datetime.datetime.now()
-        for line in filedata.split('\n'):
-           if "Created: " in line:
-              filedata = filedata.replace(line.strip(), f'Created: {curr_date.strftime("%d %b %Y %I:%M:%S%p")}')
+            with open(filepath, 'w') as cursource:
+                cursource.write(filedata)
 
-        with open(f'{dest}/Source/{sourcefile}', 'w') as cursource:
-            cursource.write(filedata)
 
 
 if __name__ == '__main__':
